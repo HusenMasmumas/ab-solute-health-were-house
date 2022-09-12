@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-user_inactive">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="user_inactive" data-name="user inactive" clip-path="url(#clip-user_inactive)">
+    <g id="frame" opacity="0.8">
+      <path id="Vector" d="M12.235,23.715h-.183a1.241,1.241,0,0,0-.412,0,11.766,11.766,0,1,1,.663,0ZM11.869,3.43a8.43,8.43,0,0,0-.32,16.854,3.775,3.775,0,0,1,.732,0A8.432,8.432,0,0,0,11.869,3.43Z" transform="translate(15.573 2.859)" fill="#fff"/>
+      <path id="Vector-2" data-name="Vector" d="M0,0H54.885V54.885H0Z" transform="translate(0 0)" fill="none" opacity="0"/>
+      <path id="Vector-3" data-name="Vector" d="M17.312,23.126A22.589,22.589,0,0,1,4.917,19.7C1.738,17.592,0,14.71,0,11.577S1.738,5.54,4.917,3.413c6.861-4.551,17.975-4.551,24.79,0,3.156,2.1,4.917,4.985,4.917,8.118s-1.738,6.037-4.917,8.164A22.644,22.644,0,0,1,17.312,23.126ZM6.815,6.295C4.619,7.758,3.43,9.633,3.43,11.6c0,1.944,1.212,3.819,3.385,5.26,5.694,3.819,15.3,3.819,20.993,0,2.2-1.464,3.385-3.339,3.385-5.306,0-1.944-1.212-3.819-3.385-5.26C22.114,2.5,12.509,2.5,6.815,6.295Z" transform="translate(10.519 28.443)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

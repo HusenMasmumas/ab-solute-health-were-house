@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-dashbord_active_1">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="dashbord_active_1" data-name="dashbord active – 1" clip-path="url(#clip-dashbord_active_1)">
+    <g id="vuesax_outline_graph" data-name="vuesax/outline/graph">
+      <g id="graph" transform="translate(0 0)">
+        <path id="Vector" d="M16.168,24.9H8.576C2.881,24.9,0,21.673,0,15.293V8.729C0,6.4.274,3.058,2.7,1.228,4.734-.281,7.661-.4,11.983.863A18.079,18.079,0,0,1,24.035,12.914c1.258,4.3,1.143,7.249-.366,9.262C21.84,24.623,18.5,24.9,16.168,24.9Z" transform="translate(25.727 4.26)" fill="#fff"/>
+        <path id="Vector-2" data-name="Vector" d="M22.458,44.581A22.5,22.5,0,0,1,17.976.033a1.739,1.739,0,0,1,2.035,1.326,1.739,1.739,0,0,1-1.326,2.035A19.081,19.081,0,1,0,41.233,25.852a1.713,1.713,0,0,1,3.362.663A22.53,22.53,0,0,1,22.458,44.581Z" transform="translate(2.858 7.445)" fill="#fff"/>
+        <path id="Vector-3" data-name="Vector" d="M0,0H54.885V54.885H0Z" fill="none" opacity="0"/>
+      </g>
+    </g>
+  </g>
+</svg>

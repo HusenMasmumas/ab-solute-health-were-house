@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-Location-1">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="Location-1" clip-path="url(#clip-Location-1)">
+    <g id="vuesax_bold_location" data-name="vuesax/bold/location">
+      <path id="Vector" d="M40.1,15.354C37.7,4.767,28.462,0,20.35,0h-.023C12.237,0,2.979,4.744.573,15.331c-2.681,11.825,4.56,21.84,11.115,28.142a12.426,12.426,0,0,0,17.3,0C35.544,37.171,42.785,27.179,40.1,15.354ZM20.35,26.835a7.219,7.219,0,1,1,7.219-7.219A7.218,7.218,0,0,1,20.35,26.835Z" transform="translate(7.15 4.01)" fill="#292d32"/>
+      <path id="Vector-2" data-name="Vector" d="M0,0H55V55H0Z" transform="translate(0 0)" fill="none" opacity="0"/>
+      <path id="Vector-3" data-name="Vector" d="M55,55H0V0H55Z" fill="none" opacity="0"/>
+    </g>
+  </g>
+</svg>

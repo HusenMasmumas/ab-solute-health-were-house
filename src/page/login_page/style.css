@@ -1,0 +1,20 @@
+.check_box .ant-checkbox-inner::after {
+    position: absolute;
+    top: 40% !important;
+    left: 21.5%;
+    display: table;
+    width: 6.71428571px !important;
+    height: 15.14285714px !important;
+    border: 2px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg) scale(0) translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
+    content: " ";
+  }
+  
+  .check_box .ant-checkbox-inner{
+    width: 24px !important;
+    height: 24px !important;
+  }

@@ -1,0 +1,82 @@
+/* .Nav_select::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 6px;
+  background-color: #3b8de2;
+  height: 80%;
+  border-radius: 0 99px 99px 0;
+} */
+
+.inNav_select {
+  background-color: transparent;
+  transition: 500ms;
+  color: rgb(101, 101, 101) !important;
+}
+
+.Nav_select {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #0e254e;
+  --tw-gradient-stops:#3b8de2,
+    var(--tw-gradient-to, rgb(14 37 79 / 0));
+  --tw-gradient-to: var(--tw-gradient-from);
+  color: #fff !important;
+  /* width: calc(266px - 20px) !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  border-radius: 5px !important; */
+
+
+}
+
+
+
+/* .inNav_select:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 6px;
+  background-color: #3b8de2;
+  height: 80%;
+  border-radius: 0 99px 99px 0;
+  transition: 500ms;
+} */
+
+.inNav_select::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 6px;
+  height: 80%;
+  border-radius: 0 99px 99px 0;
+  transition: 500ms;
+  color: #fff !important;
+}
+
+
+.inNav_select:hover {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #0e254e;
+  --tw-gradient-stops:#3b8de2,
+    var(--tw-gradient-to, rgb(14 37 79 / 0));
+  --tw-gradient-to: var(--tw-gradient-from);
+  color: #fff !important;
+  /* width: calc(266px - 20px) !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  border-radius: 5px !important; */
+}
+
+

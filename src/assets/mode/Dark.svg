@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-Dark_1">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="Dark_1" data-name="Dark – 1" clip-path="url(#clip-Dark_1)">
+    <g id="vuesax_outline_moon" data-name="vuesax/outline/moon">
+      <g id="moon" transform="translate(0 0)">
+        <path id="Vector" d="M25.686,49.276c-.39,0-.779,0-1.169-.023C11.684,48.68.959,38.344.065,25.74A25.358,25.358,0,0,1,15.626.578C18.49-.614,20,.3,20.644.967c.642.642,1.535,2.131.344,4.858A18.783,18.783,0,0,0,19.43,13.5,19.635,19.635,0,0,0,38.2,32.684a19.815,19.815,0,0,0,4.377-.3c3.025-.55,4.285.665,4.767,1.444s1.031,2.452-.8,4.927A25.74,25.74,0,0,1,25.686,49.276Z" transform="translate(2.868 2.86)" fill="#fff"/>
+        <path id="Vector-2" data-name="Vector" d="M0,0H55V55H0Z" fill="none" opacity="0"/>
+      </g>
+    </g>
+  </g>
+</svg>

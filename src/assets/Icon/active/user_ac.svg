@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-user_active_1">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="user_active_1" data-name="user active – 1" clip-path="url(#clip-user_active_1)">
+    <g id="frame">
+      <path id="Vector" d="M12.235,23.715h-.183a1.241,1.241,0,0,0-.412,0,11.766,11.766,0,1,1,.663,0Z" transform="translate(15.573 2.859)" fill="#fff"/>
+      <path id="Vector-2" data-name="Vector" d="M0,0H54.885V54.885H0Z" transform="translate(0 0)" fill="none" opacity="0"/>
+      <path id="Vector-3" data-name="Vector" d="M17.312,23.126A22.589,22.589,0,0,1,4.917,19.7C1.738,17.592,0,14.71,0,11.577S1.738,5.54,4.917,3.413c6.861-4.551,17.975-4.551,24.79,0,3.156,2.1,4.917,4.985,4.917,8.118s-1.738,6.037-4.917,8.164A22.644,22.644,0,0,1,17.312,23.126Z" transform="translate(10.519 28.443)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

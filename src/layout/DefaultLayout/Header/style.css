@@ -1,0 +1,24 @@
+.cto_select .ant-select-selection-item{
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+
+.cto_select .ant-select-selector{
+    background-color: #F2F8FF !important;
+    border-radius: 99px  !important;
+    border:0 !important;
+    height: 35px !important;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+.dark .cto_select .ant-select-selector{
+    background-color: #16181c !important;
+    color: #fff !important;
+}
+
+.cto_select .ant-select-arrow{
+    right:21px !important;
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="135" height="45" viewBox="0 0 135 45">
+  <defs>
+    <clipPath id="clip-PDF_1">
+      <rect width="135" height="45"/>
+    </clipPath>
+  </defs>
+  <g id="PDF_1" data-name="PDF – 1" clip-path="url(#clip-PDF_1)">
+    <g id="Group_23598" data-name="Group 23598" transform="translate(-1491 -154)">
+      <rect id="Rectangle_19124" data-name="Rectangle 19124" width="135" height="45" rx="3" transform="translate(1491 154)" fill="#16181c"/>
+      <text id="PDF" transform="translate(1551 181)" fill="#fff" font-size="15" font-family="SFProDisplay-Regular, SF Pro Display"><tspan x="0" y="0">PDF</tspan></text>
+      <path id="Icon_material-picture-as-pdf" data-name="Icon material-picture-as-pdf" d="M24.7,3H10.234A2.418,2.418,0,0,0,7.823,5.411V19.879a2.418,2.418,0,0,0,2.411,2.411H24.7a2.418,2.418,0,0,0,2.411-2.411V5.411A2.418,2.418,0,0,0,24.7,3ZM14.454,12.042a1.806,1.806,0,0,1-1.808,1.808H11.44v2.411H9.631V9.028h3.014a1.806,1.806,0,0,1,1.808,1.808Zm6.028,2.411a1.806,1.806,0,0,1-1.808,1.808H15.659V9.028h3.014a1.806,1.806,0,0,1,1.808,1.808ZM25.3,10.837H23.5v1.206H25.3v1.808H23.5v2.411H21.688V9.028H25.3ZM11.44,12.042h1.206V10.837H11.44ZM5.411,7.823H3V24.7a2.418,2.418,0,0,0,2.411,2.411H22.291V24.7H5.411Zm12.057,6.631h1.206V10.837H17.468Z" transform="translate(1513.993 161.535)" fill="#e5564f"/>
+    </g>
+  </g>
+</svg>

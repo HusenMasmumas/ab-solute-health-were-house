@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-graph_inactive">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="graph_inactive" data-name="graph inactive" clip-path="url(#clip-graph_inactive)">
+    <g id="vuesax_outline_activity" data-name="vuesax/outline/activity" opacity="0.8">
+      <g id="activity" transform="translate(0 0)">
+        <path id="Vector" d="M31.444,49.168H17.723C5.306,49.168,0,43.862,0,31.444V17.723C0,5.306,5.306,0,17.723,0H31.444C43.862,0,49.168,5.306,49.168,17.723V31.444C49.168,43.862,43.862,49.168,31.444,49.168ZM17.723,3.43C7.181,3.43,3.43,7.181,3.43,17.723V31.444c0,10.542,3.75,14.293,14.293,14.293H31.444c10.542,0,14.293-3.75,14.293-14.293V17.723c0-10.542-3.75-14.293-14.293-14.293Z" transform="translate(2.859 2.859)" fill="#fff"/>
+        <path id="Vector-2" data-name="Vector" d="M1.724,14.846A1.683,1.683,0,0,1,.672,14.48a1.712,1.712,0,0,1-.32-2.4L5.795,5.013A4.006,4.006,0,0,1,11.443,4.3L15.628,7.6a.488.488,0,0,0,.435.114.507.507,0,0,0,.389-.229L21.734.668a1.691,1.691,0,0,1,2.4-.3,1.689,1.689,0,0,1,.3,2.4L19.15,9.586A3.9,3.9,0,0,1,16.474,11.1a3.967,3.967,0,0,1-2.973-.823L9.317,6.979a.5.5,0,0,0-.435-.114.507.507,0,0,0-.389.229L3.051,14.16A1.55,1.55,0,0,1,1.724,14.846Z" transform="translate(15.039 20.006)" fill="#fff"/>
+        <path id="Vector-3" data-name="Vector" d="M0,0H54.885V54.885H0Z" fill="none" opacity="0"/>
+      </g>
+    </g>
+  </g>
+</svg>
