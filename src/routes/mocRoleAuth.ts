@@ -80,6 +80,12 @@ export const mocRoleAuth = {
         title_th: "จัดการผู้ใช้",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
+      {
+        keyName: "manage-warehouse-management",
+        title_en: "Warehouse management",
+        title_th: "จัดการคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
     ],
   },
 };

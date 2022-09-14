@@ -12,6 +12,7 @@ import PurchaseOrder from "page/purchase_order";
 import Report from "page/report";
 import StoresBranches from "page/stores_branches";
 import ManageUser from "page/manage_user";
+import ManageWarehouseManagement from "page/warehouse_management/manage_warehouse_management/manage_warehouse_management";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -47,7 +48,12 @@ export const _requirePermission: RouteCustom[] = [
         requireAuth: true,
         element: <WarehouseManagement />,
       },
-
+      {
+        path: "/manage-warehouse-management",
+        keyName: "manage-warehouse-management",
+        requireAuth: true,
+        element: <ManageWarehouseManagement />,
+      },
       {
         path: "/purchase-order",
         keyName: "purchase-order",
