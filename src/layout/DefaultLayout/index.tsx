@@ -228,7 +228,7 @@ const DefaultLayout = (props: Props) => {
           />
         </Header>
         <Content
-          className="site-layout-background hidden md:block bg-secondary-light dark:bg-[#16181c] duration-500 h-full overflow-y-auto transition-all"
+          className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full overflow-y-auto transition-all"
           style={{
             padding: 24,
             margin: 0,
