@@ -2,7 +2,13 @@
     "overAll": "Over all",
     "warehouseManagement": "Warehouse management",
     "purchaseOrder": "Purchase order",
+    "purchaseOrderManagement":"Management",
     "report": "Report",
+    "orderReport":"Order Report",
+    "expirationReport":"Expiration Report",
+    "stockReport":"Stock Report",
+    "damageReport":"Damage Report",
+    "importedReport":"importing Report",
     "stores&branches": "Stores & Branches",
     "manageUser": "Manage users"
 }

@@ -2,7 +2,13 @@
     "overAll": "ภาพรวม",
     "warehouseManagement": "จัดการคลังสินค้า",
     "purchaseOrder": "ใบสั่งซื้อ",
+    "purchaseOrderManagement": "จัดการใบสั่งซื้อ",
     "report": "รายงาน",
+    "orderReport":"รายงานการสั่งซื้อ",
+    "expirationReport":"รายงานสินค้าที่หมดอายุ",
+    "damageReport":"รายงานสินค้าที่เสียหาย",
+    "stockReport":"รายงานสต็อคสินค้าคงเหลือ",
+    "importedReport":"รายงานการรับเข้าสินค้า",
     "stores&branches": "ร้านค้า & สาขา",
     "manageUser": "จัดการผู้ใช้"
 }

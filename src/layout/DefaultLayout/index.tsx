@@ -86,7 +86,7 @@ const DefaultLayout = (props: Props) => {
       },
     },
     {
-      key: "warehouse-management",
+      key: "/warehouse-management",
       label: isTabletSize && openDrawer ? null : t("warehouseManagement"),
       page: "Warehouse management",
       icon: activeIcon("warehouse-management", {
@@ -94,43 +94,75 @@ const DefaultLayout = (props: Props) => {
         active: <DashIconAC className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("warehouse-management"),
+      style: {
+        height: "60px",
+        display: "flex",
+      },
+    },
+    {
+      key: "purchase-order",
+      label: isTabletSize && openDrawer ? null : t("purchaseOrder"),
+      page: "Purchase order",
+      icon: activeIcon("warehouse-management", {
+        inactive: <MapIcon className="w-6 h-6 hover:fill-white" />,
+        active: <MapIconAC className="w-6 h-6 fill-white" />,
+      }),
+      className: activeMenu("warehouse-management"),
 
       children: [
         {
-          label: "aaa",
-          key: "/warehouse-management",
+          label: isTabletSize && openDrawer ? null : t("purchaseOrderManagement"),
+          key: "/purchase-order/manage",
         },
       ],
     },
 
-    {
-      key: "/purchase-order",
-      label: isTabletSize && openDrawer ? null : t("purchaseOrder"),
-      page: "Purchase order",
-      icon: activeIcon("purchase-order", {
-        inactive: <MapIcon className="w-6 h-6 fill-white" />,
-        active: <MapIconAC className="w-6 h-6 fill-white" />,
-      }),
-      className: activeMenu("purchase-order"),
-      style: {
-        height: "60px",
-        display: "flex",
-      },
-    },
-
+    // {
+    //   key: "/report",
+    //   label: isTabletSize && openDrawer ? null : t("report"),
+    //   page: "Report",
+    //   icon: activeIcon("report", {
+    //     inactive: <ReportIcon className="w-6 h-6 fill-white" />,
+    //     active: <ReportIconAC className="w-6 h-6 fill-white" />,
+    //   }),
+    //   className: activeMenu("report"),
+    //   style: {
+    //     height: "60px",
+    //     display: "flex",
+    //   },
+    // },
     {
       key: "/report",
       label: isTabletSize && openDrawer ? null : t("report"),
       page: "Report",
-      icon: activeIcon("report", {
-        inactive: <ReportIcon className="w-6 h-6 fill-white" />,
+      icon: activeIcon("warehouse-management", {
+        inactive: <ReportIcon className="w-6 h-6 hover:fill-white" />,
         active: <ReportIconAC className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("report"),
-      style: {
-        height: "60px",
-        display: "flex",
-      },
+
+      children: [
+        {
+          label: isTabletSize && openDrawer ? null : t("orderReport"),
+          key: "report/orderReport",
+        },
+        {
+          label: isTabletSize && openDrawer ? null : t("expirationReport"),
+          key: "report/expirationReport",
+        },
+        {
+          label: isTabletSize && openDrawer ? null : t("damageReport"),
+          key: "report/damageReport",
+        },
+        {
+          label: isTabletSize && openDrawer ? null : t("stockReport"),
+          key: "report/stockReport",
+        },
+        {
+          label: isTabletSize && openDrawer ? null : t("importedReport"),
+          key: "report/importedReport",
+        },
+      ],
     },
 
     {
