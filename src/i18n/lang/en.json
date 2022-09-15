@@ -3,6 +3,7 @@
     "warehouseManagement": "Warehouse management",
     "purchaseOrder": "Purchase order",
     "purchaseOrderManagement":"Management",
+    "overtimepurchaseOrderManagement":"leftover Purchase",
     "report": "Report",
     "orderReport":"Order Report",
     "expirationReport":"Expiration Report",

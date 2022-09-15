@@ -20,6 +20,7 @@ import StockReport from "page/report/stockReport";
 import ImportedReport from "page/report/importedReport";
 import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
+import OvertimePurchease from "page/purchase_order/overtime";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -67,6 +68,12 @@ export const _requirePermission: RouteCustom[] = [
             keyName: "purchase-order/manage",
             requireAuth: true,
             element: <ManagePurcheaseOrder />,
+          },
+          {
+            path: "overtime",
+            keyName: "purchase-order/overtime",
+            requireAuth: true,
+            element: <OvertimePurchease />,
           },
         ]
       },
