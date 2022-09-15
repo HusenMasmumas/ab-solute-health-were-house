@@ -10,5 +10,7 @@
     "damageReport":"Damage Report",
     "importedReport":"importing Report",
     "stores&branches": "Stores & Branches",
-    "manageUser": "Manage users"
+    "manageUser": "Manage users",
+    "role":"Role",
+    "user":"User"
 }

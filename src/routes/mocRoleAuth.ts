@@ -110,15 +110,15 @@ export const mocRoleAuth = {
       },
 
       {
-        keyName: "manage-user",
-        title_en: "Manage user",
+        keyName: "user/manage",
+        title_en: "user",
         title_th: "จัดการผู้ใช้",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
-        keyName: "manage-user",
-        title_en: "Manage user",
-        title_th: "จัดการผู้ใช้",
+        keyName: "user/role",
+        title_en: "role",
+        title_th: "บทบาท",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
     ],

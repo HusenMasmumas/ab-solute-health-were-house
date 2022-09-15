@@ -18,6 +18,8 @@ import ExpirationReport from "page/report/expirationReport";
 import DamageReport from "page/report/damagedReport";
 import StockReport from "page/report/stockReport";
 import ImportedReport from "page/report/importedReport";
+import UserManagement from "page/manage_user/user";
+import RoleManagement from "page/manage_user/role";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -116,10 +118,24 @@ export const _requirePermission: RouteCustom[] = [
       },
 
       {
-        path: "/manage-user",
+        path: "/user",
         keyName: "manage-user",
         requireAuth: true,
-        element: <ManageUser />,
+        children: [
+          { index: true, navigateElement: { to: "/manage" } },
+          {
+            path: "manage",
+            keyName: "user/manage",
+            requireAuth: true,
+            element: <UserManagement />,
+          },
+          {
+            path: "role",
+            keyName: "user/role",
+            requireAuth: true,
+            element: <RoleManagement />,
+          },
+        ]
       },
 
       {

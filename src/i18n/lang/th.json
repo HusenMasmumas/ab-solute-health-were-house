@@ -10,5 +10,7 @@
     "stockReport":"รายงานสต็อคสินค้าคงเหลือ",
     "importedReport":"รายงานการรับเข้าสินค้า",
     "stores&branches": "ร้านค้า & สาขา",
-    "manageUser": "จัดการผู้ใช้"
+    "manageUser": "จัดการผู้ใช้",
+    "role":"บทบาท",
+    "user":"ผู้ใช้"
 }

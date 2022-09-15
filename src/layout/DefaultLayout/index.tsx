@@ -189,10 +189,16 @@ const DefaultLayout = (props: Props) => {
         active: <UserIconAC className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("manage-user"),
-      style: {
-        height: "60px",
-        display: "flex",
-      },
+      children: [
+        {
+          label: isTabletSize && openDrawer ? null : t("user"),
+          key: "user/manage",
+        },
+        {
+          label: isTabletSize && openDrawer ? null : t("role"),
+          key: "user/role",
+        },
+      ],
     },
   ];
 
