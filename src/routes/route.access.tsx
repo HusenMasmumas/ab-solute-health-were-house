@@ -13,6 +13,15 @@ import Report from "page/report";
 import StoresBranches from "page/stores_branches";
 import ManageUser from "page/manage_user";
 import ManageWarehouseManagement from "page/warehouse_management/manage_warehouse_management/manage_warehouse_management";
+import ManagePurcheaseOrder from "page/purchase_order/manage";
+import OrderReport from "page/report/orderReport";
+import ExpirationReport from "page/report/expirationReport";
+import DamageReport from "page/report/damagedReport";
+import StockReport from "page/report/stockReport";
+import ImportedReport from "page/report/importedReport";
+import UserManagement from "page/manage_user/user";
+import RoleManagement from "page/manage_user/role";
+import OvertimePurchease from "page/purchase_order/overtime";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -58,14 +67,60 @@ export const _requirePermission: RouteCustom[] = [
         path: "/purchase-order",
         keyName: "purchase-order",
         requireAuth: true,
-        element: <PurchaseOrder />,
+        children: [
+          { index: true, navigateElement: { to: "/manage" } },
+          {
+            path: "manage",
+            keyName: "purchase-order/manage",
+            requireAuth: true,
+            element: <ManagePurcheaseOrder />,
+          },
+          {
+            path: "overtime",
+            keyName: "purchase-order/overtime",
+            requireAuth: true,
+            element: <OvertimePurchease />,
+          },
+        ],
       },
 
       {
         path: "/report",
         keyName: "report",
         requireAuth: true,
-        element: <Report />,
+        children: [
+          { index: true, navigateElement: { to: "/orderReport" } },
+          {
+            path: "orderReport",
+            keyName: "report/orderReport",
+            requireAuth: true,
+            element: <OrderReport />,
+          },
+          {
+            path: "expirationReport",
+            keyName: "report/expirationReport",
+            requireAuth: true,
+            element: <ExpirationReport />,
+          },
+          {
+            path: "damageReport",
+            keyName: "report/damageReport",
+            requireAuth: true,
+            element: <DamageReport />,
+          },
+          {
+            path: "stockReport",
+            keyName: "report/stockReport",
+            requireAuth: true,
+            element: <StockReport />,
+          },
+          {
+            path: "importedReport",
+            keyName: "report/importedReport",
+            requireAuth: true,
+            element: <ImportedReport />,
+          },
+        ],
       },
 
       {
@@ -76,10 +131,24 @@ export const _requirePermission: RouteCustom[] = [
       },
 
       {
-        path: "/manage-user",
+        path: "/user",
         keyName: "manage-user",
         requireAuth: true,
-        element: <ManageUser />,
+        children: [
+          { index: true, navigateElement: { to: "/manage" } },
+          {
+            path: "manage",
+            keyName: "user/manage",
+            requireAuth: true,
+            element: <UserManagement />,
+          },
+          {
+            path: "role",
+            keyName: "user/role",
+            requireAuth: true,
+            element: <RoleManagement />,
+          },
+        ],
       },
 
       {

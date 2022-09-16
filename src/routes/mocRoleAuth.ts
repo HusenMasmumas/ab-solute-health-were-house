@@ -61,12 +61,53 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
+        keyName: "purchase-order/manage",
+        title_en: "Purchase order management",
+        title_th: "จัดการใบสั่งซื้อ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "purchase-order/overtime",
+        title_en: "leftover Purchase",
+        title_th: "จัดการพัสดุสินค้าตกค้าง",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
         keyName: "report",
         title_en: "Report",
         title_th: "รายงาน",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
-
+      {
+        keyName: "report/orderReport",
+        title_en: "Order Report",
+        title_th: "รายงานการสั่งซื้อ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "report/expirationReport",
+        title_en: "Expiration Report",
+        title_th: "รายงานสินค้าหมดอายุ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "report/damageReport",
+        title_en: "Damage Report",
+        title_th: "รายงานสินค้าที่เสียหาย",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "report/stockReport",
+        title_en: "Stock Report",
+        title_th: "รายงานสต็อคสินค้าคงเหลือ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "report/importedReport",
+        title_en: "importing Report",
+        title_th: "รายงานการรับเข้าสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
       {
         keyName: "stores-branches",
         title_en: "Stores branches",
@@ -75,8 +116,8 @@ export const mocRoleAuth = {
       },
 
       {
-        keyName: "manage-user",
-        title_en: "Manage user",
+        keyName: "user/manage",
+        title_en: "user",
         title_th: "จัดการผู้ใช้",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
@@ -84,6 +125,12 @@ export const mocRoleAuth = {
         keyName: "manage-warehouse-management",
         title_en: "Warehouse management",
         title_th: "จัดการคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "user/role",
+        title_en: "role",
+        title_th: "บทบาท",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
     ],
