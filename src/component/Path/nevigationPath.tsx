@@ -13,7 +13,7 @@ const NevigationPath = ({textPath = [], ...props}: INevigationPath) => {
             textPath.map((item, index)=>{
                 return(
                     <Breadcrumb.Item key={index}>
-                        <span>{item}</span>
+                        <span className='text-lg'>{item}</span>
                     </Breadcrumb.Item>
                 )
             })
