@@ -12,7 +12,7 @@ import { DashOutlined } from "@ant-design/icons";
 import TableStoresBranches from "views/stores_branches/TableStoresBranches";
 import SearchForm from "component/Form/searchForm";
 import { IsearchFormItem } from "component/Form/searchForm";
-import Header from "component/headerPage/Header";
+import CHeader from "component/headerPage/Header";
 
 
 const elements: IsearchFormItem[] = [
@@ -82,7 +82,7 @@ interface DataType {
 
 
 const data: DataType[] = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 10; i++) {
   data.push({
     key: i,
     name: `Edward King ${i}`,
@@ -112,8 +112,13 @@ const StoresBranches = () => {
   };
   return (
     <div className="bg-[#F5F5F5] m-0 p-0 ">
-      <Header keyHeader="stores&branches" nevigate={{keytext:"createShop", fn:()=>{console.log('nevigate');
-      } }}/>
+      <CHeader 
+        keyHeader="stores&branches" 
+        nevigate={{
+          keytext:"createShop", 
+          fn:()=>{console.log('nevigate');}}} 
+        arrPath={[t('stores&branches')]}
+      />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>

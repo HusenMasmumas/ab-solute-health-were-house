@@ -1,6 +1,7 @@
 import { Button } from 'antd'
 import { useTranslation } from "react-i18next";
 import React from 'react'
+import NevigationPath, { INevigationPath } from 'component/Path/nevigationPath';
 
 type Props = {
     keyHeader :string;
@@ -8,15 +9,16 @@ type Props = {
       keytext:string,
       fn: () => void;
     }
+    arrPath?:string[]
 }
 
-const HeaderAndNevigate = ({keyHeader ,nevigate,...props}: Props) => {
-    const { t } = useTranslation();    
+const CHeader = ({keyHeader ,nevigate, arrPath=[], ...props}: Props) => {
+    const { t } = useTranslation();
   return (
     <div className="flex ">
         <div className="w-52 ">
           <div className="text-3xl">{`${t(keyHeader)}`}</div>
-          <div>{`${t("stores&branches")}`}</div>
+          <NevigationPath textPath={arrPath}/>
         </div>
         <div className="grow"></div>
        {
@@ -33,4 +35,4 @@ const HeaderAndNevigate = ({keyHeader ,nevigate,...props}: Props) => {
   )
 }
 
-export default HeaderAndNevigate
+export default CHeader
