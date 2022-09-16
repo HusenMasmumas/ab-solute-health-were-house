@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import React from 'react'
 import NevigationPath, { INevigationPath } from 'component/Path/nevigationPath';
 
-type Props = {
+type ICHeader = {
     keyHeader :string;
     nevigate? : {
       keytext:string,
@@ -12,7 +12,7 @@ type Props = {
     arrPath?:string[]
 }
 
-const CHeader = ({keyHeader ,nevigate, arrPath=[], ...props}: Props) => {
+const CHeader = ({keyHeader ,nevigate, arrPath=[], ...props}: ICHeader) => {
     const { t } = useTranslation();
   return (
     <div className="flex ">
@@ -27,7 +27,7 @@ const CHeader = ({keyHeader ,nevigate, arrPath=[], ...props}: Props) => {
               className="!bg-[#77C48B] !text-lg !h-11 !rounded-md !border-[#77C48B] !text-white"
               onClick={nevigate.fn}
            >
-             {`${t(keyHeader)}`}
+             {`${t(nevigate.keytext)}`}
            </Button>
          </div> 
        }

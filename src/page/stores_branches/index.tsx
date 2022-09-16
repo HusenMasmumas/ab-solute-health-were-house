@@ -113,7 +113,7 @@ const StoresBranches = () => {
   return (
     <div className="bg-[#F5F5F5] m-0 p-0 ">
       <CHeader 
-        keyHeader="stores&branches" 
+        keyHeader="stores&branches"
         nevigate={{
           keytext:"createShop", 
           fn:()=>{console.log('nevigate');}}} 

@@ -73,9 +73,9 @@ const UserManagement = (props: Props) => {
   return (
     <div className="bg-[#F5F5F5] m-0 p-0 ">
       <CHeader 
-        keyHeader="stores&branches" 
+        keyHeader="manageUser"
         nevigate={{
-          keytext:"createShop", 
+          keytext:"createUser", 
           fn:()=>{console.log('nevigate')}}
         }
         arrPath={[t('manageUser'), t('user') ]} 
