@@ -71,11 +71,8 @@ const DamageReport = (props: Props) => {
   return (
     <div className="bg-[#F5F5F5] m-0 p-0 ">
       <CHeader 
-        keyHeader="stores&branches"
-        nevigate={{
-          keytext:"createShop", 
-          fn:()=>{console.log('nevigate');}}} 
-        arrPath={[t('stores&branches')]}
+        keyHeader="report"
+        arrPath={[t('report'), t('damageReport')]}
       />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />
