@@ -13,9 +13,9 @@
     "stores&branches": "ร้านค้า & สาขา",
     "manageUser": "จัดการผู้ใช้",
     "role":"บทบาท",
+    "createrole":"สร้างบทบาท",
     "user":"ผู้ใช้",
     "createUser":"เพิ่มผู้ใช้",
     "orderlist":"รายการสั่งซื้อ",
     "createShop":"สร้างร้าน&สาขา"
-    
 }

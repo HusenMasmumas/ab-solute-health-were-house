@@ -15,7 +15,7 @@ type ICHeader = {
 const CHeader = ({keyHeader ,nevigate, arrPath=[], ...props}: ICHeader) => {
     const { t } = useTranslation();
   return (
-    <div className="flex ">
+    <div className="flex mb-7">
         <div className="w-52 ">
           <div className="text-3xl">{`${t(keyHeader)}`}</div>
           <NevigationPath textPath={arrPath}/>
