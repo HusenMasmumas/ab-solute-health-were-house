@@ -24,10 +24,10 @@ export type TPageHeaderInput =
   | "select-color";
 export interface IsearchFormItem {
   name: string; //ใช้เป็นชื่อ FormItemName ควรเป็นอิง
-  label: string;
-  input: {
+  label: string; //ใช้เป็นข้อความที่แสดง
+  input: { //เลือกประเภท
     type: TPageHeaderInput;
-    options?: any;
+    options?: any; //ใส่ตาม interface ของ input นั้นๆ
   };
   className?: string;
   style?: React.CSSProperties;
