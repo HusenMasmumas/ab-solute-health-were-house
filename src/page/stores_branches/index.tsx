@@ -129,7 +129,7 @@ const StoresBranches = () => {
       {/* Table */}
       <div className="mt-10 bg-white">
         
-        <TableStoresBranches dataTable={data} headerTable={'รายการสั่งซื้อ'}/>
+        <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  />
       </div>
     </div>
   );
