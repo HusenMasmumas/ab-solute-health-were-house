@@ -1,6 +1,8 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import React from "react";
-
+import Table_2 from "./Table/Table_2";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import { DashOutlined } from "@ant-design/icons";
 type Props = {};
 
 const elements: IsearchFormItem[] = [
@@ -64,6 +66,15 @@ const Prepare = (props: Props) => {
   return (
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
+      <Table_2 
+      render={() => {
+        return (
+          <div className="flex space-x-4 ">
+            <PencilSquareIcon className="!w-6" />
+            <DashOutlined className="!w-6 text-2xl" />
+          </div>
+        );
+      }}/>
     </div>
   );
 };

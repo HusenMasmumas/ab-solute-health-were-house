@@ -1,5 +1,8 @@
 import SearchForm, { IsearchFormItem } from 'component/Form/searchForm';
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+import TableStoresBranches from 'views/stores_branches/TableStoresBranches';
+import Table_1 from './Table/Table_1';
 
 type Props = {}
 
@@ -63,9 +66,11 @@ const elements: IsearchFormItem[] = [
   };
 
 const Order = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div>
         <SearchForm elements={elements} onFinish={onFinish} />
+        <Table_1 />
     </div>
   )
 }
