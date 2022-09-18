@@ -1,10 +1,17 @@
+import CHeader from 'component/headerPage/Header'
+import { t } from 'i18next'
 import React from 'react'
 
 type Props = {}
 
 const ManagePurcheaseOrder = (props: Props) => {
   return (
-    <div>จัดการใบสั่งซื้อ</div>
+    <div>
+      <CHeader 
+        keyHeader="report"
+        arrPath={['report','damageReport']}
+      />
+    </div>
   )
 }
 

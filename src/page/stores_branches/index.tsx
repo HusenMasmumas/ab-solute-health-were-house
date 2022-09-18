@@ -117,7 +117,7 @@ const StoresBranches = () => {
         nevigate={{
           keytext:"createShop", 
           fn:()=>{console.log('nevigate');}}} 
-        arrPath={[t('stores&branches')]}
+        arrPath={['stores&branches']}
       />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />

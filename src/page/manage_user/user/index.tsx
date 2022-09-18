@@ -78,7 +78,7 @@ const UserManagement = (props: Props) => {
           keytext:"createUser", 
           fn:()=>{console.log('nevigate')}}
         }
-        arrPath={[t('manageUser'), t('user') ]} 
+        arrPath={['manageUser', 'user' ]} 
       />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />

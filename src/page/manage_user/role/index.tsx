@@ -46,7 +46,7 @@ const RoleManagement = (props: Props) => {
           fn:()=>{console.log('nevigate')}}
         }
         // arrPath={[t('manageUser'), t('role') ]} 
-        arrPath={[t('manageUser'), t('role') ]} 
+        arrPath={['manageUser', 'role' ]} 
       />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />
