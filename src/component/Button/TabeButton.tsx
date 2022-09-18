@@ -7,6 +7,7 @@ const StyledButton = styled(BaseButton)`
   font-size: 20px;
   height: 50px;
   border-radius: 8px;
+  margin-Top: 0px;  
 `;
 export interface TabeButtonProps extends BaseButtonProps {
     text:string
