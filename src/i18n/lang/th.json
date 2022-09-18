@@ -3,7 +3,7 @@
     "warehouseManagement": "จัดการคลังสินค้า",
     "purchaseOrder": "ใบสั่งซื้อ",
     "purchaseOrderManagement": "จัดการใบสั่งซื้อ",
-    "prepareGoods":"จัดการเตรียมสินค้า",
+    "prepareGoods":"เตรียมสินค้า",
     "delivery":"จัดส่งสินค้า",
     "returnOrder":"ตีกลับ",
     "overtimepurchaseOrderManagement":"จัดการพัสดุสินค้าตกค้าง",

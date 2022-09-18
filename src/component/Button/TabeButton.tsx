@@ -1,16 +1,21 @@
 import React from 'react'
 import styled from "styled-components";
 import BaseButton, {BaseButtonProps} from './BaseButton'
-
+import { useTranslation } from "react-i18next";
 const StyledButton = styled(BaseButton)`
   color: #949594;
   font-size: 25px;
   height: 50px;
   border-radius: 8px;
 `;
-const TabeButton = (props: BaseButtonProps) => {
+export interface TabeButtonProps extends BaseButtonProps {
+    text:string
+}
+
+const TabeButton = ({text, ...props}: TabeButtonProps) => {
+  const { t } = useTranslation();
   return (
-    <StyledButton {...props}/>
+    <StyledButton {...props}>{`${t(text)}`}</StyledButton>
   )
 }
 
