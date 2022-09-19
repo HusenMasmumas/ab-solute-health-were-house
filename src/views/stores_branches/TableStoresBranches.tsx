@@ -74,6 +74,7 @@ const TableStoresBranches = ({ dataTable=[], headerTable='' }: Props) => {
         <div></div>
       </div>
       <MoTable
+        
         columns={columns}
         dataSource={dataTable}
         rowSelection={rowSelection}

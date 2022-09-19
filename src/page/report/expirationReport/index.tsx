@@ -2,6 +2,7 @@ import SearchForm, { IsearchFormItem } from 'component/Form/searchForm'
 import CHeader from 'component/headerPage/Header'
 import { t } from 'i18next'
 import React from 'react'
+import ExpirationTable from 'views/report/expirationTable'
 
 type Props = {}
 
@@ -88,7 +89,7 @@ const ExpirationReport = (props: Props) => {
       </div>
       {/* Table */}
       <div className="mt-10 bg-white">
-        {/* <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  /> */}
+          <ExpirationTable dataTable={[]} headerTable={t('expirationReport')}  />
       </div>
     </div>
   )
