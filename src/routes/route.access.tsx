@@ -93,6 +93,12 @@ export const _requirePermission: RouteCustom[] = [
         element: <ManageStroecabinet />,
       },
       {
+        path: "/manage-store-cabinet/:id",
+        keyName: "manage-store-cabinet-id",
+        requireAuth: true,
+        element: <ManageStroecabinet />,
+      },
+      {
         path: "/purchase-order",
         keyName: "purchase-order",
         requireAuth: true,
