@@ -2,7 +2,7 @@ import SearchForm, { IsearchFormItem } from 'component/Form/searchForm';
 import CHeader from 'component/headerPage/Header';
 import { t } from 'i18next';
 import React from 'react'
-import TableStoresBranches from 'views/stores_branches/TableStoresBranches';
+import DamageTable from 'views/report/damageTable';
 
 type Props = {}
 
@@ -79,10 +79,11 @@ const DamageReport = (props: Props) => {
       </div>
       {/* Table */}
       <div className="mt-10 bg-white">
-        {/* <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  /> */}
+        <DamageTable dataTable={[]} headerTable={t('damageReport')}  />
       </div>
     </div>
   )
 }
 
 export default DamageReport
+

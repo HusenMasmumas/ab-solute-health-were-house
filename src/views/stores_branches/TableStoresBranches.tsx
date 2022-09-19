@@ -1,19 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Form,
-  Input,
-  Select,
-  Button,
-  Pagination,
-  PaginationProps,
-} from "antd";
 import type { ColumnsType } from "antd/es/table";
-import {
-  BeakerIcon,
-  MagnifyingGlassIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/solid";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
 type Props = {
@@ -90,6 +77,7 @@ const TableStoresBranches = ({ dataTable=[], headerTable='' }: Props) => {
         <div></div>
       </div>
       <MoTable
+        
         columns={columns}
         dataSource={dataTable}
         rowSelection={rowSelection}
