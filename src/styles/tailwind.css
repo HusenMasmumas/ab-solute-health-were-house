@@ -28,3 +28,19 @@ body {
   font-family: 'FCIconic' !important;
   font-size: 20px !important;
 }
+
+.ant-table-thead>tr>th{
+  color: #4D4D4D !important;
+  background: #F3F9FF !important;
+  font-size: 18px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+/* .ant-table-selection-column{
+  padding-right: 50px !important;
+   border-right: 1px solid #f0f0f0 !important; 
+} */
+.ant-table-tbody>tr>td {
+  font-size: 20px !important;
+  color: #4D4D4D !important;
+}
