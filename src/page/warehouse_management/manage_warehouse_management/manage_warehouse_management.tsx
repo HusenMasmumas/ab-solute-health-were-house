@@ -55,24 +55,10 @@ const ManageWarehouseManagement = () => {
           <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
-          <Button
-            style={{
-              height: "40px",
-              borderRadius: "4px",
-              fontSize: "20px",
-            }}
-          >
+          <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
             ยกเลิก
           </Button>
-          <Button
-            style={{
-              height: "40px",
-              borderRadius: "4px",
-              backgroundColor: "#77C48B",
-              color: "white",
-              fontSize: "20px",
-            }}
-          >
+          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
             บันทึก
           </Button>
         </div>

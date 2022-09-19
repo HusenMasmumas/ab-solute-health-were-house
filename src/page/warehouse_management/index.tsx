@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Picture1 from "../../assets/img/pic-02.png";
 import Picture2 from "../../assets/img/pic-04.png";
 import { useNavigate } from "react-router-dom";
+import CreateButton from "component/Button/CreateButton";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -31,21 +32,13 @@ const WarehouseManagement = () => {
           <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
         </div>
         <div className="grid justify-end items-center">
-          <Button
+          <CreateButton
             onClick={() => {
               navigate("/manage-warehouse-management");
             }}
-            style={{
-              width: "170px",
-              height: "45px",
-              backgroundColor: "#77C48B",
-              fontSize: "20px",
-              borderRadius: "4px",
-              color: "#FFFFFF",
-            }}
           >
             + สร้างตู้เก็บสินค้า
-          </Button>
+          </CreateButton>
         </div>
       </div>
       <div className=" bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
@@ -75,26 +68,14 @@ const WarehouseManagement = () => {
               </Col>
               <div className="flex gap-[12px]">
                 <Button
+                  className="!h-[45px] !w-[125px] !rounded-[4px] !text-[20px] !text-darkblue !bg-lightsky"
                   size="large"
-                  style={{
-                    height: "45px",
-                    width: "125px",
-                    borderRadius: "4px",
-                    fontSize: "20px",
-                    backgroundColor: "#F3F9FF",
-                    color: "darkblue",
-                  }}
                 >
                   ค้นหา
                 </Button>
                 <Button
+                  className="!h-[45px] !w-[125px] !rounded-[4px] !text-[20px] "
                   size="large"
-                  style={{
-                    height: "45px",
-                    width: "125px",
-                    borderRadius: "4px",
-                    fontSize: "20px",
-                  }}
                 >
                   ล้าง
                 </Button>

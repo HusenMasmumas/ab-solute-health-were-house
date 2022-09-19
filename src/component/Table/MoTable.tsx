@@ -15,6 +15,7 @@ const MoTable = ({
   columns = [],
   dataSource = [],
   rowSelection,
+  expandable,
   onChangePage,
   config = { total: 15, currentPage: 1, pageSize: 10 },
   ...props
@@ -25,6 +26,7 @@ const MoTable = ({
         columns={columns}
         dataSource={dataSource}
         rowSelection={rowSelection}
+        expandable={expandable}
         pagination={false}
       />
       {pagination && (

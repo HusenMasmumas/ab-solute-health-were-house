@@ -77,7 +77,12 @@ const CreateForm = ({
   return (
     <div>
       <div>
-        <Form layout="vertical" onFinish={onFinish} form={form ? form : form}>
+        <Form
+          layout="vertical"
+          onFinish={onFinish}
+          form={form ? form : form}
+          initialValues={initialValues}
+        >
           <Row gutter={[12, 0]}>
             {elements.map((item) => {
               const Element = getInputByType(item.input.type) as ElementType;
@@ -100,19 +105,6 @@ const CreateForm = ({
                 </Col>
               );
             })}
-
-            {/* <Col xl={12}>
-              <Form.Item>
-                <label>HI</label>
-                <Input></Input>
-              </Form.Item>
-            </Col> */}
-            {/* <Col xl={12}>
-              <Form.Item>
-                <label>HI</label>
-                <Input></Input>
-              </Form.Item>
-            </Col> */}
           </Row>
         </Form>
       </div>

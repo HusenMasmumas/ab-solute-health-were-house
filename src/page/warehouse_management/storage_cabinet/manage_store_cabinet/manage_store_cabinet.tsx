@@ -2,16 +2,17 @@ import { Button, Card, Col, Form, Input, Row } from "antd";
 import CreateForm from "component/Form/createForm";
 import { IsearchFormItem } from "component/Form/searchForm";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ManageStoreCabinet = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  // const param = useParams();
 
   const elements: IsearchFormItem[] = [
     {
-      name: "ชื่อสินค้า",
+      name: "nameproduct",
       label: "ชื่อสินค้า",
       input: {
         type: "input",
@@ -94,24 +95,10 @@ const ManageStoreCabinet = () => {
           <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
-          <Button
-            style={{
-              height: "40px",
-              borderRadius: "4px",
-              fontSize: "20px",
-            }}
-          >
+          <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
             ยกเลิก
           </Button>
-          <Button
-            style={{
-              height: "40px",
-              borderRadius: "4px",
-              backgroundColor: "#77C48B",
-              color: "white",
-              fontSize: "20px",
-            }}
-          >
+          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
             บันทึก
           </Button>
         </div>
@@ -123,7 +110,11 @@ const ManageStoreCabinet = () => {
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         {/* form */}
         <div className="bg-white">
-          <CreateForm elements={elements} onFinish={onFinish}></CreateForm>
+          <CreateForm
+            elements={elements}
+            onFinish={onFinish}
+            initialValues={{ nameproduct: "โซเดียมไบคาร์บอเนต" }} //get api from backend useParam
+          ></CreateForm>
         </div>
       </div>
       <div className="bg-white py-[16px] px-[24px] mt-[16px]">
