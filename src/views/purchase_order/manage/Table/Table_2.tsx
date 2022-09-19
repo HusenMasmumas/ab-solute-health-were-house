@@ -51,10 +51,6 @@ const Table_2 = (props: Props) => {
       dataIndex: "pay",
     },
     {
-      title: "สถานะ",
-      dataIndex: "status",
-    },
-    {
       title: "จัดการ",
       dataIndex: "status",
       render: props.render
