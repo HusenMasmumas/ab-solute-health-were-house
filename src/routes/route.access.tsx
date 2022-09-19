@@ -22,6 +22,8 @@ import ImportedReport from "page/report/importedReport";
 import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
 import OvertimePurchease from "page/purchase_order/overtime";
+import StoreCabinet from "page/warehouse_management/storage_cabinet/store_cabinet";
+import ManageStroecabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet/manage_store_cabinet";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -56,12 +58,39 @@ export const _requirePermission: RouteCustom[] = [
         keyName: "warehouse-management",
         requireAuth: true,
         element: <WarehouseManagement />,
+        // children: [
+        //   { index: true, navigateElement: { to: "/warehouse-management" } },
+        //   {
+        //     path: "manage-warehouse-management",
+        //     keyName: "/warehouse-management/manage-warehouse-management",
+        //     requireAuth: true,
+        //     element: <ManageWarehouseManagement />,
+        //   },
+        //   {
+        //     path: "store-cabinet",
+        //     keyName: "/warehouse-management/store-cabinet",
+        //     requireAuth: true,
+        //     element: <StoreCabinet />,
+        //   },
+        // ],
       },
       {
         path: "/manage-warehouse-management",
         keyName: "manage-warehouse-management",
         requireAuth: true,
         element: <ManageWarehouseManagement />,
+      },
+      {
+        path: "/store-cabinet",
+        keyName: "store-cabinet",
+        requireAuth: true,
+        element: <StoreCabinet />,
+      },
+      {
+        path: "/manage-store-cabinet",
+        keyName: "manage-store-cabinet",
+        requireAuth: true,
+        element: <ManageStroecabinet />,
       },
       {
         path: "/purchase-order",

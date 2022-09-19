@@ -115,6 +115,9 @@ const WarehouseManagement = () => {
               <div className="grid justify-end items-end">
                 <div className="w-[28px] h-[28px] bg-lightsky text-green rounded-[5px] grid justify-center items-center">
                   <svg
+                    onClick={() => {
+                      navigate("/manage-warehouse-management");
+                    }}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -144,7 +147,12 @@ const WarehouseManagement = () => {
                 )}`}</span>
               </div>
               <div className="grid grid-cols-2">
-                <span className="text-lightblue text-[25px] font-bold">
+                <span
+                  className="text-lightblue text-[25px] font-bold"
+                  onClick={() => {
+                    navigate("/store-cabinet");
+                  }}
+                >
                   {item.storeNo}
                 </span>
                 <div className="flex text-green  items-end justify-end">
