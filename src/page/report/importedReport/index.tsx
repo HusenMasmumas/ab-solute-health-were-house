@@ -2,6 +2,7 @@ import SearchForm, { IsearchFormItem } from 'component/Form/searchForm'
 import CHeader from 'component/headerPage/Header'
 import { t } from 'i18next'
 import React from 'react'
+import ImportTable from 'views/report/importTable'
 
 type Props = {}
 
@@ -78,7 +79,7 @@ const ImportedReport = (props: Props) => {
       </div>
       {/* Table */}
       <div className="mt-10 bg-white">
-        {/* <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  /> */}
+        <ImportTable  dataTable={[]} headerTable={t('importedReport')}/>
       </div>
     </div>
   )

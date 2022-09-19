@@ -1,7 +1,9 @@
 import React from 'react'
 import { Table, Pagination, TableProps } from "antd";
+import { StringLiteral } from 'typescript';
 
 interface Props extends TableProps<any> {
+    headerTable?:String;
     config?: any;
     onChangePage?: (page: number, pageSize?: string) => void;
     onClickRow?: (row: any) => void;
@@ -16,10 +18,15 @@ const MoTable = ({
   dataSource=[],
   rowSelection,
   onChangePage,
+  headerTable,
   config = { total: 15, currentPage: 1, pageSize: 10 },
   ...props}: Props) => {
   return (
     <div>
+        <div className='flex'>
+          <div className=''>{headerTable}</div>
+          <div className='ml-8'>section action</div>
+        </div>
         <Table 
             columns={columns}
             dataSource={dataSource}

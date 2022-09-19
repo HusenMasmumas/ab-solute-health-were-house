@@ -2,6 +2,7 @@ import SearchForm, { IsearchFormItem } from 'component/Form/searchForm'
 import CHeader from 'component/headerPage/Header'
 import { t } from 'i18next'
 import React from 'react'
+import StockTable from 'views/report/stockTable'
 
 type Props = {}
 const elements: IsearchFormItem[] = [
@@ -69,14 +70,14 @@ const StockReport = (props: Props) => {
     <div className="bg-[#F5F5F5] m-0 p-0 ">
     <CHeader 
       keyHeader="report"
-      arrPath={['report', 'orderlist']}
+      arrPath={['report', 'stockReport']}
     />
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
     </div>
     {/* Table */}
     <div className="mt-10 bg-white">
-      {/* <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  /> */}
+      <StockTable dataTable={[]} headerTable={t('stockReport')}/>
     </div>
   </div>
   )

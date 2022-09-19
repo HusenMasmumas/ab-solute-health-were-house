@@ -75,12 +75,8 @@ const ExpirationTable = ({ dataTable=[], headerTable='' , ...props}: Props) => {
     };
   return (
     <div>
-    <div>
-      <div className="my-6">{headerTable}</div>
-      <div></div>
-    </div>
     <MoTable
-      
+      headerTable={headerTable}
       columns={columns}
       dataSource={dataTable}
       onChangePage={onChangePage}
