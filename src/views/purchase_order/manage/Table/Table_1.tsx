@@ -77,18 +77,6 @@ const Table_1 = (props: Props) => {
         }
       },
     },
-    {
-      title: "จัดการ",
-      dataIndex: "status",
-      render: () => {
-        return (
-          <div className="flex space-x-4 ">
-            <PencilSquareIcon className="!w-6" />
-            <DashOutlined className="!w-6 text-2xl" />
-          </div>
-        );
-      },
-    },
   ];
 
   const onChangePage = (page: number, type?: string) => {
@@ -102,6 +90,12 @@ const Table_1 = (props: Props) => {
         columns={columns}
         dataSource={mock}
         onChangePage={onChangePage}
+        onRow={(record)=>({
+          onDoubleClick: () => {
+            if(record.status === 'อนุมัติ' || record.status === 'รออนุมัติ' )
+              console.log(record)
+            }
+        })}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า
           pageSize: limitPage,
