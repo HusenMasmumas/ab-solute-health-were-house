@@ -17,7 +17,7 @@ const CInput = ({option, ...props}: CInputProps) => {
   return (
     <div>
         <Input 
-        placeholder="default size" prefix={
+         prefix={
           option?.search ? (
             <SearchOutlined style={{ fontSize: 20, color: "#F0F0F0" }} />
           ) : undefined}
