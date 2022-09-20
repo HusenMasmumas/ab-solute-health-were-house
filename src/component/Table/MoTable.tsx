@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Pagination, TableProps } from "antd";
+import { Table, Pagination, TableProps, Divider } from "antd";
 import { StringLiteral } from "typescript";
 
 interface Props extends TableProps<any> {
@@ -10,6 +10,7 @@ interface Props extends TableProps<any> {
   pagination?: boolean | any;
   onDoubleClick?: boolean;
   columns?: any[];
+  action?: any;
 }
 
 const MoTable = ({
@@ -20,15 +21,19 @@ const MoTable = ({
   expandable,
   onChangePage,
   headerTable,
+  action,
   config = { total: 15, currentPage: 1, pageSize: 10 },
   ...props
 }: Props) => {
   return (
     <div>
-      <div className="flex px-6 mt-5 h-16">
-        <div className="text-[28px] w-[70%] flex items-center">{headerTable}</div>
-        <div className="ml-8 w-[30%] flex items-center">section action</div>
-      </div>
+      {
+        action || headerTable &&
+        <div className="flex px-6 mt-5 h-16">
+          { headerTable ? <div className="text-[28px] w-[70%] flex items-center">{headerTable}</div> : <div className="text-[28px] w-[70%] flex items-center">{headerTable}</div>}
+          { action ? <div className="ml-8 w-[30%] flex items-center">section action</div> : <div className="ml-8 w-[30%] flex items-center"></div>}
+        </div>
+      }
       <Table
         columns={columns}
         dataSource={dataSource}
