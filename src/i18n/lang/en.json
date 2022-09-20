@@ -3,7 +3,11 @@
     "warehouseManagement": "Warehouse management",
     "purchaseOrder": "Purchase order",
     "purchaseOrderManagement":"Management",
+    "prepareGoods":"Prepare goods",
+    "delivery":"delivery",
+    "returnOrder":"return order",
     "overtimepurchaseOrderManagement":"leftover Purchase",
+    "createPurchase":"Create",
     "report": "Report",
     "orderReport":"Order Report",
     "expirationReport":"Expiration Report",
@@ -13,5 +17,9 @@
     "stores&branches": "Stores & Branches",
     "manageUser": "Manage users",
     "role":"Role",
-    "user":"User"
+    "createrole":"Create Role",
+    "user":"User",
+    "createUser":"Create User",
+    "orderlist":"Order List",
+    "createShop":"Create Shop&&ิBranch"
 }

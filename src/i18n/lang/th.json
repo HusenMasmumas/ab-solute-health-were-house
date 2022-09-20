@@ -3,7 +3,11 @@
     "warehouseManagement": "จัดการคลังสินค้า",
     "purchaseOrder": "ใบสั่งซื้อ",
     "purchaseOrderManagement": "จัดการใบสั่งซื้อ",
+    "prepareGoods":"เตรียมสินค้า",
+    "delivery":"จัดส่งสินค้า",
+    "returnOrder":"ตีกลับ",
     "overtimepurchaseOrderManagement":"จัดการพัสดุสินค้าตกค้าง",
+    "createPurchase":"สร้างใบสั่งซื้อ",
     "report": "รายงาน",
     "orderReport":"รายงานการสั่งซื้อ",
     "expirationReport":"รายงานสินค้าที่หมดอายุ",
@@ -13,5 +17,9 @@
     "stores&branches": "ร้านค้า & สาขา",
     "manageUser": "จัดการผู้ใช้",
     "role":"บทบาท",
-    "user":"ผู้ใช้"
+    "createrole":"สร้างบทบาท",
+    "user":"ผู้ใช้",
+    "createUser":"เพิ่มผู้ใช้",
+    "orderlist":"รายการสั่งซื้อ",
+    "createShop":"สร้างร้าน&สาขา"
 }

@@ -12,6 +12,7 @@ import { DashOutlined } from "@ant-design/icons";
 import TableStoresBranches from "views/stores_branches/TableStoresBranches";
 import SearchForm from "component/Form/searchForm";
 import { IsearchFormItem } from "component/Form/searchForm";
+import CHeader from "component/headerPage/Header";
 
 
 const elements: IsearchFormItem[] = [
@@ -81,7 +82,7 @@ interface DataType {
 
 
 const data: DataType[] = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 10; i++) {
   data.push({
     key: i,
     name: `Edward King ${i}`,
@@ -111,25 +112,19 @@ const StoresBranches = () => {
   };
   return (
     <div className="bg-[#F5F5F5] m-0 p-0 ">
-      <div className="flex ">
-        <div className="w-52 ">
-          <div className="text-3xl">{`${t("stores&branches")}`}</div>
-          <div>{`${t("stores&branches")}`}</div>
-        </div>
-        <div className="grow"></div>
-        <div className="w-52 h-5/5 justify-end flex items-center ">
-          <Button className="!bg-[#77C48B] !text-lg !h-11 !rounded-md !border-[#77C48B] !text-white">
-            สร้างร้าน&สาขา
-          </Button>
-        </div>
-      </div>
+      <CHeader 
+        keyHeader="stores&branches"
+        nevigate={{
+          keytext:"createShop", 
+          fn:()=>{console.log('nevigate');}}} 
+        arrPath={['stores&branches']}
+      />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       {/* Table */}
       <div className="mt-10 bg-white">
-        
-        <TableStoresBranches dataTable={data} headerTable={'รายการสั่งซื้อ'}/>
+        <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  />
       </div>
     </div>
   );

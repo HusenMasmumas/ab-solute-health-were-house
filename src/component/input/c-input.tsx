@@ -5,15 +5,19 @@ import { useTranslation } from "react-i18next";
 // import style from 'styled-components'
 
 interface CInputProps extends InputProps {
-    search?: boolean; // เช็คไอคอน
+    option?: {
+      search: boolean }; // เช็คไอคอน
     darkmode?: boolean;
 }
 
-const CInput = ({search, ...props}: CInputProps) => {
+const CInput = ({option, ...props}: CInputProps) => {
+  // console.log(search);
+  // console.log(pro);
+  
   return (
     <div>
         <Input placeholder="default size" prefix={
-        search ? (
+        option?.search ? (
           <SearchOutlined style={{ fontSize: 20, color: "#F0F0F0" }} />
         ) : undefined}
         {...props} 

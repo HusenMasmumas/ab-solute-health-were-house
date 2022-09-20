@@ -57,6 +57,19 @@ const DefaultLayout = (props: Props) => {
     );
   };
 
+  const activeSubMenu = (page: string) => {
+    const inActive =
+      localPath[2]?.toLowerCase() === page.toLowerCase()
+        ? styles.Nav_select
+        : "";
+
+    return clsx(
+      "cursor-pointer duration-500 relative !hover:text-white ",
+      inActive,
+      styles.inNav_select
+    );
+  };
+
   const activeIcon = (page: string, icon: any) => {
     const IconAcIn =
       localPath[1].toLowerCase() === page.toLowerCase()
@@ -113,10 +126,12 @@ const DefaultLayout = (props: Props) => {
         {
           label: isTabletSize && openDrawer ? null : t("purchaseOrderManagement"),
           key: "purchase-order/manage",
+          className: activeSubMenu('manage')
         },
         {
           label: isTabletSize && openDrawer ? null : t("overtimepurchaseOrderManagement"),
           key: "purchase-order/overtime",
+          className: activeSubMenu('overtime')
         },
       ],
     },
@@ -134,22 +149,27 @@ const DefaultLayout = (props: Props) => {
         {
           label: isTabletSize && openDrawer ? null : t("orderReport"),
           key: "report/orderReport",
+          className: activeSubMenu('orderReport')
         },
         {
           label: isTabletSize && openDrawer ? null : t("expirationReport"),
           key: "report/expirationReport",
+          className: activeSubMenu('expirationReport')
         },
         {
           label: isTabletSize && openDrawer ? null : t("damageReport"),
           key: "report/damageReport",
+          className: activeSubMenu('damageReport')
         },
         {
           label: isTabletSize && openDrawer ? null : t("stockReport"),
           key: "report/stockReport",
+          className: activeSubMenu('stockReport')
         },
         {
           label: isTabletSize && openDrawer ? null : t("importedReport"),
           key: "report/importedReport",
+          className: activeSubMenu('importedReport')
         },
       ],
     },
@@ -182,10 +202,12 @@ const DefaultLayout = (props: Props) => {
         {
           label: isTabletSize && openDrawer ? null : t("user"),
           key: "user/manage",
+          className: activeSubMenu('manage')
         },
         {
           label: isTabletSize && openDrawer ? null : t("role"),
           key: "user/role",
+          className: activeSubMenu('role')
         },
       ],
     },
@@ -228,7 +250,7 @@ const DefaultLayout = (props: Props) => {
           />
         </Header>
         <Content
-          className="site-layout-background hidden md:block bg-secondary-light dark:bg-[#16181c] duration-500 h-full overflow-y-auto transition-all"
+          className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full overflow-y-auto transition-all"
           style={{
             padding: 24,
             margin: 0,

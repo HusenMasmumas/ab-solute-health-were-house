@@ -1,19 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Form,
-  Input,
-  Select,
-  Button,
-  Pagination,
-  PaginationProps,
-} from "antd";
 import type { ColumnsType } from "antd/es/table";
-import {
-  BeakerIcon,
-  MagnifyingGlassIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/solid";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
 type Props = {
@@ -50,9 +37,10 @@ const columns: ColumnsType<DataType> = [
     dataIndex: "address",
     render: () => {
       return (
-        <div className="flex">
-          <PencilSquareIcon className="h-4 w-4 " />
-          <DashOutlined />
+        <div className="flex space-x-4 ">
+          {/* <PencilSquareIcon className="h-4 w-4 !text-[40px]" /> */}
+          <PencilSquareIcon className="!w-6" />
+          <DashOutlined className="!w-6 text-2xl"/>
         </div>
       );
     },
@@ -62,10 +50,7 @@ const columns: ColumnsType<DataType> = [
 const rowSelection = {
   onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
     console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
+      `selectedRowKeys: ${selectedRowKeys}`,"selectedRows: ",selectedRows);
   },
 };
 
@@ -84,11 +69,8 @@ const TableStoresBranches = ({ dataTable=[], headerTable='' }: Props) => {
   };
   return (
     <div>
-      <div>
-        <div className="my-6">{headerTable}</div>
-        <div></div>
-      </div>
       <MoTable
+        headerTable={headerTable}
         columns={columns}
         dataSource={dataTable}
         rowSelection={rowSelection}
