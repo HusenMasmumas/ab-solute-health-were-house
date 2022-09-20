@@ -67,6 +67,18 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
+        keyName: "purchase-order/create",
+        title_en: "Purchase order management",
+        title_th: "จัดการใบสั่งซื้อ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "purchase-order/approve",
+        title_en: "Purchase order management",
+        title_th: "จัดการใบสั่งซื้อ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
         keyName: "purchase-order/overtime",
         title_en: "leftover Purchase",
         title_th: "จัดการพัสดุสินค้าตกค้าง",

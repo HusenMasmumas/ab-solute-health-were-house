@@ -6,6 +6,7 @@ import Order from 'views/purchase_order/manage/Order';
 import Prepare from 'views/purchase_order/manage/Prepare';
 import Delivery from 'views/purchase_order/manage/Delivery';
 import SendBack from 'views/purchase_order/manage/SendBack';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
 
@@ -22,13 +23,13 @@ const keyHeader = ['purchaseOrder', 'prepareGoods', 'delivery', 'returnOrder']
 
 const ManagePurcheaseOrder = (props: Props) => {
   const [ tabe, setTabe ] = useState<number>(0);
-
+  let navigate = useNavigate();
   return (
     <div>
       <CHeader 
         keyHeader={keyHeader[tabe]}
         arrPath={arrPath[tabe]}
-        nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{}} : undefined}
+        nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create', { replace: true })}} : undefined}
       />
       <div className='flex space-x-5 mb-3'>
         <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} />

@@ -24,6 +24,8 @@ import RoleManagement from "page/manage_user/role";
 import OvertimePurchease from "page/purchase_order/overtime";
 import StoreCabinet from "page/warehouse_management/storage_cabinet/store_cabinet";
 import ManageStroecabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet/manage_store_cabinet";
+import CreatePurchase from "page/purchase_order/CreatePurchase";
+import ApprovePurchase from "page/purchase_order/ApprovePurchase";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -98,6 +100,7 @@ export const _requirePermission: RouteCustom[] = [
         requireAuth: true,
         element: <ManageStroecabinet />,
       },
+      
       {
         path: "/purchase-order",
         keyName: "purchase-order",
@@ -109,6 +112,18 @@ export const _requirePermission: RouteCustom[] = [
             keyName: "purchase-order/manage",
             requireAuth: true,
             element: <ManagePurcheaseOrder />,
+          },
+          {
+            path: "create",
+            keyName: "purchase-order/create",
+            requireAuth: true,
+            element: <CreatePurchase />,
+          },
+          {
+            path: "approve",
+            keyName: "purchase-order/approve",
+            requireAuth: true,
+            element: <ApprovePurchase />,
           },
           {
             path: "overtime",
