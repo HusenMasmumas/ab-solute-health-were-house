@@ -9,13 +9,15 @@ interface Props extends SelectProps {
 
 const StyledSelect = styled(Select)<{bg:string}>`
     color: #FFFFFF;
+    margin: 0px;
     .ant-select-selector{
         background-color: ${({bg})=>bg} !important;
-        border-radius: 15px !important;
+        border-radius: 10px 10px 10px 10px !important;
+        margin: 0px;
     }
 `;
 const OPTIONS = [ "รออนุมัติ", "อนุมัติ", "ยกเลิก"];
-const OPTIONS2 = ["อนุมัติ", "รอเตรียมพัสดุ"];
+const OPTIONS2 = ["อนุมัติ", "รอเตรียมพัสดุ", "สั่งอีกครั้ง"];
 const CSelectTable = ( { state, background, ...props } :  Props) => {
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
@@ -37,27 +39,41 @@ const CSelectTable = ( { state, background, ...props } :  Props) => {
     },[])
 
     useEffect(()=>{
-        if(selectedItems[0] === 'อนุมัติ' || selectedItems[0] === 'รอเตรียมพัสดุ' )
-            { selectMode2() }
-        else
-            { selectMode1() }
+        if(selectedItems[0] === 'อนุมัติ')
+            { 
+                //ยิง API ไปอนุมัติ
+                //fetch มาใหม่
+                selectMode2() 
+            }
+        else if(selectedItems[0] === 'รออนุมัติ')
+            {
+                //ยิง API ไปยกเลิก
+                //fetch มาใหม่ 
+                selectMode1() 
+            }
     },[selectedItems])
 
   return (
     <StyledSelect
             bg={background}
-            placeholder="Inserted are removed"
             value={selectedItems}
             onChange={(value:any)=>{
-                setSelectedItems([value])
+                if( value!=='รอเตรียมพัสดุ' && value!=='สั่งอีกครั้ง')
+                    setSelectedItems([value])
+                
+                if( value==='รอเตรียมพัสดุ' )
+                    console.log('ยิง API รอเตรียมพัสดุ');
+                    
+                if( value==='สั่งอีกครั้ง' )
+                console.log('ยิง API สั่งอีกครั้ง');
+
             }}
-            style={{ width: "150px" }}
-            className="!rounded-lg"
-            dropdownStyle={{padding:'0px'}}
+            style={{ width: "110px" }}
+            className={'!text-center'}
+            dropdownStyle={{padding:'0px', borderRadius:'0px 0px 10px 10px'}}
           >
             {filteredOptions.map((item) => (
-            //   <StyledSelect.Option key={item} value={item} className={`!bg-[red]`}>
-              <StyledSelect.Option key={item} value={item} className={`!bg-[${background}]`}>
+              <StyledSelect.Option key={item} value={item} className={`!text-center`}>
                 {item}
               </StyledSelect.Option>
             ))}
