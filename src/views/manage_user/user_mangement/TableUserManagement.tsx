@@ -90,40 +90,6 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
         return <Switch defaultChecked onChange={onChange} />;
       },
     },
-    {
-      title: "จัดการ",
-      dataIndex: "key",
-      render: (key) => {
-        return (
-          <div className="flex gap-2">
-            <div className="w-[30px] h-[30px] bg-[#F5F5F5] rounded-[4px] flex justify-center items-center ">
-              <PencilSquareIcon
-                className="h-4 w-4 text-[#646772]"
-                // onClick={() => {
-                //   navigate(`/manage-store-cabinet/${key}`);
-                // }}
-              />
-            </div>
-            <div className="w-[30px] h-[30px] bg-[#F5F5F5] rounded-[4px] flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        );
-      },
-    },
   ];
 
   return (
@@ -133,7 +99,6 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
         columns={columns}
         dataSource={dataTable}
         rowSelection={rowSelection}
-        // expandable={expandable}
         onChangePage={onChangePage}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า

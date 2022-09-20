@@ -11,6 +11,7 @@ import Arrow from "./../../assets/img/Dashboard-4.svg";
 const OverAllPage = () => {
   const { t } = useTranslation();
   const { Option } = Select;
+
   const dataSourceBar = [
     {
       data: [700, 650, 860, 250],
@@ -112,11 +113,21 @@ const OverAllPage = () => {
 
   return (
     <div>
-      <div>
+      <div className="grid grid-cols-2">
         <h1 className="text-darkblue font-[600] text-[30px] !mb-0">{`${t(
-          "จัดการใบสั่งซื้อ"
+          "ภาพรวมระบบ"
         )}`}</h1>
-        <p className="!mb-0">{`${t("ใบสั่งซื้อ / จัดการใบสั่งซื้อ")}`}</p>
+        <div className="grid justify-end items-center">
+          <Select
+            className="!w-[154px] !text-[18px] !text-gray !rounded-[4px]"
+            defaultValue="Sep,2022"
+          >
+            <Option value="Sep,2022">Sep,2022</Option>
+            <Option value="Oct,2022">Oct,2022</Option>
+            <Option value="Nov,2022">Nov,2022</Option>
+            <Option value="Dec,2022">Dec,2022</Option>
+          </Select>
+        </div>
       </div>
       <div className="grid grid-cols-4 gap-6 mt-[12px;]">
         <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">

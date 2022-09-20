@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Input, Row } from "antd";
+import { Button, Card, Col, Form, Input, Row, Select } from "antd";
 import CreateForm from "component/Form/createForm";
 import { IsearchFormItem } from "component/Form/searchForm";
 import { useTranslation } from "react-i18next";
@@ -7,44 +7,6 @@ const ManageWarehouseManagement = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
 
-  const element: IsearchFormItem[] = [
-    {
-      name: "SKU",
-      label: "SKU",
-      input: {
-        type: "input",
-      },
-    },
-    {
-      name: "รหัสตู้สินค้า",
-      label: "รหัสตู้สินค้า",
-      input: {
-        type: "input",
-      },
-    },
-    {
-      name: "เลือกสีตู้",
-      label: "เลือกสีตู้",
-      input: {
-        type: "select",
-        options: {
-          values: [
-            { key: 1, value: "สีน้ำเงิน", label: "สีน้ำเงิน" },
-            {
-              key: 2,
-              value: "สีเขียว",
-              label: "สีเขียว",
-            },
-          ],
-          key: "stateProduct",
-          label: "stateProduct",
-        },
-      },
-    },
-  ];
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
-  };
   return (
     <div>
       <div className="grid grid-cols-4">
@@ -63,15 +25,40 @@ const ManageWarehouseManagement = () => {
           </Button>
         </div>
       </div>
-      <div className="bg-white py-[16px] px-[24px]">
+      <div className="bg-white pt-[16px] px-[24px] mt-[24px] pb-[100px]">
         <div className="text-lightblue text-[22px]">
           <span>ข้อมูลตู้เก็บสินค้า</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         {/* form */}
-        <div className="bg-white">
-          <CreateForm elements={element} onFinish={onFinish}></CreateForm>
-        </div>
+        <Form>
+          <Row gutter={[24, 0]}>
+            <Col span={12}>
+              <Form.Item>
+                <label className="!text-darkgray !text-[18px]">SKU</label>
+                <Input></Input>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item>
+                <label className="!text-darkgray !text-[18px]">
+                  รหัสตู้สินค้า
+                </label>
+                <Input></Input>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={[24, 0]}>
+            <Col span={12}>
+              <Form.Item>
+                <label className="!text-darkgray !text-[18px]">
+                  เลือกสีตู้
+                </label>
+                <Select></Select>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
       </div>
     </div>
   );

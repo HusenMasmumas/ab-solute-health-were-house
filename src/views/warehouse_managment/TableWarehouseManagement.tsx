@@ -15,10 +15,12 @@ type Props = {
 interface DataType {
   key: number;
   name: string;
-  SKU: string;
-  cost: string;
-  amount: number;
+  sku: string;
+  category: string;
+  lot: string;
   price: string;
+  dueDate: string;
+  qty: string;
   status: string;
 }
 
@@ -129,45 +131,48 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
   );
   const columns: ColumnsType<DataType> = [
     {
-      title: "ชื่อสินค้า",
+      title: "SKU/Sub SKU",
+      dataIndex: "sku",
+    },
+    {
+      title: "Name",
       dataIndex: "name",
     },
     {
-      title: "SKU",
-      dataIndex: "SKU",
+      title: "Category/Sub Category",
+      dataIndex: "category",
     },
     {
-      title: "ต้นทุน",
-      dataIndex: "cost",
-      render: (cost: string) => {
-        return (
-          <div className="flex justify-start items-center">
-            <span className="mr-[8px]">{cost}</span>
-            <PencilSquareIcon className="h-4 w-4 text-gray" />
-          </div>
-        );
-      },
+      title: "Lot",
+      dataIndex: "lot",
     },
     {
-      title: "จำนวน",
-      dataIndex: "amount",
-      render: (amount: number) => {
-        return (
-          <div className="flex justify-start items-center">
-            <span className="mr-[8px]">{amount}</span>
-            <PencilSquareIcon className="h-4 w-4 text-gray" />
-          </div>
-        );
-      },
+      title: "Due Date",
+      dataIndex: "dueDate",
     },
     {
-      title: "ราคา",
+      title: "Price Normal",
       dataIndex: "price",
       render: (price: string) => {
         return (
-          <div className="flex justify-start items-center">
-            <span className="mr-[8px]">{price}</span>
-            <PencilSquareIcon className="h-4 w-4 text-gray" />
+          <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px] ">
+            <div className="grid grid-cols-2">
+              <span className="grid justify-start items-center">฿</span>
+              <span className="grid justify-end items-center">{price}</span>
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      title: "QTY",
+      dataIndex: "qty",
+      render: (qty: string) => {
+        return (
+          <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px]">
+            <div className="grid grid-cols-2">
+              <span className="">{qty}</span>
+            </div>
           </div>
         );
       },
@@ -201,40 +206,6 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
                 </Button>
               )}
             </Dropdown>
-          </div>
-        );
-      },
-    },
-    {
-      title: "จัดการ",
-      dataIndex: "key",
-      render: (key) => {
-        return (
-          <div className="flex gap-2">
-            <div className="w-[30px] h-[30px] bg-[#F5F5F5] rounded-[4px] flex justify-center items-center ">
-              <PencilSquareIcon
-                className="h-4 w-4 text-[#646772]"
-                onClick={() => {
-                  navigate(`/manage-store-cabinet/${key}`);
-                }}
-              />
-            </div>
-            <div className="w-[30px] h-[30px] bg-[#F5F5F5] rounded-[4px] flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-            </div>
           </div>
         );
       },

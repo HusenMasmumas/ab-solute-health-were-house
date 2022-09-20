@@ -5,6 +5,7 @@ import Picture1 from "../../assets/img/pic-02.png";
 import Picture2 from "../../assets/img/pic-04.png";
 import { useNavigate } from "react-router-dom";
 import CreateButton from "component/Button/CreateButton";
+import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -22,6 +23,34 @@ const WarehouseManagement = () => {
     { picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A9" },
     { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
   ];
+
+  const elements: IsearchFormItem[] = [
+    {
+      name: "ชื่อตู้เก็บ",
+      label: "ชื่อตู้เก็บ",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "รหัสตู้เก็บ",
+      label: "รหัสตู้เก็บ",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+  ];
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
   return (
     <div>
       <div className="grid grid-cols-2">
@@ -41,50 +70,9 @@ const WarehouseManagement = () => {
           </CreateButton>
         </div>
       </div>
-      <div className=" bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-        <div>
-          <span>{`${t("ชื่อบทบาท")}`}</span>
-        </div>
-        <div className="pt-[8px]">
-          <Form
-            // form={form}
-            // onFinish={handleSearch}
-            size="large"
-            layout="vertical"
-          >
-            <Row gutter={[24, 0]}>
-              <Col xl={8}>
-                <Form.Item name="searchTitle">
-                  <Input
-                    placeholder="ชื่อบทบาท"
-                    size="large"
-                    style={{
-                      fontSize: "20px",
-                      borderRadius: "4px",
-                      height: "45px",
-                    }}
-                  />
-                </Form.Item>
-              </Col>
-              <div className="flex gap-[12px]">
-                <Button
-                  className="!h-[45px] !w-[125px] !rounded-[4px] !text-[20px] !text-darkblue !bg-lightsky"
-                  size="large"
-                >
-                  ค้นหา
-                </Button>
-                <Button
-                  className="!h-[45px] !w-[125px] !rounded-[4px] !text-[20px] "
-                  size="large"
-                >
-                  ล้าง
-                </Button>
-              </div>
-            </Row>
-          </Form>
-        </div>
+      <div className="mt-[24px]">
+        <SearchForm elements={elements} onFinish={onFinish} />
       </div>
-
       {/* card */}
       <div className="grid grid-cols-5 gap-4 mt-[12px;]">
         {data.map((item, index) => {

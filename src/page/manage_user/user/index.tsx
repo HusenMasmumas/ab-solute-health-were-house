@@ -80,29 +80,6 @@ const onFinish = (values: any) => {
   console.log("Received values of form: ", values);
 };
 
-// const UserManagement = (props: Props) => {
-//   const { t } = useTranslation();
-//   return (
-//     <div className="bg-[#F5F5F5] m-0 p-0 ">
-//       <CHeader
-//         keyHeader="manageUser"
-//         nevigate={{
-//           keytext:"createUser",
-//           fn:()=>{console.log('nevigate')}}
-//         }
-//         arrPath={['manageUser', 'user' ]}
-//       />
-//       <div>
-//         <SearchForm elements={elements} onFinish={onFinish} />
-//       </div>
-//       {/* Table */}
-//       <div className="mt-10 bg-white">
-//         {/* <TableStoresBranches dataTable={data} headerTable={t("orderlist")}  /> */}
-//       </div>
-//     </div>
-//   )
-// }
-
 const UserManagement = () => {
   const { t } = useTranslation();
 
@@ -128,8 +105,13 @@ const UserManagement = () => {
   ];
   return (
     <div>
-      <div className="bg-white">{`${t("จัดการผู้ใช้")}`}</div>
+      <div className="text-[30px] text-darkblue font-bold">{`${t(
+        "จัดการผู้ใช้"
+      )}`}</div>
       <div>
+        <div className="mt-[24px]">
+          <SearchForm elements={elements} onFinish={onFinish} />
+        </div>
         <div className="bg-white px-[24px] py-[16px] mt-[16px]">
           <div className="grid grid-cols-2">
             <span className="text-[#231F20] text-[22px]">จัดการผู้ใช้</span>
@@ -140,9 +122,6 @@ const UserManagement = () => {
           </div>
         </div>
       </div>
-      {/* <div>
-        <SearchForm elements={elements} onFinish={onFinish} />
-      </div> */}
     </div>
   );
 };

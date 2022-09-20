@@ -8,10 +8,12 @@ import TableWarehouseManagement from "views/warehouse_managment/TableWarehouseMa
 interface DataType {
   key: number;
   name: string;
-  SKU: string;
-  cost: string;
-  amount: number;
+  sku: string;
+  category: string;
+  lot: string;
   price: string;
+  dueDate: string;
+  qty: string;
   status: string;
 }
 const StoreCabinet = () => {
@@ -20,28 +22,32 @@ const StoreCabinet = () => {
   const data: DataType[] = [
     {
       key: 1,
-      name: "โซเดียมไบคาร์บอเนต",
-      SKU: "WE-00001",
-      cost: "฿ 450",
-      amount: 100,
-      price: "฿ 950",
+      name: "K8763",
+      sku: "โซเดียมไบคาร์บอเนต",
+      category: "เคมีภัณฑ์",
+      lot: "19/09/2023",
+      price: "399",
+      dueDate: "10/09/2022",
+      qty: "300",
       status: "เปิดการขาย",
     },
     {
       key: 2,
-      name: "คลอเฟนิรามีน",
-      SKU: "WE-00001",
-      cost: "฿ 450",
-      amount: 100,
-      price: "฿ 950",
+      name: "K8763",
+      sku: "โซเดียมไบคาร์บอเนต",
+      category: "เคมีภัณฑ์",
+      lot: "19/09/2023",
+      price: "399",
+      dueDate: "10/09/2022",
+      qty: "300",
       status: "ปิดการขาย",
     },
   ];
 
   const elements: IsearchFormItem[] = [
     {
-      name: "ชื่อร้านค้า",
-      label: "ชื่อร้านค้า",
+      name: "SKU/Sub SKU",
+      label: "SKU/Sub SKU",
       input: {
         type: "input",
         options: {
@@ -50,8 +56,8 @@ const StoreCabinet = () => {
       },
     },
     {
-      name: "SKU",
-      label: "SKU",
+      name: "Name",
+      label: "Name",
       input: {
         type: "input",
         options: {
@@ -60,8 +66,8 @@ const StoreCabinet = () => {
       },
     },
     {
-      name: "สถานะ",
-      label: "สถานะ",
+      name: "Status",
+      label: "Status",
       input: {
         type: "select",
         options: {
@@ -75,6 +81,26 @@ const StoreCabinet = () => {
           ],
           key: "stateProduct",
           label: "stateProduct",
+        },
+      },
+    },
+    {
+      name: "Category/Sub Category",
+      label: "Category/Sub Category",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "Lot",
+      label: "Lot",
+      input: {
+        type: "input",
+        options: {
+          search: true,
         },
       },
     },
@@ -103,7 +129,7 @@ const StoreCabinet = () => {
           </CreateButton>
         </div>
       </div>
-      <div>
+      <div className="mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       <div className="bg-white px-[24px] py-[16px] mt-[16px]">
