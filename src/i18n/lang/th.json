@@ -2,6 +2,7 @@
     "overAll": "ภาพรวม",
     "warehouseManagement": "จัดการคลังสินค้า",
     "purchaseOrder": "ใบสั่งซื้อ",
+    "createPurchaseOrder":"สร้างใบสั่งซื้อ",
     "purchaseOrderManagement": "จัดการใบสั่งซื้อ",
     "prepareGoods":"เตรียมสินค้า",
     "delivery":"จัดส่งสินค้า",

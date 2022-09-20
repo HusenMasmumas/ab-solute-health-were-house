@@ -2,6 +2,7 @@
     "overAll": "Over all",
     "warehouseManagement": "Warehouse management",
     "purchaseOrder": "Purchase order",
+    "createPurchaseOrder":"Create Purchase Order",
     "purchaseOrderManagement":"Management",
     "prepareGoods":"Prepare goods",
     "delivery":"delivery",
