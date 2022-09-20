@@ -58,7 +58,7 @@ const SearchForm = ({
       case "select":
         return CSelect;
       case "date-picker":
-        return CDatePicker;  
+        return CDatePicker;
     }
   };
 
@@ -71,7 +71,8 @@ const SearchForm = ({
     _form.submit();
   };
 
-  const _onSubmit = () => { // ทำงานเหมือนกดปุ่ม เรียกปุ่ม submit buttom
+  const _onSubmit = () => {
+    // ทำงานเหมือนกดปุ่ม เรียกปุ่ม submit buttom
     if (form) {
       return form.submit();
     }
@@ -104,20 +105,22 @@ const SearchForm = ({
 
   return (
     <Card className="w-full">
-      <Form 
-      layout="vertical" 
-      onFinish={onFinish}
-      form={form ? form : _form}>
+      <Form layout="vertical" onFinish={onFinish} form={form ? form : _form}>
         <Row gutter={[12, 6]} align="bottom">
           {elements.map((item) => {
             const Element = getInputByType(item.input.type) as ElementType;
             const onEnter = getOnEnter(item.input.type);
             const placeholder = getPlaceholder(item.input.type, item.label);
             return (
-              <Col span={8} key={item.name} >
-                <Form.Item className="mb-0" name={item.name} label={<span className="text-xl">{item.label}</span>}>
+              <Col span={8} key={item.name}>
+                <Form.Item
+                  className="mb-0"
+                  name={item.name}
+                  label={<span className="text-[20px]">{item.label}</span>}
+                >
                   <Element
-                    size='large'
+                    style={{ fontSize: "20px", borderRadius: "4px" }}
+                    size="large"
                     placeholder={item.label}
                     option={item.input.options}
                   />
@@ -125,12 +128,31 @@ const SearchForm = ({
               </Col>
             );
           })}
-          <Col span={8} >
-            <Form.Item className="mb-0" >
-              <Row gutter={[0,6]} >
-                <Col className='flex space-x-4'>
-                  <SearchButton onClick={_onSubmit} size="large" >ค้นหา</SearchButton >
-                  <CleanButton  onClick={onReset ? onReset : _onReset} size="large">ล้าง</CleanButton >
+          <Col span={8}>
+            <Form.Item className="mb-0">
+              <Row gutter={[0, 6]}>
+                <Col className="flex space-x-4">
+                  <SearchButton
+                    onClick={_onSubmit}
+                    size="large"
+                    style={{
+                      fontSize: "20px",
+                      borderRadius: "4px",
+                      border: "none",
+                    }}
+                  >
+                    ค้นหา
+                  </SearchButton>
+                  <CleanButton
+                    onClick={onReset ? onReset : _onReset}
+                    size="large"
+                    style={{
+                      fontSize: "20px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    ล้าง
+                  </CleanButton>
                 </Col>
               </Row>
             </Form.Item>

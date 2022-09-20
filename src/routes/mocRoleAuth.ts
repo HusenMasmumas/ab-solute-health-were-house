@@ -122,9 +122,34 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
+        keyName: "manage-warehouse-management",
+        title_en: "Warehouse management",
+        title_th: "จัดการคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
         keyName: "user/role",
         title_en: "role",
         title_th: "บทบาท",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "store-cabinet",
+        title_en: "Warehouse management",
+        title_th: "จัดการคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+
+      {
+        keyName: "manage-store-cabinet",
+        title_en: "Warehouse management",
+        title_th: "จัดการคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "manage-store-cabinet-id",
+        title_en: "Warehouse management",
+        title_th: "จัดการคลังสินค้า",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
     ],

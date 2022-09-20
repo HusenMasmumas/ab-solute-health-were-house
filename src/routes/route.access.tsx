@@ -12,6 +12,7 @@ import PurchaseOrder from "page/purchase_order";
 import Report from "page/report";
 import StoresBranches from "page/stores_branches";
 import ManageUser from "page/manage_user";
+import ManageWarehouseManagement from "page/warehouse_management/manage_warehouse_management/manage_warehouse_management";
 import ManagePurcheaseOrder from "page/purchase_order/manage";
 import OrderReport from "page/report/orderReport";
 import ExpirationReport from "page/report/expirationReport";
@@ -21,6 +22,8 @@ import ImportedReport from "page/report/importedReport";
 import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
 import OvertimePurchease from "page/purchase_order/overtime";
+import StoreCabinet from "page/warehouse_management/storage_cabinet/store_cabinet";
+import ManageStroecabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet/manage_store_cabinet";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -55,8 +58,46 @@ export const _requirePermission: RouteCustom[] = [
         keyName: "warehouse-management",
         requireAuth: true,
         element: <WarehouseManagement />,
+        // children: [
+        //   { index: true, navigateElement: { to: "/warehouse-management" } },
+        //   {
+        //     path: "manage-warehouse-management",
+        //     keyName: "/warehouse-management/manage-warehouse-management",
+        //     requireAuth: true,
+        //     element: <ManageWarehouseManagement />,
+        //   },
+        //   {
+        //     path: "store-cabinet",
+        //     keyName: "/warehouse-management/store-cabinet",
+        //     requireAuth: true,
+        //     element: <StoreCabinet />,
+        //   },
+        // ],
       },
-
+      {
+        path: "/manage-warehouse-management",
+        keyName: "manage-warehouse-management",
+        requireAuth: true,
+        element: <ManageWarehouseManagement />,
+      },
+      {
+        path: "/store-cabinet",
+        keyName: "store-cabinet",
+        requireAuth: true,
+        element: <StoreCabinet />,
+      },
+      {
+        path: "/manage-store-cabinet",
+        keyName: "manage-store-cabinet",
+        requireAuth: true,
+        element: <ManageStroecabinet />,
+      },
+      {
+        path: "/manage-store-cabinet/:id",
+        keyName: "manage-store-cabinet-id",
+        requireAuth: true,
+        element: <ManageStroecabinet />,
+      },
       {
         path: "/purchase-order",
         keyName: "purchase-order",
@@ -75,7 +116,7 @@ export const _requirePermission: RouteCustom[] = [
             requireAuth: true,
             element: <OvertimePurchease />,
           },
-        ]
+        ],
       },
 
       {
@@ -114,7 +155,7 @@ export const _requirePermission: RouteCustom[] = [
             requireAuth: true,
             element: <ImportedReport />,
           },
-        ]
+        ],
       },
 
       {
@@ -142,7 +183,7 @@ export const _requirePermission: RouteCustom[] = [
             requireAuth: true,
             element: <RoleManagement />,
           },
-        ]
+        ],
       },
 
       {
