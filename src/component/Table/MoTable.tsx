@@ -25,9 +25,9 @@ const MoTable = ({
 }: Props) => {
   return (
     <div>
-      <div className="flex">
-        <div className="">{headerTable}</div>
-        <div className="ml-8">section action</div>
+      <div className="flex px-6 mt-5 h-16">
+        <div className="text-[28px] w-[70%] flex items-center">{headerTable}</div>
+        <div className="ml-8 w-[30%] flex items-center">section action</div>
       </div>
       <Table
         columns={columns}
