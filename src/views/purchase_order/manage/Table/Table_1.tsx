@@ -10,7 +10,7 @@ type Props = {};
 
 interface DataType {
   index: number;
-  data: string;
+  date: string;
   code: string;
   fullname: string;
   phone: string;
@@ -56,7 +56,7 @@ const Table_1 = (props: Props) => {
       dataIndex: "phone",
     },
     {
-      title: "รวม(บาท)",
+      title: "รวม(฿)",
       dataIndex: "pay",
     },
     {
