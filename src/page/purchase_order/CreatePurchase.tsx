@@ -7,6 +7,7 @@ import {
   Input,
   Button,
   ConfigProvider,
+  Modal,
 } from "antd";
 import CHeader from "component/headerPage/Header";
 import CDatePicker from "component/input/c-date-picker";
@@ -17,6 +18,8 @@ import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
 import { InputNumber } from "antd";
 import styled from "styled-components";
+import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
+import CreateModal from "views/purchase_order/CreateModal";
 
 
 type Props = {};
@@ -42,6 +45,8 @@ interface DataType {
   unit: number;
   pay: number;
 }
+
+
 
 const columns: ColumnsType<DataType> = [
   {
@@ -78,6 +83,7 @@ const { TextArea } = Input;
 const CreatePurchase = (props: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     console.log("current", currentPage);
     console.log("limitPage", limitPage);
@@ -90,6 +96,10 @@ const CreatePurchase = (props: Props) => {
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
+  };
+
+  const onFinishModal = (values: any) => {
+    console.log("Received values of form: ", values);
   };
 
   return (
@@ -173,7 +183,7 @@ const CreatePurchase = (props: Props) => {
         <div className="mt-5">
           <Button
             className="!bg-[#4E8FCC] !text-lg !h-11 !rounded-md !border-[#4E8FCC] !text-white"
-            onClick={() => {}}
+            onClick={() => setOpen(true)}
           >
             + เพิ่มสินค้า
           </Button>
@@ -206,7 +216,6 @@ const CreatePurchase = (props: Props) => {
               </Row>
               <Row className="mb-5">
                 <Col sm={6} offset={6}>
-                  
                   <div className="text-[20px]">ส่วนลด</div>
                 </Col>
                 <Col sm={12}>
@@ -266,7 +275,18 @@ const CreatePurchase = (props: Props) => {
           </Row>
         </div>
       </Card>
+      <Modal
+        title={<span className="text-[#498DCB] text-[18px]">รายละเอียดสินค้า</span>}
+        centered
+        open={open}
+        onOk={() => setOpen(false)}
+        onCancel={() => setOpen(false)}
+        width={1000}
+      >
+        <CreateModal />
+      </Modal>
     </div>
+    
   );
 };
 
