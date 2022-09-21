@@ -11,8 +11,7 @@ import WarehouseManagement from "page/warehouse_management";
 import PurchaseOrder from "page/purchase_order";
 import Report from "page/report";
 import StoresBranches from "page/stores_branches";
-import ManageUser from "page/manage_user";
-import ManageWarehouseManagement from "page/warehouse_management/manage_warehouse_management/manage_warehouse_management";
+import ManageWarehouseManagement from "page/warehouse_management/manage_warehouse_management";
 import ManagePurcheaseOrder from "page/purchase_order/manage";
 import OrderReport from "page/report/orderReport";
 import ExpirationReport from "page/report/expirationReport";
@@ -22,8 +21,10 @@ import ImportedReport from "page/report/importedReport";
 import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
 import OvertimePurchease from "page/purchase_order/overtime";
-import StoreCabinet from "page/warehouse_management/storage_cabinet/store_cabinet";
-import ManageStroecabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet/manage_store_cabinet";
+import StoreCabinet from "page/warehouse_management/storage_cabinet";
+import ManageStroecabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet";
+import CreateUser from "page/manage_user/user/create_user";
+import CreateRole from "page/manage_user/role/craete_role";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -182,6 +183,18 @@ export const _requirePermission: RouteCustom[] = [
             keyName: "user/role",
             requireAuth: true,
             element: <RoleManagement />,
+          },
+          {
+            path: "create-user",
+            keyName: "user/craete-user",
+            requireAuth: true,
+            element: <CreateUser />,
+          },
+          {
+            path: "create-role",
+            keyName: "user/craete-role",
+            requireAuth: true,
+            element: <CreateRole />,
           },
         ],
       },

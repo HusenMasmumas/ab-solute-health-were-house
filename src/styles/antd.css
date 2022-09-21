@@ -33,3 +33,27 @@
 .ant-tabs-tab-btn {
     font-size: 22px;
 }
+.ant-form-vertical .ant-form-item-label  {
+    padding: 0 0 4px !important;
+    line-height: 1.5715;
+    white-space: normal;
+    text-align: left;
+}
+/* เปลี้ยนทุกหน้า */
+.ant-form-item-label>label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    height: auto !important;
+    color: #646772 !important;
+    font-size: 18px !important;
+}
+
+.ant-input {
+    font-size: 18px !important;
+}
+
+.ant-select {
+    font-size: 18px !important;
+}

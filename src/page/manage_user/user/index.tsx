@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import TableUserManagement from "views/manage_user/user_mangement/TableUserManagement";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
+import CreateButton from "component/Button/CreateButton";
+import { useNavigate } from "react-router";
 
 type Props = {};
 
@@ -82,6 +84,7 @@ const onFinish = (values: any) => {
 
 const UserManagement = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const data: DataType[] = [
     {
@@ -105,9 +108,21 @@ const UserManagement = () => {
   ];
   return (
     <div>
-      <div className="text-[30px] text-darkblue font-bold">{`${t(
-        "จัดการผู้ใช้"
-      )}`}</div>
+      <div className="grid grid-cols-2">
+        <div className="text-[30px] text-darkblue font-bold">
+          <span>{`${t("จัดการผู้ใช้")}`}</span>
+        </div>
+        <div className="grid justify-end items-center">
+          <CreateButton
+            onClick={() => {
+              navigate("/user/create-user");
+            }}
+          >
+            + เพิ่มผู้ใช้
+          </CreateButton>
+        </div>
+      </div>
+
       <div>
         <div className="mt-[24px]">
           <SearchForm elements={elements} onFinish={onFinish} />

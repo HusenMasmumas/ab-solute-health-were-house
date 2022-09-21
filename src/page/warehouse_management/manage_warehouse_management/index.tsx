@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 const ManageWarehouseManagement = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
+  const Option = Select;
 
   return (
     <div>
@@ -31,30 +32,26 @@ const ManageWarehouseManagement = () => {
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         {/* form */}
-        <Form>
+        <Form layout="vertical">
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item>
-                <label className="!text-darkgray !text-[18px]">SKU</label>
-                <Input></Input>
+              <Form.Item label="SKU">
+                <Input placeholder="SKU"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item>
-                <label className="!text-darkgray !text-[18px]">
-                  รหัสตู้สินค้า
-                </label>
-                <Input></Input>
+              <Form.Item label="รหัสตู้สินค้า">
+                <Input placeholder="รหัสตู้สินค้า"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item>
-                <label className="!text-darkgray !text-[18px]">
-                  เลือกสีตู้
-                </label>
-                <Select></Select>
+              <Form.Item label="เลือกสีตู้">
+                <Select placeholder="เลือกสีตู้">
+                  <Option value="สีน้ำเงิน">สีน้ำเงิน</Option>
+                  <Option value="สีเขียว">สีเขียว</Option>
+                </Select>
               </Form.Item>
             </Col>
           </Row>

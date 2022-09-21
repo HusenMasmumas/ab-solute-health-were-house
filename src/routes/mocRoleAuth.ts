@@ -152,6 +152,18 @@ export const mocRoleAuth = {
         title_th: "จัดการคลังสินค้า",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
+      {
+        keyName: "user/craete-user",
+        title_en: "Create User",
+        title_th: "สร้างชื่อผู้ใช้",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "user/craete-role",
+        title_en: "Create Role",
+        title_th: "สร้างบทบาท",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
     ],
   },
 };

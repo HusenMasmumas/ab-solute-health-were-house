@@ -5,6 +5,7 @@ import { DownOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
 import { Button, Col, Dropdown, Form, Input, Menu, Row, Space } from "antd";
 import { useNavigate } from "react-router-dom";
+import CSelectStatus from "component/input/c-select-status";
 type Props = {
   dataTable: DataType[];
   // expandedRowRender?: () => void;
@@ -181,34 +182,41 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
       title: "สถานะ",
       dataIndex: "status",
       render: (status: string) => {
-        return (
-          <div className="flex justify-start items-center">
-            <Dropdown overlay={menu}>
-              {status === "เปิดการขาย" ? (
-                <Button
-                  className="!pt-0 py-[8px]"
-                  style={{ borderRadius: "4px", backgroundColor: "#77C48B" }}
-                >
-                  <Space style={{ fontSize: "18px" }}>
-                    {status}
-                    <DownOutlined style={{ fontSize: "10px" }} />
-                  </Space>
-                </Button>
-              ) : (
-                <Button
-                  className="!pt-0 py-[8px]"
-                  style={{ borderRadius: "4px", backgroundColor: "#949594" }}
-                >
-                  <Space style={{ fontSize: "18px" }}>
-                    {status}
-                    <DownOutlined style={{ fontSize: "10px" }} />
-                  </Space>
-                </Button>
-              )}
-            </Dropdown>
-          </div>
-        );
+        switch (status) {
+          case "เปิดการขาย":
+            return <CSelectStatus state={status} background="#77C48B" />;
+          case "ปิดการขาย":
+            return <CSelectStatus state={status} background="#949594" />;
+          default:
+            return null;
+        }
       },
+      //       <Dropdown overlay={menu}>
+      //         {status === "เปิดการขาย" ? (
+      //           <Button
+      //             className="!pt-0 py-[8px]"
+      //             style={{ borderRadius: "4px", backgroundColor: "#77C48B" }}
+      //           >
+      //             <Space style={{ fontSize: "18px" }}>
+      //               {status}
+      //               <DownOutlined style={{ fontSize: "10px" }} />
+      //             </Space>
+      //           </Button>
+      //         ) : (
+      //           <Button
+      //             className="!pt-0 py-[8px]"
+      //             style={{ borderRadius: "4px", backgroundColor: "#949594" }}
+      //           >
+      //             <Space style={{ fontSize: "18px" }}>
+      //               {status}
+      //               <DownOutlined style={{ fontSize: "10px" }} />
+      //             </Space>
+      //           </Button>
+      //         )}
+      //       </Dropdown>
+      //     </div>
+      //   );
+      // },
     },
   ];
 
