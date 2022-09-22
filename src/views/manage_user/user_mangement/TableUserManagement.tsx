@@ -48,11 +48,18 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
 
   const columns: ColumnsType<DataType> = [
     {
+      title: "#",
+      dataIndex: "key",
+      align: "center",
+      width: "5%",
+    },
+    {
       title: "ภาพโปรไฟล์",
       dataIndex: "profile",
+      width: "10%",
       render: (profile: string) => {
         return (
-          <div className="w-[80px] h-[80px]">
+          <div className="w-[50px] h-[50px]">
             <Image
               style={{ borderRadius: "100%" }}
               src={profile}
@@ -66,14 +73,17 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
     {
       title: "ชื่อ-นามสกุล (ผู้จัดการ)",
       dataIndex: "name",
+      width: "16%",
     },
     {
       title: "เบอร์โทร",
       dataIndex: "phone",
+      width: "16%",
     },
     {
       title: "อีเมล",
       dataIndex: "email",
+      width: "20%",
     },
     {
       title: "บทบาท",
@@ -83,6 +93,7 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
     {
       title: "สถานะ",
       dataIndex: "status",
+      width: "7%",
       render: (status) => {
         return <Switch defaultChecked onChange={onChange} />;
       },
@@ -95,7 +106,6 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
       <MoTable
         columns={columns}
         dataSource={dataTable}
-        rowSelection={rowSelection}
         onChangePage={onChangePage}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า

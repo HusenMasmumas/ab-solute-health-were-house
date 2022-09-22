@@ -1,6 +1,7 @@
 import { Button, Image } from "antd";
 import CreateButton from "component/Button/CreateButton";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
+import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import TableWarehouseManagement from "views/warehouse_managment/TableWarehouseManagement";
@@ -124,23 +125,16 @@ const StoreCabinet = () => {
   };
   return (
     <div>
-      <div className="grid grid-cols-2">
-        <div>
-          <h1 className="text-darkblue font-[600] text-[30px] !mb-0">{`${t(
-            "warehouseManagement"
-          )}`}</h1>
-          <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
-        </div>
-        <div className="grid justify-end items-center">
-          <CreateButton
-            onClick={() => {
-              navigate("/manage-store-cabinet");
-            }}
-          >
-            + เพิ่มรายการสินค้า
-          </CreateButton>
-        </div>
-      </div>
+      <CHeader
+        keyHeader="warehouseManagement"
+        nevigate={{
+          keytext: "addproductlist",
+          fn: () => {
+            navigate("/manage-store-cabinet");
+          },
+        }}
+        arrPath={["warehouseManagement", "locker"]}
+      />
       <div className="mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>

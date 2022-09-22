@@ -10,12 +10,12 @@ import type { SizeType } from "antd/es/config-provider/SizeContext";
 import CreateDataForm from "./craete_data_form";
 import CreateDetailForm from "./create_detail_form";
 import Table, { ColumnsType } from "antd/lib/table";
+import CHeader from "component/headerPage/Header";
 
 const ManageStoreCabinet = () => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
-  const Options = Select;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const param = useParams();
   const [size, setSize] = useState<SizeType>("small");
 
@@ -46,10 +46,10 @@ const ManageStoreCabinet = () => {
     <div>
       <div className="grid grid-cols-4">
         <div className="col-span-3">
-          <h1 className="text-darkblue font-[600] text-[30px] !mb-0">{`${t(
-            "warehouseManagement"
-          )}`}</h1>
-          <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
+          <CHeader
+            keyHeader="warehouseManagement"
+            arrPath={["warehouseManagement", "productlist"]}
+          />
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">

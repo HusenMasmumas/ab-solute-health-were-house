@@ -1,6 +1,7 @@
 import { Button, Card, Col, Form, Input, Row, Select } from "antd";
 import CreateForm from "component/Form/createForm";
 import { IsearchFormItem } from "component/Form/searchForm";
+import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 
 const ManageWarehouseManagement = () => {
@@ -12,10 +13,10 @@ const ManageWarehouseManagement = () => {
     <div>
       <div className="grid grid-cols-4">
         <div className="col-span-3">
-          <h1 className="text-darkblue font-[600] text-[30px] !mb-0">{`${t(
-            "warehouseManagement"
-          )}`}</h1>
-          <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
+          <CHeader
+            keyHeader="warehouseManagement"
+            arrPath={["warehouseManagement", "addLocker"]}
+          />
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">

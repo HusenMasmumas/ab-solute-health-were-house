@@ -6,6 +6,7 @@ import Picture2 from "../../assets/img/pic-04.png";
 import { useNavigate } from "react-router-dom";
 import CreateButton from "component/Button/CreateButton";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
+import CHeader from "component/headerPage/Header";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -53,22 +54,17 @@ const WarehouseManagement = () => {
   };
   return (
     <div>
-      <div className="grid grid-cols-2">
-        <div>
-          <h1 className="text-darkblue font-[600] text-[30px] !mb-0">{`${t(
-            "warehouseManagement"
-          )}`}</h1>
-          <p className="!mb-0 text-darkblue">{`${t("จัดการคลังสินค้า")}`}</p>
-        </div>
-        <div className="grid justify-end items-center">
-          <CreateButton
-            onClick={() => {
+      <div className="bg-bgcolor">
+        <CHeader
+          keyHeader="warehouseManagement"
+          nevigate={{
+            keytext: "createLocker",
+            fn: () => {
               navigate("/manage-warehouse-management");
-            }}
-          >
-            + สร้างตู้เก็บสินค้า
-          </CreateButton>
-        </div>
+            },
+          }}
+          arrPath={["warehouseManagement"]}
+        />
       </div>
       <div className="mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />

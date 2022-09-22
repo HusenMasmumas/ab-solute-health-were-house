@@ -1,13 +1,12 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import TableUserManagement from "views/manage_user/user_mangement/TableUserManagement";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import CreateButton from "component/Button/CreateButton";
 import { useNavigate } from "react-router";
 import Excel from "../../../assets/img/Excel.png";
 import { Image } from "antd";
 import Profile from "../../../assets/img/profile.jpg";
 import Profile2 from "../../../assets/img/profile-2.jpg";
+import CHeader from "component/headerPage/Header";
 
 type Props = {};
 
@@ -111,20 +110,16 @@ const UserManagement = () => {
   ];
   return (
     <div>
-      <div className="grid grid-cols-2">
-        <div className="text-[30px] text-darkblue font-bold">
-          <span>{`${t("จัดการผู้ใช้")}`}</span>
-        </div>
-        <div className="grid justify-end items-center">
-          <CreateButton
-            onClick={() => {
-              navigate("/user/create-user");
-            }}
-          >
-            + เพิ่มผู้ใช้
-          </CreateButton>
-        </div>
-      </div>
+      <CHeader
+        keyHeader="manageUser"
+        nevigate={{
+          keytext: "createUser",
+          fn: () => {
+            navigate("/user/create-user");
+          },
+        }}
+        arrPath={["manageUser", "user"]}
+      />
 
       <div>
         <div className="mt-[24px]">

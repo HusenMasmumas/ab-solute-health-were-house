@@ -59,7 +59,7 @@ const RoleManagement = (props: Props) => {
     console.log("Received values of form: ", values);
   };
   return (
-    <div className="bg-[#F5F5F5] m-0 p-0 ">
+    <div className="bg-bgcolor">
       <CHeader
         keyHeader="manageUser"
         nevigate={{
@@ -68,10 +68,9 @@ const RoleManagement = (props: Props) => {
             navigate("/user/create-role");
           },
         }}
-        // arrPath={[t('manageUser'), t('role') ]}
         arrPath={["manageUser", "role"]}
       />
-      <div>
+      <div className=" mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       {/* Table */}
