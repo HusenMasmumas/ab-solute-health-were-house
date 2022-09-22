@@ -18,6 +18,8 @@ module.exports = {
         lightgray: "#DCDCDE",
         gray: "#C8D6E3",
         darkgray: '#646772',
+        bgcolor: '#F5F5F5',
+        bgheader:"#01438F"
        
       },
     },
