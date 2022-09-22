@@ -29,7 +29,7 @@ const ManagePurcheaseOrder = (props: Props) => {
       <CHeader 
         keyHeader={keyHeader[tabe]}
         arrPath={arrPath[tabe]}
-        nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create', { replace: true })}} : undefined}
+        nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create')}} : undefined}
       />
       <div className='flex space-x-5 mb-3'>
         <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} />
