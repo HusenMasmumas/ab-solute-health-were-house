@@ -109,7 +109,7 @@ const CreatePurchase = (props: Props) => {
         arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
       />
       <Card className="w-full">
-        <div>รายละเอียดใบสั่งซื้อ</div>
+        <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
         <Divider />
         <Form layout="vertical" onFinish={onFinish}>
           <Row gutter={[12, 6]} align="bottom">
