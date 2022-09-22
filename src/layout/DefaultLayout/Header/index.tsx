@@ -8,6 +8,8 @@ import { ChevronDownIcon, MinusIcon } from "@heroicons/react/24/solid";
 import "./style.css";
 import { ThemeContext } from "context/SwitchTheam";
 import { useTranslation } from "react-i18next";
+import Profile from "../../../assets/img/profile-2.jpg";
+import { Image } from "antd";
 
 interface Props {
   setOpenDrawer: (value: boolean) => void;
@@ -34,7 +36,8 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
     i18n.changeLanguage(lang);
   }
   return (
-    <div className="header duration-500 bg-gradient-to-r from-[#E6F4FF] dark:from-[#091a36] dark:to-[#20252d] py-2 px-6  to-white min-h-[80px] border-b-4 dark:border-[#16181b] flex justify-between items-center">
+    // <div className="header duration-500 bg-gradient-to-r from-[#148ce7] dark:from-[#091a36] dark:to-[#20252d] py-2 px-6  to-white min-h-[80px] border-b-4 dark:border-[#16181b] flex justify-between items-center">
+    <div className="header duration-500 bg-[#01438F] dark:bg-black py-2 px-6  min-h-[90px] flex justify-between items-center">
       <div className="flex items-center gap-4">
         <div
           className="w-10 h-10 cursor-pointer block 2xl:hidden"
@@ -45,7 +48,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
           <MinusIcon className="w-full h-full my-auto text-secondary-default cursor-pointer dark:fill-white " />
         </div>
         <div className="text-[#123265] dark:text-white text-base xl:text-lg 2xl:text-[28px] flex">
-          <span className="font-bold  ">Template </span>
+          {/* <span className="font-bold  ">Template </span> */}
         </div>
       </div>
       <div className="flex items-center">
@@ -93,11 +96,19 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
           </div>
         </div>
 
-        <div className="max-h-12 w-12 ml-4 bg-[#F2F8FF] rounded-full border-2 border-[#3B8DE2]"></div>
+        <div className="max-h-12 w-12 ml-4 bg-[#F2F8FF] rounded-full border-2 border-[#3B8DE2]">
+          <Image
+            src={Profile}
+            preview={false}
+            style={{ borderRadius: "100%" }}
+          />
+        </div>
         <div className="h-auto ml-4 py-1 flex flex-col leading-3 justify-center ">
-          <span className="text-lg dark:text-[#FFFFFF]">Marine Sudjaidee</span>
-          <span className="text-[#292D32] dark:text-[#FFFFFF] text-base -mt-2 dark:opacity-50">
-            Admin
+          <span className="text-lg text-[#FFFFFF] dark:text-[#FFFFFF]">
+            NongPang Prakaifa
+          </span>
+          <span className="text-[#FFFFFF] dark:text-[#FFFFFF] text-base -mt-2 dark:opacity-50">
+            Super Admin
           </span>
         </div>
         <ChevronDownIcon className="w-6 text-[#65a6e9] ml-8" />

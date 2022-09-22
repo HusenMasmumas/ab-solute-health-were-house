@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-Menu">
+      <rect width="55" height="55"/>
+    </clipPath>
+  </defs>
+  <g id="Menu" clip-path="url(#clip-Menu)">
+    <rect width="190" height="190" fill="#fff"/>
+    <g id="vuesax_bold_graph" data-name="vuesax/bold/graph" transform="translate(-315 -203)">
+      <g id="graph" transform="translate(300 188)">
+        <path id="Vector" d="M84.854,45.354A63.98,63.98,0,0,0,42.519,3.019C27.4-1.38,16.952-1.013,9.713,4.393,1.008,10.9,0,22.628,0,30.967V53.784c0,22.542,10.263,34,30.423,34h26.3c8.247,0,20.068-1.008,26.574-9.713C88.886,70.92,89.344,60.474,84.854,45.354Z" transform="translate(113.719 18.332)" fill="#757783"/>
+        <path id="Vector-2" data-name="Vector" d="M154.931,78.908a12.539,12.539,0,0,0-9.438-4.307H112.688A29.253,29.253,0,0,1,83.456,45.37V12.564a12.539,12.539,0,0,0-4.307-9.438A12.42,12.42,0,0,0,69.344.1,80.024,80.024,0,0,0,15.1,32.449,79.107,79.107,0,0,0,64.213,156.614a76.854,76.854,0,0,0,15.12,1.466,77.876,77.876,0,0,0,46.276-15.12,80.024,80.024,0,0,0,32.347-54.248A12.318,12.318,0,0,0,154.931,78.908Z" transform="translate(18.35 43.516)" fill="#757783"/>
+        <path id="Vector-3" data-name="Vector" d="M0,0H219.924V219.924H0Z" transform="translate(219.924 219.924) rotate(180)" fill="none" opacity="0"/>
+      </g>
+    </g>
+  </g>
+</svg>
