@@ -13,11 +13,11 @@ type ICHeader = {
 }
 
 const CHeader = ({keyHeader ,nevigate, arrPath=[], ...props}: ICHeader) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
   return (
     <div className="flex mb-5">
         <div className="w-3/5 ">
-          <div className="text-3xl">{`${t(keyHeader)}`}</div>
+          <div className="text-3xl">{i18n.exists(keyHeader) ? `${t(keyHeader)}`: keyHeader }</div>
           <NevigationPath textPath={arrPath}/>
         </div>
         

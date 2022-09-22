@@ -113,27 +113,18 @@ const DefaultLayout = (props: Props) => {
       },
     },
     {
-      key: "purchase-order",
-      label: isTabletSize && openDrawer ? null : t("purchaseOrder"),
+      key: "purchase-order/manage",
+      label: isTabletSize && openDrawer ? null : t("purchaseOrderManagement"),
       page: "Purchase order",
-      icon: activeIcon("warehouse-management", {
+      icon: activeIcon("purchase-order", {
         inactive: <MapIcon className="w-6 h-6 hover:fill-white" />,
         active: <MapIconAC className="w-6 h-6 fill-white" />,
       }),
-      className: activeMenu("warehouse-management"),
-
-      children: [
-        {
-          label: isTabletSize && openDrawer ? null : t("purchaseOrderManagement"),
-          key: "purchase-order/manage",
-          className: activeSubMenu('manage')
-        },
-        {
-          label: isTabletSize && openDrawer ? null : t("overtimepurchaseOrderManagement"),
-          key: "purchase-order/overtime",
-          className: activeSubMenu('overtime')
-        },
-      ],
+      className: activeMenu("purchase-order"),
+      style: {
+        height: "60px",
+        display: "flex",
+      },
     },
     {
       key: "/report",

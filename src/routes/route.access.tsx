@@ -20,11 +20,12 @@ import StockReport from "page/report/stockReport";
 import ImportedReport from "page/report/importedReport";
 import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
-import OvertimePurchease from "page/purchase_order/overtime";
-import StoreCabinet from "page/warehouse_management/storage_cabinet";
-import ManageStroecabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet";
 import CreateUser from "page/manage_user/user/create_user";
 import CreateRole from "page/manage_user/role/craete_role";
+import CreatePurchase from "page/purchase_order/CreatePurchase";
+import ApprovePurchase from "page/purchase_order/ApprovePurchase";
+import StoreCabinet from "page/warehouse_management/storage_cabinet";
+import ManageStoreCabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -91,35 +92,32 @@ export const _requirePermission: RouteCustom[] = [
         path: "/manage-store-cabinet",
         keyName: "manage-store-cabinet",
         requireAuth: true,
-        element: <ManageStroecabinet />,
+        element: <ManageStoreCabinet />,
       },
       {
         path: "/manage-store-cabinet/:id",
         keyName: "manage-store-cabinet-id",
         requireAuth: true,
-        element: <ManageStroecabinet />,
+        element: <ManageStoreCabinet />,
       },
       {
-        path: "/purchase-order",
-        keyName: "purchase-order",
+        path: "/purchase-order/manage",
+        keyName: "purchase-order/manage",
         requireAuth: true,
-        children: [
-          { index: true, navigateElement: { to: "/manage" } },
-          {
-            path: "manage",
-            keyName: "purchase-order/manage",
-            requireAuth: true,
-            element: <ManagePurcheaseOrder />,
-          },
-          {
-            path: "overtime",
-            keyName: "purchase-order/overtime",
-            requireAuth: true,
-            element: <OvertimePurchease />,
-          },
-        ],
+        element: <ManagePurcheaseOrder />,
       },
-
+      {
+        path: "purchase-order/create",
+        keyName: "purchase-order/create",
+        requireAuth: true,
+        element: <CreatePurchase />,
+      },
+      {
+        path: "purchase-order/approve",
+        keyName: "purchase-order/approve",
+        requireAuth: true,
+        element: <ApprovePurchase />,
+      },
       {
         path: "/report",
         keyName: "report",

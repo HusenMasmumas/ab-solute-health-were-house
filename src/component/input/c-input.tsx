@@ -16,10 +16,12 @@ const CInput = ({option, ...props}: CInputProps) => {
   
   return (
     <div>
-        <Input placeholder="default size" prefix={
-        option?.search ? (
-          <SearchOutlined style={{ fontSize: 20, color: "#F0F0F0" }} />
-        ) : undefined}
+        <Input 
+         prefix={
+          option?.search ? (
+            <SearchOutlined style={{ fontSize: 20, color: "#F0F0F0" }} />
+          ) : undefined}
+        className='!py-0 h-[40px]'
         {...props} 
         />
     </div>
