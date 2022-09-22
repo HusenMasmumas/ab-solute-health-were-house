@@ -32,19 +32,19 @@ const columns: ColumnsType<DataType> = [
     title: "สถานะพัสดุ",
     dataIndex: "address",
   },
-  {
-    title: "จัดการ",
-    dataIndex: "address",
-    render: () => {
-      return (
-        <div className="flex space-x-4 ">
-          {/* <PencilSquareIcon className="h-4 w-4 !text-[40px]" /> */}
-          <PencilSquareIcon className="!w-6" />
-          <DashOutlined className="!w-6 text-2xl"/>
-        </div>
-      );
-    },
-  },
+  // {
+  //   title: "จัดการ",
+  //   dataIndex: "address",
+  //   render: () => {
+  //     return (
+  //       <div className="flex space-x-4 ">
+  //         {/* <PencilSquareIcon className="h-4 w-4 !text-[40px]" /> */}
+  //         <PencilSquareIcon className="!w-6" />
+  //         <DashOutlined className="!w-6 text-2xl"/>
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const rowSelection = {
