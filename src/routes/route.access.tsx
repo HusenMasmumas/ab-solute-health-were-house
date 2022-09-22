@@ -100,40 +100,24 @@ export const _requirePermission: RouteCustom[] = [
         requireAuth: true,
         element: <ManageStroecabinet />,
       },
-      
       {
-        path: "/purchase-order",
-        keyName: "purchase-order",
+        path: "/purchase-order/manage",
+        keyName: "purchase-order/manage",
         requireAuth: true,
-        children: [
-          { index: true, navigateElement: { to: "/manage" } },
-          {
-            path: "manage",
-            keyName: "purchase-order/manage",
-            requireAuth: true,
-            element: <ManagePurcheaseOrder />,
-          },
-          {
-            path: "create",
-            keyName: "purchase-order/create",
-            requireAuth: true,
-            element: <CreatePurchase />,
-          },
-          {
-            path: "approve",
-            keyName: "purchase-order/approve",
-            requireAuth: true,
-            element: <ApprovePurchase />,
-          },
-          {
-            path: "overtime",
-            keyName: "purchase-order/overtime",
-            requireAuth: true,
-            element: <OvertimePurchease />,
-          },
-        ],
+        element: <ManagePurcheaseOrder />,
       },
-
+      {
+        path: "purchase-order/create",
+        keyName: "purchase-order/create",
+        requireAuth: true,
+        element: <CreatePurchase />,
+      },
+      {
+        path: "purchase-order/approve",
+        keyName: "purchase-order/approve",
+        requireAuth: true,
+        element: <ApprovePurchase />,
+      },
       {
         path: "/report",
         keyName: "report",
