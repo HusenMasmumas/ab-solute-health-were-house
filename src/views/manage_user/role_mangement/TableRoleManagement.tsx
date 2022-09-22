@@ -49,6 +49,8 @@ const TableRoleManagement = ({ dataTable = [] }: Props) => {
     {
       title: "#",
       dataIndex: "key",
+      width: "5%",
+      align: "center",
     },
     {
       title: "ชื่อบทบาท",
@@ -57,8 +59,14 @@ const TableRoleManagement = ({ dataTable = [] }: Props) => {
     {
       title: "การใช้งาน",
       dataIndex: "status",
+      width: "10%",
+
       render: (status) => {
-        return <Switch defaultChecked onChange={onChange} />;
+        return (
+          <div className="mr-10">
+            <Switch defaultChecked onChange={onChange} />
+          </div>
+        );
       },
     },
   ];

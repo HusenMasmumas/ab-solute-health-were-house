@@ -27,20 +27,27 @@ const MoTable = ({
 }: Props) => {
   return (
     <div>
-<<<<<<< HEAD
-      <div className="flex">
-        <div className="">{headerTable}</div>
-        {/* <div className="ml-8">section action</div> */}
-      </div>
-=======
-      {
-        action || headerTable &&
-        <div className="flex px-6 mt-5 h-16">
-          { headerTable ? <div className="text-[28px] w-[70%] flex items-center">{headerTable}</div> : <div className="text-[28px] w-[70%] flex items-center">{headerTable}</div>}
-          { action ? <div className="ml-8 w-[30%] flex items-center">section action</div> : <div className="ml-8 w-[30%] flex items-center"></div>}
-        </div>
-      }
->>>>>>> bdc9c66e9b8bffb75e3c8600d3f6da6abedc8478
+      {action ||
+        (headerTable && (
+          <div className="flex px-6 mt-5 h-16">
+            {headerTable ? (
+              <div className="text-[28px] w-[70%] flex items-center">
+                {headerTable}
+              </div>
+            ) : (
+              <div className="text-[28px] w-[70%] flex items-center">
+                {headerTable}
+              </div>
+            )}
+            {action ? (
+              <div className="ml-8 w-[30%] flex items-center">
+                section action
+              </div>
+            ) : (
+              <div className="ml-8 w-[30%] flex items-center"></div>
+            )}
+          </div>
+        ))}
       <Table
         columns={columns}
         dataSource={dataSource}

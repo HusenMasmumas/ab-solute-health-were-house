@@ -1,25 +1,10 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { ColumnsType } from "antd/lib/table";
 import { useEffect, useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
-import {
-  Button,
-  Col,
-  Dropdown,
-  Form,
-  Input,
-  Menu,
-  Row,
-  Space,
-  Switch,
-} from "antd";
+import { Image, Switch } from "antd";
 import { useNavigate } from "react-router-dom";
 type Props = {
   dataTable: DataType[];
-  // expandedRowRender?: () => void;
-  // headerTable: string;
-  // callAPI: ()=>void
 };
 
 interface DataType {
@@ -65,6 +50,18 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
     {
       title: "ภาพโปรไฟล์",
       dataIndex: "profile",
+      render: (profile: string) => {
+        return (
+          <div className="w-[80px] h-[80px]">
+            <Image
+              style={{ borderRadius: "100%" }}
+              src={profile}
+              alt="profile"
+              preview={false}
+            ></Image>
+          </div>
+        );
+      },
     },
     {
       title: "ชื่อ-นามสกุล (ผู้จัดการ)",

@@ -46,50 +46,42 @@ const expandable = {
           บันทึก
         </Button>
       </div>
-      <div className="grid grid-cols-6 px-[250px]">
-        <div>
-          <span className="text-[20px] !m-0">สีแดง</span>
+      <div className="grid grid-cols-3 px-[200px]">
+        <div className="col-span-2 flex text-[20px] justify-center pl-[500px]">
+          สีแดง
         </div>
-        <div className="col-span-5 ">
+        <div className=" flex justify-center items-center ">
           <Form>
-            <Row gutter={[24, 0]}>
-              <Col xl={6}>
+            <Row gutter={[12, 0]}>
+              <Col xl={12}>
                 <Form.Item>
-                  <Input></Input>
+                  <Input className="table-expend" />
                 </Form.Item>
               </Col>
-              <Col xl={6}>
+              <Col xl={12}>
                 <Form.Item>
-                  <Input></Input>
-                </Form.Item>
-              </Col>
-              <Col xl={6}>
-                <Form.Item>
-                  <Input></Input>
+                  <Input className="table-expend" />
                 </Form.Item>
               </Col>
             </Row>
           </Form>
         </div>
       </div>
-      <div className="grid grid-cols-6 px-[250px]">
-        <span className="text-[20px]">สีเหลือง</span>
-        <div className="col-span-5">
+      <div className="grid grid-cols-3 px-[200px]">
+        <div className="col-span-2 flex text-[20px] justify-center pl-[500px]">
+          สีเหลือง
+        </div>
+        <div className=" flex justify-center items-center ">
           <Form>
-            <Row gutter={[24, 0]}>
-              <Col xl={6}>
+            <Row gutter={[12, 0]}>
+              <Col xl={12}>
                 <Form.Item>
-                  <Input></Input>
+                  <Input className="table-expend" />
                 </Form.Item>
               </Col>
-              <Col xl={6}>
+              <Col xl={12}>
                 <Form.Item>
-                  <Input></Input>
-                </Form.Item>
-              </Col>
-              <Col xl={6}>
-                <Form.Item>
-                  <Input></Input>
+                  <Input className="table-expend" />
                 </Form.Item>
               </Col>
             </Row>
@@ -115,21 +107,6 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
     if (type === "pageSize") setLimitPage(page);
     else setCurrentPage(page);
   };
-
-  // const menu = (
-  //   <Menu
-  //     items={[
-  //       {
-  //         label: "ปิดการขาย",
-  //         key: "1",
-  //       },
-  //       {
-  //         label: "เปิดการขาย",
-  //         key: "2",
-  //       },
-  //     ]}
-  //   />
-  // );
 
   const columns: ColumnsType<DataType> = [
     {

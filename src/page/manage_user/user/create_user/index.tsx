@@ -1,28 +1,10 @@
-import { UserOutlined, PlusOutlined } from "@ant-design/icons";
-import {
-  Avatar,
-  Button,
-  Col,
-  Form,
-  Input,
-  message,
-  Row,
-  Select,
-  Switch,
-  Upload,
-  UploadProps,
-} from "antd";
-import { RcFile, UploadChangeParam, UploadFile } from "antd/lib/upload";
+import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import MyUpload from "component/MyUpload/MyUpload";
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getBase64 } from "utils/utils";
 
 const CreateUser = () => {
   const { t } = useTranslation();
   const Option = Select;
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
 
   const onChange = (checked: boolean) => {
     console.log(`switch to ${checked}`);

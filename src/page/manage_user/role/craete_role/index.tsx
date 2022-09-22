@@ -1,8 +1,25 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row, Table } from "antd";
+import { ColumnType } from "antd/lib/table";
 import { useTranslation } from "react-i18next";
+import TableCreateRole from "./TableCreateRole";
 
+interface DataType {
+  key: number;
+  name: string;
+}
 const CreateRole = () => {
   const { t } = useTranslation();
+
+  const data: DataType[] = [
+    {
+      key: 1,
+      name: "ผู้จัดการ",
+    },
+    {
+      key: 2,
+      name: "ผู้จัดการ",
+    },
+  ];
   return (
     <div>
       <div className="grid grid-cols-2">
@@ -28,11 +45,15 @@ const CreateRole = () => {
           <Row gutter={[24, 0]}>
             <Col span={24}>
               <Form.Item label="ชื่อบทบาท">
-                <Input placeholder="ชื่อบทบาท"></Input>
+                <Input placeholder="ชื่อบทบาท" />
               </Form.Item>
             </Col>
           </Row>
         </Form>
+      </div>
+      {/* table */}
+      <div className="bg-white mt-[24px] px-[30px] py-[24px]">
+        <TableCreateRole dataTable={data}></TableCreateRole>
       </div>
     </div>
   );

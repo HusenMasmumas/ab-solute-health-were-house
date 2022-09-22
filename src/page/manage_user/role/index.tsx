@@ -1,9 +1,10 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { t } from "i18next";
-import React from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import TableRoleManagement from "views/manage_user/role_mangement/TableRoleManagement";
+import { Image } from "antd";
+import Excel from "../../../assets/img/Excel.png";
 
 type Props = {};
 interface DataType {
@@ -38,6 +39,7 @@ const elements: IsearchFormItem[] = [
 ];
 
 const RoleManagement = (props: Props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const data: DataType[] = [
     {
@@ -47,121 +49,6 @@ const RoleManagement = (props: Props) => {
     },
     {
       key: 2,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 3,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 4,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 5,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 6,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 7,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 8,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 9,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 10,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 11,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 12,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 13,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 14,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 15,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 16,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 17,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 18,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 19,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 20,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 21,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 22,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 23,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 24,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 25,
       role: "ผู้จัดการ",
       status: true,
     },
@@ -188,7 +75,16 @@ const RoleManagement = (props: Props) => {
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       {/* Table */}
-      <div className="mt-10 bg-white">
+      <div className="bg-white px-[24px] py-[16px] mt-[16px]">
+        <div className="grid grid-cols-2">
+          <span className="text-[#231F20] text-[28px]">รายการบทบาท</span>
+          <div className="flex items-center justify-end">
+            <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
+              <Image src={Excel} alt="excel" preview={false}></Image>
+            </div>
+          </div>
+        </div>
+
         <TableRoleManagement dataTable={data}></TableRoleManagement>
       </div>
     </div>

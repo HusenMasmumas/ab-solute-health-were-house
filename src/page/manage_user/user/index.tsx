@@ -2,11 +2,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import TableUserManagement from "views/manage_user/user_mangement/TableUserManagement";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import CHeader from "component/headerPage/Header";
 import CreateButton from "component/Button/CreateButton";
 import { useNavigate } from "react-router";
 import Excel from "../../../assets/img/Excel.png";
 import { Image } from "antd";
+import Profile from "../../../assets/img/profile.jpg";
+import Profile2 from "../../../assets/img/profile-2.jpg";
 
 type Props = {};
 
@@ -91,7 +92,7 @@ const UserManagement = () => {
   const data: DataType[] = [
     {
       key: 1,
-      profile: "picture",
+      profile: Profile,
       name: "pangpang",
       phone: "0912345678",
       email: "pp@gmail.com",
@@ -100,7 +101,7 @@ const UserManagement = () => {
     },
     {
       key: 2,
-      profile: "picture",
+      profile: Profile2,
       name: "prakaifa",
       phone: "09874561230",
       email: "ppjj@gmail.com",
@@ -131,9 +132,12 @@ const UserManagement = () => {
         </div>
         <div className="bg-white px-[24px] py-[16px] mt-[16px]">
           <div className="grid grid-cols-2">
-            <span className="text-[#231F20] text-[22px]">จัดการผู้ใช้</span>
-            <div className="flex items-center justify-end gap-2">
-              <span className="text-[20px]">ลบ</span>
+            <span className="text-[#231F20] text-[28px]">จัดการผู้ใช้</span>
+            <div className="flex items-center justify-end gap-4">
+              <span className="text-[20px] border-r-[1px] border-gray pr-4 ">
+                ลบ
+              </span>
+
               <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
                 <Image src={Excel} alt="excel" preview={false}></Image>
               </div>
