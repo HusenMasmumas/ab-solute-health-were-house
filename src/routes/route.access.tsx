@@ -26,6 +26,7 @@ import CreatePurchase from "page/purchase_order/CreatePurchase";
 import ApprovePurchase from "page/purchase_order/ApprovePurchase";
 import StoreCabinet from "page/warehouse_management/storage_cabinet";
 import ManageStoreCabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet";
+import CreateStore from "page/stores_branches/create_stores";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -162,6 +163,12 @@ export const _requirePermission: RouteCustom[] = [
         keyName: "stores-branches",
         requireAuth: true,
         element: <StoresBranches />,
+      },
+      {
+        path: "/craete-stores-branches",
+        keyName: "craete-stores-branches",
+        requireAuth: true,
+        element: <CreateStore />,
       },
 
       {

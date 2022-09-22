@@ -176,6 +176,12 @@ export const mocRoleAuth = {
         title_th: "สร้างบทบาท",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
+      {
+        keyName: "craete-stores-branches",
+        title_en: "Craete Stores&Branches",
+        title_th: "สร้างร้านค้าและสาขา",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
     ],
   },
 };
