@@ -1,4 +1,5 @@
 import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
+import CHeader from "component/headerPage/Header";
 import MyUpload from "component/MyUpload/MyUpload";
 import { useTranslation } from "react-i18next";
 
@@ -12,10 +13,14 @@ const CreateUser = () => {
   return (
     <div>
       <div className="grid grid-cols-2">
-        <div className="text-[30px] text-darkblue font-bold">
+        <CHeader
+          keyHeader="manageUser"
+          arrPath={["manageUser", "user", "addUser"]}
+        />
+        {/* <div className="text-[30px] text-darkblue font-bold">
           {`${t("manageUser")}`}
-        </div>
-        <div className="flex justify-end items-start gap-2">
+        </div> */}
+        <div className="flex justify-end items-center gap-2">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
             ยกเลิก
           </Button>

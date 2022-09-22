@@ -1,4 +1,5 @@
 import { Button, Col, Form, Input, Row } from "antd";
+import CHeader from "component/headerPage/Header";
 import MyUpload from "component/MyUpload/MyUpload";
 import { useTranslation } from "react-i18next";
 
@@ -7,10 +8,14 @@ const CreateStore = () => {
   return (
     <div>
       <div className="grid grid-cols-2">
-        <div className="text-[30px] text-darkblue font-bold">
+        <CHeader
+          keyHeader="stores&branches"
+          arrPath={["stores&branches", "role", "addRole"]}
+        />
+        {/* <div className="text-[30px] text-darkblue font-bold">
           {`${t("stores&branches")}`}
-        </div>
-        <div className="flex justify-end items-start gap-2">
+        </div> */}
+        <div className="flex justify-end items-center gap-2">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
             ยกเลิก
           </Button>

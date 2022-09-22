@@ -1,5 +1,6 @@
 import { Button, Col, Form, Input, Row, Table } from "antd";
 import { ColumnType } from "antd/lib/table";
+import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 import TableCreateRole from "./TableCreateRole";
 
@@ -23,10 +24,11 @@ const CreateRole = () => {
   return (
     <div>
       <div className="grid grid-cols-2">
-        <div className="text-[30px] text-darkblue font-bold">
-          {`${t("manageUser")}`}
-        </div>
-        <div className="flex justify-end items-start gap-2">
+        <CHeader
+          keyHeader="manageUser"
+          arrPath={["manageUser", "role", "addRole"]}
+        />
+        <div className="flex justify-end items-center gap-2">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
             ยกเลิก
           </Button>
