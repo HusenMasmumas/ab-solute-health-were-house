@@ -5,6 +5,8 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import CreateButton from "component/Button/CreateButton";
 import { useNavigate } from "react-router";
+import Excel from "../../../assets/img/Excel.png";
+import { Image } from "antd";
 
 type Props = {};
 
@@ -130,7 +132,12 @@ const UserManagement = () => {
         <div className="bg-white px-[24px] py-[16px] mt-[16px]">
           <div className="grid grid-cols-2">
             <span className="text-[#231F20] text-[22px]">จัดการผู้ใช้</span>
-            <div className="grid items-center justify-end">Exel</div>
+            <div className="flex items-center justify-end gap-2">
+              <span className="text-[20px]">ลบ</span>
+              <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
+                <Image src={Excel} alt="excel" preview={false}></Image>
+              </div>
+            </div>
           </div>
           <div className="ant-table-cell ant-table-selection-column ant-table-cell.ant-table-tbody">
             <TableUserManagement dataTable={data}></TableUserManagement>

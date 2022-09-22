@@ -1,20 +1,32 @@
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, Row, Select, Switch, Upload } from "antd";
-import React from "react";
+import { UserOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  Avatar,
+  Button,
+  Col,
+  Form,
+  Input,
+  message,
+  Row,
+  Select,
+  Switch,
+  Upload,
+  UploadProps,
+} from "antd";
+import { RcFile, UploadChangeParam, UploadFile } from "antd/lib/upload";
+import MyUpload from "component/MyUpload/MyUpload";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { getBase64 } from "utils/utils";
 
 const CreateUser = () => {
   const { t } = useTranslation();
   const Option = Select;
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>();
 
   const onChange = (checked: boolean) => {
     console.log(`switch to ${checked}`);
   };
-  // const uploadButton = (
-  //   <div>
-  //     <PlusOutlined></PlusOutlined>
-  //   </div>
-  // );
   return (
     <div>
       <div className="grid grid-cols-2">
@@ -38,60 +50,60 @@ const CreateUser = () => {
           เพิ่มข้อมูลร้านค้า&สาขา
         </div>
         <Form layout="vertical">
-          <Form.Item>
-            {/* upload image */}
-            <div className="flex justify-center">
-              <div className="rounded-full w-[120px] h-[120px] bg-slate-600 flex justify-end items-end"></div>
-            </div>
-          </Form.Item>
+          {/* upload image */}
+          <div className="flex justify-center items-center">
+            <Form.Item name="profile">
+              <MyUpload />
+            </Form.Item>
+          </div>
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("ชื่อ")}>
-                <Input placeholder="ชื่อ"></Input>
+                <Input placeholder="ชื่อ" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("นามสกุล")}>
-                <Input placeholder="นามสกุล"></Input>
+                <Input placeholder="นามสกุล" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("เบอร์โทร")}>
-                <Input placeholder="เบอร์โทร"></Input>
+                <Input placeholder="เบอร์โทร" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("อีเมล")}>
-                <Input placeholder="อีเมล"></Input>
+                <Input placeholder="อีเมล" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("บ้านเลขที่")}>
-                <Input placeholder="บ้านเลขที่"></Input>
+                <Input placeholder="บ้านเลขที่" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("ตำบล")}>
-                <Input placeholder="ตำบล"></Input>
+                <Input placeholder="ตำบล" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("อำเภอ")}>
-                <Input placeholder="อำเภอ"></Input>
+                <Input placeholder="อำเภอ" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("จังหวัด")}>
-                <Input placeholder="จังหวัด"></Input>
+                <Input placeholder="จังหวัด" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("รหัสไปรษณีย์")}>
-                <Input placeholder="รหัสไปรษณีย์"></Input>
+                <Input placeholder="รหัสไปรษณีย์" />
               </Form.Item>
             </Col>
           </Row>
@@ -118,12 +130,12 @@ const CreateUser = () => {
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("ชื่อผู้ใช้")}>
-                <Input placeholder="ชื่อผู้ใช้"></Input>
+                <Input placeholder="ชื่อผู้ใช้" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("รหัสผ่าน")}>
-                <Input.Password placeholder="รหัสผ่าน"></Input.Password>
+                <Input.Password placeholder="รหัสผ่าน" />
               </Form.Item>
             </Col>
           </Row>

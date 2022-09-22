@@ -6,7 +6,7 @@ import Dashboard1 from "./../../assets/img/Dashboard-1.png";
 import Dashboard from "./../../assets/img/Dashboard.png";
 import Dashboard2 from "./../../assets/img/Dashboard-2.png";
 import Dashboard3 from "./../../assets/img/Dashboard-3.png";
-import Arrow from "./../../assets/img/Dashboard-4.svg";
+import Arrow from "./../../assets/img/Dashboard-4.png";
 
 const OverAllPage = () => {
   const { t } = useTranslation();

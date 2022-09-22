@@ -1,9 +1,10 @@
-import { Button } from "antd";
+import { Button, Image } from "antd";
 import CreateButton from "component/Button/CreateButton";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import TableWarehouseManagement from "views/warehouse_managment/TableWarehouseManagement";
+import Excel from "../../../assets/img/Excel.png";
 
 interface DataType {
   key: number;
@@ -106,6 +107,17 @@ const StoreCabinet = () => {
     },
   ];
 
+  // const onAdd = (value?: any) => {
+  //   if (value?.id) {
+  //     navigate("/setting/pdpa/edit", {
+  //       state: {
+  //         id: value?.id,
+  //       },
+  //     });
+  //   } else {
+  //     navigate("/setting/pdpa/add");
+  //   }
+  // };
   const onFinish = (values: any) => {
     //โยนเข้า create query
     console.log("Received values of form: ", values);
@@ -134,8 +146,12 @@ const StoreCabinet = () => {
       </div>
       <div className="bg-white px-[24px] py-[16px] mt-[16px]">
         <div className="grid grid-cols-2">
-          <span className="text-[#231F20] text-[22px]">รายการสั่งซื้อ</span>
-          <div className="grid items-center justify-end">Exel</div>
+          <span className="text-[#231F20] text-[28px]">รายการสั่งซื้อ</span>
+          <div className="grid items-center justify-end">
+            <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
+              <Image src={Excel} alt="excel" preview={false}></Image>
+            </div>
+          </div>
         </div>
         <div className="ant-table-cell ant-table-selection-column ant-table-cell.ant-table-tbody">
           <TableWarehouseManagement dataTable={data}></TableWarehouseManagement>

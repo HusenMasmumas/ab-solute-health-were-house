@@ -27,7 +27,7 @@ const MoTable = ({
     <div>
       <div className="flex">
         <div className="">{headerTable}</div>
-        <div className="ml-8">section action</div>
+        {/* <div className="ml-8">section action</div> */}
       </div>
       <Table
         columns={columns}

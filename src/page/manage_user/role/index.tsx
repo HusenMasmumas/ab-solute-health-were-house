@@ -50,6 +50,121 @@ const RoleManagement = (props: Props) => {
       role: "ผู้จัดการ",
       status: true,
     },
+    {
+      key: 3,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 4,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 5,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 6,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 7,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 8,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 9,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 10,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 11,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 12,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 13,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 14,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 15,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 16,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 17,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 18,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 19,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 20,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 21,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 22,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 23,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 24,
+      role: "ผู้จัดการ",
+      status: true,
+    },
+    {
+      key: 25,
+      role: "ผู้จัดการ",
+      status: true,
+    },
   ];
 
   const onFinish = (values: any) => {

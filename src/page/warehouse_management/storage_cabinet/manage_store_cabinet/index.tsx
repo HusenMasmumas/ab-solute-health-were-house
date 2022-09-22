@@ -9,6 +9,7 @@ import { Radio, Tabs } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import CreateDataForm from "./craete_data_form";
 import CreateDetailForm from "./create_detail_form";
+import Table, { ColumnsType } from "antd/lib/table";
 
 const ManageStoreCabinet = () => {
   const { t } = useTranslation();
@@ -21,6 +22,25 @@ const ManageStoreCabinet = () => {
   const onChange = (e: RadioChangeEvent) => {
     setSize(e.target.value);
   };
+
+  const columns = [
+    {
+      title: "SKU",
+      dataIndex: "sku",
+    },
+    {
+      title: "สี",
+      dataIndex: "colour",
+    },
+    {
+      title: "จำนวน",
+      dataIndex: "amount",
+    },
+    {
+      title: "หมายเหตุ",
+      dataIndex: "ps",
+    },
+  ];
 
   return (
     <div>
@@ -44,6 +64,10 @@ const ManageStoreCabinet = () => {
         <Tabs defaultActiveKey="1" size="large" type="card">
           <Tabs.TabPane tab="ข้อมูลสินค้า" key="1">
             <CreateDataForm></CreateDataForm>
+            <Table
+              columns={columns}
+              // dataSource={dataSource}
+            />
           </Tabs.TabPane>
           <Tabs.TabPane tab="รายละเอียด" key="2">
             <CreateDetailForm></CreateDetailForm>

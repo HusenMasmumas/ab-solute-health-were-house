@@ -17,7 +17,8 @@ module.exports = {
         lightsky: "#F3F9FF",
         lightgray: "#DCDCDE",
         gray: "#C8D6E3",
-        darkgray: '#646772'
+        darkgray: '#646772',
+       
       },
     },
   },

@@ -116,20 +116,21 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
     else setCurrentPage(page);
   };
 
-  const menu = (
-    <Menu
-      items={[
-        {
-          label: "ปิดการขาย",
-          key: "1",
-        },
-        {
-          label: "เปิดการขาย",
-          key: "2",
-        },
-      ]}
-    />
-  );
+  // const menu = (
+  //   <Menu
+  //     items={[
+  //       {
+  //         label: "ปิดการขาย",
+  //         key: "1",
+  //       },
+  //       {
+  //         label: "เปิดการขาย",
+  //         key: "2",
+  //       },
+  //     ]}
+  //   />
+  // );
+
   const columns: ColumnsType<DataType> = [
     {
       title: "SKU/Sub SKU",
@@ -181,42 +182,22 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
     {
       title: "สถานะ",
       dataIndex: "status",
-      render: (status: string) => {
-        switch (status) {
-          case "เปิดการขาย":
-            return <CSelectStatus state={status} background="#77C48B" />;
-          case "ปิดการขาย":
-            return <CSelectStatus state={status} background="#949594" />;
-          default:
-            return null;
-        }
+      render: (status, row) => {
+        return (
+          <CSelectStatus
+            state={status}
+            listOption={[
+              { label: "ปิดการขาย", value: "ปิดการขาย" },
+              { label: "เปิดการขาย", value: "เปิดการขาย" },
+            ]}
+            labelKey={"label"}
+            valueKey={"value"}
+            activeBackground={"#77C48B"}
+            initialValue={status}
+            activeValue={"เปิดการขาย"}
+          />
+        );
       },
-      //       <Dropdown overlay={menu}>
-      //         {status === "เปิดการขาย" ? (
-      //           <Button
-      //             className="!pt-0 py-[8px]"
-      //             style={{ borderRadius: "4px", backgroundColor: "#77C48B" }}
-      //           >
-      //             <Space style={{ fontSize: "18px" }}>
-      //               {status}
-      //               <DownOutlined style={{ fontSize: "10px" }} />
-      //             </Space>
-      //           </Button>
-      //         ) : (
-      //           <Button
-      //             className="!pt-0 py-[8px]"
-      //             style={{ borderRadius: "4px", backgroundColor: "#949594" }}
-      //           >
-      //             <Space style={{ fontSize: "18px" }}>
-      //               {status}
-      //               <DownOutlined style={{ fontSize: "10px" }} />
-      //             </Space>
-      //           </Button>
-      //         )}
-      //       </Dropdown>
-      //     </div>
-      //   );
-      // },
     },
   ];
 

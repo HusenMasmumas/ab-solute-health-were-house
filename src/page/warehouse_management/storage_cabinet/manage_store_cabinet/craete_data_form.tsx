@@ -1,4 +1,5 @@
-import { Button, Col, Form, Input, Row, Select } from "antd";
+import { Button, Col, Form, Input, Row, Select, Space } from "antd";
+import FormList from "antd/lib/form/FormList";
 import TextArea from "antd/lib/input/TextArea";
 import { useTranslation } from "react-i18next";
 
@@ -81,41 +82,66 @@ const CreateDataForm = () => {
         <div className="text-lightblue text-[22px]">
           <span>ข้อมูลตามประเภท</span>
         </div>
-        <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        <Form layout="vertical">
-          <Row gutter={[24, 0]}>
-            <Col span={12}>
-              <Form.Item label="SKU">
-                <Input placeholder="SKU"></Input>
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
-            <Col span={12}>
-              <Form.Item label="สี">
-                <Select defaultValue="สีแดง" placeholder="สีแดง">
-                  <Option value="สีแดง">สีแดง</Option>
-                  <Option value="สีเขียว">สีเขียว</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label="จำนวน ( จำแนกตามสี )">
-                <Input placeholder="จำนวน ( จำแนกตามสี )"></Input>
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
-            <Col span={24}>
-              <Form.Item label="หมายเหตุ">
-                <TextArea placeholder="หมายเหตุ"></TextArea>
-              </Form.Item>
-            </Col>
-          </Row>
+
+        {/* ฟอร์มล่าง */}
+        <Form
+          name="dynamic_form_nest_item"
+          layout="vertical"
+          initialValues={{ werehouse: [""] }}
+        >
+          <Form.List name="werehouse">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <div key={key}>
+                    <Row gutter={[24, 0]}>
+                      <Col span={24}>
+                        <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
+                      </Col>
+                    </Row>
+                    <Row gutter={[24, 0]}>
+                      <Col span={12}>
+                        <Form.Item {...fields} label="SKU">
+                          <Input placeholder="SKU"></Input>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row gutter={[24, 0]}>
+                      <Col span={12}>
+                        <Form.Item {...fields} label="สี">
+                          <Select defaultValue="สีแดง" placeholder="สีแดง">
+                            <Option value="สีแดง">สีแดง</Option>
+                            <Option value="สีเขียว">สีเขียว</Option>
+                          </Select>
+                        </Form.Item>
+                      </Col>
+                      <Col span={12}>
+                        <Form.Item {...fields} label="จำนวน ( จำแนกตามสี )">
+                          <Input placeholder="จำนวน ( จำแนกตามสี )"></Input>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row gutter={[24, 0]}>
+                      <Col span={24}>
+                        <Form.Item label="หมายเหตุ">
+                          <TextArea placeholder="หมายเหตุ"></TextArea>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  </div>
+                ))}
+                <Form.Item>
+                  <Button
+                    className="grid justify-start items-center !w-[170px] !h-[45px] !text-[20px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]"
+                    onClick={() => add()}
+                  >
+                    + เพิ่มตัวแปร
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
         </Form>
-        <Button className="grid justify-start items-center !w-[170px] !h-[45px] !text-[20px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]">
-          + เพิ่มตัวแปร
-        </Button>
       </div>
     </div>
   );
