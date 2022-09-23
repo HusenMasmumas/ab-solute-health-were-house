@@ -23,7 +23,7 @@ const columns: ColumnsType<DataType> = [
     title: "#",
     dataIndex: "key",
     align: "center",
-    width: "5%",
+    width: "7%",
   },
   {
     title: "ชื่อร้าน",

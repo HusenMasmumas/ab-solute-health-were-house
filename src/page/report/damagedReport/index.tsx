@@ -1,12 +1,19 @@
-import SearchForm, { IsearchFormItem } from 'component/Form/searchForm';
-import CHeader from 'component/headerPage/Header';
-import { t } from 'i18next';
-import React from 'react'
-import DamageTable from 'views/report/damageTable';
+import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
+import CHeader from "component/headerPage/Header";
+import { t } from "i18next";
+import React from "react";
+import DamageTable from "views/report/damageTable";
 
-type Props = {}
-
-
+type Props = {};
+interface DataType {
+  key: React.Key;
+  date: string;
+  code: string;
+  sku: string;
+  name: string;
+  amount: number;
+  state: string;
+}
 const elements: IsearchFormItem[] = [
   {
     name: "date",
@@ -29,8 +36,8 @@ const elements: IsearchFormItem[] = [
     },
   },
   {
-    name: 'SKU',
-    label: 'SKU',
+    name: "SKU",
+    label: "SKU",
     input: {
       type: "input",
       options: {
@@ -40,7 +47,7 @@ const elements: IsearchFormItem[] = [
   },
   {
     name: "name",
-    label: 'ชื่อสินค้า',
+    label: "ชื่อสินค้า",
     input: {
       type: "input",
       options: {
@@ -50,18 +57,39 @@ const elements: IsearchFormItem[] = [
   },
   {
     name: "state",
-    label: 'สถานะ',
+    label: "สถานะ",
     input: {
       type: "select",
       options: {
         values: [
-          {key:1, value:'notDamage', label:'ไม่เสียหาย'},
-          {key:2, value:'damage', label:'เสียหาย'}
+          { key: 1, value: "notDamage", label: "ไม่เสียหาย" },
+          { key: 2, value: "damage", label: "เสียหาย" },
         ],
       },
     },
   },
-]
+];
+
+const data: DataType[] = [
+  {
+    key: 1,
+    date: "20/08/2565",
+    code: "PO453671668",
+    sku: "S1234556",
+    name: "สมพงษ์ ตามังกร",
+    amount: 100,
+    state: "ไม่เสียหาย",
+  },
+  {
+    key: 2,
+    date: "20/08/2565",
+    code: "PO453671668",
+    sku: "S1234556",
+    name: "อัญญา เบญจมินทร์",
+    amount: 100,
+    state: "เสียหาย",
+  },
+];
 
 const onFinish = (values: any) => {
   //โยนเข้า create query
@@ -70,20 +98,16 @@ const onFinish = (values: any) => {
 const DamageReport = (props: Props) => {
   return (
     <div className="bg-[#F5F5F5] m-0 p-0 ">
-      <CHeader 
-        keyHeader="report"
-        arrPath={['report', 'damageReport']}
-      />
+      <CHeader keyHeader="report" arrPath={["report", "damageReport"]} />
       <div>
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       {/* Table */}
       <div className="mt-10 bg-white">
-        <DamageTable dataTable={[]} headerTable={t('damageReport')}  />
+        <DamageTable dataTable={data} headerTable={t("damageReport")} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DamageReport
-
+export default DamageReport;

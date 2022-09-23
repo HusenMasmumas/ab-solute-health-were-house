@@ -49,7 +49,7 @@ const TableRoleManagement = ({ dataTable = [] }: Props) => {
     {
       title: "#",
       dataIndex: "key",
-      width: "5%",
+      width: "7%",
       align: "center",
     },
     {

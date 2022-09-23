@@ -51,7 +51,7 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
       title: "#",
       dataIndex: "key",
       align: "center",
-      width: "5%",
+      width: "7%",
     },
     {
       title: "ภาพโปรไฟล์",

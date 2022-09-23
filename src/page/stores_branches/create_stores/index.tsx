@@ -12,9 +12,6 @@ const CreateStore = () => {
           keyHeader="stores&branches"
           arrPath={["stores&branches", "role", "addRole"]}
         />
-        {/* <div className="text-[30px] text-darkblue font-bold">
-          {`${t("stores&branches")}`}
-        </div> */}
         <div className="flex justify-end items-center gap-2">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
             ยกเลิก
