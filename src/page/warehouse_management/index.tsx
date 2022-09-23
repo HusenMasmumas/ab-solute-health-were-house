@@ -1,12 +1,12 @@
-import React from "react";
-import { Button, Form, Input, Image, Row, Col, Card } from "antd";
+import { Image } from "antd";
 import { useTranslation } from "react-i18next";
 import Picture1 from "../../assets/img/pic-02.png";
 import Picture2 from "../../assets/img/pic-04.png";
 import { useNavigate } from "react-router-dom";
-import CreateButton from "component/Button/CreateButton";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
+import { ReactComponent as ArrowIcon } from "../../assets/Icon/Arrow.svg";
+import { ReactComponent as DotIcon } from "../../assets/Icon/dot.svg";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -79,23 +79,11 @@ const WarehouseManagement = () => {
             >
               <div className="grid justify-end items-end">
                 <div className="w-[28px] h-[28px] bg-lightsky text-green rounded-[5px] grid justify-center items-center">
-                  <svg
+                  <DotIcon
                     onClick={() => {
                       navigate("/manage-warehouse-management");
                     }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                    />
-                  </svg>
+                  />
                 </div>
               </div>
               <div className="grid justify-center items-center">
@@ -121,20 +109,7 @@ const WarehouseManagement = () => {
                   {item.storeNo}
                 </span>
                 <div className="flex text-green  items-end justify-end">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1"
-                    stroke="currentColor"
-                    className="w-12 h-12"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                    />
-                  </svg>
+                  <ArrowIcon />
                 </div>
               </div>
             </div>

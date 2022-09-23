@@ -1,5 +1,3 @@
-import { ApexOptions } from "apexcharts";
-import ApexChart from "react-apexcharts";
 import { useTranslation } from "react-i18next";
 import { Select, Image } from "antd";
 import Dashboard1 from "./../../assets/img/Dashboard-1.png";
@@ -7,109 +5,13 @@ import Dashboard from "./../../assets/img/Dashboard.png";
 import Dashboard2 from "./../../assets/img/Dashboard-2.png";
 import Dashboard3 from "./../../assets/img/Dashboard-3.png";
 import Arrow from "./../../assets/img/Dashboard-4.png";
+import BarChart from "component/chart/bar-chart";
+import Linechart from "component/chart/line-chart";
+import { ReactComponent as ArrowIcon } from "../../assets/Icon/Arrow.svg";
 
 const OverAllPage = () => {
   const { t } = useTranslation();
   const { Option } = Select;
-
-  const dataSourceBar = [
-    {
-      data: [700, 650, 860, 250],
-    },
-  ];
-  const optionsBar = {
-    chart: { toolbar: { show: false } },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        dataLabels: {
-          position: "top",
-        },
-      },
-    },
-    xaxis: {
-      categories: ["รออนุมัติ", "อนุมัติ", "อยู่ระหว่างขนส่ง", "ตีกลับ"],
-      labels: {
-        show: false,
-      },
-    },
-    dataLabels: {
-      enabled: true,
-      offsetX: 40,
-      position: "right",
-      style: {
-        fontSize: "12px",
-        colors: ["#000000"],
-      },
-    },
-    tooltip: {
-      enabled: false,
-    },
-    stroke: {
-      show: true,
-      width: 10,
-      colors: ["#fff"],
-    },
-  } as ApexOptions;
-  const dataScouces = [
-    {
-      data: [5, 10, 41, 35, 51, 49, 62, 69, 91, 148],
-    },
-    {
-      data: [10, 20, 21, 35, 41, 49, 62, 89, 91, 128],
-    },
-    {
-      data: [20, 85, 2, 35, 41, 55, 88, 89, 55, 89],
-    },
-  ];
-  const options = {
-    chart: { toolbar: { show: false } },
-    stroke: {
-      curve: "smooth",
-      width: 4,
-    },
-    tooltip: {
-      enabled: false,
-    },
-    grid: {
-      row: {
-        colors: ["#ffffff", "transparent"], // takes an array which will be repeated on columns
-        opacity: 0.1,
-      },
-    },
-    xaxis: {
-      type: "category",
-      categories: [
-        "Aug 2018",
-        "Sep 2018",
-        "Oct 2018",
-        "Nov 2018",
-        "Dec 2018",
-        "Jan 2019",
-        "Feb 2019",
-        "Mar 2019",
-        "Apr 2019",
-        "May 2019",
-      ],
-      tickPlacement: "on",
-      position: "button",
-      labels: {
-        show: true,
-        style: {
-          colors: "#8D8D8D",
-          fontSize: "15px",
-          fontFamily: "FCIconic",
-          fontWeight: 400,
-        },
-      },
-    },
-    yaxis: {
-      show: false,
-    },
-    legend: {
-      show: false,
-    },
-  } as ApexOptions;
 
   return (
     <div>
@@ -144,20 +46,7 @@ const OverAllPage = () => {
               {`${t("300 K")}`}
             </div>
             <div className="flex text-lightblue items-end justify-end pt-[40px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                className="w-12 h-12"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                />
-              </svg>
+              <ArrowIcon />
             </div>
           </div>
         </div>
@@ -175,20 +64,7 @@ const OverAllPage = () => {
               {`${t("300 K")}`}
             </div>
             <div className="flex text-lightblue items-end justify-end pt-[40px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                className="w-12 h-12"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                />
-              </svg>
+              <ArrowIcon />
             </div>
           </div>
         </div>
@@ -207,20 +83,7 @@ const OverAllPage = () => {
               {`${t("300 K")}`}
             </div>
             <div className="flex text-[#4E8FCC] items-end justify-end  pt-[40px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                className="w-12 h-12"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                />
-              </svg>
+              <ArrowIcon />
             </div>
           </div>
         </div>
@@ -238,20 +101,7 @@ const OverAllPage = () => {
               {`${t("300 K")}`}
             </div>
             <div className="flex text-[#4E8FCC] items-end justify-end  pt-[40px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                className="w-12 h-12"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                />
-              </svg>
+              <ArrowIcon />
             </div>
           </div>
         </div>
@@ -299,26 +149,14 @@ const OverAllPage = () => {
               "ยอดการสั่งสินค้าโดยเปรียบเทียบแต่ละเดือน"
             )}`}</p>
             <div>
-              <ApexChart
-                type="line"
-                options={options}
-                series={dataScouces}
-                width={900}
-                height={250}
-              />
+              <Linechart />
             </div>
           </div>
         </div>
         <div className="bg-white rounded-[10px] px-[24px] pt-[16px] py-[10px]">
           <p className="!mb-0">จํานวนการดําเนินงาน</p>
           <div className="">
-            <ApexChart
-              type="bar"
-              options={optionsBar}
-              series={dataSourceBar}
-              width={400}
-              height={250}
-            />
+            <BarChart></BarChart>
           </div>
         </div>
       </div>

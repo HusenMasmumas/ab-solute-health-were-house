@@ -1,11 +1,9 @@
-import { Button, Card, Col, Form, Input, Row, Select } from "antd";
-import CreateForm from "component/Form/createForm";
-import { IsearchFormItem } from "component/Form/searchForm";
+import { Button, Form } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import type { RadioChangeEvent } from "antd";
-import { Radio, Tabs } from "antd";
+import { Tabs } from "antd";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import CreateDataForm from "./craete_data_form";
 import CreateDetailForm from "./create_detail_form";

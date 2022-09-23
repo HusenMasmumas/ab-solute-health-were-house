@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import { DashOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
 import { Switch } from "antd";
 type Props = {

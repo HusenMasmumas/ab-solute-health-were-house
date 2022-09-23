@@ -1,7 +1,6 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { t } from "i18next";
-import React from "react";
+import { useTranslation } from "react-i18next";
 import OrderTable from "views/report/orderTable";
 
 interface DataType {
@@ -131,6 +130,7 @@ const onFinish = (values: any) => {
 };
 
 const OrderReport = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-bgcolor">
       <CHeader keyHeader="report" arrPath={["report", "orderReport"]} />

@@ -3,7 +3,6 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import styles from "./style.module.css";
-
 import "./style.css";
 import { ReactComponent as Logo } from "assets/img/AB.svg";
 import { ReactComponent as DashIcon } from "assets/Icon/dashbord_in.svg";

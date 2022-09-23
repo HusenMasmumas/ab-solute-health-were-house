@@ -1,6 +1,4 @@
-import { Button, Card, Col, Form, Input, Row, Select } from "antd";
-import CreateForm from "component/Form/createForm";
-import { IsearchFormItem } from "component/Form/searchForm";
+import { Button, Col, Form, Input, Row, Select } from "antd";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 

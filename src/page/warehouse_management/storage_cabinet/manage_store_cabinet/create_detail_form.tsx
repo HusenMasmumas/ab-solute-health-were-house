@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 const CreateDetailForm = () => {
   const { t } = useTranslation();
-  const option = Select;
+
   return (
     <div>
       <div className="bg-white py-[16px] px-[24px]">

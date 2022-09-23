@@ -1,9 +1,7 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { ColumnsType } from "antd/lib/table";
 import { useEffect, useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
-import { Button, Col, Dropdown, Form, Input, Menu, Row, Space } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 import CSelectStatus from "component/input/c-select-status";
 type Props = {
