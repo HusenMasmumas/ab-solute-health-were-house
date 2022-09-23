@@ -4,14 +4,12 @@ import { useState, useEffect } from "react";
 import clsx from "clsx";
 import styles from "./style.module.css";
 import "./style.css";
-import { ReactComponent as DashIcon } from "assets/Icon/dashbord_in.svg";
-import { ReactComponent as ReportIcon } from "assets/Icon/report_in.svg";
-import { ReactComponent as MapIcon } from "assets/Icon/map_in.svg";
-import { ReactComponent as DashIconAC } from "assets/Icon/active/dashbord_ac.svg";
-import { ReactComponent as ReportIconAC } from "assets/Icon/active/report_ac.svg";
-import { ReactComponent as MapIconAC } from "assets/Icon/active/map_ac.svg";
+import { ReactComponent as DashIcon } from "assets/Icon/menubar/dashbord_in.svg";
+import { ReactComponent as ReportIcon } from "assets/Icon/menubar/report_in.svg";
+import { ReactComponent as MapIcon } from "assets/Icon/menubar/map_in.svg";
 import { ReactComponent as UserIconAC } from "assets/Icon/active/user_ac.svg";
-import { ReactComponent as StoreIcon } from "assets/Icon/Dashboard.svg";
+import { ReactComponent as StoreIcon } from "assets/Icon/menubar/store.svg";
+import { ReactComponent as StorebinIcon } from "assets/Icon/menubar/storebin.svg";
 import { UserIcon } from "@heroicons/react/24/solid";
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
@@ -85,7 +83,7 @@ const DefaultLayout = (props: Props) => {
       page: "Over all",
       icon: activeIcon("over-all", {
         inactive: <DashIcon className="w-6 h-6 hover:fill-white" />,
-        active: <DashIconAC className="w-6 h-6 fill-white" />,
+        active: <DashIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("over-all"),
       style: {
@@ -98,8 +96,8 @@ const DefaultLayout = (props: Props) => {
       label: isTabletSize && openDrawer ? null : t("warehouseManagement"),
       page: "Warehouse management",
       icon: activeIcon("warehouse-management", {
-        inactive: <DashIcon className="w-6 h-6 " />,
-        active: <DashIconAC className="w-6 h-6 fill-white" />,
+        inactive: <StorebinIcon className="w-6 h-6 " />,
+        active: <StorebinIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("warehouse-management"),
       style: {
@@ -113,7 +111,7 @@ const DefaultLayout = (props: Props) => {
       page: "Purchase order",
       icon: activeIcon("purchase-order", {
         inactive: <MapIcon className="w-6 h-6" />,
-        active: <MapIconAC className="w-6 h-6 fill-white" />,
+        active: <MapIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("purchase-order"),
       style: {
@@ -127,7 +125,7 @@ const DefaultLayout = (props: Props) => {
       page: "Report",
       icon: activeIcon("warehouse-management", {
         inactive: <ReportIcon className="w-6 h-6" />,
-        active: <ReportIconAC className="w-6 h-6 fill-white" />,
+        active: <ReportIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("report"),
 
@@ -166,7 +164,7 @@ const DefaultLayout = (props: Props) => {
       page: "Stores & Branches",
       icon: activeIcon("stores-branches", {
         inactive: <StoreIcon className="w-6 h-6 " />,
-        active: <UserIconAC className="w-6 h-6 fill-white" />,
+        active: <StoreIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("stores-branches"),
       style: {
