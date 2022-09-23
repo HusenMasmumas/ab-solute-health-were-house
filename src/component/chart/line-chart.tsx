@@ -68,7 +68,7 @@ const Linechart = () => {
         type="line"
         options={options}
         series={dataScouces}
-        width={900}
+        width={"100%"}
         height={250}
       />
     </div>

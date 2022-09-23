@@ -118,6 +118,7 @@ const StoreCabinet = () => {
   //     navigate("/setting/pdpa/add");
   //   }
   // };
+
   const onFinish = (values: any) => {
     //โยนเข้า create query
     console.log("Received values of form: ", values);

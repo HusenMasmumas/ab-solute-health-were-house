@@ -163,6 +163,9 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
       },
     },
   ];
+  const sc = {
+    x: "100%",
+  };
 
   return (
     <div>
