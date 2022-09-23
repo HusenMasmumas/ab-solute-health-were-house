@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 const ManageWarehouseManagement = () => {
   const { t } = useTranslation();
-  const [form] = Form.useForm();
   const Option = Select;
 
   return (
@@ -18,10 +17,10 @@ const ManageWarehouseManagement = () => {
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
-            ยกเลิก
+            {`${t("ยกเลิก")}`}
           </Button>
           <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
-            บันทึก
+            {`${t("บันทึก")}`}
           </Button>
         </div>
       </div>

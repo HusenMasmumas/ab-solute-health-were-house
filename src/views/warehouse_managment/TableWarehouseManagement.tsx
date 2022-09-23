@@ -2,7 +2,6 @@ import { ColumnsType } from "antd/lib/table";
 import { useEffect, useState } from "react";
 import MoTable from "component/Table/MoTable";
 import { Button, Col, Form, Input, Row } from "antd";
-import { useNavigate } from "react-router-dom";
 import CSelectStatus from "component/input/c-select-status";
 type Props = {
   dataTable: DataType[];
@@ -22,16 +21,6 @@ interface DataType {
   qty: string;
   status: string;
 }
-
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
 
 const expandable = {
   expandedRowRender: (record: any) => (
@@ -94,7 +83,6 @@ const expandable = {
 const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("current", currentPage);

@@ -9,7 +9,7 @@ const CreateDataForm = () => {
     <div>
       <div className="bg-white py-[16px] px-[24px]">
         <div className="text-lightblue text-[22px]">
-          <span>ข้อมูลตู้เก็บสินค้า</span>
+          <span>{`${t("ข้อมูลตู้เก็บสินค้า")}`}</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         <Form layout="vertical">

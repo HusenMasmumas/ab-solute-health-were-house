@@ -1,4 +1,4 @@
-import { Col, Form, Input, Row, Select } from "antd";
+import { Col, Form, Input, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
 const CreateDetailForm = () => {
@@ -8,7 +8,7 @@ const CreateDetailForm = () => {
     <div>
       <div className="bg-white py-[16px] px-[24px]">
         <div className="text-lightblue text-[22px]">
-          <span>รายละเอียด</span>
+          <span>{`${t("รายละเอียด")}`}</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         <Form layout="vertical">

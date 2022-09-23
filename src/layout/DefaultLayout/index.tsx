@@ -1,24 +1,18 @@
-import { Layout, Menu, Image } from "antd";
+import { Layout, Menu } from "antd";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import styles from "./style.module.css";
 import "./style.css";
-import { ReactComponent as Logo } from "assets/img/AB.svg";
 import { ReactComponent as DashIcon } from "assets/Icon/dashbord_in.svg";
-import { ReactComponent as GraphIcon } from "assets/Icon/graph_in.svg";
 import { ReactComponent as ReportIcon } from "assets/Icon/report_in.svg";
 import { ReactComponent as MapIcon } from "assets/Icon/map_in.svg";
-// import { ReactComponent as UserIcon } from "assets/Icon/user_in.svg";
 import { ReactComponent as DashIconAC } from "assets/Icon/active/dashbord_ac.svg";
-import { ReactComponent as GraphIconAC } from "assets/Icon/active/graph_ac.svg";
 import { ReactComponent as ReportIconAC } from "assets/Icon/active/report_ac.svg";
 import { ReactComponent as MapIconAC } from "assets/Icon/active/map_ac.svg";
 import { ReactComponent as UserIconAC } from "assets/Icon/active/user_ac.svg";
 import { ReactComponent as StoreIcon } from "assets/Icon/Dashboard.svg";
-
 import { UserIcon } from "@heroicons/react/24/solid";
-
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
 

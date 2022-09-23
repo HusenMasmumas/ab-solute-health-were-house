@@ -1,26 +1,13 @@
-import { Button, Form } from "antd";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
-import type { RadioChangeEvent } from "antd";
+import { Button } from "antd";
 import { Tabs } from "antd";
-import type { SizeType } from "antd/es/config-provider/SizeContext";
 import CreateDataForm from "./craete_data_form";
 import CreateDetailForm from "./create_detail_form";
-import Table, { ColumnsType } from "antd/lib/table";
+import Table from "antd/lib/table";
 import CHeader from "component/headerPage/Header";
+import { useTranslation } from "react-i18next";
 
 const ManageStoreCabinet = () => {
   const { t } = useTranslation();
-  const [form] = Form.useForm();
-  const navigate = useNavigate();
-  // const param = useParams();
-  const [size, setSize] = useState<SizeType>("small");
-
-  const onChange = (e: RadioChangeEvent) => {
-    setSize(e.target.value);
-  };
-
   const columns = [
     {
       title: "SKU",
@@ -51,10 +38,10 @@ const ManageStoreCabinet = () => {
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
           <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
-            ยกเลิก
+            {`${t("ยกเลิก")}`}
           </Button>
           <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
-            บันทึก
+            {`${t("บันทึก")}`}
           </Button>
         </div>
       </div>

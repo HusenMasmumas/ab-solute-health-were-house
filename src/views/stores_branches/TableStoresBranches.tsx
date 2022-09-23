@@ -54,15 +54,6 @@ const columns: ColumnsType<DataType> = [
 const onChange = (checked: boolean) => {
   console.log(`switch to ${checked}`);
 };
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
 
 const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
