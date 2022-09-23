@@ -23,6 +23,12 @@ module.exports = {
        
       },
     },
+    screens: {
+      xs: "320px",
+      sm: "768px", //Tablet min-width
+      md: "1024px", //Laptop
+      lg: "1440px", //Desktop
+    },
   },
   plugins: [],
   content: ["./src/**/*.{js,jsx,ts,tsx,html}", "./public/index.html"],
