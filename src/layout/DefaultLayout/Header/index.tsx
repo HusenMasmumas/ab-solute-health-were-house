@@ -69,7 +69,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
           </Select>
         </div>
 
-        <div className=" gap-1 px-2 py-1 flex justify-center items-center rounded-full bg-[#F2F8FF] dark:bg-[#16181c] duration-500 ">
+        {/* <div className=" gap-1 px-2 py-1 flex justify-center items-center rounded-full bg-[#F2F8FF] dark:bg-[#16181c] duration-500 ">
           <div
             className=" rounded-full flex justify-center items-center bg-white dark:bg-[#16181c] duration-500 w-8 h-8 cursor-pointer"
             onClick={() => {
@@ -94,7 +94,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
               <Moon className=" object-cover p-2 fill-white stroke-primary-default stroke-[1px]" />
             )}
           </div>
-        </div>
+        </div> */}
 
         <div className="max-h-12 w-12 ml-4 bg-[#F2F8FF] rounded-full border-2 border-[#3B8DE2]">
           <Image

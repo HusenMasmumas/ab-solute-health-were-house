@@ -29,3 +29,26 @@
 .ant-menu-submenu-title:hover{
   color: #fff !important;
 }
+
+.ant-menu-inline.ant-menu-vertical .ant-menu-submenu-title{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.ant-menu-inline.ant-menu-submenu-title{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.ant-menu-inline .ant-menu-item:not(:last-child){
+  margin-bottom: 0 !important;
+}
+
+.ant-menu-inline .ant-menu-item{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.ant-menu-inline .ant-menu-item:hover{
+  background-color: #F3F9FF !important;
+}
+

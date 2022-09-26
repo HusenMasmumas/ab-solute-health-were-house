@@ -2,7 +2,6 @@ import { ColumnsType } from "antd/lib/table";
 import { useEffect, useState } from "react";
 import MoTable from "component/Table/MoTable";
 import { Image, Switch } from "antd";
-import { useNavigate } from "react-router-dom";
 type Props = {
   dataTable: DataType[];
 };
@@ -17,20 +16,9 @@ interface DataType {
   status: boolean;
 }
 
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-};
-
 const TableUserManagement = ({ dataTable = [] }: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("current", currentPage);

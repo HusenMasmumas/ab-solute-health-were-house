@@ -1,4 +1,4 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Image } from "antd";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
@@ -10,6 +10,7 @@ import { ReactComponent as MapIcon } from "assets/Icon/menubar/map_in.svg";
 import { ReactComponent as UserIconAC } from "assets/Icon/active/user_ac.svg";
 import { ReactComponent as StoreIcon } from "assets/Icon/menubar/store.svg";
 import { ReactComponent as StorebinIcon } from "assets/Icon/menubar/storebin.svg";
+import Logo from "assets/img/logo.jpg";
 import { UserIcon } from "@heroicons/react/24/solid";
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
@@ -79,6 +80,28 @@ const DefaultLayout = (props: Props) => {
   const MenuList = [
     {
       key: "/over-all",
+      // label: isTabletSize && openDrawer ? null : t("overAll"),
+      page: "Over all",
+      icon: activeIcon("over-all", {
+        inactive: (
+          <div className="h-[64px] w-[100%] p-[12px] ">
+            <Image src={Logo} preview={false}></Image>
+          </div>
+        ),
+        active: (
+          <div className="h-[220px] w-[100%] flex justify-center items-center p-[12px]">
+            <Image src={Logo} preview={false}></Image>,
+          </div>
+        ),
+      }),
+      className: activeMenu("over-all"),
+      style: {
+        height: "90px",
+        backgroundColor: "#FFFFFF",
+      },
+    },
+    {
+      key: "/over-all",
       label: isTabletSize && openDrawer ? null : t("overAll"),
       page: "Over all",
       icon: activeIcon("over-all", {
@@ -134,26 +157,51 @@ const DefaultLayout = (props: Props) => {
           label: isTabletSize && openDrawer ? null : t("orderReport"),
           key: "report/orderReport",
           className: activeSubMenu("orderReport"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
         {
           label: isTabletSize && openDrawer ? null : t("expirationReport"),
           key: "report/expirationReport",
           className: activeSubMenu("expirationReport"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
         {
           label: isTabletSize && openDrawer ? null : t("damageReport"),
           key: "report/damageReport",
           className: activeSubMenu("damageReport"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
         {
           label: isTabletSize && openDrawer ? null : t("stockReport"),
           key: "report/stockReport",
           className: activeSubMenu("stockReport"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
         {
           label: isTabletSize && openDrawer ? null : t("importedReport"),
           key: "report/importedReport",
           className: activeSubMenu("importedReport"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
       ],
     },
@@ -187,11 +235,21 @@ const DefaultLayout = (props: Props) => {
           label: isTabletSize && openDrawer ? null : t("user"),
           key: "user/manage",
           className: activeSubMenu("manage"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
         {
           label: isTabletSize && openDrawer ? null : t("role"),
           key: "user/role",
           className: activeSubMenu("role"),
+          style: {
+            height: "60px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
         },
       ],
     },
