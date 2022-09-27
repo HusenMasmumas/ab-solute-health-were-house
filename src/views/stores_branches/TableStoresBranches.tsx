@@ -1,37 +1,42 @@
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import { DashOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
+import { Switch } from "antd";
 type Props = {
-  dataTable: DataType[]
-  headerTable: string
+  dataTable: DataType[];
+  headerTable: string;
   // callAPI: ()=>void
 };
 
 interface DataType {
   key: React.Key;
+  store: string;
   name: string;
-  age: number;
-  address: string;
+  phone: string;
+  status: boolean;
 }
+
 const columns: ColumnsType<DataType> = [
   {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
     title: "ชื่อร้าน",
-    dataIndex: "name",
+    dataIndex: "store",
+    width: "20%",
   },
   {
     title: "ชื่อนามสกุล(ผู้จัดการ)",
-    dataIndex: "age",
+    dataIndex: "name",
   },
   {
     title: "เบอร์โทร",
-    dataIndex: "address",
+    dataIndex: "phone",
   },
-  {
-    title: "สถานะพัสดุ",
-    dataIndex: "address",
-  },
+<<<<<<< HEAD
   // {
   //   title: "จัดการ",
   //   dataIndex: "address",
@@ -45,22 +50,34 @@ const columns: ColumnsType<DataType> = [
   //     );
   //   },
   // },
+=======
+
+  {
+    title: "การใช้งาน",
+    dataIndex: "status",
+    width: "5%",
+    render: () => {
+      return (
+        <div className="mr-10">
+          <Switch defaultChecked onChange={onChange} />
+        </div>
+      );
+    },
+  },
+>>>>>>> 0e5a716309f9e22a800ba245acb3bf96fc83f8e9
 ];
 
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,"selectedRows: ",selectedRows);
-  },
+const onChange = (checked: boolean) => {
+  console.log(`switch to ${checked}`);
 };
 
-const TableStoresBranches = ({ dataTable=[], headerTable='' }: Props) => {
+const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    console.log('current',currentPage);
-    console.log('limitPage',limitPage);
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -73,7 +90,6 @@ const TableStoresBranches = ({ dataTable=[], headerTable='' }: Props) => {
         headerTable={headerTable}
         columns={columns}
         dataSource={dataTable}
-        rowSelection={rowSelection}
         onChangePage={onChangePage}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า

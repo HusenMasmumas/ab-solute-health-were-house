@@ -18,9 +18,18 @@
     "stores&branches": "ร้านค้า & สาขา",
     "manageUser": "จัดการผู้ใช้",
     "role":"บทบาท",
-    "createrole":"สร้างบทบาท",
+    "createrole":"+ สร้างบทบาท",
     "user":"ผู้ใช้",
-    "createUser":"เพิ่มผู้ใช้",
+    "createUser":"+ เพิ่มผู้ใช้",
     "orderlist":"รายการสั่งซื้อ",
-    "createShop":"สร้างร้าน&สาขา"
+    "createShop":"+ สร้างร้าน&สาขา",
+    "createLocker" : "+ สร้างตู้เก็บสินค้า",
+    "locker" : "ตู้จัดเก็บ",
+    "addproductlist": "+ เพิ่มรายการสินค้า",
+    "productlist": "เพิ่มรายการสินค้า",
+    "addLocker": "เพิ่มตู้เก็บสินค้า",
+    "addUser" : "เพิ่มผู้ใช้",
+    "addRole" : "เพิ่มบทบาท",
+    "addShop":"เพิ่มร้าน&สาขา"
+
 }

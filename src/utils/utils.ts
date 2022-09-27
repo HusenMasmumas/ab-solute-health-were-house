@@ -7,6 +7,7 @@ export const _findObjectOfArrayByKeyName = (
   return !!obj ? obj : null;
 };
 
+<<<<<<< HEAD
 export const createQueryString = (values: any) => {
   if (!values) {
     return "";
@@ -31,3 +32,10 @@ export const createQueryString = (values: any) => {
   });
   return "?" + query;
 };
+=======
+export const getBase64 = (img: any, callback: any) => {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => callback(reader.result));
+  reader.readAsDataURL(img);
+};
+>>>>>>> 0e5a716309f9e22a800ba245acb3bf96fc83f8e9

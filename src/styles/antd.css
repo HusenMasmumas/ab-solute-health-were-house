@@ -18,3 +18,63 @@
     color: #4D4D4D !important;
   }
 
+  .ant-tabs>.ant-tabs-nav .ant-tabs-nav-wrap, .ant-tabs>div>.ant-tabs-nav .ant-tabs-nav-wrap {
+    margin-bottom: -17px !important;
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex: auto;
+    align-self: stretch;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translate(0);
+}
+
+.ant-tabs-tab-btn {
+    font-size: 22px;
+}
+.ant-form-vertical .ant-form-item-label  {
+    padding: 0 0 4px !important;
+    line-height: 1.5715;
+    white-space: normal;
+    text-align: left;
+}
+/* เปลี้ยนทุกหน้า */
+.ant-form-item-label>label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    height: auto !important;
+    color: #646772 !important;
+    font-size: 18px !important;
+}
+
+.ant-input {
+    font-size: 18px !important;
+}
+
+.ant-select {
+    font-size: 18px !important;
+}
+
+.ant-input.table-expend {
+    box-sizing: border-box;
+    margin: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    font-feature-settings: "tnum";
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    min-width: 0;
+    padding: 4px 11px;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #fff;
+    background-image: none;
+    border: 2px solid #d9d9d9;
+    border-radius: 4px;
+    transition: all .3s;
+}

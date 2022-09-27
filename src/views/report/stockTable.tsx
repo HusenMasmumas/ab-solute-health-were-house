@@ -1,57 +1,87 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
-import MoTable from 'component/Table/MoTable';
+import MoTable from "component/Table/MoTable";
 type Props = {
-  dataTable: IStockTable[]
-  headerTable: string
-}
-
+  dataTable: IStockTable[];
+  headerTable: string;
+};
 interface IStockTable {
   key: React.Key;
   date: string;
   code: string;
   sku: string;
-  name:string;
-  amount:number;
-  state:string;
+  costPrice: number;
+  nameProduct: string;
+  retailPrice: number;
+  amount: number;
+  state: string;
 }
-
 
 const columns: ColumnsType<IStockTable> = [
   {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
     title: "วันที่",
     dataIndex: "date",
+    width: "12%",
   },
   {
     title: "รหัสสินค้า",
     dataIndex: "code",
+    width: "15%",
   },
   {
     title: "ชื่อสินค้า",
-    dataIndex: "branch",
+    dataIndex: "nameProduct",
+    width: "22%",
   },
   {
     title: "ปริมาณ",
-    dataIndex: "name",
+    dataIndex: "amount",
+    width: "10%",
   },
   {
     title: "ราคาต้นทุน",
-    dataIndex: "phone",
+    dataIndex: "costPrice",
+    width: "10%",
   },
   {
     title: "ราคาขายปลีก",
-    dataIndex: "amount",
+    dataIndex: "retailPrice",
+    width: "10%",
+  },
+  {
+    title: "สถานะ",
+    dataIndex: "state",
+    render: (state: string) => {
+      return (
+        <div className="text-white">
+          {state === "เปิดการขาย" ? (
+            <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "ปิดการขาย" ? (
+            <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : null}
+        </div>
+      );
+    },
   },
 ];
 
-
-const StockTable = ({ dataTable=[], headerTable='' , ...props}: Props) => {
+const StockTable = ({ dataTable = [], headerTable = "", ...props }: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    console.log('current',currentPage);
-    console.log('limitPage',limitPage);
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -72,7 +102,7 @@ const StockTable = ({ dataTable=[], headerTable='' , ...props}: Props) => {
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default StockTable
+export default StockTable;

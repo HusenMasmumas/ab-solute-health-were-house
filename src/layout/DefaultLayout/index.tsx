@@ -3,21 +3,14 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import styles from "./style.module.css";
-
 import "./style.css";
-import { ReactComponent as Logo } from "assets/img/AB.svg";
-import { ReactComponent as DashIcon } from "assets/Icon/dashbord_in.svg";
-import { ReactComponent as GraphIcon } from "assets/Icon/graph_in.svg";
-import { ReactComponent as ReportIcon } from "assets/Icon/report_in.svg";
-import { ReactComponent as MapIcon } from "assets/Icon/map_in.svg";
-// import { ReactComponent as UserIcon } from "assets/Icon/user_in.svg";
-import { ReactComponent as DashIconAC } from "assets/Icon/active/dashbord_ac.svg";
-import { ReactComponent as GraphIconAC } from "assets/Icon/active/graph_ac.svg";
-import { ReactComponent as ReportIconAC } from "assets/Icon/active/report_ac.svg";
-import { ReactComponent as MapIconAC } from "assets/Icon/active/map_ac.svg";
+import { ReactComponent as DashIcon } from "assets/Icon/menubar/dashbord_in.svg";
+import { ReactComponent as ReportIcon } from "assets/Icon/menubar/report_in.svg";
+import { ReactComponent as MapIcon } from "assets/Icon/menubar/map_in.svg";
 import { ReactComponent as UserIconAC } from "assets/Icon/active/user_ac.svg";
+import { ReactComponent as StoreIcon } from "assets/Icon/menubar/store.svg";
+import { ReactComponent as StorebinIcon } from "assets/Icon/menubar/storebin.svg";
 import { UserIcon } from "@heroicons/react/24/solid";
-
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
 
@@ -51,7 +44,7 @@ const DefaultLayout = (props: Props) => {
         : "";
 
     return clsx(
-      "cursor-pointer duration-500 relative !hover:text-white ",
+      "cursor-pointer duration-500 relative !hover:text-white !bg-white",
       inActive,
       styles.inNav_select
     );
@@ -64,7 +57,7 @@ const DefaultLayout = (props: Props) => {
         : "";
 
     return clsx(
-      "cursor-pointer duration-500 relative !hover:text-white ",
+      "cursor-pointer duration-500 relative !hover:text-white !text-[18px]",
       inActive,
       styles.inNav_select
     );
@@ -89,8 +82,8 @@ const DefaultLayout = (props: Props) => {
       label: isTabletSize && openDrawer ? null : t("overAll"),
       page: "Over all",
       icon: activeIcon("over-all", {
-        inactive: <GraphIcon className="w-6 h-6 fill-white " />,
-        active: <GraphIconAC className="w-6 h-6 fill-white" />,
+        inactive: <DashIcon className="w-6 h-6 hover:fill-white" />,
+        active: <DashIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("over-all"),
       style: {
@@ -103,8 +96,8 @@ const DefaultLayout = (props: Props) => {
       label: isTabletSize && openDrawer ? null : t("warehouseManagement"),
       page: "Warehouse management",
       icon: activeIcon("warehouse-management", {
-        inactive: <DashIcon className="w-6 h-6 hover:fill-white" />,
-        active: <DashIconAC className="w-6 h-6 fill-white" />,
+        inactive: <StorebinIcon className="w-6 h-6 " />,
+        active: <StorebinIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("warehouse-management"),
       style: {
@@ -117,8 +110,8 @@ const DefaultLayout = (props: Props) => {
       label: isTabletSize && openDrawer ? null : t("purchaseOrderManagement"),
       page: "Purchase order",
       icon: activeIcon("purchase-order", {
-        inactive: <MapIcon className="w-6 h-6 hover:fill-white" />,
-        active: <MapIconAC className="w-6 h-6 fill-white" />,
+        inactive: <MapIcon className="w-6 h-6" />,
+        active: <MapIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("purchase-order"),
       style: {
@@ -131,8 +124,8 @@ const DefaultLayout = (props: Props) => {
       label: isTabletSize && openDrawer ? null : t("report"),
       page: "Report",
       icon: activeIcon("warehouse-management", {
-        inactive: <ReportIcon className="w-6 h-6 hover:fill-white" />,
-        active: <ReportIconAC className="w-6 h-6 fill-white" />,
+        inactive: <ReportIcon className="w-6 h-6" />,
+        active: <ReportIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("report"),
 
@@ -140,27 +133,27 @@ const DefaultLayout = (props: Props) => {
         {
           label: isTabletSize && openDrawer ? null : t("orderReport"),
           key: "report/orderReport",
-          className: activeSubMenu('orderReport')
+          className: activeSubMenu("orderReport"),
         },
         {
           label: isTabletSize && openDrawer ? null : t("expirationReport"),
           key: "report/expirationReport",
-          className: activeSubMenu('expirationReport')
+          className: activeSubMenu("expirationReport"),
         },
         {
           label: isTabletSize && openDrawer ? null : t("damageReport"),
           key: "report/damageReport",
-          className: activeSubMenu('damageReport')
+          className: activeSubMenu("damageReport"),
         },
         {
           label: isTabletSize && openDrawer ? null : t("stockReport"),
           key: "report/stockReport",
-          className: activeSubMenu('stockReport')
+          className: activeSubMenu("stockReport"),
         },
         {
           label: isTabletSize && openDrawer ? null : t("importedReport"),
           key: "report/importedReport",
-          className: activeSubMenu('importedReport')
+          className: activeSubMenu("importedReport"),
         },
       ],
     },
@@ -170,8 +163,8 @@ const DefaultLayout = (props: Props) => {
       label: isTabletSize && openDrawer ? null : t("stores&branches"),
       page: "Stores & Branches",
       icon: activeIcon("stores-branches", {
-        inactive: <UserIcon className="w-6 h-6 fill-white" />,
-        active: <UserIconAC className="w-6 h-6 fill-white" />,
+        inactive: <StoreIcon className="w-6 h-6 " />,
+        active: <StoreIcon className="w-6 h-6 fill-white" />,
       }),
       className: activeMenu("stores-branches"),
       style: {
@@ -193,12 +186,12 @@ const DefaultLayout = (props: Props) => {
         {
           label: isTabletSize && openDrawer ? null : t("user"),
           key: "user/manage",
-          className: activeSubMenu('manage')
+          className: activeSubMenu("manage"),
         },
         {
           label: isTabletSize && openDrawer ? null : t("role"),
           key: "user/role",
-          className: activeSubMenu('role')
+          className: activeSubMenu("role"),
         },
       ],
     },

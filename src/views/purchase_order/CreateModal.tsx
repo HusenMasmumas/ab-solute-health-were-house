@@ -137,7 +137,8 @@ const CreateModal = (props: Props) => {
   };
 
   useEffect(() => {
-    fetchData(createQueryString({limit: limitPage, page: currentPage, key: keySearch}))
+    // fetchData(createQueryString({limit: limitPage, page: currentPage, key: keySearch}))
+    fakerFetchData(1)
   }, []);
 
   useEffect(()=>{

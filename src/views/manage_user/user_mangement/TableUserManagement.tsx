@@ -1,25 +1,10 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { ColumnsType } from "antd/lib/table";
 import { useEffect, useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import MoTable from "component/Table/MoTable";
-import {
-  Button,
-  Col,
-  Dropdown,
-  Form,
-  Input,
-  Menu,
-  Row,
-  Space,
-  Switch,
-} from "antd";
+import { Image, Switch } from "antd";
 import { useNavigate } from "react-router-dom";
 type Props = {
   dataTable: DataType[];
-  // expandedRowRender?: () => void;
-  // headerTable: string;
-  // callAPI: ()=>void
 };
 
 interface DataType {
@@ -63,20 +48,42 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
 
   const columns: ColumnsType<DataType> = [
     {
+      title: "#",
+      dataIndex: "key",
+      align: "center",
+      width: "7%",
+    },
+    {
       title: "ภาพโปรไฟล์",
       dataIndex: "profile",
+      width: "10%",
+      render: (profile: string) => {
+        return (
+          <div className="w-[50px] h-[50px]">
+            <Image
+              style={{ borderRadius: "100%" }}
+              src={profile}
+              alt="profile"
+              preview={false}
+            ></Image>
+          </div>
+        );
+      },
     },
     {
       title: "ชื่อ-นามสกุล (ผู้จัดการ)",
       dataIndex: "name",
+      width: "16%",
     },
     {
       title: "เบอร์โทร",
       dataIndex: "phone",
+      width: "16%",
     },
     {
       title: "อีเมล",
       dataIndex: "email",
+      width: "20%",
     },
     {
       title: "บทบาท",
@@ -86,42 +93,9 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
     {
       title: "สถานะ",
       dataIndex: "status",
+      width: "7%",
       render: (status) => {
         return <Switch defaultChecked onChange={onChange} />;
-      },
-    },
-    {
-      title: "จัดการ",
-      dataIndex: "key",
-      render: (key) => {
-        return (
-          <div className="flex gap-2">
-            <div className="w-[30px] h-[30px] bg-[#F5F5F5] rounded-[4px] flex justify-center items-center ">
-              <PencilSquareIcon
-                className="h-4 w-4 text-[#646772]"
-                // onClick={() => {
-                //   navigate(`/manage-store-cabinet/${key}`);
-                // }}
-              />
-            </div>
-            <div className="w-[30px] h-[30px] bg-[#F5F5F5] rounded-[4px] flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        );
       },
     },
   ];
@@ -132,8 +106,6 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
       <MoTable
         columns={columns}
         dataSource={dataTable}
-        rowSelection={rowSelection}
-        // expandable={expandable}
         onChangePage={onChangePage}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า
