@@ -67,28 +67,7 @@ const Prepare = (props: Props) => {
   return (
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
-      <Table_2 
-      render={(text, record, index) => {
-        
-        if(text === "ยกเลิก"){
-          return (
-            <div className="flex space-x-4 ">
-              <span className="text-red-600">{text}</span>
-            </div>
-          );
-        }
-        
-        if(text === "อนุมัติ"){
-          return (
-            <div className="flex space-x-4 ">
-              <span className="text-lime-500">{text}</span>
-            </div>
-          );
-        }
-        
-      }}
-      data={mock}
-      />
+      
     </div>
   );
 };
