@@ -36,7 +36,6 @@ const columns: ColumnsType<DataType> = [
     title: "เบอร์โทร",
     dataIndex: "phone",
   },
-<<<<<<< HEAD
   // {
   //   title: "จัดการ",
   //   dataIndex: "address",
@@ -50,21 +49,6 @@ const columns: ColumnsType<DataType> = [
   //     );
   //   },
   // },
-=======
-
-  {
-    title: "การใช้งาน",
-    dataIndex: "status",
-    width: "5%",
-    render: () => {
-      return (
-        <div className="mr-10">
-          <Switch defaultChecked onChange={onChange} />
-        </div>
-      );
-    },
-  },
->>>>>>> 0e5a716309f9e22a800ba245acb3bf96fc83f8e9
 ];
 
 const onChange = (checked: boolean) => {
