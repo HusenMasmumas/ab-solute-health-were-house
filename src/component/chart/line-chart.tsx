@@ -48,7 +48,7 @@ const options = {
       style: {
         colors: "#8D8D8D",
         fontSize: "15px",
-        fontFamily: "FCIconic",
+        fontFamily: "SukhumvitSet",
         fontWeight: 400,
       },
     },

@@ -18,6 +18,13 @@
   color: rgb(101, 101, 101) !important;
 }
 
+.sub_inNav_select {
+  background-color: transparent;
+  transition: 500ms;
+  color: rgb(101, 101, 101) !important;
+  padding-left: 60px !important; 
+}
+
 .Nav_select {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
   --tw-gradient-from: #0e254e;
@@ -25,6 +32,20 @@
     var(--tw-gradient-to, rgb(14 37 79 / 0));
   --tw-gradient-to: var(--tw-gradient-from);
   color: #fff !important;
+  border-radius: 5px !important;
+  /* width: calc(266px - 20px) !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  border-radius: 5px !important; */
+
+
+}
+.Sub_Nav_select {
+background-image: #F3F9FF;
+  color: rgb(101, 101, 101)  !important;
+  padding-left: 60px !important; 
+  /* border-radius: 5px !important; */
+ 
   /* width: calc(266px - 20px) !important;
   margin-left: 10px !important;
   margin-right: 10px !important;
@@ -73,6 +94,7 @@
     var(--tw-gradient-to, rgb(14 37 79 / 0));
   --tw-gradient-to: var(--tw-gradient-from);
   color: #fff !important;
+  border-radius: 5px !important;
   /* width: calc(266px - 20px) !important;
   margin-left: 10px !important;
   margin-right: 10px !important;

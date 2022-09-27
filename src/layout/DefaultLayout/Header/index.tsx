@@ -45,11 +45,11 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
             setOpenDrawer(!openDrawer);
           }}
         >
-          <MinusIcon className="w-full h-full my-auto text-secondary-default cursor-pointer dark:fill-white " />
+          {/* <MinusIcon className="w-full h-full my-auto text-secondary-default cursor-pointer dark:fill-white " /> */}
         </div>
-        <div className="text-[#123265] dark:text-white text-base xl:text-lg 2xl:text-[28px] flex">
-          {/* <span className="font-bold  ">Template </span> */}
-        </div>
+        {/* <div className="text-[#123265] dark:text-white text-base xl:text-lg 2xl:text-[28px] flex">
+          // <span className="font-bold  ">Template </span> 
+        </div> */}
       </div>
       <div className="flex items-center">
         <div className="h-14 flex items-center ">
