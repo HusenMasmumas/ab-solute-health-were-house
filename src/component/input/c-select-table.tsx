@@ -62,7 +62,7 @@ const CSelectTable = ({ background, selection, ...props }: Props) => {
         }
       }}
 
-      style={{ width: "110px" }}
+      style={{ width: "100%" }}
       className={"!text-center"}
       dropdownStyle={{
         padding: "0px",
