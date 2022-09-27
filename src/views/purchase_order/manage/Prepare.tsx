@@ -62,21 +62,69 @@ const onFinish = (values: any) => {
   //โยนเข้า create query
   console.log("Received values of form: ", values);
 };
+
 const Prepare = (props: Props) => {
   return (
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
       <Table_2 
-      render={() => {
-        return (
-          <div className="flex space-x-4 ">
-            <PencilSquareIcon className="!w-6" />
-            <DashOutlined className="!w-6 text-2xl" />
-          </div>
-        );
-      }}/>
+      render={(text, record, index) => {
+        
+        if(text === "ยกเลิก"){
+          return (
+            <div className="flex space-x-4 ">
+              <span className="text-red-600">{text}</span>
+            </div>
+          );
+        }
+        
+        if(text === "อนุมัติ"){
+          return (
+            <div className="flex space-x-4 ">
+              <span className="text-lime-500">{text}</span>
+            </div>
+          );
+        }
+        
+      }}
+      data={mock}
+      />
     </div>
   );
 };
 
 export default Prepare;
+
+
+const mock = [
+  {
+    key: 1,
+    date: "23-02-2564",
+    code: "PO456789",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "รอเตรียมสินค้า",
+  },
+  {
+    key: 2,
+    date: "23-02-2569",
+    code: "PO456787",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "เตรียมสำเร็จ",
+  },
+  {
+    key: 3,
+    date: "24-02-2569",
+    code: "PO456786",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "รอส่งสินค้า",
+  },
+];
