@@ -67,17 +67,77 @@ const Delivery = (props: Props) => {
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
       <Table_2
-        render={() => {
+        render={(state:string) => {
           return (
-            <div className="flex space-x-4 ">
-              <PencilSquareIcon className="!w-6" />
-              <DashOutlined className="!w-6 text-2xl" />
+            <div className="text-white">
+              {state === "สำเร็จ" ? (
+                <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
+                  {state}
+                </div>
+              ) : state === "อยู่ระหว่างขนส่ง" ? (
+                <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
+                  {state}
+                </div>
+              ) : state === "รอการจัดส่ง" ? (
+                <div className="bg-lightblue rounded-[4px] w-[130px] flex justify-center py-[4px]">
+                  {state}
+                </div>
+              ) : state === "ยกเลิก" ? (
+                <div className="bg-[#FC0002] rounded-[4px] w-[130px] flex justify-center py-[4px]">
+                  {state}
+                </div>
+              ) : null}
             </div>
           );
         }}
+        data={mock}
       />
     </div>
   );
 };
 
 export default Delivery;
+
+
+const mock = [
+  {
+    key: 1,
+    date: "23-02-2564",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "อยู่ระหว่างขนส่ง",
+  },
+  {
+    key: 2,
+    date: "23-02-2569",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "สำเร็จ",
+  },
+  {
+    key: 3,
+    date: "24-02-2569",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "อยู่ระหว่างขนส่ง",
+  },
+  {
+    key: 4,
+    date: "24-02-2569",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "รอการจัดส่ง",
+  },
+];
