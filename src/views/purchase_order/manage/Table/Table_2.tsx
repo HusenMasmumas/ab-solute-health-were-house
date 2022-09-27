@@ -5,6 +5,7 @@ import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
 type Props = {
   render: (text:any, record:any, index:number) => React.ReactNode;
+  data:any
 };
 
 interface DataType {
@@ -27,6 +28,10 @@ const Table_2 = (props: Props) => {
 
   const columns: ColumnsType<DataType> = [
     {
+      title: "#",
+      dataIndex: 'key'
+    },
+    {
       title: "วันที่สั่งซื้อ",
       dataIndex: "date",
     },
@@ -35,7 +40,7 @@ const Table_2 = (props: Props) => {
       dataIndex: "code",
     },
     {
-      title: "ชื่อสาขา",
+      title: "ชื่อสาขา/ร้าน",
       dataIndex: "branch",
     },
     {
@@ -47,7 +52,7 @@ const Table_2 = (props: Props) => {
       dataIndex: "phone",
     },
     {
-      title: "รวม(บาท)",
+      title: "รวม (฿)",
       dataIndex: "pay",
     },
     {
@@ -70,16 +75,12 @@ const Table_2 = (props: Props) => {
     <div className="mt-10 bg-white">
       <MoTable
         columns={columns}
-        dataSource={mock}
+        dataSource={props.data}
         onChangePage={onChangePage}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า
           pageSize: limitPage,
           currentPage: currentPage,
-        }}
-        rowSelection={{
-          ...rowSelection,
-          columnTitle: <span>#</span>
         }}
       />
     </div>
@@ -87,36 +88,3 @@ const Table_2 = (props: Props) => {
 };
 
 export default Table_2;
-
-const mock = [
-  {
-    key: 1,
-    date: "23-02-2564",
-    code: "asdsad",
-    branch: "ร้านขายยาวังทองหลาง",
-    fullname: "สมพงษ์ ตามังกร",
-    phone: "0934213455",
-    pay: "3000",
-    status: "อนุมัติ",
-  },
-  {
-    key: 2,
-    date: "23-02-2569",
-    code: "asdsad",
-    branch: "ร้านขายยาวังทองหลาง",
-    fullname: "สมพงษ์ ตามังกร",
-    phone: "0934213455",
-    pay: "3000",
-    status: "อนุมัติ",
-  },
-  {
-    key: 3,
-    date: "24-02-2569",
-    code: "asdsad",
-    branch: "ร้านขายยาวังทองหลาง",
-    fullname: "สมพงษ์ ตามังกร",
-    phone: "0934213455",
-    pay: "3000",
-    status: "อนุมัติ",
-  },
-];
