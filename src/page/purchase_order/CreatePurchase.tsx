@@ -20,7 +20,7 @@ import { InputNumber } from "antd";
 import styled from "styled-components";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CreateModal from "views/purchase_order/CreateModal";
-
+import moment from 'moment';
 
 type Props = {};
 
@@ -50,32 +50,40 @@ interface DataType {
 
 const columns: ColumnsType<DataType> = [
   {
-    title: "วันที่สั่งซื้อ",
-    dataIndex: "date",
+    title: "#",
+    dataIndex: "index",
   },
   {
-    title: "เลขที่ใบสั่งซื้อ",
-    dataIndex: "code",
+    title: "SKU",
+    dataIndex: "sku",
   },
   {
-    title: "ชื่อสาขา",
-    dataIndex: "branch",
+    title: "ชื่อสินค้า",
+    dataIndex: "name",
   },
   {
-    title: "ชื่อ-นามสกุล",
-    dataIndex: "fullname",
+    title: "ราคา/หน่วย",
+    dataIndex: "price",
   },
   {
-    title: "เบอร์โทร",
-    dataIndex: "phone",
+    title: "สต็อคคงเหลือ",
+    dataIndex: "stock",
   },
   {
-    title: "รวม(บาท)",
+    title: "จำนวนที่ต้องการ",
+    dataIndex: "point",
+  },
+  {
+    title: "ที่สามารถแพ็คได้",
+    dataIndex: "handle",
+  },
+  {
+    title: "หน่วย",
+    dataIndex: "unit",
+  },
+  {
+    title: "ราคารวม (฿)",
     dataIndex: "pay",
-  },
-  {
-    title: "จัดการ",
-    dataIndex: "status",
   },
 ];
 const { TextArea } = Input;
@@ -84,22 +92,30 @@ const CreatePurchase = (props: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [open, setOpen] = useState(false);
+  const [selectData, setSelectData] = useState<any>([])
+  const [date, setDate] = useState<Date>(new Date())
+  let [form] = Form.useForm();
   useEffect(() => {
     console.log("current", currentPage);
     console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
-  const onChangePage = (page: number, type?: string) => {
-    if (type === "pageSize") setLimitPage(page);
-    else setCurrentPage(page);
-  };
+  useEffect(()=>{
+    console.log('form modal',selectData);
+  },[selectData])
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
 
-  const onFinishModal = (values: any) => {
-    console.log("Received values of form: ", values);
+  const onFinishModal = (values: any,indexArray:any) => {
+    console.log("amount Received Modal ", values);
+    console.log("indexArray",indexArray)
+  };
+
+  const rowSelection = {
+    // columnWidth:'150px',
+    columnTitle:<span>#</span>,
   };
 
   return (
@@ -110,8 +126,18 @@ const CreatePurchase = (props: Props) => {
       />
       <Card className="w-full">
         <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
+        <Button
+            className="!bg-[#4E8FCC] !text-lg !h-11 !rounded-md !border-[#4E8FCC] !text-white"
+            onClick={() => { form.submit(); }}
+          >
+            สร้าง
+          </Button>
         <Divider />
-        <Form layout="vertical" onFinish={onFinish}>
+        <Form 
+          layout="vertical" 
+          onFinish={onFinish}
+          form={form}
+        >
           <Row gutter={[12, 6]} align="bottom">
             <Col span={12}>
               <Form.Item
@@ -129,7 +155,17 @@ const CreatePurchase = (props: Props) => {
                 label={<span className="text-[20px]">วันที่ส่ง</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
               >
-                <CDatePicker size="large" />
+                <CDatePicker 
+                size="large" 
+                disabledDate={d =>  d.isBefore(moment(moment(), 'YYYY/MM/DD').subtract(1, 'days'))}
+                onChange={(d )=>{
+                  setDate(new Date(d))
+                  let overTimeDate = form.getFieldValue('overtimeDate')
+                  if(overTimeDate){ 
+                    form.setFieldsValue({ 'overtimeDate': null})
+                  }
+                }}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -150,7 +186,10 @@ const CreatePurchase = (props: Props) => {
                 label={<span className="text-[20px]">วันครบกำหนด</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
               >
-                <CDatePicker size="large" />
+                <CDatePicker 
+                size="large" 
+                disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -179,7 +218,11 @@ const CreatePurchase = (props: Props) => {
         </Form>
 
         <div className="text-2xl">รายละเอียดสินค้า</div>
-        <MoTable columns={columns} dataSource={[]} pagination={false} />
+        <MoTable 
+          columns={columns} 
+          dataSource={[]} 
+          pagination={false} 
+        />
         <div className="mt-5">
           <Button
             className="!bg-[#4E8FCC] !text-lg !h-11 !rounded-md !border-[#4E8FCC] !text-white"
@@ -188,13 +231,13 @@ const CreatePurchase = (props: Props) => {
             + เพิ่มสินค้า
           </Button>
           <Row>
-            <Col sm={24} lg={12} className="!flex !items-end">
-              <div className="w-[70%] ">
+            <Col sm={24} lg={12} className="!flex !items-end pb-6">
+              <div className="w-full">
                 <div className="text-[20px]">หมายเหตุ</div>
                 <TextArea rows={4} />
               </div>
             </Col>
-            <Col sm={24} lg={12}>
+            <Col sm={24} lg={12} >
               <Row className="mb-5">
                 <Col sm={6} offset={6}>
                   
@@ -279,11 +322,13 @@ const CreatePurchase = (props: Props) => {
         title={<span className="text-[#498DCB] text-[18px]">รายละเอียดสินค้า</span>}
         centered
         open={open}
-        onOk={() => setOpen(false)}
+        footer={false}
+        // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         width={1000}
+        // destroyOnClose={true}
       >
-        <CreateModal />
+        <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen}/>
       </Modal>
     </div>
     
