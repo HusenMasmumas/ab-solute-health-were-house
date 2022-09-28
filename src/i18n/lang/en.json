@@ -30,6 +30,8 @@
     "addLocker": "Add Locker",
     "addUser": "Add User",
     "addRole": "Add Role",
-    "addShop": "Add Shop&ิBranch"
+    "addShop": "Add Shop&ิBranch",
+    "manageInventory": "Manage inventory",
+    "manageGoods" : "Manage goods"
 
 }
