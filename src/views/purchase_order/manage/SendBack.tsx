@@ -3,6 +3,7 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import Table_2 from "./Table/Table_2";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
+import Table_1 from "./Table/Table_1";
 type Props = {};
 
 const elements: IsearchFormItem[] = [
@@ -66,18 +67,43 @@ const SendBack = (props: Props) => {
   return (
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
-      <Table_2
-        render={() => {
-          return (
-            <div className="flex space-x-4 ">
-              <PencilSquareIcon className="!w-6" />
-              <DashOutlined className="!w-6 text-2xl" />
-            </div>
-          );
-        }}
-      />
+      <Table_1 data={mock} tableName="รายการการตีกลับ"/>
     </div>
   );
 };
 
 export default SendBack;
+
+
+const mock = [
+  {
+    key: 1,
+    date: "2022-08-11T07:30:00.207536",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "ยกเลิก",
+  },
+  {
+    key: 2,
+    date: "2022-08-11T07:30:00.207536",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "รออนุมัติ",
+  },
+  {
+    key: 3,
+    date: "2022-08-11T07:30:00.207536",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "อนุมัติ",
+  },
+];

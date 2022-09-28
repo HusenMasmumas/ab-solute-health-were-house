@@ -36,19 +36,19 @@ const columns: ColumnsType<DataType> = [
     title: "เบอร์โทร",
     dataIndex: "phone",
   },
-
-  {
-    title: "การใช้งาน",
-    dataIndex: "status",
-    width: "5%",
-    render: () => {
-      return (
-        <div className="mr-10">
-          <Switch defaultChecked onChange={onChange} />
-        </div>
-      );
-    },
-  },
+  // {
+  //   title: "จัดการ",
+  //   dataIndex: "address",
+  //   render: () => {
+  //     return (
+  //       <div className="flex space-x-4 ">
+  //         {/* <PencilSquareIcon className="h-4 w-4 !text-[40px]" /> */}
+  //         <PencilSquareIcon className="!w-6" />
+  //         <DashOutlined className="!w-6 text-2xl"/>
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const onChange = (checked: boolean) => {
