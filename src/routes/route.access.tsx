@@ -7,11 +7,8 @@ import Page500 from "page/error/Page500";
 import { RouteCustom } from "routes/route.interface";
 import Register from "page/register";
 import OverAllPage from "page/over_all";
-import WarehouseManagement from "page/warehouse_management";
-import PurchaseOrder from "page/purchase_order";
-import Report from "page/report";
+import WarehouseManagement from "page/warehouse_management/inventory_management";
 import StoresBranches from "page/stores_branches";
-import ManageWarehouseManagement from "page/warehouse_management/manage_warehouse_management";
 import ManagePurcheaseOrder from "page/purchase_order/manage";
 import OrderReport from "page/report/orderReport";
 import ExpirationReport from "page/report/expirationReport";
@@ -24,9 +21,12 @@ import CreateUser from "page/manage_user/user/create_user";
 import CreateRole from "page/manage_user/role/craete_role";
 import CreatePurchase from "page/purchase_order/CreatePurchase";
 import ApprovePurchase from "page/purchase_order/ApprovePurchase";
-import StoreCabinet from "page/warehouse_management/storage_cabinet";
-import ManageStoreCabinet from "page/warehouse_management/storage_cabinet/manage_store_cabinet";
+import StoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet";
+import ManageStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
 import CreateStore from "page/stores_branches/create_stores";
+import CreateInventory from "page/warehouse_management/inventory_management/craete_inventory";
+import ProductsManagemnet from "page/warehouse_management/products_management";
+import CreateProduct from "page/warehouse_management/products_management/create_products";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -60,47 +60,53 @@ export const _requirePermission: RouteCustom[] = [
         path: "/warehouse-management",
         keyName: "warehouse-management",
         requireAuth: true,
-        element: <WarehouseManagement />,
-        // children: [
-        //   { index: true, navigateElement: { to: "/warehouse-management" } },
-        //   {
-        //     path: "manage-warehouse-management",
-        //     keyName: "/warehouse-management/manage-warehouse-management",
-        //     requireAuth: true,
-        //     element: <ManageWarehouseManagement />,
-        //   },
-        //   {
-        //     path: "store-cabinet",
-        //     keyName: "/warehouse-management/store-cabinet",
-        //     requireAuth: true,
-        //     element: <StoreCabinet />,
-        //   },
-        // ],
+        children: [
+          { index: true, navigateElement: { to: "/inventory-management" } },
+          {
+            path: "inventory-management",
+            keyName: "/warehouse-management/inventory-management",
+            requireAuth: true,
+            element: <WarehouseManagement />,
+          },
+          {
+            path: "create-inventory",
+            keyName: "/warehouse-management/create-inventory",
+            requireAuth: true,
+            element: <CreateInventory />,
+          },
+          {
+            path: "store-cabinet",
+            keyName: "/warehouse-management/store-cabinet",
+            requireAuth: true,
+            element: <StoreCabinet />,
+          },
+          {
+            path: "create-store-cabinet",
+            keyName: "/warehouse-management/create-store-cabinet",
+            requireAuth: true,
+            element: <ManageStoreCabinet />,
+          },
+          {
+            path: "create-store-cabinet/:id",
+            keyName: "/warehouse-management/create-store-cabinet-id",
+            requireAuth: true,
+            element: <ManageStoreCabinet />,
+          },
+          {
+            path: "products-management",
+            keyName: "/warehouse-management/products-management",
+            requireAuth: true,
+            element: <ProductsManagemnet />,
+          },
+          {
+            path: "craete-products-management",
+            keyName: "/warehouse-management/craete-products-management",
+            requireAuth: true,
+            element: <CreateProduct />,
+          },
+        ],
       },
-      {
-        path: "/manage-warehouse-management",
-        keyName: "manage-warehouse-management",
-        requireAuth: true,
-        element: <ManageWarehouseManagement />,
-      },
-      {
-        path: "/store-cabinet",
-        keyName: "store-cabinet",
-        requireAuth: true,
-        element: <StoreCabinet />,
-      },
-      {
-        path: "/manage-store-cabinet",
-        keyName: "manage-store-cabinet",
-        requireAuth: true,
-        element: <ManageStoreCabinet />,
-      },
-      {
-        path: "/manage-store-cabinet/:id",
-        keyName: "manage-store-cabinet-id",
-        requireAuth: true,
-        element: <ManageStoreCabinet />,
-      },
+
       {
         path: "/purchase-order/manage",
         keyName: "purchase-order/manage",
