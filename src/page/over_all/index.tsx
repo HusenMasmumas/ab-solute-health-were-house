@@ -16,12 +16,12 @@ const OverAllPage = () => {
   return (
     <div>
       <div className="grid grid-cols-2">
-        <h1 className="text-darkblue font-[600] text-[30px] !mb-0">{`${t(
+        <h1 className="text-darkblue font-[600] text-[24px] !mb-0">{`${t(
           "ภาพรวมระบบ"
         )}`}</h1>
         <div className="grid justify-end items-center">
           <Select
-            className="!w-[154px] !text-[18px] !text-gray !rounded-[4px]"
+            className="!w-[154px] !text-[14px] !text-gray"
             defaultValue="Sep,2022"
           >
             <Option value="Sep,2022">Sep,2022</Option>

@@ -21,22 +21,22 @@ const CreateUser = () => {
           {`${t("manageUser")}`}
         </div> */}
         <div className="flex justify-end items-center gap-2">
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
             ยกเลิก
           </Button>
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
             บันทึก
           </Button>
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
             บันทึกและดำเนินการต่อ
           </Button>
         </div>
       </div>
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
-        <div className="text-[#231F20] text-[28px]">
+        <div className="text-[#231F20] text-[20px] font-semibold">
           เพิ่มข้อมูลร้านค้า&สาขา
         </div>
-        <Form layout="vertical">
+        <Form layout="vertical" className="!mb-[100px]">
           {/* upload image */}
           <div className="flex justify-center items-center">
             <Form.Item name="profile">
@@ -46,51 +46,51 @@ const CreateUser = () => {
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("ชื่อ")}>
-                <Input placeholder="ชื่อ" />
+                <Input className="input-form" placeholder="ชื่อ" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("นามสกุล")}>
-                <Input placeholder="นามสกุล" />
+                <Input className="input-form" placeholder="นามสกุล" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("เบอร์โทร")}>
-                <Input placeholder="เบอร์โทร" />
+                <Input className="input-form" placeholder="เบอร์โทร" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("อีเมล")}>
-                <Input placeholder="อีเมล" />
+                <Input className="input-form" placeholder="อีเมล" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("บ้านเลขที่")}>
-                <Input placeholder="บ้านเลขที่" />
+                <Input className="input-form" placeholder="บ้านเลขที่" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("ตำบล")}>
-                <Input placeholder="ตำบล" />
+                <Input className="input-form" placeholder="ตำบล" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("อำเภอ")}>
-                <Input placeholder="อำเภอ" />
+                <Input className="input-form" placeholder="อำเภอ" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("จังหวัด")}>
-                <Input placeholder="จังหวัด" />
+                <Input className="input-form" placeholder="จังหวัด" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label={t("รหัสไปรษณีย์")}>
-                <Input placeholder="รหัสไปรษณีย์" />
+                <Input className="input-form" placeholder="รหัสไปรษณีย์" />
               </Form.Item>
             </Col>
           </Row>
@@ -117,7 +117,7 @@ const CreateUser = () => {
           <Row gutter={[24, 0]}>
             <Col span={8}>
               <Form.Item label={t("ชื่อผู้ใช้")}>
-                <Input placeholder="ชื่อผู้ใช้" />
+                <Input className="input-form" placeholder="ชื่อผู้ใช้" />
               </Form.Item>
             </Col>
             <Col span={8}>

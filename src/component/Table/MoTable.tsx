@@ -33,11 +33,11 @@ const MoTable = ({
         (headerTable && (
           <div className="flex px-6 mt-5 h-16">
             {headerTable ? (
-              <div className="text-[28px] w-[70%] flex items-center">
+              <div className="text-[20px] font-semibold w-[70%] flex items-center">
                 {headerTable}
               </div>
             ) : (
-              <div className="text-[28px] w-[70%] flex items-center">
+              <div className="text-[20px] font-semibold w-[70%] flex items-center">
                 {headerTable}
               </div>
             )}

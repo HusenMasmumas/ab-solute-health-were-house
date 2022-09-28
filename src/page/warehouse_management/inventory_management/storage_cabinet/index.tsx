@@ -3,8 +3,8 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import TableWarehouseManagement from "views/warehouse_managment/TableWarehouseManagement";
-import Excel from "../../../assets/img/Excel.png";
+import TableWarehouseManagement from "views/warehouse_managment/inventory_management/TableWarehouseManagement";
+import Excel from "../../../../assets/img/Excel.png";
 
 interface DataType {
   key: number;
@@ -130,7 +130,7 @@ const StoreCabinet = () => {
         nevigate={{
           keytext: "addproductlist",
           fn: () => {
-            navigate("/manage-store-cabinet");
+            navigate("/warehouse-management/create-store-cabinet");
           },
         }}
         arrPath={["warehouseManagement", "locker"]}
@@ -140,7 +140,7 @@ const StoreCabinet = () => {
       </div>
       <div className="bg-white px-[24px] py-[16px] mt-[16px]">
         <div className="grid grid-cols-2">
-          <span className="text-[#231F20] text-[28px]">{`${t(
+          <span className="text-[#231F20] text-[20px] font-semibold">{`${t(
             "รายการสั่งซื้อ"
           )}`}</span>
           <div className="grid items-center justify-end">

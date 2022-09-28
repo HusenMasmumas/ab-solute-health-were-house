@@ -55,6 +55,48 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
+        keyName: "/warehouse-management/inventory-management",
+        title_en: "Warehouse management",
+        title_th: "จัดการคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "/warehouse-management/create-inventory",
+        title_en: "Create Inventory",
+        title_th: "เพิ่มคลังสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "/warehouse-management/store-cabinet",
+        title_en: "Store Cabinet",
+        title_th: "ตู้เก็บสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "/warehouse-management/store-cabinet",
+        title_en: "Store Cabinet",
+        title_th: "ตู้เก็บสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "/warehouse-management/create-store-cabinet",
+        title_en: "Create Store Cabinet",
+        title_th: "สร้างตู้เก็บสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "/warehouse-management/products-management",
+        title_en: "Products Management",
+        title_th: "การจัดการสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "/warehouse-management/craete-products-management",
+        title_en: "Create Products",
+        title_th: "เพิ่มรายการสินค้า",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
         keyName: "purchase-order",
         title_en: "Purchase order",
         title_th: "ใบสั่งซื้อ",
@@ -126,6 +168,12 @@ export const mocRoleAuth = {
         title_th: "ร้านค้า & สาขา",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
+      {
+        keyName: "craete-stores-branches",
+        title_en: "Craete Stores&Branches",
+        title_th: "สร้างร้านค้าและสาขา",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
 
       {
         keyName: "user/manage",
@@ -134,34 +182,9 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
-        keyName: "manage-warehouse-management",
-        title_en: "Warehouse management",
-        title_th: "จัดการคลังสินค้า",
-        AccessPermission: ["create", "update", "delete", "viewers"],
-      },
-      {
         keyName: "user/role",
         title_en: "role",
         title_th: "บทบาท",
-        AccessPermission: ["create", "update", "delete", "viewers"],
-      },
-      {
-        keyName: "store-cabinet",
-        title_en: "Warehouse management",
-        title_th: "จัดการคลังสินค้า",
-        AccessPermission: ["create", "update", "delete", "viewers"],
-      },
-
-      {
-        keyName: "manage-store-cabinet",
-        title_en: "Warehouse management",
-        title_th: "จัดการคลังสินค้า",
-        AccessPermission: ["create", "update", "delete", "viewers"],
-      },
-      {
-        keyName: "manage-store-cabinet-id",
-        title_en: "Warehouse management",
-        title_th: "จัดการคลังสินค้า",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
@@ -174,12 +197,6 @@ export const mocRoleAuth = {
         keyName: "user/craete-role",
         title_en: "Create Role",
         title_th: "สร้างบทบาท",
-        AccessPermission: ["create", "update", "delete", "viewers"],
-      },
-      {
-        keyName: "craete-stores-branches",
-        title_en: "Craete Stores&Branches",
-        title_th: "สร้างร้านค้าและสาขา",
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
     ],

@@ -6,8 +6,8 @@ const CreateDetailForm = () => {
 
   return (
     <div>
-      <div className="bg-white py-[16px] px-[24px]">
-        <div className="text-lightblue text-[22px]">
+      <div className="bg-white py-[35px] px-[24px]">
+        <div className="text-lightblue text-[20px] font-semibold">
           <span>{`${t("รายละเอียด")}`}</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
@@ -15,74 +15,86 @@ const CreateDetailForm = () => {
           <Row gutter={[24, 0]}>
             <Col span={24}>
               <Form.Item label="Drug label">
-                <Input placeholder="Drug label"></Input>
+                <Input className="input-form" placeholder="Drug label"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Properties (TH)">
-                <Input placeholder="Properties (TH)"></Input>
+                <Input
+                  className="input-form"
+                  placeholder="Properties (TH)"
+                ></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Properties (EN)">
-                <Input placeholder="Properties (EN)"></Input>
+                <Input
+                  className="input-form"
+                  placeholder="Properties (EN)"
+                ></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Use (TH)">
-                <Input placeholder="Use (TH)"></Input>
+                <Input className="input-form" placeholder="Use (TH)"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Use (EN)">
-                <Input placeholder="Use (EN)"></Input>
+                <Input className="input-form" placeholder="Use (EN)"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Unit">
-                <Input placeholder="Unit"></Input>
+                <Input className="input-form" placeholder="Unit"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Warming">
-                <Input placeholder="Warming"></Input>
+                <Input className="input-form" placeholder="Warming"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Supplier">
-                <Input placeholder="Supplier"></Input>
+                <Input className="input-form" placeholder="Supplier"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Blood Tube">
-                <Input placeholder="Blood Tube"></Input>
+                <Input className="input-form" placeholder="Blood Tube"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="InspectionDetails (TH)">
-                <Input placeholder="InspectionDetails (TH)"></Input>
+                <Input
+                  className="input-form"
+                  placeholder="InspectionDetails (TH)"
+                ></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="InspectionDetails (EN)">
-                <Input placeholder="InspectionDetails (EN)"></Input>
+                <Input
+                  className="input-form"
+                  placeholder="InspectionDetails (EN)"
+                ></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Lab Company">
-                <Input placeholder="Lab Company"></Input>
+                <Input className="input-form" placeholder="Lab Company"></Input>
               </Form.Item>
             </Col>
           </Row>

@@ -93,7 +93,7 @@ const DefaultLayout = (props: Props) => {
       }),
       className: activeMenu("over-all"),
       style: {
-        height: "60px",
+        height: "65px",
         display: "flex",
       },
     },
@@ -106,10 +106,28 @@ const DefaultLayout = (props: Props) => {
         active: <ActiveMenuBar1 className="w-6 h-6 " />,
       }),
       className: activeMenu("warehouse-management"),
-      style: {
-        height: "60px",
-        display: "flex",
-      },
+      children: [
+        {
+          label: t("manageInventory"),
+          key: "warehouse-management/inventory-management",
+          className: activeSubMenu("manageInventory"),
+          style: {
+            height: "65px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
+        },
+        {
+          label: t("manageGoods"),
+          key: "warehouse-management/products-management",
+          className: activeSubMenu("manageGoods"),
+          style: {
+            height: "65px",
+            display: "flex",
+            backgroundColor: "#FFFFFF",
+          },
+        },
+      ],
     },
     {
       key: "purchase-order/manage",
@@ -121,7 +139,7 @@ const DefaultLayout = (props: Props) => {
       }),
       className: activeMenu("purchase-order"),
       style: {
-        height: "60px",
+        height: "65px",
         display: "flex",
       },
     },
@@ -141,7 +159,7 @@ const DefaultLayout = (props: Props) => {
           key: "report/orderReport",
           className: activeSubMenu("orderReport"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -151,7 +169,7 @@ const DefaultLayout = (props: Props) => {
           key: "report/expirationReport",
           className: activeSubMenu("expirationReport"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -161,7 +179,7 @@ const DefaultLayout = (props: Props) => {
           key: "report/damageReport",
           className: activeSubMenu("damageReport"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -171,7 +189,7 @@ const DefaultLayout = (props: Props) => {
           key: "report/stockReport",
           className: activeSubMenu("stockReport"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -181,7 +199,7 @@ const DefaultLayout = (props: Props) => {
           key: "report/importedReport",
           className: activeSubMenu("importedReport"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -199,7 +217,7 @@ const DefaultLayout = (props: Props) => {
       }),
       className: activeMenu("stores-branches"),
       style: {
-        height: "60px",
+        height: "65px",
         display: "flex",
       },
     },
@@ -219,7 +237,7 @@ const DefaultLayout = (props: Props) => {
           key: "user/manage",
           className: activeSubMenu("manage"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -229,7 +247,7 @@ const DefaultLayout = (props: Props) => {
           key: "user/role",
           className: activeSubMenu("role"),
           style: {
-            height: "60px",
+            height: "65px",
             display: "flex",
             backgroundColor: "#FFFFFF",
           },
@@ -241,8 +259,8 @@ const DefaultLayout = (props: Props) => {
   return (
     <Layout className={clsx("flex")}>
       <Sider
-        width={270}
-        className="cto_sider site-layout-background !bg-[#ffffff]  !min-h-screen !text-white hidden md:block border-r-4"
+        width={320}
+        className="cto_sider site-layout-background !bg-[#E8E8E9]  !min-h-screen !text-white hidden md:block border-r-4"
         trigger={null}
         collapsible
         collapsed={isTabletSize && openDrawer}
@@ -252,7 +270,7 @@ const DefaultLayout = (props: Props) => {
         }}
       >
         <Image
-          className="h-[60px] bg-white flex justify-center items-center px-[28px]"
+          className="h-[60px] !bg-[#E8E8E9] flex justify-center items-center px-[40px]"
           src={Logo}
           preview={false}
         />
@@ -268,7 +286,7 @@ const DefaultLayout = (props: Props) => {
             paddingLeft: "8px",
             paddingRight: "8px",
           }}
-          className="!bg-[#ffffff] text-white  flex flex-col  "
+          className="!bg-[#E8E8E9] text-white  flex flex-col !gap-[7px]"
           items={MenuList}
         />
       </Sider>

@@ -26,15 +26,15 @@ const expandable = {
   expandedRowRender: (record: any) => (
     <div className="py-[12px] px-[65px]">
       <div className="flex justify-end items-center gap-2">
-        <Button className="!py-0 !rounded-[4px] !w-[80px] !text-[18px]">
+        <Button className="!py-0 !rounded-[4px] !w-[80px] !text-[16px]">
           ยกเลิก
         </Button>
-        <Button className="!py-0 !bg-lightblue !text-white !rounded-[4px] !w-[80px] !text-[18px]">
+        <Button className="!py-0 !bg-lightblue !text-white !rounded-[4px] !w-[80px] !text-[16px]">
           บันทึก
         </Button>
       </div>
       <div className="grid grid-cols-3 px-[200px]">
-        <div className="col-span-2 flex text-[20px] justify-center pl-[500px]">
+        <div className="col-span-2 flex text-[16px] justify-center pl-[500px]">
           สีแดง
         </div>
         <div className=" flex justify-center items-center ">
@@ -55,7 +55,7 @@ const expandable = {
         </div>
       </div>
       <div className="grid grid-cols-3 px-[200px]">
-        <div className="col-span-2 flex text-[20px] justify-center pl-[500px]">
+        <div className="col-span-2 flex text-[16px] justify-center pl-[500px]">
           สีเหลือง
         </div>
         <div className=" flex justify-center items-center ">

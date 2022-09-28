@@ -33,25 +33,27 @@ const CreateRole = () => {
           arrPath={["manageUser", "role", "addRole"]}
         />
         <div className="flex justify-end items-center gap-2">
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
             ยกเลิก
           </Button>
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
             บันทึก
           </Button>
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
             บันทึกและดำเนินการต่อ
           </Button>
         </div>
       </div>
       {/* form */}
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
-        <div className="text-[#231F20] text-[28px] mb-[8px]">เพิ่มบทบาท</div>
+        <div className="text-[#231F20] text-[20px] font-semibold mb-[8px]">
+          เพิ่มบทบาท
+        </div>
         <Form layout="vertical">
           <Row gutter={[24, 0]}>
             <Col span={24}>
               <Form.Item label="ชื่อบทบาท">
-                <Input placeholder="ชื่อบทบาท" />
+                <Input className="input-form" placeholder="ชื่อบทบาท" />
               </Form.Item>
             </Col>
           </Row>
