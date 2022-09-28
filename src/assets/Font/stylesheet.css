@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'SukhumvitSet';
-    src: url('SukhumvitSet.ttc') format('opentype'),
-        url('SukhumvitSet.ttc') format('truetype');
+    src: url('SukhumvitSet-Bold.ttf') format('opentype'),
+        url('SukhumvitSet-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
     font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'SukhumvitSet';
-    src: url('SukhumvitSet.ttc') format('opentype'),
-        url('SukhumvitSet.ttc') format('truetype');
+    src: url('SukhumvitSet-Bold.ttf') format('opentype'),
+        url('SukhumvitSet-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'SukhumvitSet';
-    src: url('SukhumvitSet.ttc') format('opentype'),
-        url('SukhumvitSet.ttc') format('truetype');
+    src: url('SukhumvitSet-Light.ttf') format('opentype'),
+        url('SukhumvitSet-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -27,8 +27,8 @@
 
 @font-face {
     font-family: 'SukhumvitSet';
-    src: url('SukhumvitSet.ttc') format('opentype'),
-        url('SukhumvitSet.ttc') format('truetype');
+    src: url('SukhumvitSet-Light.ttf') format('opentype'),
+        url('SukhumvitSet-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
