@@ -4,10 +4,11 @@ import type { ColumnsType } from "antd/es/table";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { Select } from "antd";
+import { Card, Select } from "antd";
 import CSelectTable from "component/input/c-select-table";
 type Props = {
   data:any
+  tableName:string
   // render: (values?: any) => void;
 };
 
@@ -20,13 +21,13 @@ interface DataType {
   status: "approve" | "waiting" | "cancle";
 }
 
-const Table_1 = (props: Props) => {
+const Table_1 = ({tableName, data}: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
+    // console.log("current", currentPage);
+    // console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
   // นำรายการสั่งซื้อนี้ มาทำรายการอีกที
@@ -53,7 +54,7 @@ const Table_1 = (props: Props) => {
   const columns: ColumnsType<DataType> = [
     {
       title: "#",
-      dataIndex: "index",
+      dataIndex: "key",
     },
     {
       title: "วันที่สั่งซื้อ",
@@ -86,8 +87,8 @@ const Table_1 = (props: Props) => {
       title: "สถานะ",
       dataIndex: "status",
       render: (text, record) => {
-        switch(text) {
-          case 'อนุมัติ':
+        switch(true) {
+          case text === 'อนุมัติ' && ['รายการใบสั่งซื้อ'].includes(tableName):
             return <CSelectTable 
                       background="#77C48B" 
                       selection={
@@ -95,26 +96,33 @@ const Table_1 = (props: Props) => {
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
                           {label:'รอเตรียมพัสดุ', value:record.code , action:prepareOrder }
                         ]}}/>
-          case 'รออนุมัติ':
+          case text === 'อนุมัติ' && ['รายการการตีกลับ'].includes(tableName):
+            return <CSelectTable 
+                      background="#77C48B" 
+                      selection={
+                        {leder:text, option:[
+                          {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
+                        ]}}/>
+          case text ==='รออนุมัติ':
             return <CSelectTable 
                       background="#4E8FCC" 
                       selection={{leder:text, option:[
                         {label:'รอตรวจสอบ',value:record.code, action:check },
                       ]}}/>
-          case 'ยกเลิก':
+          case text ==='ยกเลิก':
               // return <CSelectTable background="red" selection={{leder:text, option:[]}} />
               return  <div className="w-[130px] h-[40px] bg-red-600 text-white rounded-[10px] flex justify-center items-center">ยกเลิก</div>
-          case 'รอเตรียมสินค้า':
+          case text ==='รอเตรียมสินค้า':
               // return <CSelectTable background="#4E8FCC" selection={{leder:text, option:[]}} />
               return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">รอเตรียมสินค้า</div>
-          case 'เตรียมสำเร็จ':
+          case text ==='เตรียมสำเร็จ':
               return <CSelectTable 
                         background="#77C48B" 
                         selection={
                           {leder:text, option:[
                             {label:'รอส่งสินค้า', value:record.code , action:waitingDelivery },
                       ]}}/>
-          case 'รอส่งสินค้า':
+          case text ==='รอส่งสินค้า':
               // เปลี่ยนเป็น กล่องที่มีขนาดเท่ากันกับ select แทน
               // #949594
               return <div className="w-[130px] h-[40px] bg-[#949594] text-white rounded-[10px] flex justify-center items-center">รอส่งสินค้า</div>
@@ -131,10 +139,10 @@ const Table_1 = (props: Props) => {
   };
 
   return (
-    <div className="mt-10 bg-white">
+    <Card className="w-full">
       <MoTable
         columns={columns}
-        dataSource={props.data}
+        dataSource={data}
         onChangePage={onChangePage}
         onRow={(record)=>({
           onDoubleClick: () => {
@@ -148,7 +156,7 @@ const Table_1 = (props: Props) => {
           currentPage: currentPage,
         }}
       />
-    </div>
+    </Card>
   );
 };
 
