@@ -8,6 +8,16 @@ const StyledButton = styled(BaseButton)`
   height: 50px;
   border-radius: 8px;
   margin-Top: 0px;  
+
+  &:active,&:focus {
+    background-color: #0069d9 !important; 
+    color: white;
+  }
+  
+  :hover {
+    background-color: #0069d9;
+    color: white;
+  }
 `;
 export interface TabeButtonProps extends BaseButtonProps {
     text:string
