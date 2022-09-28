@@ -87,7 +87,7 @@ export default SendBack;
 const mock = [
   {
     key: 1,
-    date: "23-02-2564",
+    date: "2022-08-11T07:30:00.207536",
     code: "asdsad",
     branch: "ร้านขายยาวังทองหลาง",
     fullname: "สมพงษ์ ตามังกร",
@@ -97,17 +97,17 @@ const mock = [
   },
   {
     key: 2,
-    date: "23-02-2569",
+    date: "2022-08-11T07:30:00.207536",
     code: "asdsad",
     branch: "ร้านขายยาวังทองหลาง",
     fullname: "สมพงษ์ ตามังกร",
     phone: "0934213455",
     pay: "3000",
-    status: "อนุมัติ",
+    status: "รออนุมัติ",
   },
   {
     key: 3,
-    date: "24-02-2569",
+    date: "2022-08-11T07:30:00.207536",
     code: "asdsad",
     branch: "ร้านขายยาวังทองหลาง",
     fullname: "สมพงษ์ ตามังกร",
