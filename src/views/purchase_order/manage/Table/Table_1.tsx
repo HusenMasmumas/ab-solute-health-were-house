@@ -139,6 +139,9 @@ const Table_1 = ({tableName, data}: Props) => {
 
   return (
     <Card className="w-full !mt-5">
+      <div className="my-3">
+        <span className="text-[#231F20] text-[20px] !font-bold">{tableName}</span>
+      </div>
       <MoTable
         columns={columns}
         dataSource={data}
