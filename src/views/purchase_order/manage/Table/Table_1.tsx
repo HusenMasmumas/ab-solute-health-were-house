@@ -138,7 +138,7 @@ const Table_1 = ({tableName, data}: Props) => {
   };
 
   return (
-    <Card className="w-full">
+    <Card className="w-full !mt-5">
       <MoTable
         columns={columns}
         dataSource={data}
