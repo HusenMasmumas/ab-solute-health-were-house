@@ -1,7 +1,5 @@
 import SearchForm, { IsearchFormItem } from 'component/Form/searchForm';
-import React from 'react'
 import { useTranslation } from 'react-i18next';
-import TableStoresBranches from 'views/stores_branches/TableStoresBranches';
 import Table_1 from './Table/Table_1';
 
 type Props = {}
