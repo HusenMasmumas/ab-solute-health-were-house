@@ -48,7 +48,7 @@ const options = {
       style: {
         colors: "#8D8D8D",
         fontSize: "15px",
-        fontFamily: "FCIconic",
+        fontFamily: "SukhumvitSet",
         fontWeight: 400,
       },
     },
@@ -68,7 +68,7 @@ const Linechart = () => {
         type="line"
         options={options}
         series={dataScouces}
-        width={900}
+        width={"100%"}
         height={250}
       />
     </div>

@@ -11,6 +11,7 @@ interface Props extends TableProps<any> {
   onDoubleClick?: boolean;
   columns?: any[];
   action?: any;
+  scroll?: any;
 }
 
 const MoTable = ({
@@ -20,6 +21,7 @@ const MoTable = ({
   rowSelection,
   expandable,
   onChangePage,
+  scroll,
   headerTable,
   action,
   config = { total: 15, currentPage: 1, pageSize: 10 },
@@ -52,6 +54,7 @@ const MoTable = ({
         columns={columns}
         dataSource={dataSource}
         rowSelection={rowSelection}
+        scroll={scroll}
         expandable={expandable}
         pagination={false}
         {...props}

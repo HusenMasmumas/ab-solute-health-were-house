@@ -14,11 +14,15 @@ const CreateRole = () => {
   const data: DataType[] = [
     {
       key: 1,
-      name: "ผู้จัดการ",
+      name: "ภาพรวม",
     },
     {
       key: 2,
-      name: "ผู้จัดการ",
+      name: "การจักการคลัง",
+    },
+    {
+      key: 3,
+      name: "การจักการคลัง",
     },
   ];
   return (

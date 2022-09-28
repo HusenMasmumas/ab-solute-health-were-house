@@ -70,7 +70,7 @@ const WarehouseManagement = () => {
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       {/* card */}
-      <div className="grid grid-cols-5 gap-4 mt-[12px;]">
+      <div className="grid xl:grid-cols-5 md:grid-cols-3 gap-4 mt-[12px;]">
         {data.map((item, index) => {
           return (
             <div

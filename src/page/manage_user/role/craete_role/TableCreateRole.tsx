@@ -24,11 +24,11 @@ const TableCreateRole = ({ dataTable = [] }: Props) => {
 
   const columns: ColumnsType<DataType> = [
     {
-      title: "ชื่อ",
-      dataIndex: "ืname",
-      render: (name: string) => {
-        return <div>{}</div>;
-      },
+      title: "ชื่อเมนู",
+      dataIndex: "name",
+      // render: (name: string) => {
+      //   return <div>{}</div>;
+      // },
     },
   ];
 

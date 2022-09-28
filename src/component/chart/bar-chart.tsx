@@ -49,7 +49,7 @@ const BarChart = () => {
         type="bar"
         options={optionsBar}
         series={dataSourceBar}
-        width={400}
+        width={"100%"}
         height={250}
       />
     </div>
