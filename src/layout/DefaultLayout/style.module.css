@@ -16,13 +16,14 @@
   background-color: transparent;
   transition: 500ms;
   color: rgb(101, 101, 101) !important;
+  border-radius: 5px !important;
 }
 
 .sub_inNav_select {
   background-color: transparent;
   transition: 500ms;
   color: rgb(101, 101, 101) !important;
-  padding-left: 60px !important; 
+  padding-left: 60px !important;
 }
 
 .Nav_select {

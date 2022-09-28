@@ -1,12 +1,12 @@
 import { Image } from "antd";
 import { useTranslation } from "react-i18next";
-import Picture1 from "../../assets/img/pic-02.png";
-import Picture2 from "../../assets/img/pic-04.png";
+import Picture1 from "../../../assets/img/pic-02.png";
+import Picture2 from "../../../assets/img/pic-04.png";
 import { useNavigate } from "react-router-dom";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { ReactComponent as ArrowIcon } from "../../assets/Icon/Arrow.svg";
-import { ReactComponent as DotIcon } from "../../assets/Icon/dot.svg";
+import { ReactComponent as ArrowIcon } from "../../../assets/Icon/Arrow.svg";
+import { ReactComponent as DotIcon } from "../../../assets/Icon/dot.svg";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ const WarehouseManagement = () => {
           nevigate={{
             keytext: "createLocker",
             fn: () => {
-              navigate("/manage-warehouse-management");
+              navigate("/warehouse-management/create-inventory");
             },
           }}
           arrPath={["warehouseManagement"]}
@@ -81,7 +81,7 @@ const WarehouseManagement = () => {
                 <div className="w-[28px] h-[28px] bg-lightsky text-green rounded-[5px] grid justify-center items-center">
                   <DotIcon
                     onClick={() => {
-                      navigate("/manage-warehouse-management");
+                      navigate("/warehouse-management/create-inventory");
                     }}
                   />
                 </div>
@@ -101,9 +101,9 @@ const WarehouseManagement = () => {
               </div>
               <div className="grid grid-cols-2">
                 <span
-                  className="text-lightblue text-[25px] font-bold"
+                  className="text-lightblue text-[20px] font-bold"
                   onClick={() => {
-                    navigate("/store-cabinet");
+                    navigate("/warehouse-management/store-cabinet");
                   }}
                 >
                   {item.storeNo}

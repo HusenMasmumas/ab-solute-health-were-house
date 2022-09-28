@@ -93,7 +93,7 @@ const CreateForm = ({
                   <Form.Item
                     className="mb-0"
                     name={item.name}
-                    label={<span className="text-[20px]">{item.label}</span>}
+                    label={<span className="text-[14px]">{item.label}</span>}
                   >
                     <Element
                       style={{ fontSize: "18px", borderRadius: "4px" }}

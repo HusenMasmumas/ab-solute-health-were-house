@@ -10,7 +10,7 @@ const StyledButton = styled(Button)`
   justify-content: center;
   display: flex;
   background: #77c48b;
-  font-size: 20px;
+  font-size: 16px;
   color: #ffffff;
   border-radius: 4px;
 `;

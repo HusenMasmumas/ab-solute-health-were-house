@@ -127,7 +127,9 @@ const UserManagement = () => {
         </div>
         <div className="bg-white px-[24px] py-[16px] mt-[16px]">
           <div className="grid grid-cols-2">
-            <span className="text-[#231F20] text-[28px]">จัดการผู้ใช้</span>
+            <span className="text-[#231F20] font-semibold text-[20px]">
+              จัดการผู้ใช้
+            </span>
             <div className="flex items-center justify-end gap-4">
               <span className="text-[20px] border-r-[1px] border-gray pr-4 ">
                 ลบ

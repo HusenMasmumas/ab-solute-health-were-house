@@ -18,7 +18,7 @@ const CHeader = ({ keyHeader, nevigate, arrPath = [], ...props }: ICHeader) => {
   return (
     <div className="grid grid-cols-2">
       <div className="w-3/5 ">
-        <div className="text-[30px] text-darkblue font-bold">
+        <div className="text-[24px] text-darkblue font-bold">
           {i18n.exists(keyHeader) ? `${t(keyHeader)}` : keyHeader}
         </div>
         <NevigationPath textPath={arrPath} />

@@ -1,15 +1,13 @@
-import { Button } from 'antd';
+import { Button } from "antd";
 import styled from "styled-components";
-import BaseButton, { BaseButtonProps } from './BaseButton'
+import BaseButton, { BaseButtonProps } from "./BaseButton";
 
 const StyledButton = styled(BaseButton)`
-  font-size: 25px;
+  font-size: 16px;
 `;
 
 const CleanButton = (props: BaseButtonProps) => {
-  return (
-    <StyledButton {...props} />
-  )
-}
+  return <StyledButton {...props} />;
+};
 
-export default CleanButton
+export default CleanButton;

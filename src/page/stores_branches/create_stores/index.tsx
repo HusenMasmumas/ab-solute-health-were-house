@@ -10,27 +10,27 @@ const CreateStore = () => {
       <div className="grid grid-cols-2">
         <CHeader
           keyHeader="stores&branches"
-          arrPath={["stores&branches", "role", "addRole"]}
+          arrPath={["stores&branches", "addShop"]}
         />
         <div className="flex justify-end items-center gap-2">
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px]">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
             ยกเลิก
           </Button>
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
             บันทึก
           </Button>
-          <Button className="!h-[40px] !rounded-[4px] !text-[20px] !text-white !bg-green">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
             บันทึกและดำเนินการต่อ
           </Button>
         </div>
       </div>
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
-        <div className="text-[#231F20] text-[28px]">
-          เพิ่มข้อมูลร้านค้า&สาขา
+        <div className="text-[#231F20] !text-[20px] !font-semibold">
+          เพิ่มร้านค้า&สาขา
         </div>
         <Form layout="vertical" className="!mb-[100px]">
           {/* upload image */}
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center !mb-[60px]">
             <Form.Item name="profile">
               <MyUpload />
             </Form.Item>
