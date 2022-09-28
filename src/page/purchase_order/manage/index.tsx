@@ -32,10 +32,10 @@ const ManagePurcheaseOrder = (props: Props) => {
         nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create')}} : undefined}
       />
       <div className='flex space-x-5 mb-3'>
-        <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} />
-        <TabeButton onClick={()=>{setTabe(1)}} text={'prepareGoods'} />
-        <TabeButton onClick={()=>{setTabe(2)}} text={'delivery'} />
-        <TabeButton onClick={()=>{setTabe(3)}} text={'returnOrder'}/> 
+        <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} active={tabe === 0 ? true : false }  />
+        <TabeButton onClick={()=>{setTabe(1)}} text={'prepareGoods'} active={tabe === 1 ? true : false } />
+        <TabeButton onClick={()=>{setTabe(2)}} text={'delivery'} active={tabe === 2 ? true : false }/>
+        <TabeButton onClick={()=>{setTabe(3)}} text={'returnOrder'} active={tabe === 3 ? true : false }/> 
       </div>
       <div>
       {(() => {
