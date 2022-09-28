@@ -3,6 +3,7 @@ import React from "react";
 import Table_2 from "./Table/Table_2";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
+import Table_1 from "./Table/Table_1";
 type Props = {};
 
 const elements: IsearchFormItem[] = [
@@ -67,7 +68,7 @@ const Prepare = (props: Props) => {
   return (
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
-      
+      <Table_1 data={mock}/>
     </div>
   );
 };
@@ -78,7 +79,7 @@ export default Prepare;
 const mock = [
   {
     key: 1,
-    date: "23-02-2564",
+    date: "2022-08-11T07:30:00.207536",
     code: "PO456789",
     branch: "ร้านขายยาวังทองหลาง",
     fullname: "สมพงษ์ ตามังกร",
@@ -88,7 +89,7 @@ const mock = [
   },
   {
     key: 2,
-    date: "23-02-2569",
+    date: "2022-08-11T07:30:00.207536",
     code: "PO456787",
     branch: "ร้านขายยาวังทองหลาง",
     fullname: "สมพงษ์ ตามังกร",
@@ -98,7 +99,7 @@ const mock = [
   },
   {
     key: 3,
-    date: "24-02-2569",
+    date: "2022-08-11T07:30:00.207536",
     code: "PO456786",
     branch: "ร้านขายยาวังทองหลาง",
     fullname: "สมพงษ์ ตามังกร",
