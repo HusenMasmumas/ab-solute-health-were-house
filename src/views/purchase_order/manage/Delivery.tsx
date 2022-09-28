@@ -3,6 +3,7 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import Table_2 from "./Table/Table_2";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { DashOutlined } from "@ant-design/icons";
+import Table_1 from "./Table/Table_1";
 type Props = {};
 
 const elements: IsearchFormItem[] = [
@@ -66,32 +67,7 @@ const Delivery = (props: Props) => {
   return (
     <div>
       <SearchForm elements={elements} onFinish={onFinish} />
-      <Table_2
-        render={(state:string) => {
-          return (
-            <div className="text-white">
-              {state === "สำเร็จ" ? (
-                <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
-                  {state}
-                </div>
-              ) : state === "อยู่ระหว่างขนส่ง" ? (
-                <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
-                  {state}
-                </div>
-              ) : state === "รอการจัดส่ง" ? (
-                <div className="bg-lightblue rounded-[4px] w-[130px] flex justify-center py-[4px]">
-                  {state}
-                </div>
-              ) : state === "ยกเลิก" ? (
-                <div className="bg-[#FC0002] rounded-[4px] w-[130px] flex justify-center py-[4px]">
-                  {state}
-                </div>
-              ) : null}
-            </div>
-          );
-        }}
-        data={mock}
-      />
+      <Table_1 data={mock} tableName="รายการจัดส่งสินค้า"/>
     </div>
   );
 };
