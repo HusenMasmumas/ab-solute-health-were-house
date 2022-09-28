@@ -63,8 +63,8 @@ const Table_2 = (props: Props) => {
   ];
 
   useEffect(() => {
-    console.log('current',currentPage);
-    console.log('limitPage',limitPage);
+    // console.log('current',currentPage);
+    // console.log('limitPage',limitPage);
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
