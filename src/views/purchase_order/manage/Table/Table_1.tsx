@@ -110,22 +110,21 @@ const Table_1 = ({tableName, data}: Props) => {
                         {label:'รอตรวจสอบ',value:record.code, action:check },
                       ]}}/>
           case text ==='ยกเลิก':
-              // return <CSelectTable background="red" selection={{leder:text, option:[]}} />
-              return  <div className="w-[130px] h-[40px] bg-red-600 text-white rounded-[10px] flex justify-center items-center">ยกเลิก</div>
-          case text ==='รอเตรียมสินค้า':
-              // return <CSelectTable background="#4E8FCC" selection={{leder:text, option:[]}} />
-              return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">รอเตรียมสินค้า</div>
-          case text ==='เตรียมสำเร็จ':
+              return  <div className="w-[130px] h-[40px] bg-red-600 text-white rounded-[10px] flex justify-center items-center">{text}</div>
+          case ['รอเตรียมสินค้า', 'รอการจัดส่ง'].includes(text):
+              return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+          case ['เตรียมสำเร็จ'].includes(text):
               return <CSelectTable 
                         background="#77C48B" 
                         selection={
                           {leder:text, option:[
                             {label:'รอส่งสินค้า', value:record.code , action:waitingDelivery },
                       ]}}/>
-          case text ==='รอส่งสินค้า':
+          case ['รอส่งสินค้า', 'อยู่ระหว่างขนส่ง'].includes(text):
               // เปลี่ยนเป็น กล่องที่มีขนาดเท่ากันกับ select แทน
-              // #949594
-              return <div className="w-[130px] h-[40px] bg-[#949594] text-white rounded-[10px] flex justify-center items-center">รอส่งสินค้า</div>
+              return <div className="w-[130px] h-[40px] bg-[#949594] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+          case ['สำเร็จ'].includes(text):
+              return <div className="w-[130px] h-[40px] bg-[#77C48B] text-white rounded-[10px] flex justify-center items-center">{text}</div>
           default:
             return null
         }
