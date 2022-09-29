@@ -25,10 +25,11 @@ const StyledSelect = styled(Select)<  Omit<Props, "selection" | "hoverBackground
     background-color: ${({ background }) => background} !important;
     border-radius: 10px 10px 10px 10px !important;
     margin: 0px;
-  }
-
-  .ant-select-dropdown{
-    background-color: red !important;
+    &:hover,
+    &:active,
+    &:focus {
+      border: none !important;
+    }
   }
 `;
 
@@ -63,9 +64,8 @@ const CSelectTable = ({ background, hoverBackground ,selection, ...props }: Prop
         }
       }}
 
-      dropdownClassName='hover:!bg-violet-600 !text-center'
-      style={{ width: "130px" }}
-      className={"!text-center"}
+      style={{ width: "130px", borderColor:'red' }}
+      className="!text-center"
       size='large'
       
       dropdownStyle={{
@@ -77,7 +77,7 @@ const CSelectTable = ({ background, hoverBackground ,selection, ...props }: Prop
       {option.map((item:IOptionTable) => (
         // <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!bg-violet-600`}>
         // <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!bg-blue-500 !text-white`}>
-          <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!${hoverBackground} !text-white`}>
+          <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!${hoverBackground} !text-white !text-cente`}>
           {item.label}
         </StyledSelect.Option>
       ))}
