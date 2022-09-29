@@ -55,15 +55,15 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
         <div className="h-14 flex items-center ">
           <Select
             defaultValue="th"
-            className="flex !text-2xl !font-semibold cto_select tracking-wider  w-32 !px-2"
+            className="flex !text-[16px] !font-semibold cto_select tracking-wider  w-32 !px-2"
             suffixIcon={<ChevronDownIcon className="w-6 text-[#65a6e9]" />}
             onChange={changeLanguageHandler}
             value={crrLanguage}
           >
-            <Option value="th" className="!text-2xl">
+            <Option value="th" className="!text-[16px] ">
               TH
             </Option>
-            <Option value="en" className="!text-2xl">
+            <Option value="en" className="!text-[16px] ">
               EN
             </Option>
           </Select>

@@ -63,7 +63,7 @@ const DefaultLayout = (props: Props) => {
         : "";
 
     return clsx(
-      "cursor-pointer duration-500 relative !hover:text-white !text-[18px]",
+      "cursor-pointer duration-500 relative !hover:text-white !text-[18px] ",
       inActive,
       styles.sub_inNav_select
     );
@@ -110,7 +110,7 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("manageInventory"),
           key: "warehouse-management/inventory-management",
-          className: activeSubMenu("manageInventory"),
+          className: activeSubMenu("inventory-management"),
           style: {
             height: "65px",
             display: "flex",
@@ -120,7 +120,7 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("manageGoods"),
           key: "warehouse-management/products-management",
-          className: activeSubMenu("manageGoods"),
+          className: activeSubMenu("products-management"),
           style: {
             height: "65px",
             display: "flex",
@@ -233,7 +233,7 @@ const DefaultLayout = (props: Props) => {
       className: activeMenu("manage-user"),
       children: [
         {
-          label: isTabletSize && openDrawer ? null : t("user"),
+          label: t("user"),
           key: "user/manage",
           className: activeSubMenu("manage"),
           style: {
@@ -243,7 +243,7 @@ const DefaultLayout = (props: Props) => {
           },
         },
         {
-          label: isTabletSize && openDrawer ? null : t("role"),
+          label: t("role"),
           key: "user/role",
           className: activeSubMenu("role"),
           style: {
@@ -258,60 +258,69 @@ const DefaultLayout = (props: Props) => {
 
   return (
     <Layout className={clsx("flex")}>
-      <Sider
-        width={320}
-        className="cto_sider site-layout-background !bg-[#E8E8E9]  !min-h-screen !text-white hidden md:block border-r-4"
-        trigger={null}
-        collapsible
-        collapsed={isTabletSize && openDrawer}
-        breakpoint="xxl"
-        onBreakpoint={(broken) => {
-          setIsTabletSize(broken);
-        }}
-      >
-        <Image
-          className="h-[60px] !bg-[#E8E8E9] flex justify-center items-center px-[40px]"
-          src={Logo}
-          preview={false}
-        />
-        <Menu
-          mode="inline"
-          onClick={(e) => onChangePath(e.key)}
-          defaultSelectedKeys={[location.pathname]}
-          defaultOpenKeys={["sub1"]}
-          selectedKeys={KeyCur}
-          style={{
-            borderRight: 0,
-            color: "#fff",
-            paddingLeft: "8px",
-            paddingRight: "8px",
+      <div className="!overflow-y-auto">
+        <Sider
+          width={320}
+          className="cto_sider site-layout-background !bg-[#E8E8E9]  !min-h-screen !text-white hidden md:block border-r-4"
+          trigger={null}
+          collapsible
+          collapsed={isTabletSize && openDrawer}
+          breakpoint="xxl"
+          onBreakpoint={(broken) => {
+            setIsTabletSize(broken);
           }}
-          className="!bg-[#E8E8E9] text-white  flex flex-col !gap-[7px]"
-          items={MenuList}
-        />
-      </Sider>
+        >
+          <Image
+            className="h-[60px] !bg-[#E8E8E9] flex justify-center items-center px-[40px]"
+            src={Logo}
+            preview={false}
+          />
+          <Menu
+            mode="inline"
+            onClick={(e) => onChangePath(e.key)}
+            defaultSelectedKeys={[location.pathname]}
+            defaultOpenKeys={["sub1"]}
+            selectedKeys={KeyCur}
+            style={{
+              borderRight: 0,
+              color: "#fff",
+              paddingLeft: "8px",
+              paddingRight: "8px",
+            }}
+            className="!bg-[#E8E8E9] text-white  flex flex-col !gap-[7px]"
+            items={MenuList}
+          />
+        </Sider>
+      </div>
+
       <Layout
         className={clsx(
           "w-full h-full bg-secondary-light dark:bg-[#16181c] duration-500 min-h-screen cto_h transition-all ",
           styles.cto_header
         )}
       >
-        <Header className={clsx(" hidden md:block")}>
+        <Header
+          style={{ position: "sticky", zIndex: 1, width: "100%" }}
+          className={clsx(" hidden md:block")}
+        >
           <HeaderSection
             setOpenDrawer={setOpenDrawer}
             openDrawer={openDrawer}
           />
         </Header>
-        <Content
-          className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full overflow-y-auto transition-all"
-          style={{
-            padding: 24,
-            margin: 0,
-            minHeight: "100%",
-          }}
-        >
-          <Outlet />
-        </Content>
+        <div className="!overflow-y-auto h-[88vh]">
+          <Content
+            className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full  transition-all "
+            style={{
+              padding: 24,
+              margin: 0,
+              minHeight: "100%",
+            }}
+          >
+            <Outlet />
+          </Content>
+        </div>
+
         <div className="flex items-center justify-center md:hidden w-screen h-screen">
           <span className="text-3xl font-bold">
             This website does not support mobile size{" "}
