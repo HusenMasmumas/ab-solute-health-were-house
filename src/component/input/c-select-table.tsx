@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { ConfigProvider, Select, SelectProps } from "antd";
 import styled from "styled-components";
 
 interface Props  {
   background: string;
+  hoverBackground: string;
   selection: ISelectTable;
 }
 
@@ -17,7 +18,7 @@ interface ISelectTable {
   option: IOptionTable[]
 }
 
-const StyledSelect = styled(Select)<  Omit<Props, "selection">  >`
+const StyledSelect = styled(Select)<  Omit<Props, "selection" | "hoverBackground">  >`
   color: #ffffff;
   margin: 0px;
   .ant-select-selector {
@@ -26,12 +27,12 @@ const StyledSelect = styled(Select)<  Omit<Props, "selection">  >`
     margin: 0px;
   }
 
-  .ant-select-selection-item {
-    background-color: ${({ background }) => background} !important;
+  .ant-select-dropdown{
+    background-color: red !important;
   }
 `;
 
-const CSelectTable = ({ background, selection, ...props }: Props) => {
+const CSelectTable = ({ background, hoverBackground ,selection, ...props }: Props) => {
 
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const { option=[]  } = selection
@@ -62,17 +63,21 @@ const CSelectTable = ({ background, selection, ...props }: Props) => {
         }
       }}
 
+      dropdownClassName='hover:!bg-violet-600 !text-center'
       style={{ width: "130px" }}
       className={"!text-center"}
       size='large'
+      
       dropdownStyle={{
+        margin: "0px",
         padding: "0px",
-        borderRadius: "0px 0px 10px 10px",
-        // backgroundColor: "red",
+        borderRadius: "10px 10px 10px 10px",
       }}
     >
       {option.map((item:IOptionTable) => (
-        <StyledSelect.Option key={item.label} value={item.label} className={`!text-center`}>
+        // <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!bg-violet-600`}>
+        // <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!bg-blue-500 !text-white`}>
+          <StyledSelect.Option key={item.label} value={item.label} className={`!bg-[${background}] hover:!${hoverBackground} !text-white`}>
           {item.label}
         </StyledSelect.Option>
       ))}

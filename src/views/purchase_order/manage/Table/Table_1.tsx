@@ -91,6 +91,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case text === 'อนุมัติ' && ['รายการใบสั่งซื้อ'].includes(tableName):
             return <CSelectTable 
                       background="#77C48B" 
+                      hoverBackground="bg-emerald-400"
                       selection={
                         {leder:text, option:[
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
@@ -99,6 +100,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case text === 'อนุมัติ' && ['รายการการตีกลับ'].includes(tableName):
             return <CSelectTable 
                       background="#77C48B" 
+                      hoverBackground="bg-emerald-400" 
                       selection={
                         {leder:text, option:[
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
@@ -106,6 +108,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case text ==='รออนุมัติ':
             return <CSelectTable 
                       background="#4E8FCC" 
+                      hoverBackground="bg-blue-500" 
                       selection={{leder:text, option:[
                         {label:'รอตรวจสอบ',value:record.code, action:check },
                       ]}}/>
@@ -115,7 +118,8 @@ const Table_1 = ({tableName, data}: Props) => {
               return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">{text}</div>
           case ['เตรียมสำเร็จ'].includes(text):
               return <CSelectTable 
-                        background="#77C48B" 
+                        background="#77C48B"
+                        hoverBackground="bg-emerald-400" 
                         selection={
                           {leder:text, option:[
                             {label:'รอส่งสินค้า', value:record.code , action:waitingDelivery },
