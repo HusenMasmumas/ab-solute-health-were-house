@@ -7,7 +7,6 @@ import CDropDown from "component/Dropdown/DropDown";
 type Props = {
   data:any
   tableName:string
-  // render: (values?: any) => void;
 };
 
 interface DataType {
@@ -111,12 +110,10 @@ const Table_1 = ({tableName, data}: Props) => {
                         {label:'รอตรวจสอบ',value:record.code, action:check },
                       ]}}/>
           case text ==='ยกเลิก':
-              // return  <div className="w-[130px] h-[40px] bg-red-600 text-white rounded-[10px] flex justify-center items-center">{text}</div>
               return <CDropDown 
                         background="#FC0002" 
                         selection={{title:text, option:[]}}/>
           case ['รอเตรียมสินค้า', 'รอการจัดส่ง'].includes(text):
-              // return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">{text}</div>
               return <CDropDown 
                         background="#4E8FCC" 
                         selection={{title:text, option:[]}}/> 
@@ -129,14 +126,11 @@ const Table_1 = ({tableName, data}: Props) => {
                             {label:'รอส่งสินค้า', value:record.code , action:waitingDelivery },
                       ]}}/>
           case ['รอส่งสินค้า', 'อยู่ระหว่างขนส่ง'].includes(text):
-              // เปลี่ยนเป็น กล่องที่มีขนาดเท่ากันกับ select แทน
-              // return <div className="w-[130px] h-[40px] bg-[#949594] text-white rounded-[10px] flex justify-center items-center">{text}</div>
               return <CDropDown 
                         background="#949594" 
                         hoverBackground="bg-blue-500" 
                         selection={{title:text, option:[]}}/>
           case ['สำเร็จ'].includes(text):
-              // return <div className="w-[130px] h-[40px] bg-[#77C48B] text-white rounded-[10px] flex justify-center items-center">{text}</div>
               return <CDropDown 
                         background="#77C48B" 
                         hoverBackground="bg-blue-500" 
