@@ -5,7 +5,7 @@ import {
   import styled from "styled-components";
 //   import { ITheme, ThemeOptions, ThemeTypes } from "../../constrant/theme";
   import CDate from "./c-date";
-  
+  import { ConfigProvider } from 'antd';
   export const StyleCDatePicker = styled(CDate)`
   width: 100%;
   `;
@@ -16,7 +16,11 @@ import {
   const CDatePicker = (props: CDatePickerProps) => {
     const { ...rest } = props;
     // const themeProps = ThemeOptions[theme];
-    return <StyleCDatePicker  {...rest} />;
+    return (
+      <ConfigProvider getPopupContainer={(trigger:any) => trigger.parentElement}>
+        <StyleCDatePicker  {...rest} />
+      </ConfigProvider>
+    )
   };
   
   type CRangePickerProps = RangePickerProps<any> & {
