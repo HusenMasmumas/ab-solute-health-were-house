@@ -1,10 +1,18 @@
-import { Button, Col, Form, Input, Row, Select } from "antd";
-import TextArea from "antd/lib/input/TextArea";
+import { Button, Col, Form, Input, Modal, Row, Select } from "antd";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import CreateModal from "./createModal";
 
 const CreateDataForm = () => {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
   const Option = Select;
+
+  const onFinishModal = (values: any, indexArray: any) => {
+    console.log("amount Received Modal ", values);
+    console.log("indexArray", indexArray);
+  };
+
   return (
     <div>
       <div className="bg-white py-[35px] px-[24px]">
@@ -20,8 +28,14 @@ const CreateDataForm = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Sub SKU">
-                <Input className="input-form" placeholder="Sub SKU"></Input>
+              {/* button*/}
+              <Form.Item label=" ">
+                <Button
+                  className="!text-[16px] !h-[45px] !rounded-[5px] !border-darkblue !text-darkblue !flex !justify-center !items-center"
+                  onClick={() => setOpen(true)}
+                >
+                  เลือกจากรายการสินค้า
+                </Button>
               </Form.Item>
             </Col>
           </Row>
@@ -147,6 +161,22 @@ const CreateDataForm = () => {
           </Form.List>
         </Form>
       </div>
+      <Modal
+        title={
+          <span className="text-lightblue font-semibold text-[20px]">
+            รายละเอียดสินค้า
+          </span>
+        }
+        centered
+        open={open}
+        footer={false}
+        // onOk={() => setOpen(false)}
+        onCancel={() => setOpen(false)}
+        width={1000}
+        // destroyOnClose={true}
+      >
+        <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen} />
+      </Modal>
     </div>
   );
 };
