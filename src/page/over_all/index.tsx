@@ -17,7 +17,7 @@ const OverAllPage = () => {
     <div>
       <div className="grid grid-cols-2">
         <h1 className="text-darkblue font-[600] text-[24px] !mb-0">{`${t(
-          "ภาพรวมระบบ"
+          "systemOverview"
         )}`}</h1>
         <div className="grid justify-end items-center">
           <Select
@@ -35,7 +35,7 @@ const OverAllPage = () => {
       <div className="grid grid-cols-12 gap-6 mt-[12px]">
         <div className="grid xl:col-span-3 md:col-span-6">
           <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("รายการการสั่งสินค้าทั้งหมด")}`}</p>
+            <p className="!mb-0">{`${t("allorderlist")}`}</p>
             <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
             <div className="grid grid-cols-3">
               <div className=" text-green">
@@ -58,7 +58,7 @@ const OverAllPage = () => {
         </div>
         <div className="grid xl:col-span-3 md:col-span-6">
           <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("จำนวนสินค้าทั้งหมด")}`}</p>
+            <p className="!mb-0">{`${t("totalProducts")}`}</p>
             <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
             <div className="grid grid-cols-3">
               <div className=" text-green">
@@ -82,7 +82,7 @@ const OverAllPage = () => {
         <div className="grid xl:col-span-3 md:col-span-6">
           {" "}
           <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("จํานวนสินค้าที่หมดอายุ")}`}</p>
+            <p className="!mb-0">{`${t("expiredProducts")}`}</p>
             <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
             <div className="grid grid-cols-3">
               <div className=" text-green">
@@ -106,7 +106,7 @@ const OverAllPage = () => {
         <div className="grid xl:col-span-3 md:col-span-6">
           {" "}
           <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("จํานวนสินค้าที่เสียหาย")}`}</p>
+            <p className="!mb-0">{`${t("damagedGoods")}`}</p>
             <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
             <div className="grid grid-cols-3">
               <div className=" text-green">
@@ -132,7 +132,7 @@ const OverAllPage = () => {
           <div className="bg-white rounded-[10px] px-[24px] pt-[16px] py-[10px]">
             <div>
               <div className="xl:grid xl:grid-cols-2">
-                <div className="!mb-0 ">{`${t("ยอดขาย")}`}</div>
+                <div className="!mb-0 ">{`${t("circulation")}`}</div>
                 <div className="grid justify-end items-end  grid-cols-3">
                   <div className=""></div>
                   <div className="pl-5">

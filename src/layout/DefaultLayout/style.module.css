@@ -42,9 +42,10 @@
 
 }
 .Sub_Nav_select {
-background-image: #F3F9FF;
+  background-color: #F3F9FF !important;;
   color: rgb(101, 101, 101)  !important;
   padding-left: 60px !important; 
+
   /* border-radius: 5px !important; */
  
   /* width: calc(266px - 20px) !important;
@@ -100,6 +101,12 @@ background-image: #F3F9FF;
   margin-left: 10px !important;
   margin-right: 10px !important;
   border-radius: 5px !important; */
+}
+
+.sub_inNav_select:hover {
+  background-color: #F3F9FF;
+  color: rgb(101, 101, 101) !important;
+  padding-left: 60px !important;
 }
 
 

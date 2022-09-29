@@ -6,29 +6,41 @@ import { useNavigate } from "react-router-dom";
 import TableProductsManagement from "views/warehouse_managment/products_management/TableProductsManagement";
 import Excel from "../../../assets/img/Excel.png";
 
-interface DataType {
+interface ProductsType {
   key: number;
   name: string;
   sku: string;
+  subSku: string;
   category: string;
+  subCategory: string;
+  priceNormal: number;
+  priceCost: number;
   status: string;
 }
 const ProductsMangement = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const data: DataType[] = [
+  const data: ProductsType[] = [
     {
       key: 1,
       name: "K8763",
       sku: "โซเดียมไบคาร์บอเนต",
+      subSku: "",
       category: "เคมีภัณฑ์",
+      subCategory: "สารละลาย",
+      priceNormal: 0,
+      priceCost: 0,
       status: "เปิด",
     },
     {
       key: 2,
       name: "K8763",
       sku: "โซเดียมไบคาร์บอเนต",
+      subSku: "",
       category: "เคมีภัณฑ์",
+      subCategory: "สารละลาย",
+      priceNormal: 0,
+      priceCost: 0,
       status: "ปิด",
     },
   ];

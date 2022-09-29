@@ -32,6 +32,12 @@
     "addRole": "Add Role",
     "addShop": "Add Shop&ิBranch",
     "manageInventory": "Manage inventory",
-    "manageGoods" : "Manage goods"
-
+    "manageGoods" : "Manage goods",
+    "allorderlist":"All Order List",
+    "systemOverview": "System Overview",
+    "totalProducts" : "Total number of products",
+    "expiredProducts":"The number of expired products",
+    "damagedGoods":"Amount of damaged goods",
+    "circulation":"Circulation"
+ 
 }

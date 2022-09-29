@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import { Tabs } from "antd";
 import CreateDataForm from "./craete_data_form";
 import CreateDetailForm from "./create_detail_form";

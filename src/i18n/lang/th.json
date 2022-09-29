@@ -32,6 +32,12 @@
     "addRole" : "เพิ่มบทบาท",
     "addShop":"เพิ่มร้าน&สาขา",
     "manageInventory" : "จัดการคลัง",
-    "manageGoods" : "จัดการสินค้า"
+    "manageGoods" : "จัดการสินค้า",
+    "allorderlist":"รายการการสั่งสินค้าทั้งหมด",
+    "systemOverview": "ภาพรวมระบบ",
+    "totalProducts" : "จำนวนสินค้าทั้งหมด",
+    "expiredProducts":"จํานวนสินค้าที่หมดอายุ",
+    "damagedGoods":"จํานวนสินค้าที่เสียหาย",
+    "circulation":"ยอดขาย"
 
 }
