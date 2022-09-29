@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MoTable from "component/Table/MoTable";
 import type { ColumnsType } from "antd/es/table";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import { DashOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Card, Select } from "antd";
-import CSelectTable from "component/input/c-select-table";
+import CDropDown from "component/Dropdown/DropDown";
 type Props = {
   data:any
   tableName:string
@@ -89,46 +87,61 @@ const Table_1 = ({tableName, data}: Props) => {
       render: (text, record) => {
         switch(true) {
           case text === 'อนุมัติ' && ['รายการใบสั่งซื้อ'].includes(tableName):
-            return <CSelectTable 
+            return <CDropDown 
                       background="#77C48B" 
-                      hoverBackground="bg-emerald-400"
+                      hoverBackground="#5F9C6F"
                       selection={
-                        {leder:text, option:[
+                        {title:text, option:[
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
                           {label:'รอเตรียมพัสดุ', value:record.code , action:prepareOrder }
                         ]}}/>
           case text === 'อนุมัติ' && ['รายการการตีกลับ'].includes(tableName):
-            return <CSelectTable 
+            return <CDropDown 
                       background="#77C48B" 
-                      hoverBackground="bg-emerald-400" 
+                      hoverBackground="#5F9C6F" 
                       selection={
-                        {leder:text, option:[
+                        {title:text, option:[
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
                         ]}}/>
           case text ==='รออนุมัติ':
-            return <CSelectTable 
+            return <CDropDown 
                       background="#4E8FCC" 
-                      hoverBackground="bg-blue-500" 
-                      selection={{leder:text, option:[
+                      hoverBackground="#36648E" 
+                      selection={{title:text, option:[
                         {label:'รอตรวจสอบ',value:record.code, action:check },
                       ]}}/>
           case text ==='ยกเลิก':
-              return  <div className="w-[130px] h-[40px] bg-red-600 text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              // return  <div className="w-[130px] h-[40px] bg-red-600 text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              return <CDropDown 
+                        background="#FC0002" 
+                        selection={{title:text, option:[]}}/>
           case ['รอเตรียมสินค้า', 'รอการจัดส่ง'].includes(text):
-              return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              // return <div className="w-[130px] h-[40px] bg-[#4E8FCC] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              return <CDropDown 
+                        background="#4E8FCC" 
+                        selection={{title:text, option:[]}}/> 
           case ['เตรียมสำเร็จ'].includes(text):
-              return <CSelectTable 
+              return <CDropDown 
                         background="#77C48B"
-                        hoverBackground="bg-emerald-400" 
+                        hoverBackground="#5F9C6F" 
                         selection={
-                          {leder:text, option:[
+                          {title:text, option:[
                             {label:'รอส่งสินค้า', value:record.code , action:waitingDelivery },
                       ]}}/>
           case ['รอส่งสินค้า', 'อยู่ระหว่างขนส่ง'].includes(text):
               // เปลี่ยนเป็น กล่องที่มีขนาดเท่ากันกับ select แทน
-              return <div className="w-[130px] h-[40px] bg-[#949594] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              // return <div className="w-[130px] h-[40px] bg-[#949594] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              return <CDropDown 
+                        background="#949594" 
+                        hoverBackground="bg-blue-500" 
+                        selection={{title:text, option:[]}}/>
           case ['สำเร็จ'].includes(text):
-              return <div className="w-[130px] h-[40px] bg-[#77C48B] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              // return <div className="w-[130px] h-[40px] bg-[#77C48B] text-white rounded-[10px] flex justify-center items-center">{text}</div>
+              return <CDropDown 
+                        background="#77C48B" 
+                        hoverBackground="bg-blue-500" 
+                        selection={{title:text, option:[]}}/>
+                      
           default:
             return null
         }

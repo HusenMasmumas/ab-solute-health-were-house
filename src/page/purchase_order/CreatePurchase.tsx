@@ -12,7 +12,6 @@ import {
 import CHeader from "component/headerPage/Header";
 import CDatePicker from "component/input/c-date-picker";
 import CInput from "component/input/c-input";
-import CSelectTable from "component/input/c-select-table";
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
