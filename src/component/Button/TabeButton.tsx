@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import BaseButton, { BaseButtonProps } from "./BaseButton";
 import { useTranslation } from "react-i18next";
-const StyledButton = styled(BaseButton)<{active:boolean}>`
+const StyledButton = styled(BaseButton)<{active?:number}>`
   color: #949594;
   font-size: 16px;
   height: 50px;
@@ -18,7 +18,7 @@ export interface TabeButtonProps extends BaseButtonProps {
 
 const TabeButton = ({ text, active=false , ...props }: TabeButtonProps) => {
   const { t } = useTranslation();
-  return <StyledButton active={active} {...props}>{`${t(text)}`}</StyledButton>;
+  return <StyledButton  active={active ? 1 : 0} {...props}>{`${t(text)}`}</StyledButton>;
 };
 
 export default TabeButton;
