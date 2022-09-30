@@ -16,7 +16,7 @@ type ICHeader = {
 const CHeader = ({ keyHeader, nevigate, arrPath = [], ...props }: ICHeader) => {
   const { t, i18n } = useTranslation();
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 pb-5 pt-5" style={{ position: "sticky", width: "100%", top: 0, zIndex:1, backgroundColor:'#F5F5F5'}}>
       <div className="w-3/5 ">
         <div className="text-[24px] text-darkblue font-bold">
           {i18n.exists(keyHeader) ? `${t(keyHeader)}` : keyHeader}

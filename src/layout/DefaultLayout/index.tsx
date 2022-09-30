@@ -312,7 +312,7 @@ const DefaultLayout = (props: Props) => {
           <Content
             className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full  transition-all "
             style={{
-              padding: 24,
+              padding: "0px 24px 24px 24px",
               margin: 0,
               minHeight: "100%",
             }}
