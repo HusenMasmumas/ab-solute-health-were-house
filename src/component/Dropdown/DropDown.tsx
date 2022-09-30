@@ -72,7 +72,8 @@ const CDropDown = ({ background, hoverBackground, selection}: Props) => {
       trigger={['click']}
       cursor={ option.length > 0 ? true : false}
       >
-        <div className={`flex items-center text-white bg-[${background}] h-[40px] rounded-md px-4 !w-[130px]`}>
+        {/* <div className={`flex items-center text-white bg-[${background}] h-[40px] rounded-md px-4 !w-[130px]`}> */}
+        <div className={`flex items-center text-white h-[40px] rounded-md px-4 !w-[130px]`} style={{backgroundColor:background}}>
           <div className='!w-[100px] text-center '>
             {selection.title}
           </div>
