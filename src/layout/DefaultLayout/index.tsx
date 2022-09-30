@@ -261,7 +261,7 @@ const DefaultLayout = (props: Props) => {
       <div className="!overflow-y-auto">
         <Sider
           width={320}
-          className="cto_sider site-layout-background !bg-[#E8E8E9]  !min-h-screen !text-white hidden md:block border-r-4"
+          className="cto_sider site-layout-background !bg-[#FFF]  !min-h-screen !text-white hidden md:block border-r-4"
           trigger={null}
           collapsible
           collapsed={isTabletSize && openDrawer}
@@ -271,7 +271,7 @@ const DefaultLayout = (props: Props) => {
           }}
         >
           <Image
-            className="h-[60px] !bg-[#E8E8E9] flex justify-center items-center px-[40px]"
+            className="h-[60px] !bg-[#FFF] flex justify-center items-center px-[40px]"
             src={Logo}
             preview={false}
           />
@@ -287,7 +287,7 @@ const DefaultLayout = (props: Props) => {
               paddingLeft: "8px",
               paddingRight: "8px",
             }}
-            className="!bg-[#E8E8E9] text-white  flex flex-col !gap-[7px]"
+            className="!bg-[#FFF] text-white  flex flex-col !gap-[7px]"
             items={MenuList}
           />
         </Sider>
