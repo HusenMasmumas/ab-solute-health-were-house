@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface Props extends BaseButtonProps {}
 
-const LightButton = styled(BaseButton)<Props>`
+const LightBlueButton = styled(BaseButton)<Props>`
   color: #01438F;
   background-color: #F3F9FF;
   ${({ fontSize }) => ( fontSize ? `font-size: ${fontSize};` : null)}}
@@ -16,4 +16,4 @@ const LightButton = styled(BaseButton)<Props>`
   }
 `;
 
-export default LightButton
+export default LightBlueButton
