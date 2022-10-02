@@ -57,13 +57,22 @@ const WarehouseManagement = () => {
       <div className="bg-bgcolor">
         <CHeader
           keyHeader="warehouseManagement"
-          nevigate={{
-            keytext: "createLocker",
-            fn: () => {
-              navigate("/warehouse-management/create-inventory");
-            },
-          }}
+          // nevigate={{
+          //   keytext: "createLocker",
+          //   fn: () => {
+          //     navigate("/warehouse-management/create-inventory");
+          //   },
+          // }}
           arrPath={["warehouseManagement"]}
+          buttons={[
+            { 
+              colorButton: 'green',
+              keytext: 'createLocker',
+              fn:  () => {
+                    navigate("/warehouse-management/create-inventory");
+              }
+            }
+          ]}
         />
       </div>
       <div className="mt-[24px]">

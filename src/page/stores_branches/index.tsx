@@ -102,13 +102,21 @@ const StoresBranches = () => {
     <div className="bg-bgcolor">
       <CHeader
         keyHeader="stores&branches"
-        nevigate={{
-          keytext: "createShop",
-          fn: () => {
-            navigate("/craete-stores-branches");
-          },
-        }}
+        // nevigate={{
+        //   keytext: "createShop",
+        //   fn: () => {
+        //     navigate("/craete-stores-branches");
+        //   },
+        // }}
         arrPath={["stores&branches"]}
+        buttons={[
+          { colorButton: 'green',
+            keytext: 'createShop',
+            fn:  () => {
+              navigate("/craete-stores-branches");
+            },
+          }
+        ]}
       />
       <div className="mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />

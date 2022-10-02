@@ -117,13 +117,22 @@ const ProductsMangement = () => {
     <div>
       <CHeader
         keyHeader="manageGoods"
-        nevigate={{
-          keytext: "addproductlist",
-          fn: () => {
-            navigate("/warehouse-management/craete-products-management");
-          },
-        }}
+        // nevigate={{
+        //   keytext: "addproductlist",
+        //   fn: () => {
+        //     navigate("/warehouse-management/craete-products-management");
+        //   },
+        // }}
         arrPath={["manageGoods"]}
+        buttons={[
+          { 
+            colorButton: 'green',
+            keytext: 'addproductlist',
+            fn:  () => {
+                  navigate("/warehouse-management/craete-products-management");
+            }
+          }
+        ]}
       />
       <div className="mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />

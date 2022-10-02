@@ -29,7 +29,12 @@ const ManagePurcheaseOrder = (props: Props) => {
       <CHeader 
         keyHeader={keyHeader[tabe]}
         arrPath={arrPath[tabe]}
-        nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create')}} : undefined}
+        // nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create')}} : undefined}
+        buttons={tabe===0?[{ 
+            colorButton: 'green',
+            keytext: 'addproductlist',
+            fn:() => {navigate("/warehouse-management/create-store-cabinet")}}
+        ]:undefined}
       />
       <div className='flex space-x-5 mb-3'>
         <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} active={tabe === 0 ? true : false }  />

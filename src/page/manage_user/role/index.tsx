@@ -69,6 +69,15 @@ const RoleManagement = (props: Props) => {
           },
         }}
         arrPath={["manageUser", "role"]}
+        buttons={[
+          { 
+            colorButton: 'green',
+            keytext: 'createrole',
+            fn:  () => {
+                  navigate("/user/create-role");
+            }
+          }
+        ]}
       />
       <div className=" mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />

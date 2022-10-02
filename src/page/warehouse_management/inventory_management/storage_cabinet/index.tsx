@@ -127,13 +127,22 @@ const StoreCabinet = () => {
     <div>
       <CHeader
         keyHeader="warehouseManagement"
-        nevigate={{
-          keytext: "addproductlist",
-          fn: () => {
-            navigate("/warehouse-management/create-store-cabinet");
-          },
-        }}
+        // nevigate={{
+        //   keytext: "addproductlist",
+        //   fn: () => {
+        //     navigate("/warehouse-management/create-store-cabinet");
+        //   },
+        // }}
         arrPath={["warehouseManagement", "locker"]}
+        buttons={[
+          { 
+            colorButton: 'green',
+            keytext: 'addproductlist',
+            fn:  () => {
+                  navigate("/warehouse-management/create-store-cabinet");
+            }
+          }
+        ]}
       />
       <div className="mt-[24px]">
         <SearchForm elements={elements} onFinish={onFinish} />
