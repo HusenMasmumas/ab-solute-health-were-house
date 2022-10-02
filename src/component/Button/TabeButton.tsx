@@ -7,8 +7,8 @@ const StyledButton = styled(BaseButton)<{active:number}>`
   height: 50px;
   border-radius: 8px;
   margin-Top: 0px;  
-  background-color: ${({ active }) => ( active ? '#0069d9 !important' : "white !important")}};
-  color:  ${({ active }) => ( active ? "white !important" : '#0069d9 !important' )}};
+  background-color: ${({ active }) => ( active ? '#4E8FCC !important' : "white !important")}};
+  color:  ${({ active }) => ( active ? "white !important" : '#949594 !important' )}};
 
 `;
 export interface TabeButtonProps extends BaseButtonProps {
