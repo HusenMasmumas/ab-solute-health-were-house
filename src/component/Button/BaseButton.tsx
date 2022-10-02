@@ -20,6 +20,7 @@ const BaseButton = styled(Button)<BaseButtonProps>`
   width: 140px;
   height: 45px;
   color: #949594;
+  borderRadius: 4px;
 `;
 
 export default BaseButton;

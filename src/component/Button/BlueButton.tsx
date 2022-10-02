@@ -3,17 +3,16 @@ import styled from "styled-components";
 
 interface Props extends BaseButtonProps {}
 
-const LightButton = styled(BaseButton)<Props>`
-  color: #01438F;
-  background-color: #F3F9FF;
+const BlueButton = styled(BaseButton)<Props>`
+  color: #FFFFFF;
+  background-color: #4E8FCC;
   ${({ fontSize }) => ( fontSize ? `font-size: ${fontSize};` : null)}}
   ${({ width }) => ( width ? `font-size: ${width};` : null)}}
   ${({ height }) => ( height ? `font-size: ${height};` : null)}}
-  
   &:hover{
-    background-color: #F4F9FF;
-    color: #01438F;
+    background-color: #4680B7;
+    color: #FFFFFF;
   }
 `;
 
-export default LightButton
+export default BlueButton
