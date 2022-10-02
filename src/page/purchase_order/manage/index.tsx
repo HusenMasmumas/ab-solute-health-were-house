@@ -32,8 +32,8 @@ const ManagePurcheaseOrder = (props: Props) => {
         // nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create')}} : undefined}
         buttons={tabe===0?[{ 
             colorButton: 'green',
-            keytext: 'addproductlist',
-            fn:() => {navigate("/warehouse-management/create-store-cabinet")}}
+            keytext: 'createPurchase',
+            fn:() => {navigate("/purchase-order/create")}}
         ]:undefined}
       />
       <div className='flex space-x-5 mb-3'>
