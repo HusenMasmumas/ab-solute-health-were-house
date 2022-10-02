@@ -1,18 +1,25 @@
 import { Button, ButtonProps } from "antd";
 import styled from "styled-components";
 
-export interface BaseButtonProps extends ButtonProps {}
+export interface BaseButtonProps extends ButtonProps {
+  fontSize?: string;
+  width?: string;
+  height?: string;
+  color?: string;
+}
 
-const StyledButton = styled(Button)`
+const BaseButton = styled(Button)<BaseButtonProps>`
+  
   margin-top: 30px;
-  width: 140px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
+  
+  font-size: 16px;
+  width: 140px;
   height: 45px;
+  color: #949594;
 `;
-const BaseButton = (props: BaseButtonProps) => {
-  return <StyledButton {...props} />;
-};
 
 export default BaseButton;
