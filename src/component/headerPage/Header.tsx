@@ -10,7 +10,7 @@ import LightBlueButton from "component/Button/LightBlueButton";
 import BlueButton from "component/Button/BlueButton";
 
 
-type colorButtons = 'green'|'whilte'|'light-blue'|'deep-blue'
+type colorButtons = 'green'|'whilte'|'light-blue'|'deep-blue'|'blue'
 interface IButton {
   colorButton: colorButtons;
   keytext: string;
@@ -66,6 +66,9 @@ const CHeader = ({ keyHeader, nevigate, arrPath = [], buttons=[] }: ICHeader) =>
                 break;
               case 'deep-blue':
                 return <DeepBlueButton onClick={element.fn}>{element.keytext}</DeepBlueButton>
+                break;
+              case 'blue':
+                return <BlueButton onClick={element.fn}>{element.keytext}</BlueButton>
                 break;
               default:
                 return <WhilteButton onClick={element.fn}>{element.keytext}</WhilteButton>
