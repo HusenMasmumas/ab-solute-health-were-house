@@ -10,7 +10,7 @@ export interface BaseButtonProps extends ButtonProps {
 
 const BaseButton = styled(Button)<BaseButtonProps>`
   
-  margin-top: 30px;
+  margin-top: 10px;
 
   display: flex;
   align-items: center;
@@ -21,6 +21,10 @@ const BaseButton = styled(Button)<BaseButtonProps>`
   height: 45px;
   color: #949594;
   borderRadius: 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export default BaseButton;
