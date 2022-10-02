@@ -1,4 +1,4 @@
-import { Dropdown, Menu, MenuProps } from 'antd'
+import { Dropdown, Menu, MenuProps, ConfigProvider } from 'antd'
 import { DownOutlined } from '@ant-design/icons';
 import styled from "styled-components";
 
@@ -67,19 +67,20 @@ const CDropDown = ({ background, hoverBackground, selection}: Props) => {
     );
 
   return (
-    <StyleDropdown 
-      overlay={menu} 
-      trigger={['click']}
-      cursor={ option.length > 0 ? true : false}
-      >
-        {/* <div className={`flex items-center text-white bg-[${background}] h-[40px] rounded-md px-4 !w-[130px]`}> */}
-        <div className={`flex items-center text-white h-[40px] rounded-md px-4 !w-[130px]`} style={{backgroundColor:background}}>
-          <div className='!w-[100px] text-center '>
-            {selection.title}
+    <ConfigProvider getPopupContainer={(trigger:any) => trigger.parentElement}>
+      <StyleDropdown 
+        overlay={menu} 
+        trigger={['click']}
+        cursor={ option.length > 0 ? true : false}
+        >
+          <div className={`flex items-center text-white h-[40px] rounded-md px-4 !w-[130px]`} style={{backgroundColor:background}}>
+            <div className='!w-[100px] text-center '>
+              {selection.title}
+            </div>
+            { option.length > 0 && <DownOutlined />}
           </div>
-          { option.length > 0 && <DownOutlined />}
-        </div>
-    </StyleDropdown>
+      </StyleDropdown>
+    </ConfigProvider>
   )
 }
 
