@@ -12,6 +12,8 @@ import SearchButton from "component/Button/SearchButton";
 import CleanButton from "component/Button/CleanButton";
 import CDatePicker from "component/input/c-date-picker";
 import { spawn } from "child_process";
+import LightButton from "component/Button/LightBlueButton";
+import WhilteButton from "component/Button/whilteButton";
 export type TPageHeaderInput =
   | "input"
   | "select"
@@ -133,18 +135,13 @@ const SearchForm = ({
             <Form.Item className="mb-0">
               <Row gutter={[0, 6]}>
                 <Col className="flex space-x-4">
-                  <SearchButton
+                  <LightButton
                     onClick={_onSubmit}
                     size="large"
-                    style={{
-                      fontSize: "16px",
-                      borderRadius: "4px",
-                      border: "none",
-                    }}
                   >
                     ค้นหา
-                  </SearchButton>
-                  <CleanButton
+                  </LightButton>
+                  <WhilteButton
                     onClick={onReset ? onReset : _onReset}
                     size="large"
                     style={{
@@ -153,7 +150,7 @@ const SearchForm = ({
                     }}
                   >
                     ล้าง
-                  </CleanButton>
+                  </WhilteButton>
                 </Col>
               </Row>
             </Form.Item>
