@@ -20,7 +20,7 @@ const BaseButton = styled(Button)<BaseButtonProps>`
   width: 140px;
   height: 45px;
   color: #949594;
-  borderRadius: 4px;
+  border-radius: 8px !important;
 
   overflow: hidden;
   text-overflow: ellipsis;
