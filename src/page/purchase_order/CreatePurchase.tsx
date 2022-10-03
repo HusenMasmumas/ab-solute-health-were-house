@@ -140,12 +140,6 @@ const CreatePurchase = (props: Props) => {
       />
       <Card className="w-full">
         <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
-        <Button
-            className="!bg-[#4E8FCC] !text-lg !h-11 !rounded-md !border-[#4E8FCC] !text-white"
-            onClick={() => { form.submit(); }}
-          >
-            สร้าง
-          </Button>
         <Divider />
         <Form 
           layout="vertical" 
@@ -190,7 +184,7 @@ const CreatePurchase = (props: Props) => {
                   <span className="text-[20px]">เลขที่ใบส่งที่อ้างอิง</span>
                 }
               >
-                <CInput />
+                <CInput/>
               </Form.Item>
             </Col>
             <Col span={12}>
