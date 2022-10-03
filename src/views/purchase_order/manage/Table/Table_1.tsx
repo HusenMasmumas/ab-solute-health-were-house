@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MoTable from "component/Table/MoTable";
 import type { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
-import { Card, Select } from "antd";
+import { Card } from "antd";
 import CDropDown from "component/Dropdown/DropDown";
 type Props = {
   data:any

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
-import { Switch } from "antd";
+import { Card } from "antd";
 type Props = {
   dataTable: DataType[];
   headerTable: string;
@@ -69,7 +69,7 @@ const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
     else setCurrentPage(page);
   };
   return (
-    <div>
+    <Card className="w-full !mt-5">
       <MoTable
         headerTable={headerTable}
         columns={columns}
@@ -81,7 +81,7 @@ const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
           currentPage: currentPage,
         }}
       />
-    </div>
+    </Card>
   );
 };
 
