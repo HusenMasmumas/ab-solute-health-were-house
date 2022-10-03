@@ -27,6 +27,7 @@ const StyledMenu = styled(Menu)<IStyleMenu>`
   color: #fff;
   
   .ant-dropdown-menu-item {
+    text-align: center;
     color:#fff !important;
     &:hover{
       background-color: ${({ hoverBackground }) => hoverBackground} !important;
