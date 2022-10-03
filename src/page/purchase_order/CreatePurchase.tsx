@@ -20,7 +20,7 @@ import styled from "styled-components";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CreateModal from "views/purchase_order/CreateModal";
 import moment from 'moment';
-
+import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
@@ -93,6 +93,7 @@ const CreatePurchase = (props: Props) => {
   const [open, setOpen] = useState(false);
   const [selectData, setSelectData] = useState<any>([])
   const [date, setDate] = useState<Date>(new Date())
+  const navigate = useNavigate();
   let [form] = Form.useForm();
   useEffect(() => {
     console.log("current", currentPage);
@@ -122,6 +123,20 @@ const CreatePurchase = (props: Props) => {
       <CHeader
         keyHeader="purchaseOrder"
         arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
+        buttons={[
+          { colorButton: 'whilte',
+            keytext: 'ยกเลิก',
+            fn:  () => {
+              navigate("/purchase-order/manage");
+            }
+          },
+          { colorButton: 'blue',
+            keytext: 'บันทึก',
+            fn:  () => {
+              form.submit();
+            },
+          }
+        ]}
       />
       <Card className="w-full">
         <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
