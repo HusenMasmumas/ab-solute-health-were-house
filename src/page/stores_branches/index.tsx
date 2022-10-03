@@ -122,9 +122,9 @@ const StoresBranches = () => {
         <SearchForm elements={elements} onFinish={onFinish} />
       </div>
       {/* Table */}
-      <div className="mt-10 bg-white">
-        <TableStoresBranches dataTable={data} headerTable={t("orderlist")} />
-      </div>
+     
+      <TableStoresBranches dataTable={data} headerTable={t("orderlist")} />
+      
     </div>
   );
 };

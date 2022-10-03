@@ -149,7 +149,10 @@ const Table_1 = ({tableName, data}: Props) => {
   };
 
   return (
-    <Card className="w-full !mt-5">
+    <Card 
+      className="w-full !p-0 !my-10"
+      bodyStyle={{paddingTop:0}}
+    >
       <div className="my-3">
         <span className="text-[#231F20] text-[20px] !font-bold">{tableName}</span>
       </div>
