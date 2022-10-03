@@ -46,7 +46,7 @@ const CHeader = ({ keyHeader, nevigate, arrPath = [], buttons=[] }: ICHeader) =>
         </div>
       )} */}
 
-      <div className="justify-end flex items-center">
+      <div className="justify-end flex items-center space-x-1.5">
         {
           buttons.map((element:IButton)=>{
             switch (element.colorButton) {
