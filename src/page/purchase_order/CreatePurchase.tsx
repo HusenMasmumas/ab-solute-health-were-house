@@ -21,6 +21,8 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CreateModal from "views/purchase_order/CreateModal";
 import moment from 'moment';
 import { useNavigate } from "react-router-dom";
+import PurchaseForm from "component/Form/purchaseForm";
+import BlueButton from "component/Button/BlueButton";
 type Props = {};
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
@@ -95,6 +97,9 @@ const CreatePurchase = (props: Props) => {
   const [date, setDate] = useState<Date>(new Date())
   const navigate = useNavigate();
   let [form] = Form.useForm();
+
+  // DataForm From
+  const [forms, setForm] = useState<any>()
   useEffect(() => {
     console.log("current", currentPage);
     console.log("limitPage", limitPage);
@@ -133,7 +138,7 @@ const CreatePurchase = (props: Props) => {
           { colorButton: 'blue',
             keytext: 'บันทึก',
             fn:  () => {
-              form.submit();
+              form.submit()
             },
           }
         ]}
@@ -141,103 +146,26 @@ const CreatePurchase = (props: Props) => {
       <Card className="w-full">
         <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
         <Divider />
-        <Form 
-          layout="vertical" 
-          onFinish={onFinish}
+        <PurchaseForm
           form={form}
-        >
-          <Row gutter={[12, 6]} align="bottom">
-            <Col span={12}>
-              <Form.Item
-                className="mb-0"
-                name="codeOrder"
-                label={<span className="text-[20px]">เลขที่ใบสั่งซื้อ</span>}
-              >
-                <CInput />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                className="mb-0"
-                name="sendDate"
-                label={<span className="text-[20px]">วันที่ส่ง</span>}
-                rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
-              >
-                <CDatePicker 
-                size="large" 
-                disabledDate={d =>  d.isBefore(moment(moment(), 'YYYY/MM/DD').subtract(1, 'days'))}
-                onChange={(d )=>{
-                  setDate(new Date(d))
-                  let overTimeDate = form.getFieldValue('overtimeDate')
-                  if(overTimeDate){ 
-                    form.setFieldsValue({ 'overtimeDate': null})
-                  }
-                }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                className="mb-0"
-                name="codeRef"
-                label={
-                  <span className="text-[20px]">เลขที่ใบส่งที่อ้างอิง</span>
-                }
-              >
-                <CInput/>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                className="mb-0"
-                name="overtimeDate"
-                label={<span className="text-[20px]">วันครบกำหนด</span>}
-                rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
-              >
-                <CDatePicker 
-                size="large" 
-                disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                className="mb-0"
-                name="Description1"
-                label={
-                  <span className="text-[20px]">รายละเอียดผู้ส่งสินค้า</span>
-                }
-              >
-                <TextArea rows={4} />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                className="mb-0"
-                name="Description2"
-                label={
-                  <span className="text-[20px]">รายละเอียดผู้สั่งสินค้า</span>
-                }
-              >
-                <TextArea rows={4} />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-
-        <div className="text-2xl">รายละเอียดสินค้า</div>
+          onFinish={(value:any)=>{
+            setForm(value)
+            console.log(value);
+          }}
+          refDisable={true}
+        />
         <MoTable 
+          headerTable='รายละเอียดสินค้า'
           columns={columns} 
           dataSource={[]} 
           pagination={false} 
         />
         <div className="mt-5">
-          <Button
-            className="!bg-[#4E8FCC] !text-lg !h-11 !rounded-md !border-[#4E8FCC] !text-white"
+          <BlueButton
             onClick={() => setOpen(true)}
           >
             + เพิ่มสินค้า
-          </Button>
+          </BlueButton>
           <Row>
             <Col sm={24} lg={12} className="!flex !items-end pb-6">
               <div className="w-full">
