@@ -45,20 +45,20 @@ const CHeader = ({ keyHeader, nevigate, arrPath = [], buttons=[] }: ICHeader) =>
 
       <div className="justify-end flex items-center space-x-1.5">
         {
-          buttons.map((element:IButton)=>{
+          buttons.map((element:IButton,index:number)=>{
             switch (element.colorButton) {
               case 'green':
-                return <GreenButton onClick={element.fn}>{element.keytext}</GreenButton>
+                return <GreenButton key={index} onClick={element.fn}>{element.keytext}</GreenButton>
               case 'whilte':
-                return <WhilteButton onClick={element.fn}>{element.keytext}</WhilteButton>
+                return <WhilteButton key={index} onClick={element.fn}>{element.keytext}</WhilteButton>
               case 'light-blue':
-                return <LightBlueButton onClick={element.fn}>{element.keytext}</LightBlueButton>
+                return <LightBlueButton key={index} onClick={element.fn}>{element.keytext}</LightBlueButton>
               case 'deep-blue':
-                return <DeepBlueButton onClick={element.fn}>{element.keytext}</DeepBlueButton>
+                return <DeepBlueButton key={index} onClick={element.fn}>{element.keytext}</DeepBlueButton>
               case 'blue':
-                return <BlueButton onClick={element.fn}>{element.keytext}</BlueButton>
+                return <BlueButton key={index} onClick={element.fn}>{element.keytext}</BlueButton>
               default:
-                return <WhilteButton onClick={element.fn}>{element.keytext}</WhilteButton>
+                return <WhilteButton key={index} onClick={element.fn}>{element.keytext}</WhilteButton>
             }
           })
         }
