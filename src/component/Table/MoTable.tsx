@@ -2,15 +2,20 @@ import React from "react";
 import { Table, Pagination, TableProps, Divider } from "antd";
 import { StringLiteral } from "typescript";
 
+
+type actionType = 'excel'
 interface Props extends TableProps<any> {
   headerTable?: String;
   config?: any;
   onChangePage?: (page: number, pageSize?: string) => void;
-  onClickRow?: (row: any) => void;
+  onClickRow?: (row : any) => void;
   pagination?: boolean | any;
   onDoubleClick?: boolean;
   columns?: any[];
-  action?: any;
+  action?: {
+    action: actionType
+    fn: (row?: any) => void;
+  }[];
   scroll?: any;
 }
 
