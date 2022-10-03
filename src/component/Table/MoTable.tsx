@@ -31,7 +31,7 @@ const MoTable = ({
     <div>
       {action ||
         (headerTable && (
-          <div className="flex px-6 mt-5 h-16">
+          <div className="flex h-16">
             {headerTable ? (
               <div className="text-[20px] font-semibold w-[70%] flex items-center">
                 {headerTable}

@@ -69,7 +69,10 @@ const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
     else setCurrentPage(page);
   };
   return (
-    <Card className="w-full !mt-5">
+    <Card 
+      className="w-full  !my-10"
+      bodyStyle={{paddingTop:0}}
+      >
       <MoTable
         headerTable={headerTable}
         columns={columns}
