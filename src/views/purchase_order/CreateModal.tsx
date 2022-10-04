@@ -8,8 +8,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { createQueryString } from 'utils/utils'
 type Props = {
-  setSelectData: (row: any,arrindex:any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
+  setSelectData: (row: any, arrindex:any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
+  historyData:any
 };
 
 interface TableType {
@@ -136,10 +137,10 @@ const CreateModal = (props: Props) => {
     }
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     // fetchData(createQueryString({limit: limitPage, page: currentPage, key: keySearch}))
-    fakerFetchData(1)
-  }, []);
+    // fakerFetchData(1)
+  // }, []);
 
   useEffect(()=>{
     const obj = {limit: limitPage, page: currentPage, key: keySearch}
@@ -152,14 +153,14 @@ const CreateModal = (props: Props) => {
     const obj = {limit: limitPage, page: 1, key: keySearch}
     // console.log(createQueryString(obj));
     // fetchData(createQueryString(obj));
-    fakerFetchData(4)
+    // fakerFetchData(4)
   },[limitPage])
 
   useEffect(()=>{
     const obj = {limit: limitPage, page: 1, key: keySearch}
     // console.log(createQueryString(obj));
     // fetchData(createQueryString(obj));
-    fakerFetchData(3)
+    // fakerFetchData(3)
   },[keySearch])
 
   const fetchData = async (query:string) => {
@@ -251,6 +252,7 @@ const CreateModal = (props: Props) => {
         </Row>
       </div>
       <MoTable
+        key='index'
         rowKey="index"
         columns={columns}
         dataSource={dataPage}

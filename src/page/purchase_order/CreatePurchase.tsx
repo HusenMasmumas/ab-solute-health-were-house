@@ -23,6 +23,8 @@ import moment from 'moment';
 import { useNavigate } from "react-router-dom";
 import PurchaseForm from "component/Form/purchaseForm";
 import BlueButton from "component/Button/BlueButton";
+import { json } from "stream/consumers";
+import * as _ from "lodash";
 type Props = {};
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
@@ -47,9 +49,18 @@ interface DataType {
   pay: number;
 }
 
+interface TableType {
+  index: number;
+  sku: string;
+  name: string;
+  price: number;
+  amount: number;
+  unit: string;
+  total: number;
+}
 
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<TableType> = [
   {
     title: "#",
     dataIndex: "index",
@@ -72,7 +83,12 @@ const columns: ColumnsType<DataType> = [
   },
   {
     title: "จำนวนที่ต้องการ",
-    dataIndex: "point",
+    dataIndex: "amount",
+    render:(data:any,dataList:any)=>{
+
+      return(<div>{data}</div>)
+
+    }
   },
   {
     title: "ที่สามารถแพ็คได้",
@@ -90,32 +106,42 @@ const columns: ColumnsType<DataType> = [
 const { TextArea } = Input;
 
 const CreatePurchase = (props: Props) => {
-  const [limitPage, setLimitPage] = useState<number>(10);
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [open, setOpen] = useState(false);
   const [selectData, setSelectData] = useState<any>([])
   const [date, setDate] = useState<Date>(new Date())
+  const [historyData, sethistoryData] = useState<any>([]);
+  const [selectIndex, setSelectIndex] = useState<number[]>([]);
+  const [motalTableData, setMotableData] = useState<any>([]);
+  
   const navigate = useNavigate();
   let [form] = Form.useForm();
-
-  // DataForm From
   const [forms, setForm] = useState<any>()
-  useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
-  }, [currentPage, limitPage]);
 
   useEffect(()=>{
     console.log('form modal',selectData);
   },[selectData])
+
+  useEffect(()=>{
+    //ถ้า กดปุ่มยันทึกแล้วให้บันทึก  ก่อนบันทึกเช็คจำนวนสินค้า
+
+  },[forms])
+
+  useEffect(()=>{
+    setMotableData([...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )])
+
+    console.log("AAAAAA",[...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )]);
+    
+  },[historyData])
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
 
   const onFinishModal = (values: any,indexArray:any) => {
-    console.log("amount Received Modal ", values);
-    console.log("indexArray",indexArray)
+    // console.log("amount Received Modal ", values); //ตัวที่เคย get มาทั้งหมด
+    sethistoryData([...values])
+    // console.log("indexArray",indexArray) //ตัวที่เลือก
+    setSelectIndex([...indexArray])
   };
 
   const rowSelection = {
@@ -154,10 +180,13 @@ const CreatePurchase = (props: Props) => {
           }}
           refDisable={true}
         />
+        {JSON.stringify(motalTableData)}
         <MoTable 
+          key='index'
+          rowKey="index"
           headerTable='รายละเอียดสินค้า'
           columns={columns} 
-          dataSource={[]} 
+          dataSource={ _.cloneDeep(motalTableData)} 
           pagination={false} 
         />
         <div className="mt-5">
@@ -254,6 +283,7 @@ const CreatePurchase = (props: Props) => {
           </Row>
         </div>
       </Card>
+      
       <Modal
         title={<span className="text-[#498DCB] text-[18px]">รายละเอียดสินค้า</span>}
         centered
@@ -264,7 +294,10 @@ const CreatePurchase = (props: Props) => {
         width={1000}
         // destroyOnClose={true}
       >
-        <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen}/>
+        <CreateModal 
+          historyData={historyData} //โยน historyData เข้าไป initial 
+          setSelectData={onFinishModal} 
+          setOpenMoDal={setOpen}/>
       </Modal>
     </div>
     

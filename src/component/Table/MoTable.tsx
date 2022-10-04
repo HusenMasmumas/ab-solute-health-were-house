@@ -1,6 +1,4 @@
-import React from "react";
 import { Table, Pagination, TableProps, Divider } from "antd";
-import { StringLiteral } from "typescript";
 
 
 type actionType = 'excel'
@@ -34,6 +32,7 @@ const MoTable = ({
 }: Props) => {
   return (
     <div>
+
       {action ||
         (headerTable && (
           <div className="flex h-16">
@@ -57,7 +56,7 @@ const MoTable = ({
         ))}
       <Table
         columns={columns}
-        dataSource={dataSource}
+        dataSource={[...dataSource]}
         rowSelection={rowSelection}
         scroll={scroll}
         expandable={expandable}
