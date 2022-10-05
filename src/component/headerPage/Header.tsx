@@ -34,31 +34,22 @@ const CHeader = ({ keyHeader, nevigate, arrPath = [], buttons=[] }: ICHeader) =>
         </div>
         <NevigationPath textPath={arrPath} />
       </div>
-
-      {/* {nevigate && (
-        <div className="justify-end flex items-center ">
-          <CreateButton onClick={nevigate.fn}>
-            {`${t(nevigate.keytext)}`}
-          </CreateButton>
-        </div>
-      )} */}
-
       <div className="justify-end flex items-center space-x-1.5">
         {
-          buttons.map((element:IButton,index:number)=>{
-            switch (element.colorButton) {
+          buttons.map(({keytext, fn, colorButton}:IButton,index:number)=>{
+            switch (colorButton) {
               case 'green':
-                return <GreenButton key={index} onClick={element.fn}>{element.keytext}</GreenButton>
+                return <GreenButton key={index} onClick={fn}>{i18n.exists(keytext) ? `${t(keytext)}` : keytext}</GreenButton>
               case 'whilte':
-                return <WhilteButton key={index} onClick={element.fn}>{element.keytext}</WhilteButton>
+                return <WhilteButton key={index} onClick={fn}>{keytext}</WhilteButton>
               case 'light-blue':
-                return <LightBlueButton key={index} onClick={element.fn}>{element.keytext}</LightBlueButton>
+                return <LightBlueButton key={index} onClick={fn}>{keytext}</LightBlueButton>
               case 'deep-blue':
-                return <DeepBlueButton key={index} onClick={element.fn}>{element.keytext}</DeepBlueButton>
+                return <DeepBlueButton key={index} onClick={fn}>{keytext}</DeepBlueButton>
               case 'blue':
-                return <BlueButton key={index} onClick={element.fn}>{element.keytext}</BlueButton>
+                return <BlueButton key={index} onClick={fn}>{keytext}</BlueButton>
               default:
-                return <WhilteButton key={index} onClick={element.fn}>{element.keytext}</WhilteButton>
+                return <WhilteButton key={index} onClick={fn}>{keytext}</WhilteButton>
             }
           })
         }
