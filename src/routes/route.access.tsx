@@ -27,6 +27,7 @@ import CreateStore from "page/stores_branches/create_stores";
 import CreateInventory from "page/warehouse_management/inventory_management/craete_inventory";
 import ProductsManagemnet from "page/warehouse_management/products_management";
 import CreateProduct from "page/warehouse_management/products_management/create_products";
+import Examine from "page/purchase_order/Examine";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -124,6 +125,12 @@ export const _requirePermission: RouteCustom[] = [
         keyName: "purchase-order/approve",
         requireAuth: true,
         element: <ApprovePurchase />,
+      },
+      {
+        path: "purchase-order/examine",
+        keyName: "purchase-order/examine",
+        requireAuth: true,
+        element: <Examine />,
       },
       {
         path: "/report",
