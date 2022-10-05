@@ -5,6 +5,7 @@ import {
   Form,
   Row,
   Input,
+  InputNumber,
   Button,
   ConfigProvider,
   Modal,
@@ -15,7 +16,6 @@ import CInput from "component/input/c-input";
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
-import { InputNumber } from "antd";
 import styled from "styled-components";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CreateModal from "views/purchase_order/CreateModal";
@@ -90,6 +90,9 @@ const CreatePurchase = (props: Props) => {
     {
       title: "ราคา/หน่วย",
       dataIndex: "price",
+      render: (price: number) => {
+        return <span>{price.toFixed(2)}</span>;
+      },
     },
     {
       title: "สต็อคคงเหลือ",
@@ -98,14 +101,24 @@ const CreatePurchase = (props: Props) => {
     {
       title: "จำนวนที่ต้องการ",
       dataIndex: "amount",
-      render:(data:any, record:TableType, index:number)=>{
+      render:(amount:number, record:TableType, index:number)=>{
 
         return(
-          <CInput onChange={(e:any)=>{
-            console.log(e.target.value);
-            console.log('record',record);
-            setNewValue(e.target.value, record)
-          }} value={data}/>)
+          <InputNumber
+              min={1}
+              defaultValue={1}
+              value={amount}
+              onChange={(value) => {
+                console.log('value', value,'__typeof' ,typeof value);
+                
+                if (typeof value === "number")
+                  setNewValue(value, record)
+                else {
+                  setNewValue(1, record)
+                }
+              }}
+          />
+        )
        }
     },
     {
@@ -119,13 +132,22 @@ const CreatePurchase = (props: Props) => {
     {
       title: "ราคารวม (฿)",
       dataIndex: "pay",
+      render: ( _, record) => {
+        return (
+          <div>
+            {(record.price * record.amount).toFixed(2)}
+          </div>
+        )
+      }
     },
   ];
 
   const setNewValue = (amount:number, record:TableType )=>{
       const arr = historyData.map((element:TableType)=>{
         if(element.index === record.index){
+          
           element.amount = amount
+          console.log('change value',element);
           return element
         }
           return element
@@ -150,13 +172,8 @@ const CreatePurchase = (props: Props) => {
   },[forms])
 
   useEffect(()=>{
-    setMotableData([...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )])
-
-    console.log("AAAAAA",[...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )]);
-    
+    setMotableData([...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )])    
   },[historyData])
-
-
 
   return (
     <div>

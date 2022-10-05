@@ -88,7 +88,7 @@ const CreateModal = (props: Props) => {
     {
       title: "ราคารวม(฿)",
       dataIndex: "fullpay",
-      render: (price: number, record, index) => {
+      render: (_, record) => {
         return <span>{(record.price * record.amount).toFixed(2)}</span>;
       },
     },
@@ -100,7 +100,7 @@ const CreateModal = (props: Props) => {
           return record
         } 
         return obj 
-      })
+    })
     sethistoryData([...changeArr])
     const newData = [...dataPage];
     newData[index].amount = value;
