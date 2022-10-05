@@ -59,50 +59,6 @@ interface TableType {
   total: number;
 }
 
-
-const columns: ColumnsType<TableType> = [
-  {
-    title: "#",
-    dataIndex: "index",
-  },
-  {
-    title: "SKU",
-    dataIndex: "sku",
-  },
-  {
-    title: "ชื่อสินค้า",
-    dataIndex: "name",
-  },
-  {
-    title: "ราคา/หน่วย",
-    dataIndex: "price",
-  },
-  {
-    title: "สต็อคคงเหลือ",
-    dataIndex: "stock",
-  },
-  {
-    title: "จำนวนที่ต้องการ",
-    dataIndex: "amount",
-    render:(data:any,dataList:any)=>{
-
-      return(<div>{data}</div>)
-
-    }
-  },
-  {
-    title: "ที่สามารถแพ็คได้",
-    dataIndex: "handle",
-  },
-  {
-    title: "หน่วย",
-    dataIndex: "unit",
-  },
-  {
-    title: "ราคารวม (฿)",
-    dataIndex: "pay",
-  },
-];
 const { TextArea } = Input;
 
 const CreatePurchase = (props: Props) => {
@@ -112,10 +68,77 @@ const CreatePurchase = (props: Props) => {
   const [historyData, sethistoryData] = useState<any>([]);
   const [selectIndex, setSelectIndex] = useState<number[]>([]);
   const [motalTableData, setMotableData] = useState<any>([]);
+  const [forms, setForm] = useState<any>()
   
   const navigate = useNavigate();
   let [form] = Form.useForm();
-  const [forms, setForm] = useState<any>()
+  
+
+  const columns: ColumnsType<TableType> = [
+    {
+      title: "#",
+      dataIndex: "index",
+    },
+    {
+      title: "SKU",
+      dataIndex: "sku",
+    },
+    {
+      title: "ชื่อสินค้า",
+      dataIndex: "name",
+    },
+    {
+      title: "ราคา/หน่วย",
+      dataIndex: "price",
+    },
+    {
+      title: "สต็อคคงเหลือ",
+      dataIndex: "stock",
+    },
+    {
+      title: "จำนวนที่ต้องการ",
+      dataIndex: "amount",
+      render:(data:any, record:TableType, index:number)=>{
+
+        return(
+          <CInput onChange={(e:any)=>{
+            console.log(e.target.value);
+            console.log('record',record);
+            setNewValue(e.target.value, record)
+          }} value={data}/>)
+       }
+    },
+    {
+      title: "ที่สามารถแพ็คได้",
+      dataIndex: "handle",
+    },
+    {
+      title: "หน่วย",
+      dataIndex: "unit",
+    },
+    {
+      title: "ราคารวม (฿)",
+      dataIndex: "pay",
+    },
+  ];
+
+  const setNewValue = (amount:number, record:TableType )=>{
+      const arr = historyData.map((element:TableType)=>{
+        if(element.index === record.index){
+          element.amount = amount
+          return element
+        }
+          return element
+      })
+      sethistoryData([...arr])
+  }
+
+  const onFinishModal = (values: any,indexArray:any) => {
+    // console.log("amount Received Modal ", values); //ตัวที่เคย get มาทั้งหมด
+    sethistoryData([...values])
+    // console.log("indexArray",indexArray) //ตัวที่เลือก
+    setSelectIndex([...indexArray])
+  };
 
   useEffect(()=>{
     console.log('form modal',selectData);
@@ -133,21 +156,7 @@ const CreatePurchase = (props: Props) => {
     
   },[historyData])
 
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
 
-  const onFinishModal = (values: any,indexArray:any) => {
-    // console.log("amount Received Modal ", values); //ตัวที่เคย get มาทั้งหมด
-    sethistoryData([...values])
-    // console.log("indexArray",indexArray) //ตัวที่เลือก
-    setSelectIndex([...indexArray])
-  };
-
-  const rowSelection = {
-    // columnWidth:'150px',
-    columnTitle:<span>#</span>,
-  };
 
   return (
     <div>
@@ -180,7 +189,6 @@ const CreatePurchase = (props: Props) => {
           }}
           refDisable={true}
         />
-        {JSON.stringify(motalTableData)}
         <MoTable 
           key='index'
           rowKey="index"
@@ -292,13 +300,14 @@ const CreatePurchase = (props: Props) => {
         // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         width={1000}
-        // destroyOnClose={true}
+        destroyOnClose={true}
       >
         <CreateModal 
           historyData={historyData} //โยน historyData เข้าไป initial 
+          selectIndex={selectIndex} //โยนเข้าไป initial
           setSelectData={onFinishModal} 
           setOpenMoDal={setOpen}/>
-      </Modal>
+        </Modal>
     </div>
     
   );

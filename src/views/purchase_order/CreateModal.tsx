@@ -10,7 +10,8 @@ import { createQueryString } from 'utils/utils'
 type Props = {
   setSelectData: (row: any, arrindex:any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
-  historyData:any
+  historyData:any;
+  selectIndex:number[];
 };
 
 interface TableType {
@@ -25,18 +26,24 @@ interface TableType {
 
 const CreateModal = (props: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [dataPage, setDataPage] = useState<any>([]);
-  const [historyData, sethistoryData] = useState<any>([]);
-  const [selectKey, setSelectKey] = useState<any>([]);
-  const [keySearch, setKeySearch] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>();
+
+  const [dataPage, setDataPage] = useState<any>([]); // ข้อมูลที่ list Table ให้เลือกตามหน้า
+  const [historyData, sethistoryData] = useState<any>([]); // ข้อมูลที่ list Table ทั้งหมดที่เคย fetch มา ทำเพื่อเก็บข้อมูลการแก้ไขชั่วคราว
   
+  const [selectKey, setSelectKey] = useState<number[]>([]); // item ที่เลือก
+  
+  const [keySearch, setKeySearch] = useState<string>(''); // คำที่ใช้ค้นหา
   let [_form] = Form.useForm();
   const onFinish = ({ nameProduct }: {nameProduct:string}) => {
     setKeySearch(nameProduct)
   };
 
   const columns: ColumnsType<TableType> = [
+    {
+      title: "index",
+      dataIndex: "index",
+    },
     {
       title: "SKU",
       dataIndex: "sku",
@@ -82,7 +89,6 @@ const CreateModal = (props: Props) => {
       title: "ราคารวม(฿)",
       dataIndex: "fullpay",
       render: (price: number, record, index) => {
-        // console.log("record.price*record.amount",record.price*record.amount);
         return <span>{(record.price * record.amount).toFixed(2)}</span>;
       },
     },
@@ -91,11 +97,8 @@ const CreateModal = (props: Props) => {
   const onChangeInputAmout = (value: number, record: any, index: any) => {
     const changeArr = historyData.map((obj:any)=>{ 
         if(record.index === obj.index){
-          // console.log('find');
           return record
         } 
-        // console.log('not find');
-        
         return obj 
       })
     sethistoryData([...changeArr])
@@ -109,21 +112,12 @@ const CreateModal = (props: Props) => {
     columnTitle:<span>#</span>,
     selectedRowKeys: selectKey,
     onSelect:(record:any, selected:any, selectedRows:any)=>{
-      console.log('onSelect',record,selected,selectedRows);
+
       if(selectKey.includes(record.index)){
-        let index =  selectKey.indexOf(record.index)
-        setSelectKey((prevState:any) => {
-          return [
-            ...(prevState.splice(index+1, 1))
-          ]
-        })
+        let indexArr = selectKey.filter((item:number) => item !== record.index)
+        setSelectKey([...indexArr])
       }else{
-        setSelectKey((prevState:any) => {
-          return [
-            ...prevState,
-            record.index
-          ]
-        })
+        setSelectKey((prevState:any) => { return [...prevState, record.index]})
       }
     }
   };
@@ -137,15 +131,18 @@ const CreateModal = (props: Props) => {
     }
   };
 
-  // useEffect(() => {
-    // fetchData(createQueryString({limit: limitPage, page: currentPage, key: keySearch}))
-    // fakerFetchData(1)
-  // }, []);
+  const specialSwitch =async () => {
+    await sethistoryData([...props.historyData])
+    setCurrentPage(1)
+  }
+
+  useEffect(() => {
+    setSelectKey([...props.selectIndex])
+    specialSwitch()
+  }, []);
 
   useEffect(()=>{
     const obj = {limit: limitPage, page: currentPage, key: keySearch}
-    // console.log(createQueryString(obj));
-    // fetchData(createQueryString(obj));
     fakerFetchData(currentPage)
   },[currentPage])
 
@@ -181,19 +178,22 @@ const CreateModal = (props: Props) => {
     setDataPage(arr);//ทำงานปกติ
   };
 
-  const fakerFetchData = async (query:number) => {
+  const fakerFetchData = async (query:number | undefined) => {
     const { data } = await axios.get(`http://localhost:5000/product/${query}`);
+    
     const arr = data.map((element:any) => {
+      
       const find = historyData.find((obj:any)=>{ 
         return obj.index === element.index 
       })
+
       if(find){
-        return find
+        return find // return ออกไป arr  มีแล้วก็ไม่ต้องเก็บ
       }else{
         sethistoryData((prevState:any) => {
           return [ ...prevState, element ]
-        })
-        return element
+        }) // เอาเข้าไปเก็บใน history
+        return element // return ออกไป arr
       }
     });
     setDataPage(arr);//ทำงานปกติ
