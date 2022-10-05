@@ -15,7 +15,6 @@ const CInput = ({option, ...props}: CInputProps) => {
   // console.log(pro);
   
   return (
-    <div>
         <Input 
          prefix={
           option?.search ? (
@@ -24,7 +23,6 @@ const CInput = ({option, ...props}: CInputProps) => {
         className='!py-0 h-[40px]'
         {...props} 
         />
-    </div>
   )
 }
 
