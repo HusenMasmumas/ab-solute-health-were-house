@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, SelectProps } from "antd";
+import { Select, SelectProps, ConfigProvider } from "antd";
 const { Option } = Select;
 
 interface IOption {
@@ -30,11 +30,13 @@ const CSelect = ({ option , ...props}: CSelectProps) => {
 
   const options = getOptions();
   return (
-    <Select
-    {...props} 
-    >
-      {options}
-    </Select>
+    <ConfigProvider getPopupContainer={(trigger:any) => trigger.parentElement}>
+      <Select
+      {...props} 
+      >
+        {options}
+      </Select>
+    </ConfigProvider>
   );
 };
 
