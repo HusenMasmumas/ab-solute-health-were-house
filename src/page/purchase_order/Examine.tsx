@@ -1,11 +1,257 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import CHeader from 'component/headerPage/Header';
+import { useNavigate } from "react-router-dom";
+import { Card, Col, ConfigProvider, Divider, Form, InputNumber, Row } from 'antd';
+import form from 'antd/lib/form';
+import PurchaseForm from 'component/Form/purchaseForm';
+import moment from 'moment';
+import MoTable from 'component/Table/MoTable';
+import { ColumnsType } from 'antd/lib/table';
+import _ from 'lodash';
+import TextArea from 'antd/lib/input/TextArea';
+import BlueButton from 'component/Button/BlueButton';
+import styled from 'styled-components';
 type Props = {}
 
-const Examine = (props: Props) => {
-  return (
-    <div>Examine</div>
-  )
+const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
+    font-size:25px; 
+    width: 100%;
+    padding-right: 15px;
+    background: ${({bg})=> bg};
+    input{
+      font-size: ${({fontSize})=> fontSize}px !important;
+      color: ${props => props.color ? props.color : 'black'}
+    }
+`;
+interface TableType {
+    index: number;
+    sku: string;
+    name: string;
+    price: number;
+    amount: number;
+    unit: string;
+    total: number;
 }
+
+const Examine = (props: Props) => {
+    
+  const columns: ColumnsType<TableType> = [
+    {
+      title: "#",
+      dataIndex: "index",
+    },
+    {
+      title: "SKU",
+      dataIndex: "sku",
+    },
+    {
+      title: "ชื่อสินค้า",
+      dataIndex: "name",
+    },
+    {
+      title: "ราคา/หน่วย",
+      dataIndex: "price",
+      render: (price: number) => {
+        return <span>{price.toFixed(2)}</span>;
+      },
+    },
+    {
+      title: "สต็อคคงเหลือ",
+      dataIndex: "stock",
+    },
+    {
+      title: "จำนวนที่ต้องการ",
+      dataIndex: "amount",
+      render:(amount:number, record:TableType, index:number)=>{
+
+        return(
+          <InputNumber
+              min={1}
+              defaultValue={1}
+              value={amount}
+            //   onChange={(value) => {
+            //     console.log('value', value,'__typeof' ,typeof value);
+                
+            //     if (typeof value === "number")
+            //       setNewValue(value, record)
+            //     else {
+            //       setNewValue(1, record)
+            //     }
+            //   }}
+          />
+        )
+       }
+    },
+    {
+      title: "ที่สามารถแพ็คได้",
+      dataIndex: "handle",
+    },
+    {
+      title: "หน่วย",
+      dataIndex: "unit",
+    },
+    {
+      title: "ราคารวม (฿)",
+      dataIndex: "pay",
+      render: ( _, record) => {
+        return (
+          <div>
+            {(record.price * record.amount).toFixed(2)}
+          </div>
+        )
+      }
+    },
+  ];
+
+    const navigate = useNavigate();
+    let [form] = Form.useForm();
+    return (
+      <div>
+          <CHeader
+          keyHeader="purchaseOrderManagement"
+          arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
+          buttons={[
+            { 
+              colorButton: 'whilte',
+              keytext: 'ยกเลิก',
+              fn:  () => {
+                navigate("/purchase-order/manage");
+              }
+            },
+            { 
+              colorButton: 'green',
+              keytext: 'บันทึก',
+              fn:  () => {
+                navigate("/purchase-order/manage");
+              }
+            },
+            { 
+              colorButton: 'blue',
+              keytext: 'บันทึกและรออนุมัติ',
+              fn:  () => {
+                navigate("/purchase-order/manage");
+              }
+          }
+          ]}
+          />
+          <Card className="w-full">
+            <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
+            <Divider />
+            <PurchaseForm
+              form={form}
+              setValue={{
+                codeOrder:'RESD5656',
+                sendDate: moment('2022-10-02'),
+                codeRef: "ERTSD",
+                overtimeDate: moment('2022-10-11'),
+                Description1:"ผู้ส่ง",
+                Description2:"ผู้รับ"
+              }}
+            />
+            <MoTable 
+              key='index'
+              rowKey="index"
+              headerTable='รายละเอียดสินค้า'
+              columns={columns} 
+              dataSource={ _.cloneDeep([])} 
+              pagination={false} 
+            />
+            <div className="mt-5">
+          {/* <BlueButton
+            onClick={() => setOpen(true)}
+          >
+            + เพิ่มสินค้า
+          </BlueButton> */}
+          <Row>
+            <Col sm={24} lg={12} className="!flex !items-end pb-6">
+              <div className="w-full">
+                <div className="text-[20px]">หมายเหตุ</div>
+                <TextArea rows={4} />
+              </div>
+            </Col>
+            <Col sm={24} lg={12} >
+              <Row className="mb-5">
+                <Col sm={6} offset={6}>
+                  
+                  <div className="text-[20px]">รวมเป็นเงิน</div>
+                </Col>
+                <Col sm={12}>
+                  <ConfigProvider direction="rtl">
+                  <StyledInputNumber
+                      prefix="฿"
+                      controls={false}
+                      readOnly={true}
+                      defaultValue="00.00"
+                      step="0.01"
+                      bg="white"
+                      fontSize={20}
+                    />
+                  </ConfigProvider>
+                </Col>
+              </Row>
+              <Row className="mb-5">
+                <Col sm={6} offset={6}>
+                  <div className="text-[20px]">ส่วนลด</div>
+                </Col>
+                <Col sm={12}>
+                  <ConfigProvider direction="rtl">
+                  <StyledInputNumber
+                      prefix="฿"
+                      controls={false}
+                      readOnly={true}
+                      defaultValue="00.00"
+                      step="0.01"
+                      bg="white"
+                      fontSize={20}
+                    />
+                  </ConfigProvider>
+                </Col>
+              </Row>
+              <Row className="mb-5">
+                <Col sm={6} offset={6}>
+                  
+                  <div className="text-[20px]">จำนวนเงินหลังหักส่วนลด</div>
+                </Col>
+                <Col sm={12}>
+                  <ConfigProvider direction="rtl">
+                    <StyledInputNumber
+                      prefix="฿"
+                      controls={false}
+                      readOnly={true}
+                      defaultValue="00.00"
+                      step="0.01"
+                      fontSize={20}
+                      bg="white"
+                    />
+                  </ConfigProvider>
+                </Col>
+              </Row>
+              <Row className="mb-5">
+                <Col sm={6} offset={6}>
+                  
+                  <div className="text-[20px]">จำนวนเงินรวมทั้งสิ้น</div>
+                </Col>
+                <Col sm={12}>
+                  <ConfigProvider direction="rtl">
+                    <StyledInputNumber
+                      prefix="฿"
+                      controls={false}
+                      readOnly={true}
+                      defaultValue="00.00"
+                      step="0.01"
+                      bg='#F3F9FF'
+                      fontSize={25}
+                      color='#01438F'
+                    />
+                  </ConfigProvider>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+          </Card>
+      </div>
+    )
+}   
 
 export default Examine
