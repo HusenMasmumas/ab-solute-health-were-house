@@ -4,6 +4,9 @@ import CDatePicker from "component/input/c-date-picker";
 import CInput from "component/input/c-input";
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
+import styled from "styled-components";
+
+
 interface IForm {
   codeOrder?:string | null | undefined,
   sendDate?: moment.Moment | null | undefined,
@@ -12,6 +15,12 @@ interface IForm {
   Description1?:string | null | undefined,
   Description2?:string | null | undefined,
 }
+
+const StyleCDatePicker = styled(DatePicker)`
+  width: 100%;
+  background-color: #FFF !important;
+  color: #231F20 !important;
+`;
 
 type Props = {
     form: FormInstance,
@@ -60,12 +69,12 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
                 
               >
-                  <DatePicker 
-                  inputReadOnly={AllreadOnly}
-                  open={AllreadOnly ? false : undefined}
-                  allowClear={AllreadOnly ? false : true}
+                  <StyleCDatePicker 
+                  // inputReadOnly={AllreadOnly}
+                  // open={AllreadOnly ? false : undefined}
+                  // allowClear={AllreadOnly ? false : true}
+                  // disabled={AllreadOnly}
                   size="large" 
-                  style={{width:'100%'}}
                   // format={"YYYY-MM-DD"}
                   disabledDate={d =>  d.isBefore(moment(moment(), 'YYYY/MM/DD').subtract(1, 'days'))}
                   onChange={(d )=>{
@@ -100,10 +109,10 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 label={<span className="text-[20px]">วันครบกำหนด</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
               >
-                <CDatePicker 
-                inputReadOnly={AllreadOnly}
-                open={AllreadOnly ? false : undefined}
-                allowClear={AllreadOnly ? false : true}
+                <StyleCDatePicker 
+                // inputReadOnly={AllreadOnly}
+                // open={AllreadOnly ? false : undefined}
+                // allowClear={AllreadOnly ? false : true}
                 
                 size="large" 
                 disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
