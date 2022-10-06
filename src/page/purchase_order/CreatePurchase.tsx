@@ -1,3 +1,14 @@
+import CHeader from "component/headerPage/Header";
+import { useEffect, useState } from "react";
+import type { ColumnsType } from "antd/es/table";
+import MoTable from "component/Table/MoTable";
+import CreateModal from "views/purchase_order/CreateModal";
+import { useNavigate } from "react-router-dom";
+import PurchaseForm from "component/Form/purchaseForm";
+import BlueButton from "component/Button/BlueButton";
+import * as _ from "lodash";
+import { DeleteFilled } from "@ant-design/icons";
+import styled from "styled-components";
 import {
   Card,
   Col,
@@ -6,27 +17,9 @@ import {
   Row,
   Input,
   InputNumber,
-  Button,
   ConfigProvider,
   Modal,
 } from "antd";
-import CHeader from "component/headerPage/Header";
-import CDatePicker from "component/input/c-date-picker";
-import CInput from "component/input/c-input";
-import React, { useEffect, useState } from "react";
-import type { ColumnsType } from "antd/es/table";
-import MoTable from "component/Table/MoTable";
-import styled from "styled-components";
-import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import CreateModal from "views/purchase_order/CreateModal";
-import moment from 'moment';
-import { useNavigate } from "react-router-dom";
-import PurchaseForm from "component/Form/purchaseForm";
-import BlueButton from "component/Button/BlueButton";
-import { json } from "stream/consumers";
-import * as _ from "lodash";
-import { DeleteFilled } from "@ant-design/icons";
-
 
 
 type Props = {
@@ -42,6 +35,7 @@ const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
       color: ${props => props.color ? props.color : 'black'}
     }
 `;
+
 interface DataType {
   index: number;
   sku: string;
