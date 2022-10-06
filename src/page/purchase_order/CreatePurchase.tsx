@@ -25,6 +25,7 @@ import PurchaseForm from "component/Form/purchaseForm";
 import BlueButton from "component/Button/BlueButton";
 import { json } from "stream/consumers";
 import * as _ from "lodash";
+import { DeleteFilled } from "@ant-design/icons";
 
 
 
@@ -139,8 +140,12 @@ const CreatePurchase = (props: Props) => {
       dataIndex: "pay",
       render: ( _, record) => {
         return (
-          <div>
+          <div className="flex items-center justify-around">
             {(record.price * record.amount).toFixed(2)}
+            <DeleteFilled onClick={()=>{
+              // console.log('record',record);
+              deleteSelected(record.index)
+            }} />
           </div>
         )
       }
@@ -150,7 +155,6 @@ const CreatePurchase = (props: Props) => {
   const setNewValue = (amount:number, record:TableType )=>{
       const arr = historyData.map((element:TableType)=>{
         if(element.index === record.index){
-          
           element.amount = amount
           console.log('change value',element);
           return element
@@ -160,6 +164,13 @@ const CreatePurchase = (props: Props) => {
       sethistoryData([...arr])
   }
 
+  const deleteSelected = (index:number) => {
+    console.log('index',index);
+    let indexArr = selectIndex.filter((item:number) => item !== index)
+    console.log('indexArr',indexArr);
+    setSelectIndex([...indexArr])
+  }
+
   const onFinishModal = (values: any,indexArray:any) => {
     // console.log("amount Received Modal ", values); //ตัวที่เคย get มาทั้งหมด
     sethistoryData([...values])
@@ -167,18 +178,9 @@ const CreatePurchase = (props: Props) => {
     setSelectIndex([...indexArray])
   };
 
-  // useEffect(()=>{
-  //   console.log('form modal',selectData);
-  // },[selectData])
-
-  useEffect(()=>{
-    //ถ้า กดปุ่มยันทึกแล้วให้บันทึก  ก่อนบันทึกเช็คจำนวนสินค้า
-
-  },[forms])
-
   useEffect(()=>{
     setMotableData([...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )])    
-  },[historyData])
+  },[historyData, selectIndex])
 
   return (
     <>
