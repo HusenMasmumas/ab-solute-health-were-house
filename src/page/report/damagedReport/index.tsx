@@ -97,14 +97,11 @@ const onFinish = (values: any) => {
 };
 const DamageReport = (props: Props) => {
   return (
-    <div className="bg-[#F5F5F5] m-0 p-0 ">
+    <>
       <CHeader keyHeader="report" arrPath={["report", "damageReport"]} />
       <SearchForm elements={elements} onFinish={onFinish} />
-      {/* Table */}
-      <div className="mt-10 bg-white">
-        <DamageTable dataTable={data} headerTable={t("damageReport")} />
-      </div>
-    </div>
+      <DamageTable dataTable={data} headerTable={t("damageReport")} />
+    </>
   );
 };
 

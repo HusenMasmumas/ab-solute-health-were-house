@@ -103,13 +103,11 @@ const onFinish = (values: any) => {
 
 const StockReport = (props: Props) => {
   return (
-    <div className="bg-[#F5F5F5] m-0 p-0 ">
+    <>
       <CHeader keyHeader="report" arrPath={["report", "stockReport"]} />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <div className="mt-10 bg-white">
-        <StockTable dataTable={data} headerTable={t("stockReport")} />
-      </div>
-    </div>
+      <StockTable dataTable={data} headerTable={t("stockReport")} />
+    </>
   );
 };
 

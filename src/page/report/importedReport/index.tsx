@@ -104,13 +104,11 @@ const onFinish = (values: any) => {
 
 const ImportedReport = (props: Props) => {
   return (
-    <div className="bg-[#F5F5F5] m-0 p-0 ">
+    <>
       <CHeader keyHeader="report" arrPath={["report", "importedReport"]} />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <div className="mt-10 bg-white">
-        <ImportTable dataTable={data} headerTable={t("importedReport")} />
-      </div>
-    </div>
+      <ImportTable dataTable={data} headerTable={t("importedReport")} />
+    </>
   );
 };
 
