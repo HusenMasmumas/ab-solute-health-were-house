@@ -1,5 +1,5 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import Table_1 from "./Table/Table_1";
+import Table_1 from "./Table_1";
 type Props = {};
 
 const elements: IsearchFormItem[] = [

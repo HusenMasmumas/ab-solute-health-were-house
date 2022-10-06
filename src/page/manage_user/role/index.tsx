@@ -59,7 +59,7 @@ const RoleManagement = (props: Props) => {
     console.log("Received values of form: ", values);
   };
   return (
-    <div className="bg-bgcolor">
+    <>
       <CHeader
         keyHeader="manageUser"
         nevigate={{
@@ -79,10 +79,7 @@ const RoleManagement = (props: Props) => {
           }
         ]}
       />
-      <div className=" mt-[24px]">
-        <SearchForm elements={elements} onFinish={onFinish} />
-      </div>
-      {/* Table */}
+      <SearchForm elements={elements} onFinish={onFinish} />
       <div className="bg-white px-[24px] py-[16px] mt-[16px]">
         <div className="grid grid-cols-2">
           <span className="text-[#231F20] font-semibold text-[20px]">
@@ -94,10 +91,9 @@ const RoleManagement = (props: Props) => {
             </div>
           </div>
         </div>
-
         <TableRoleManagement dataTable={data}></TableRoleManagement>
       </div>
-    </div>
+    </>
   );
 };
 
