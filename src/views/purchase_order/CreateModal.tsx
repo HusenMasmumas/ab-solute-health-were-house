@@ -179,6 +179,8 @@ const CreateModal = (props: Props) => {
   };
 
   const fakerFetchData = async (query:number | undefined) => {
+    if(query === undefined) return
+    
     const { data } = await axios.get(`http://localhost:5000/product/${query}`);
     
     const arr = data.map((element:any) => {
