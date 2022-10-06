@@ -4,6 +4,7 @@ import type { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
 import { Card } from "antd";
 import CDropDown from "component/Dropdown/DropDown";
+import { useNavigate } from "react-router-dom";
 type Props = {
   data:any
   tableName:string
@@ -21,7 +22,7 @@ interface DataType {
 const Table_1 = ({tableName, data}: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // console.log("current", currentPage);
     // console.log("limitPage", limitPage);
@@ -40,6 +41,7 @@ const Table_1 = ({tableName, data}: Props) => {
   //ตรวจสอบ อนุมัติ หรือ ยกเลิกใบสั่งซื้อ
   const check = (id:string)=>{
     console.log('ตรวจสอบใบสั่งซื้อที่ ID : ', id);
+    navigate("/purchase-order/examine");
   }
 
   //??? รอส่งสินค้า
@@ -108,7 +110,8 @@ const Table_1 = ({tableName, data}: Props) => {
                       hoverBackground="#36648E" 
                       selection={{title:text, option:[
                         {label:'รอตรวจสอบ',value:record.code, action:check },
-                      ]}}/>
+                      ]}}
+                      />
           case text ==='ยกเลิก':
               return <CDropDown 
                         background="#FC0002" 
