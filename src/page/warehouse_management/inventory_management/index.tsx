@@ -1,12 +1,12 @@
 import { Image } from "antd";
 import { useTranslation } from "react-i18next";
-import Picture1 from "../../../assets/img/pic-02.png";
-import Picture2 from "../../../assets/img/pic-04.png";
+import Picture1 from "assets/img/pic-02.png";
+import Picture2 from "assets/img/pic-04.png";
 import { useNavigate } from "react-router-dom";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { ReactComponent as ArrowIcon } from "../../../assets/Icon/Arrow.svg";
-import { ReactComponent as DotIcon } from "../../../assets/Icon/dot.svg";
+import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
+import { ReactComponent as DotIcon } from "assets/Icon/dot.svg";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
