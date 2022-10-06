@@ -25,7 +25,11 @@ import PurchaseForm from "component/Form/purchaseForm";
 import BlueButton from "component/Button/BlueButton";
 import { json } from "stream/consumers";
 import * as _ from "lodash";
-type Props = {};
+
+
+
+type Props = {
+};
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
     font-size:25px; 
@@ -57,14 +61,15 @@ interface TableType {
   amount: number;
   unit: string;
   total: number;
+
 }
 
 const { TextArea } = Input;
 
 const CreatePurchase = (props: Props) => {
+  const [mode, setMode] = useState<'edit' | 'confirm'>('edit');
   const [open, setOpen] = useState(false);
-  const [selectData, setSelectData] = useState<any>([])
-  const [date, setDate] = useState<Date>(new Date())
+  // const [selectData, setSelectData] = useState<any>([])
   const [historyData, sethistoryData] = useState<any>([]);
   const [selectIndex, setSelectIndex] = useState<number[]>([]);
   const [motalTableData, setMotableData] = useState<any>([]);
@@ -162,9 +167,9 @@ const CreatePurchase = (props: Props) => {
     setSelectIndex([...indexArray])
   };
 
-  useEffect(()=>{
-    console.log('form modal',selectData);
-  },[selectData])
+  // useEffect(()=>{
+  //   console.log('form modal',selectData);
+  // },[selectData])
 
   useEffect(()=>{
     //ถ้า กดปุ่มยันทึกแล้วให้บันทึก  ก่อนบันทึกเช็คจำนวนสินค้า
@@ -176,8 +181,10 @@ const CreatePurchase = (props: Props) => {
   },[historyData])
 
   return (
-    <div>
-      <CHeader
+    <>
+      {
+        mode==='edit'&&
+        <CHeader
         keyHeader="purchaseOrder"
         arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
         buttons={[
@@ -195,6 +202,37 @@ const CreatePurchase = (props: Props) => {
           }
         ]}
       />
+      }
+      {
+        mode==='confirm'&&
+        <CHeader
+        keyHeader="purchaseOrder"
+        arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
+        buttons={[
+          { colorButton: 'whilte',
+            keytext: 'ยกเลิก',
+            fn:  () => {
+              // navigate("/purchase-order/manage");
+              setMode('edit')
+            }
+          },
+          { colorButton: 'green',
+            keytext: 'บันทึก',
+            fn:  () => {
+              //ยิงไปบันทึกและออก
+              navigate("/purchase-order/manage");
+            },
+          },
+          { colorButton: 'blue',
+            keytext: 'บันทึกและรออนุมัติ',
+            fn:  () => {
+              //ยิงไปบันทึกและ แล้วต้องรอว่าบันทึกได้มั่ย  แล้วต้องดึงจากที่บันทึกมา แสดง ??????
+              navigate("/purchase-order/manage");
+            },
+          }
+        ]}
+      />
+      }
       <Card className="w-full">
         <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
         <Divider />
@@ -202,9 +240,14 @@ const CreatePurchase = (props: Props) => {
           form={form}
           onFinish={(value:any)=>{
             setForm(value)
-            console.log(value);
+            // console.log(value);
+            if(selectIndex.length > 0){
+              //  navigate("/purchase-order/examine");
+              setMode('confirm')
+            }
           }}
           refDisable={true}
+          AllreadOnly={mode === 'edit' ? false : true}
         />
         <MoTable 
           key='index'
@@ -325,7 +368,7 @@ const CreatePurchase = (props: Props) => {
           setSelectData={onFinishModal} 
           setOpenMoDal={setOpen}/>
         </Modal>
-    </div>
+    </>
     
   );
 };
