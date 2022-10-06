@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
-import { Card } from "antd";
 type Props = {
   dataTable: DataType[];
   headerTable: string;
@@ -36,19 +35,6 @@ const columns: ColumnsType<DataType> = [
     title: "เบอร์โทร",
     dataIndex: "phone",
   },
-  // {
-  //   title: "จัดการ",
-  //   dataIndex: "address",
-  //   render: () => {
-  //     return (
-  //       <div className="flex space-x-4 ">
-  //         {/* <PencilSquareIcon className="h-4 w-4 !text-[40px]" /> */}
-  //         <PencilSquareIcon className="!w-6" />
-  //         <DashOutlined className="!w-6 text-2xl"/>
-  //       </div>
-  //     );
-  //   },
-  // },
 ];
 
 const onChange = (checked: boolean) => {
@@ -69,10 +55,6 @@ const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
     else setCurrentPage(page);
   };
   return (
-    <Card 
-      className="w-full  !my-10"
-      bodyStyle={{paddingTop:0}}
-      >
       <MoTable
         headerTable={headerTable}
         columns={columns}
@@ -84,7 +66,6 @@ const TableStoresBranches = ({ dataTable = [], headerTable = "" }: Props) => {
           currentPage: currentPage,
         }}
       />
-    </Card>
   );
 };
 

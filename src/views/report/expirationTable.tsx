@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
-import { Card } from "antd";
 type Props = {
   dataTable: DataType[];
   headerTable: string;
@@ -88,10 +87,6 @@ const ExpirationTable = ({
     else setCurrentPage(page);
   };
   return (
-    <Card 
-      className="w-full !p-0 !my-10"
-      bodyStyle={{paddingTop:0}}
-      >
       <MoTable
         headerTable={headerTable}
         columns={columns}
@@ -103,7 +98,6 @@ const ExpirationTable = ({
           currentPage: currentPage,
         }}
       />
-    </Card>
   );
 };
 

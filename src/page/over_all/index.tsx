@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Select, Image } from "antd";
-import Dashboard1 from "./../../assets/img/Dashboard-1.png";
-import Dashboard from "./../../assets/img/Dashboard.png";
-import Dashboard2 from "./../../assets/img/Dashboard-2.png";
-import Dashboard3 from "./../../assets/img/Dashboard-3.png";
-import Arrow from "./../../assets/img/Dashboard-4.png";
+import Dashboard1 from "assets/img/Dashboard-1.png";
+import Dashboard from "assets/img/Dashboard.png";
+import Dashboard2 from "assets/img/Dashboard-2.png";
+import Dashboard3 from "assets/img/Dashboard-3.png";
+import Arrow from "assets/img/Dashboard-4.png";
 import BarChart from "component/chart/bar-chart";
 import Linechart from "component/chart/line-chart";
-import { ReactComponent as ArrowIcon } from "../../assets/Icon/Arrow.svg";
+import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
 
 const OverAllPage = () => {
   const { t } = useTranslation();
