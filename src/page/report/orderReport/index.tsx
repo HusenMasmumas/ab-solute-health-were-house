@@ -132,13 +132,11 @@ const onFinish = (values: any) => {
 const OrderReport = (props: Props) => {
   const { t } = useTranslation();
   return (
-    <div className="bg-bgcolor">
+    <>
       <CHeader keyHeader="report" arrPath={["report", "orderReport"]} />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <div className="mt-10 bg-white">
-        <OrderTable dataTable={data} headerTable={t("orderReport")} />
-      </div>
-    </div>
+      <OrderTable dataTable={data} headerTable={t("orderReport")} />
+    </>
   );
 };
 

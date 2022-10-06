@@ -99,7 +99,7 @@ const StoresBranches = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <div className="bg-bgcolor">
+    <>
       <CHeader
         keyHeader="stores&branches"
         arrPath={["stores&branches"]}
@@ -113,9 +113,8 @@ const StoresBranches = () => {
         ]}
       />  
       <SearchForm elements={elements} onFinish={onFinish} />
-      <TableStoresBranches dataTable={data} headerTable={t("orderlist")} />
-      
-    </div>
+      <TableStoresBranches dataTable={data} headerTable={t("orderlist")} /> 
+    </>
   );
 };
 
