@@ -1,4 +1,4 @@
-import { Table, Pagination, TableProps, Divider } from "antd";
+import { Table, Pagination, TableProps, Card } from "antd";
 
 
 type actionType = 'excel'
@@ -31,8 +31,11 @@ const MoTable = ({
   ...props
 }: Props) => {
   return (
-    <div>
-
+    <>
+      <Card 
+      className="w-full !p-0 !my-10"
+      bodyStyle={{paddingTop:0}}
+      >
       {action ||
         (headerTable && (
           <div className="flex h-16">
@@ -80,7 +83,8 @@ const MoTable = ({
           />
         </div>
       )}
-    </div>
+      </Card>
+    </>
   );
 };
 
