@@ -6,6 +6,8 @@ export interface BaseButtonProps extends ButtonProps {
   width?: string;
   height?: string;
   color?: string;
+  backGroundColor ?: string;
+  borderColor?:string;
 }
 
 const BaseButton = styled(Button)<BaseButtonProps>`

@@ -7,6 +7,10 @@ import MoTable from "component/Table/MoTable";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { createQueryString } from 'utils/utils'
+import WhilteButton from "component/Button/whilteButton";
+import LightBlueButton from "component/Button/LightBlueButton";
+import DeepBlueButton from "component/Button/DeepBlue";
+import BlueButton from "component/Button/BlueButton";
 type Props = {
   setSelectData: (row: any, arrindex:any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
@@ -36,6 +40,7 @@ const CreateModal = (props: Props) => {
   const [keySearch, setKeySearch] = useState<string>(''); // คำที่ใช้ค้นหา
   let [_form] = Form.useForm();
   const onFinish = ({ nameProduct }: {nameProduct:string}) => {
+    console.log('nameProduct',nameProduct);
     setKeySearch(nameProduct)
   };
 
@@ -202,7 +207,7 @@ const CreateModal = (props: Props) => {
   };
 
   return (
-    <div>
+    <>
       <div>
         <Row gutter={[16, 16]}>
           <Form form={_form} onFinish={onFinish} className="w-full lg:flex">
@@ -217,7 +222,7 @@ const CreateModal = (props: Props) => {
             <Col sm={24} lg={8}>
               <Row gutter={[12, 6]}>
                 <Col>
-                  <SearchButton
+                  <DeepBlueButton
                     onClick={() => {
                       _form.submit();
                     }}
@@ -230,10 +235,12 @@ const CreateModal = (props: Props) => {
                     }}
                   >
                     ค้นหา
-                  </SearchButton>
+                  </DeepBlueButton>
                 </Col>
                 <Col>
-                  <CleanButton
+                  <WhilteButton
+                    color="#004C97"
+                    borderColor="#004C97"
                     onClick={() => {
                       _form.resetFields();
                       _form.submit();
@@ -245,8 +252,8 @@ const CreateModal = (props: Props) => {
                       margin: 0,
                     }}
                   >
-                    ล้าง
-                  </CleanButton>
+                    รีเซ็ท
+                  </WhilteButton>
                 </Col>
               </Row>
             </Col>
@@ -270,15 +277,15 @@ const CreateModal = (props: Props) => {
         }}
       />
       <div className="flex space-x-4">
-        <Button onClick={()=>{
+        <BlueButton onClick={()=>{
           props.setSelectData([...historyData],[...selectKey])
           props.setOpenMoDal(false)
-        }}>ยืนยัน</Button>
-        <Button onClick={()=>{
+        }}>ยืนยัน</BlueButton>
+        <WhilteButton onClick={()=>{
           props.setOpenMoDal(false)
-        }}>ยกเลิก</Button>
+        }}>ยกเลิก</WhilteButton>
       </div>
-    </div>
+    </>
   );
 };
 

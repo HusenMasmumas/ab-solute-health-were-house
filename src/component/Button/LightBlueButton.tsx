@@ -9,8 +9,9 @@ const LightBlueButton = styled(BaseButton)<Props>`
   ${({ fontSize }) => ( fontSize ? `font-size: ${fontSize};` : null)}}
   ${({ width }) => ( width ? `font-size: ${width};` : null)}}
   ${({ height }) => ( height ? `font-size: ${height};` : null)}}
-  
-  &:hover{
+  &:hover,
+  &:active,
+  &:focus{
     background-color: #F4F9FF;
     color: #01438F;
   }
