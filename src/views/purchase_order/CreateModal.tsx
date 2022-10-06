@@ -1,4 +1,4 @@
-import { Col, Form, Row, InputNumber, Button } from "antd";
+import { Col, Form, Row, InputNumber, Divider } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import CleanButton from "component/Button/CleanButton";
 import SearchButton from "component/Button/SearchButton";
@@ -276,7 +276,8 @@ const CreateModal = (props: Props) => {
           currentPage: currentPage,
         }}
       />
-      <div className="flex space-x-4">
+      <Divider />
+      <div className="flex space-x-4 justify-end">
         <BlueButton onClick={()=>{
           props.setSelectData([...historyData],[...selectKey])
           props.setOpenMoDal(false)
