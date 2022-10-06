@@ -1,17 +1,9 @@
 import React, { ElementType } from "react";
-import { Card, Form, Button, Row, FormInstance, Col } from "antd";
+import { Card, Form, Row, FormInstance, Col } from "antd";
 import { Store } from "antd/lib/form/interface";
-import {
-  BeakerIcon,
-  MagnifyingGlassIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/solid";
 import CInput from "component/input/c-input";
 import CSelect from "component/input/c-select";
-import SearchButton from "component/Button/SearchButton";
-import CleanButton from "component/Button/CleanButton";
 import CDatePicker from "component/input/c-date-picker";
-import { spawn } from "child_process";
 import LightButton from "component/Button/LightBlueButton";
 import WhilteButton from "component/Button/whilteButton";
 export type TPageHeaderInput =
@@ -50,7 +42,6 @@ const SearchForm = ({
   onFinish,
   onReset,
   initialValues,
-  ...props
 }: searchFormProps) => {
   let [_form] = Form.useForm();
 
