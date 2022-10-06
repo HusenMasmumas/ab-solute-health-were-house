@@ -134,10 +134,7 @@ const OrderReport = (props: Props) => {
   return (
     <div className="bg-bgcolor">
       <CHeader keyHeader="report" arrPath={["report", "orderReport"]} />
-      <div>
-        <SearchForm elements={elements} onFinish={onFinish} />
-      </div>
-      {/* Table */}
+      <SearchForm elements={elements} onFinish={onFinish} />
       <div className="mt-10 bg-white">
         <OrderTable dataTable={data} headerTable={t("orderReport")} />
       </div>

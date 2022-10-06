@@ -54,15 +54,9 @@ const WarehouseManagement = () => {
   };
   return (
     <div>
-      <div className="bg-bgcolor">
+  
         <CHeader
           keyHeader="warehouseManagement"
-          // nevigate={{
-          //   keytext: "createLocker",
-          //   fn: () => {
-          //     navigate("/warehouse-management/create-inventory");
-          //   },
-          // }}
           arrPath={["warehouseManagement"]}
           buttons={[
             { 
@@ -74,10 +68,10 @@ const WarehouseManagement = () => {
             }
           ]}
         />
-      </div>
-      <div className="mt-[24px]">
+
+     
         <SearchForm elements={elements} onFinish={onFinish} />
-      </div>
+      
       {/* card */}
       <div className="grid xl:grid-cols-5 md:grid-cols-3 gap-4 mt-[12px;]">
         {data.map((item, index) => {

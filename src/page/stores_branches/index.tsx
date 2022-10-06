@@ -102,12 +102,6 @@ const StoresBranches = () => {
     <div className="bg-bgcolor">
       <CHeader
         keyHeader="stores&branches"
-        // nevigate={{
-        //   keytext: "createShop",
-        //   fn: () => {
-        //     navigate("/craete-stores-branches");
-        //   },
-        // }}
         arrPath={["stores&branches"]}
         buttons={[
           { colorButton: 'green',

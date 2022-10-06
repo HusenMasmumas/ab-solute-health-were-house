@@ -117,12 +117,6 @@ const ProductsMangement = () => {
     <div>
       <CHeader
         keyHeader="manageGoods"
-        // nevigate={{
-        //   keytext: "addproductlist",
-        //   fn: () => {
-        //     navigate("/warehouse-management/craete-products-management");
-        //   },
-        // }}
         arrPath={["manageGoods"]}
         buttons={[
           { 

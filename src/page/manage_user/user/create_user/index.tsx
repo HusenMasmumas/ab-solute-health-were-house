@@ -17,9 +17,6 @@ const CreateUser = () => {
           keyHeader="manageUser"
           arrPath={["manageUser", "user", "addUser"]}
         />
-        {/* <div className="text-[30px] text-darkblue font-bold">
-          {`${t("manageUser")}`}
-        </div> */}
         <div className="flex justify-end items-center gap-2">
           <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
             ยกเลิก

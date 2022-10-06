@@ -127,12 +127,6 @@ const StoreCabinet = () => {
     <div>
       <CHeader
         keyHeader="warehouseManagement"
-        // nevigate={{
-        //   keytext: "addproductlist",
-        //   fn: () => {
-        //     navigate("/warehouse-management/create-store-cabinet");
-        //   },
-        // }}
         arrPath={["warehouseManagement", "locker"]}
         buttons={[
           { 

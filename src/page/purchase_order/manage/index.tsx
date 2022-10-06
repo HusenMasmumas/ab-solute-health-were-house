@@ -29,7 +29,6 @@ const ManagePurcheaseOrder = (props: Props) => {
       <CHeader 
         keyHeader={keyHeader[tabe]}
         arrPath={arrPath[tabe]}
-        // nevigate= {tabe===0?{keytext:'createPurchase',fn:()=>{ navigate('/purchase-order/create')}} : undefined}
         buttons={tabe===0?[{ 
             colorButton: 'green',
             keytext: 'createPurchase',

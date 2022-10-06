@@ -112,12 +112,6 @@ const UserManagement = () => {
     <div>
       <CHeader
         keyHeader="manageUser"
-        // nevigate={{
-        //   keytext: "createUser",
-        //   fn: () => {
-        //     navigate("/user/create-user");
-        //   },
-        // }}
         arrPath={["manageUser", "user"]}
         buttons={[
           { 
