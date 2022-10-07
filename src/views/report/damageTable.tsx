@@ -93,6 +93,11 @@ const DamageTable = ({ dataTable = [], headerTable = "", ...props }: Props) => {
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
       />
   );
 };

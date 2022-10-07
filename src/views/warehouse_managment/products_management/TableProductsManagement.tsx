@@ -92,7 +92,7 @@ const TableProductsManagement = ({ dataTable = [] }: Props) => {
         }}
         actions={[{
           type: 'excel',
-          fn: ()=>{console.log('1111');
+          fn: ()=>{console.log('download excel');
           }
         }]}
       />

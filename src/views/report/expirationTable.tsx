@@ -97,6 +97,11 @@ const ExpirationTable = ({
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
       />
   );
 };
