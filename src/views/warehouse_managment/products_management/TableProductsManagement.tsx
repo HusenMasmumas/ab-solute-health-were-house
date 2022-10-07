@@ -1,8 +1,8 @@
 import { ColumnsType } from "antd/lib/table";
 import { useEffect, useState } from "react";
 import MoTable from "component/Table/MoTable";
-import { Button, Col, Form, Input, Row } from "antd";
 import CSelectStatus from "component/input/c-select-status";
+import { useTranslation } from "react-i18next";
 type Props = {
   dataTable: ProductsType[];
 };
@@ -29,7 +29,7 @@ const expandable = {
 const TableProductsManagement = ({ dataTable = [] }: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
+  const { t } = useTranslation();
   useEffect(() => {
     console.log("current", currentPage);
     console.log("limitPage", limitPage);
@@ -55,14 +55,6 @@ const TableProductsManagement = ({ dataTable = [] }: Props) => {
       title: "Category/Sub Category",
       dataIndex: "category",
       width: "50%",
-      // render: (subCategory, category }: ProductsType) => {
-      //   return (
-      //     <div>
-      //       <span>{category}</span>
-      //       <span className="!text-[14px] !text-[#A5A5A5]">{subCategory}</span>
-      //     </div>
-      //   );
-      // },
     },
     {
       title: "สถานะ",
@@ -87,9 +79,8 @@ const TableProductsManagement = ({ dataTable = [] }: Props) => {
   ];
 
   return (
-    <div>
-      <div></div>
       <MoTable
+        headerTable={`${t("รายการสั่งซื้อ")}`}
         columns={columns}
         dataSource={dataTable}
         expandable={expandable}
@@ -99,8 +90,12 @@ const TableProductsManagement = ({ dataTable = [] }: Props) => {
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('1111');
+          }
+        }]}
       />
-    </div>
   );
 };
 export default TableProductsManagement;

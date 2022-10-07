@@ -19,7 +19,7 @@ interface ProductsType {
 }
 const ProductsMangement = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const data: ProductsType[] = [
     {
       key: 1,
@@ -114,7 +114,7 @@ const ProductsMangement = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <div>
+    <>
       <CHeader
         keyHeader="manageGoods"
         arrPath={["manageGoods"]}
@@ -128,25 +128,9 @@ const ProductsMangement = () => {
           }
         ]}
       />
-      <div className="mt-[24px]">
-        <SearchForm elements={elements} onFinish={onFinish} />
-      </div>
-      <div className="bg-white px-[24px] py-[16px] mt-[16px]">
-        <div className="grid grid-cols-2">
-          <span className="text-[#231F20] text-[20px] font-semibold">{`${t(
-            "รายการสั่งซื้อ"
-          )}`}</span>
-          <div className="grid items-center justify-end">
-            <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
-              <Image src={Excel} alt="excel" preview={false}></Image>
-            </div>
-          </div>
-        </div>
-        <div className="ant-table-cell ant-table-selection-column ant-table-cell.ant-table-tbody">
-          <TableProductsManagement dataTable={data} />
-        </div>
-      </div>
-    </div>
+      <SearchForm elements={elements} onFinish={onFinish} /> 
+      <TableProductsManagement dataTable={data} />
+    </>
   );
 };
 export default ProductsMangement;

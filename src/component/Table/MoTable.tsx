@@ -1,6 +1,10 @@
-import { Table, Pagination, TableProps, Card } from "antd";
-
-type actionType = "excel";
+import { Table, Pagination, TableProps, Card, Image } from "antd";
+import Excel from "assets/img/Excel.png";
+// type actionType = "excel";
+interface IAction {
+  type: "excel" | "delete"
+  fn?: (row?: any) => void;
+}
 interface Props extends TableProps<any> {
   headerTable?: String;
   config?: any;
@@ -9,10 +13,7 @@ interface Props extends TableProps<any> {
   pagination?: boolean | any;
   onDoubleClick?: boolean;
   columns?: any[];
-  action?: {
-    action: actionType;
-    fn: (row?: any) => void;
-  }[];
+  actions?: IAction[];
   scroll?: any;
 }
 
@@ -25,7 +26,7 @@ const MoTable = ({
   onChangePage,
   scroll,
   headerTable,
-  action,
+  actions,
   config = { total: 15, currentPage: 1, pageSize: 10 },
   ...props
 }: Props) => {
@@ -37,7 +38,20 @@ const MoTable = ({
             {headerTable ? headerTable : null}
           </div> 
           <div className="ml-8 w-[30%] flex items-center">
-            {action ? 'section action' : 'section action'}
+            {
+              actions?.map((element:IAction,index:number)=>{
+                switch (element.type) {
+                  case 'excel':
+                    return (
+                      <div key={index} className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px] hover:cursor-pointer">
+                        <Image src={Excel} alt="excel" preview={false} onClick={element.fn} />
+                      </div>
+                    )
+                  default:
+                    return <span></span>
+                }
+              })
+            }
           </div>
         </div>
          
