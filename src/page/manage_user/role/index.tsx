@@ -62,12 +62,6 @@ const RoleManagement = (props: Props) => {
     <>
       <CHeader
         keyHeader="manageUser"
-        nevigate={{
-          keytext: "createrole",
-          fn: () => {
-            navigate("/user/create-role");
-          },
-        }}
         arrPath={["manageUser", "role"]}
         buttons={[
           { 

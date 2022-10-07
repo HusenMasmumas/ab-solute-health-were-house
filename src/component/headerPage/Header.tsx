@@ -16,15 +16,11 @@ interface IButton {
 
 type ICHeader = {
   keyHeader: string;
-  nevigate?: {
-    keytext: string;
-    fn: () => void;
-  };
   buttons?: IButton[];
   arrPath?: string[];
 };
 
-const CHeader = ({ keyHeader, nevigate, arrPath = [], buttons=[] }: ICHeader) => {
+const CHeader = ({ keyHeader, arrPath = [], buttons=[] }: ICHeader) => {
   const { t, i18n } = useTranslation();
   return (
     <div className="grid grid-cols-2 pb-5 pt-5" style={{ position: "sticky", width: "100%", top: 0, zIndex:1, backgroundColor:'#F5F5F5'}}>
