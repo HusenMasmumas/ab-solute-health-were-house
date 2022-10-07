@@ -74,19 +74,8 @@ const RoleManagement = (props: Props) => {
         ]}
       />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <div className="bg-white px-[24px] py-[16px] mt-[16px]">
-        <div className="grid grid-cols-2">
-          <span className="text-[#231F20] font-semibold text-[20px]">
-            รายการบทบาท
-          </span>
-          <div className="flex items-center justify-end">
-            <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
-              <Image src={Excel} alt="excel" preview={false}></Image>
-            </div>
-          </div>
-        </div>
-        <TableRoleManagement dataTable={data}></TableRoleManagement>
-      </div>
+      <TableRoleManagement dataTable={data}></TableRoleManagement>
+      
     </>
   );
 };
