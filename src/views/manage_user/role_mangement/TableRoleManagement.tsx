@@ -72,9 +72,8 @@ const TableRoleManagement = ({ dataTable = [] }: Props) => {
   ];
 
   return (
-    <div>
-      <div></div>
       <MoTable
+        headerTable={'รายการบทบาท'}
         columns={columns}
         dataSource={dataTable}
         onChangePage={onChangePage}
@@ -84,7 +83,6 @@ const TableRoleManagement = ({ dataTable = [] }: Props) => {
           currentPage: currentPage,
         }}
       />
-    </div>
   );
 };
 export default TableRoleManagement;

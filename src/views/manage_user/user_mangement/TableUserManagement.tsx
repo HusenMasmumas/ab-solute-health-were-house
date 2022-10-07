@@ -89,9 +89,8 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
   ];
 
   return (
-    <div>
-      <div></div>
       <MoTable
+        headerTable={'จัดการผู้ใช้'}
         columns={columns}
         dataSource={dataTable}
         onChangePage={onChangePage}
@@ -101,7 +100,6 @@ const TableUserManagement = ({ dataTable = [] }: Props) => {
           currentPage: currentPage,
         }}
       />
-    </div>
   );
 };
 export default TableUserManagement;
