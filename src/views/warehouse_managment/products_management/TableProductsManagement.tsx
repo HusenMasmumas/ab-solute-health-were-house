@@ -80,7 +80,7 @@ const TableProductsManagement = ({ dataTable = [] }: Props) => {
 
   return (
       <MoTable
-        headerTable={`${t("รายการสั่งซื้อ")}`}
+        headerTable={`${t("รายการสินค้า")}`}
         columns={columns}
         dataSource={dataTable}
         expandable={expandable}
