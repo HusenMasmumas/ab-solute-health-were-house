@@ -32,7 +32,7 @@ const MoTable = ({
 }: Props) => {
   return (
     <>
-      <Card className="w-full !p-0 !my-10" bodyStyle={{ paddingTop: 0 }}>
+      <Card className="w-full !p-0 !my-10" bodyStyle={{ paddingTop: 10 }}>
         <div className="flex h-16">
           <div className="text-[20px] font-semibold w-[70%] flex items-center">
             {headerTable ? headerTable : null}
