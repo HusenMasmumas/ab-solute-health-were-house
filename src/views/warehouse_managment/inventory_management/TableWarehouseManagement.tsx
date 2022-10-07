@@ -165,9 +165,9 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
   ];
 
   return (
-    <div>
-      <div></div>
+    <>
       <MoTable
+        headerTable={`รายการสินค้า`}
         columns={columns}
         dataSource={dataTable}
         expandable={expandable}
@@ -177,8 +177,13 @@ const TableWarehouseManagement = ({ dataTable = [] }: Props) => {
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
       />
-    </div>
+    </>
   );
 };
 export default TableWarehouseManagement;
