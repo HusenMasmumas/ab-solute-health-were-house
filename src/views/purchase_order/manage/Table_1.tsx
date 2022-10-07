@@ -168,6 +168,11 @@ const Table_1 = ({tableName, data}: Props) => {
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
       />
   );
 };
