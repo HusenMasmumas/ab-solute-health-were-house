@@ -37,7 +37,7 @@ const MoTable = ({
           <div className="text-[20px] font-semibold w-[70%] flex items-center">
             {headerTable ? headerTable : null}
           </div> 
-          <div className="ml-8 w-[30%] flex items-center">
+          <div className="ml-8 w-[30%] flex items-center justify-end">
             {
               actions?.map((element:IAction,index:number)=>{
                 switch (element.type) {
