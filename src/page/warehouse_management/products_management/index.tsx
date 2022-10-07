@@ -97,18 +97,6 @@ const ProductsMangement = () => {
     },
   ];
 
-  // const onAdd = (value?: any) => {
-  //   if (value?.id) {
-  //     navigate("/setting/pdpa/edit", {
-  //       state: {
-  //         id: value?.id,
-  //       },
-  //     });
-  //   } else {
-  //     navigate("/setting/pdpa/add");
-  //   }
-  // };
-
   const onFinish = (values: any) => {
     //โยนเข้า create query
     console.log("Received values of form: ", values);
