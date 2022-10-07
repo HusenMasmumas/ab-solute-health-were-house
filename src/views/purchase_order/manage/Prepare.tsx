@@ -62,10 +62,10 @@ const onFinish = (values: any) => {
 
 const Prepare = (props: Props) => {
   return (
-    <div>
+    <>
       <SearchForm elements={elements} onFinish={onFinish} />
       <Table_1 data={mock} tableName="รายการเตรียมสินค้า"/>
-    </div>
+    </>
   );
 };
 

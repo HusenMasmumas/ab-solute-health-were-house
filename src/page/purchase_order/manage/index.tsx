@@ -25,7 +25,7 @@ const ManagePurcheaseOrder = (props: Props) => {
   const [ tabe, setTabe ] = useState<number>(0);
   let navigate = useNavigate();
   return (
-    <div>
+    <>
       <CHeader 
         keyHeader={keyHeader[tabe]}
         arrPath={arrPath[tabe]}
@@ -55,7 +55,7 @@ const ManagePurcheaseOrder = (props: Props) => {
         }
       })()}
       </div>
-    </div>
+    </>
   )
 }
 

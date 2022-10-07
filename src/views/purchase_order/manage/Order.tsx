@@ -66,10 +66,10 @@ const elements: IsearchFormItem[] = [
 const Order = (props: Props) => {
   const { t } = useTranslation();
   return (
-    <div>
+    <>
         <SearchForm elements={elements} onFinish={onFinish} />
         <Table_1 data={mock} tableName="รายการใบสั่งซื้อ"/>
-    </div>
+    </>
   )
 }
 

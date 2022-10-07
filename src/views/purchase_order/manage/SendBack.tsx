@@ -61,10 +61,10 @@ const onFinish = (values: any) => {
 };
 const SendBack = (props: Props) => {
   return (
-    <div>
+    <>
       <SearchForm elements={elements} onFinish={onFinish} />
       <Table_1 data={mock} tableName="รายการการตีกลับ"/>
-    </div>
+    </>
   );
 };
 

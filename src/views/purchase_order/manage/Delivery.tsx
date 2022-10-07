@@ -61,10 +61,10 @@ const onFinish = (values: any) => {
 };
 const Delivery = (props: Props) => {
   return (
-    <div>
+    <>
       <SearchForm elements={elements} onFinish={onFinish} />
       <Table_1 data={mock} tableName="รายการจัดส่งสินค้า"/>
-    </div>
+    </>
   );
 };
 
