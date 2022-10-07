@@ -124,7 +124,7 @@ const StoreCabinet = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <div>
+    <>
       <CHeader
         keyHeader="warehouseManagement"
         arrPath={["warehouseManagement", "locker"]}
@@ -138,25 +138,9 @@ const StoreCabinet = () => {
           }
         ]}
       />
-      <div className="mt-[24px]">
-        <SearchForm elements={elements} onFinish={onFinish} />
-      </div>
-      <div className="bg-white px-[24px] py-[16px] mt-[16px]">
-        <div className="grid grid-cols-2">
-          <span className="text-[#231F20] text-[20px] font-semibold">{`${t(
-            "รายการสั่งซื้อ"
-          )}`}</span>
-          <div className="grid items-center justify-end">
-            <div className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px]">
-              <Image src={Excel} alt="excel" preview={false}></Image>
-            </div>
-          </div>
-        </div>
-        <div className="ant-table-cell ant-table-selection-column ant-table-cell.ant-table-tbody">
-          <TableWarehouseManagement dataTable={data}></TableWarehouseManagement>
-        </div>
-      </div>
-    </div>
+      <SearchForm elements={elements} onFinish={onFinish} />
+      <TableWarehouseManagement dataTable={data}></TableWarehouseManagement>
+      </>
   );
 };
 export default StoreCabinet;
