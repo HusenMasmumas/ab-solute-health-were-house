@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PaginationProps } from "antd";
-import TableStoresBranches from "views/stores_branches/TableStoresBranches";
 import SearchForm from "component/Form/searchForm";
 import { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
