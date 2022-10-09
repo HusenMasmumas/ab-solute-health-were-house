@@ -2,7 +2,7 @@ import CHeader from "component/headerPage/Header";
 import { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
-import CreateModal from "views/purchase_order/CreateModal";
+import CreateModal from "./CreateModal";
 import { useNavigate } from "react-router-dom";
 import PurchaseForm from "component/Form/purchaseForm";
 import BlueButton from "component/Button/BlueButton";

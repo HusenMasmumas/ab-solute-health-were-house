@@ -9,7 +9,7 @@ import Register from "page/register";
 import OverAllPage from "page/over_all";
 import WarehouseManagement from "page/warehouse_management/inventory_management";
 import StoresBranches from "page/stores_branches";
-import ManagePurcheaseOrder from "page/purchase_order/manage";
+import ManagePurcheaseOrder from "page/purchase_order/index";
 import OrderReport from "page/report/orderReport";
 import ExpirationReport from "page/report/expirationReport";
 import DamageReport from "page/report/damagedReport";
