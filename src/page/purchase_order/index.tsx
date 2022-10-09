@@ -2,10 +2,10 @@ import CHeader from 'component/headerPage/Header'
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from 'react'
 import TabeButton from 'component/Button/TabeButton'
-import Order from 'views/purchase_order/manage/Order';
-import Prepare from 'views/purchase_order/manage/Prepare';
-import Delivery from 'views/purchase_order/manage/Delivery';
-import SendBack from 'views/purchase_order/manage/SendBack';
+import Order from 'page/purchase_order/reports/Order';
+import Prepare from 'page/purchase_order/reports/Prepare';
+import Delivery from 'page/purchase_order/reports/Delivery';
+import SendBack from 'page/purchase_order/reports/SendBack';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {}

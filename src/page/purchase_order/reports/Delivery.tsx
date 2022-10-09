@@ -1,5 +1,5 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import Table_1 from "./Table_1";
+import Table_1 from "../Table_1";
 type Props = {};
 
 const elements: IsearchFormItem[] = [
@@ -59,16 +59,16 @@ const onFinish = (values: any) => {
   //โยนเข้า create query
   console.log("Received values of form: ", values);
 };
-const SendBack = (props: Props) => {
+const Delivery = (props: Props) => {
   return (
     <>
       <SearchForm elements={elements} onFinish={onFinish} />
-      <Table_1 data={mock} tableName="รายการการตีกลับ"/>
+      <Table_1 data={mock} tableName="รายการจัดส่งสินค้า"/>
     </>
   );
 };
 
-export default SendBack;
+export default Delivery;
 
 
 const mock = [
@@ -80,7 +80,7 @@ const mock = [
     fullname: "สมพงษ์ ตามังกร",
     phone: "0934213455",
     pay: "3000",
-    status: "ยกเลิก",
+    status: "อยู่ระหว่างขนส่ง",
   },
   {
     key: 2,
@@ -90,7 +90,7 @@ const mock = [
     fullname: "สมพงษ์ ตามังกร",
     phone: "0934213455",
     pay: "3000",
-    status: "รออนุมัติ",
+    status: "สำเร็จ",
   },
   {
     key: 3,
@@ -100,6 +100,16 @@ const mock = [
     fullname: "สมพงษ์ ตามังกร",
     phone: "0934213455",
     pay: "3000",
-    status: "อนุมัติ",
+    status: "อยู่ระหว่างขนส่ง",
+  },
+  {
+    key: 4,
+    date: "2022-08-11T07:30:00.207536",
+    code: "asdsad",
+    branch: "ร้านขายยาวังทองหลาง",
+    fullname: "สมพงษ์ ตามังกร",
+    phone: "0934213455",
+    pay: "3000",
+    status: "รอการจัดส่ง",
   },
 ];
