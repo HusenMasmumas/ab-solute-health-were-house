@@ -1,19 +1,40 @@
+import { useEffect, useState } from "react";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { t } from "i18next";
-import React from "react";
 import DamageTable from "views/report/damageTable";
+import { DataType } from './interface'
 
-type Props = {};
-interface DataType {
-  key: React.Key;
-  date: string;
-  code: string;
-  sku: string;
-  name: string;
-  amount: number;
-  state: string;
-}
+
+const onFinish = (values: any) => {
+  //โยนเข้า create query
+  console.log("Received values of form: ", values);
+};
+const DamageReport = () => {
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+  return (
+    <>
+      <CHeader keyHeader="report" arrPath={["report", "damageReport"]} />
+      <SearchForm elements={elements} onFinish={onFinish} />
+      <DamageTable dataTable={data} headerTable={t("damageReport")} />
+    </>
+  );
+};
+
+export default DamageReport;
+
+
 const elements: IsearchFormItem[] = [
   {
     name: "date",
@@ -90,19 +111,3 @@ const data: DataType[] = [
     state: "เสียหาย",
   },
 ];
-
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
-};
-const DamageReport = (props: Props) => {
-  return (
-    <>
-      <CHeader keyHeader="report" arrPath={["report", "damageReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <DamageTable dataTable={data} headerTable={t("damageReport")} />
-    </>
-  );
-};
-
-export default DamageReport;
