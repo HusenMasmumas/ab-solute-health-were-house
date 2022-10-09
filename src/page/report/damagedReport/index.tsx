@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { t } from "i18next";
-import DamageTable from "views/report/damageTable";
+import MoTable from "component/Table/MoTable";
 import { DataType } from './interface'
+import { ColumnsType } from "antd/lib/table";
 
-
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
-};
 const DamageReport = () => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -23,17 +19,37 @@ const DamageReport = () => {
     if (type === "pageSize") setLimitPage(page);
     else setCurrentPage(page);
   };
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+
   return (
     <>
       <CHeader keyHeader="report" arrPath={["report", "damageReport"]} />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <DamageTable dataTable={data} headerTable={t("damageReport")} />
+      <MoTable
+        headerTable={t("damageReport")}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
+      />
     </>
   );
 };
 
 export default DamageReport;
-
 
 const elements: IsearchFormItem[] = [
   {
@@ -91,7 +107,60 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const data: DataType[] = [
+const columns: ColumnsType<DataType> = [
+  {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
+    title: "วันที่",
+    dataIndex: "date",
+    width: "15%",
+  },
+  {
+    title: "รหัสสินค้า",
+    dataIndex: "code",
+    width: "15%",
+  },
+  {
+    title: "SKU",
+    dataIndex: "sku",
+    width: "15%",
+  },
+  {
+    title: "ชื่อสินค้า  ",
+    dataIndex: "name",
+    width: "15%",
+  },
+  {
+    title: "จำนวน",
+    dataIndex: "amount",
+    width: "18%",
+  },
+  {
+    title: "สถานะ",
+    dataIndex: "state",
+    render: (state: string) => {
+      return (
+        <div className="text-white">
+          {state === "ไม่เสียหาย" ? (
+            <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "เสียหาย" ? (
+            <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : null}
+        </div>
+      );
+    },
+  },
+];
+
+const Mockdata: DataType[] = [
   {
     key: 1,
     date: "20/08/2565",

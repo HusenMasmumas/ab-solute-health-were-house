@@ -16,6 +16,7 @@ interface DataType {
   amount: number;
   state: string;
 }
+
 const columns: ColumnsType<DataType> = [
   {
     title: "#",
