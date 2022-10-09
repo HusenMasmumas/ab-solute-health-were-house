@@ -1,19 +1,55 @@
+import { useEffect, useState } from "react";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { t } from "i18next";
-import React from "react";
-import ExpirationTable from "views/report/expirationTable";
+import { DataType } from './interface'
+import { ColumnsType } from "antd/lib/table";
+import MoTable from "component/Table/MoTable";
+import { useTranslation } from "react-i18next";
 
-type Props = {};
-interface DataType {
-  key: React.Key;
-  code: string;
-  sku: string;
-  name: string;
-  endDate: string;
-  amount: number;
-  state: string;
-}
+const onFinish = (values: any) => {
+  //โยนเข้า create query
+  console.log("Received values of form: ", values);
+};
+
+const ExpirationReport = () => {
+  const { t } = useTranslation();
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+  return (
+    <>
+      <CHeader keyHeader="report" arrPath={["report", "expirationReport"]} />
+      <SearchForm elements={elements} onFinish={onFinish} />
+      <MoTable
+        headerTable={t("expirationReport")}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
+      />
+    </>
+  );
+};
+
+export default ExpirationReport;
 
 const elements: IsearchFormItem[] = [
   {
@@ -80,7 +116,61 @@ const elements: IsearchFormItem[] = [
     },
   },
 ];
-const data: DataType[] = [
+
+const columns: ColumnsType<DataType> = [
+  {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
+    title: "รหัสสินค้า",
+    dataIndex: "code",
+    width: "16%",
+  },
+  {
+    title: "SKU",
+    dataIndex: "sku",
+    width: "16%",
+  },
+  {
+    title: "ชื่อสินค้า  ",
+    dataIndex: "name",
+    width: "16%",
+  },
+  {
+    title: "วันหมดอายุ",
+    dataIndex: "endDate",
+    width: "16%",
+  },
+  {
+    title: "จำนวน",
+    dataIndex: "amount",
+    width: "16%",
+  },
+  {
+    title: "สถานะ",
+    dataIndex: "state",
+    render: (state: string) => {
+      return (
+        <div className="text-white">
+          {state === "ไม่เสียหาย" ? (
+            <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "เสียหาย" ? (
+            <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : null}
+        </div>
+      );
+    },
+  },
+];
+
+const Mockdata: DataType[] = [
   {
     key: 1,
     code: "PO453671668",
@@ -100,20 +190,3 @@ const data: DataType[] = [
     state: "เสียหาย",
   },
 ];
-
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
-};
-
-const ExpirationReport = (props: Props) => {
-  return (
-    <>
-      <CHeader keyHeader="report" arrPath={["report", "expirationReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <ExpirationTable dataTable={data} headerTable={t("expirationReport")} />
-    </>
-  );
-};
-
-export default ExpirationReport;
