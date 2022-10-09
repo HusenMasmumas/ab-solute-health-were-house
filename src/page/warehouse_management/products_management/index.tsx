@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ProductsType } from './interface'
 
-
 const expandable = {
   expandedRowRender: (record: ProductsType) => (
     <div className="py-[12px] px-[65px]">{record.name}</div>
