@@ -1,6 +1,5 @@
 import { Table, Pagination, TableProps, Card, Image } from "antd";
 import Excel from "assets/img/Excel.png";
-// type actionType = "excel";
 interface IAction {
   type: "excel" | "delete"
   fn?: (row?: any) => void;
@@ -30,6 +29,7 @@ const MoTable = ({
   config = { total: 15, currentPage: 1, pageSize: 10 },
   ...props
 }: Props) => {
+  
   return (
     <>
       <Card className="w-full !p-0 !my-10" bodyStyle={{ paddingTop: 10 }}>

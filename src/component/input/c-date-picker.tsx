@@ -7,6 +7,7 @@ import {
   import CDate from "./c-date";
   import { ConfigProvider } from 'antd';
   export const StyleCDatePicker = styled(CDate)`
+  height:43px;
   width: 100%;
   `;
   
