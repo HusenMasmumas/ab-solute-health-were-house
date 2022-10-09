@@ -1,18 +1,57 @@
+import { ColumnsType } from "antd/lib/table";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
+import MoTable from "component/Table/MoTable";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import OrderTable from "views/report/orderTable";
+import { DataType } from "./interface";
 
-interface DataType {
-  key: number;
-  date: string;
-  code: string;
-  nameShop: string;
-  fullname: string;
-  tel: string;
-  amount: string;
-  state: string;
-}
+const OrderReport = (props: Props) => {
+  const { t } = useTranslation();
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+  
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+  
+  return (
+    <>
+      <CHeader keyHeader="report" arrPath={["report", "orderReport"]} />
+      <SearchForm elements={elements} onFinish={onFinish} />
+      {/* <OrderTable dataTable={data} headerTable={t("orderReport")} /> */}
+      <MoTable
+        headerTable={t("orderReport")}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
+      />
+    </>
+  );
+};
+
+export default OrderReport;
 
 type Props = {};
 const elements: IsearchFormItem[] = [
@@ -81,7 +120,73 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const data: DataType[] = [
+const columns: ColumnsType<DataType> = [
+  {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
+    title: "วันที่สั่งซื้อ",
+    dataIndex: "date",
+    width: "12%",
+  },
+  {
+    title: "เลขที่ใบสั่งซื้อ",
+    dataIndex: "code",
+    width: "18%",
+  },
+  {
+    title: "ชื่อสาขา",
+    dataIndex: "nameShop",
+    width: "18%",
+  },
+  {
+    title: "ชื่อนามสกุล",
+    dataIndex: "fullname",
+    width: "18%",
+  },
+  {
+    title: "เบอร์โทร",
+    dataIndex: "tel",
+    width: "15%",
+  },
+  {
+    title: "รวม(฿)",
+    dataIndex: "amount",
+    width: "25%",
+  },
+  {
+    title: "สถานะ",
+    dataIndex: "state",
+    render: (state: string) => {
+      return (
+        <div className="text-white">
+          {state === "เรียบร้อย" ? (
+            <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "รออนุมัติ" ? (
+            <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "เตรียมสินค้า" ? (
+            <div className="bg-lightblue rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "ยกเลิก" ? (
+            <div className="bg-[#FC0002] rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : null}
+        </div>
+      );
+    },
+  },
+];
+
+const Mockdata: DataType[] = [
   {
     key: 1,
     date: "20/08/2565",
@@ -123,21 +228,3 @@ const data: DataType[] = [
     state: "ยกเลิก",
   },
 ];
-
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
-};
-
-const OrderReport = (props: Props) => {
-  const { t } = useTranslation();
-  return (
-    <>
-      <CHeader keyHeader="report" arrPath={["report", "orderReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <OrderTable dataTable={data} headerTable={t("orderReport")} />
-    </>
-  );
-};
-
-export default OrderReport;

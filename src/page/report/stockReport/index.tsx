@@ -1,21 +1,56 @@
+import { ColumnsType } from "antd/lib/table";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
+import MoTable from "component/Table/MoTable";
 import { t } from "i18next";
-import React from "react";
-import StockTable from "views/report/stockTable";
+import { useState, useEffect } from "react";
+import { IStockTable } from './interface'
 
-type Props = {};
-interface IStockTable {
-  key: React.Key;
-  date: string;
-  code: string;
-  sku: string;
-  costPrice: number;
-  nameProduct: string;
-  retailPrice: number;
-  amount: number;
-  state: string;
-}
+const StockReport = () => {
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+  
+  return (
+    <>
+      <CHeader keyHeader="report" arrPath={["report", "stockReport"]} />
+      <SearchForm elements={elements} onFinish={onFinish} />
+      <MoTable
+        headerTable={t("stockReport")}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
+      />
+    </>
+  );
+};
+
+export default StockReport;
+
 const elements: IsearchFormItem[] = [
   {
     name: "date",
@@ -72,7 +107,65 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const data: IStockTable[] = [
+const columns: ColumnsType<IStockTable> = [
+  {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
+    title: "วันที่",
+    dataIndex: "date",
+    width: "12%",
+  },
+  {
+    title: "รหัสสินค้า",
+    dataIndex: "code",
+    width: "15%",
+  },
+  {
+    title: "ชื่อสินค้า",
+    dataIndex: "nameProduct",
+    width: "22%",
+  },
+  {
+    title: "ปริมาณ",
+    dataIndex: "amount",
+    width: "10%",
+  },
+  {
+    title: "ราคาต้นทุน",
+    dataIndex: "costPrice",
+    width: "10%",
+  },
+  {
+    title: "ราคาขายปลีก",
+    dataIndex: "retailPrice",
+    width: "10%",
+  },
+  {
+    title: "สถานะ",
+    dataIndex: "state",
+    render: (state: string) => {
+      return (
+        <div className="text-white">
+          {state === "เปิดการขาย" ? (
+            <div className="bg-green rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : state === "ปิดการขาย" ? (
+            <div className="bg-darkgray rounded-[4px] w-[130px] flex justify-center py-[4px]">
+              {state}
+            </div>
+          ) : null}
+        </div>
+      );
+    },
+  },
+];
+
+const Mockdata: IStockTable[] = [
   {
     key: 1,
     code: "PO453671668",
@@ -96,19 +189,3 @@ const data: IStockTable[] = [
     state: "ปิดการขาย",
   },
 ];
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
-};
-
-const StockReport = (props: Props) => {
-  return (
-    <>
-      <CHeader keyHeader="report" arrPath={["report", "stockReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <StockTable dataTable={data} headerTable={t("stockReport")} />
-    </>
-  );
-};
-
-export default StockReport;

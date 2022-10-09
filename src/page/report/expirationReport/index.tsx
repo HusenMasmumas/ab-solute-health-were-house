@@ -6,11 +6,6 @@ import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import { useTranslation } from "react-i18next";
 
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
-};
-
 const ExpirationReport = () => {
   const { t } = useTranslation();
   const [limitPage, setLimitPage] = useState<number>(10);
@@ -25,6 +20,12 @@ const ExpirationReport = () => {
     if (type === "pageSize") setLimitPage(page);
     else setCurrentPage(page);
   };
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+
   return (
     <>
       <CHeader keyHeader="report" arrPath={["report", "expirationReport"]} />
