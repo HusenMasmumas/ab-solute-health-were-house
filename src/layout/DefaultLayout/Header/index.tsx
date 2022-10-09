@@ -40,6 +40,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
     <div className="header duration-500 bg-[#01438F] dark:bg-black py-2 px-6  min-h-[90px] flex justify-between items-center">
       <div className="flex items-center gap-4">
         <div
+          hidden
           className="w-10 h-10 cursor-pointer block 2xl:hidden"
           onClick={() => {
             setOpenDrawer(!openDrawer);
