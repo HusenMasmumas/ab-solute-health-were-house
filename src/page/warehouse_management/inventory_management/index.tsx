@@ -53,7 +53,7 @@ const WarehouseManagement = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <div>
+    <>
       <CHeader
         keyHeader="warehouseManagement"
         arrPath={["warehouseManagement"]}
@@ -114,7 +114,7 @@ const WarehouseManagement = () => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
