@@ -1,14 +1,11 @@
 import CHeader from 'component/headerPage/Header'
-import { useTranslation } from "react-i18next";
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TabeButton from 'component/Button/TabeButton'
 import Order from 'page/purchase_order/reports/Order';
 import Prepare from 'page/purchase_order/reports/Prepare';
 import Delivery from 'page/purchase_order/reports/Delivery';
 import SendBack from 'page/purchase_order/reports/SendBack';
 import { useNavigate } from 'react-router-dom';
-
-type Props = {}
 
 const arrPath = [
   ['purchaseOrderManagement','purchaseOrder'],
@@ -19,9 +16,7 @@ const arrPath = [
 
 const keyHeader = ['purchaseOrder', 'prepareGoods', 'delivery', 'returnOrder']
 
-
-
-const ManagePurcheaseOrder = (props: Props) => {
+const ManagePurcheaseOrder = () => {
   const [ tabe, setTabe ] = useState<number>(0);
   let navigate = useNavigate();
   return (
@@ -41,7 +36,6 @@ const ManagePurcheaseOrder = (props: Props) => {
         <TabeButton onClick={()=>{setTabe(2)}} text={'delivery'} active={tabe === 2 ? true : false }/>
         <TabeButton onClick={()=>{setTabe(3)}} text={'returnOrder'} active={tabe === 3 ? true : false }/> 
       </div>
-      <div>
       {(() => {
         switch(tabe) {
           case 0:
@@ -54,7 +48,6 @@ const ManagePurcheaseOrder = (props: Props) => {
             return <SendBack />
         }
       })()}
-      </div>
     </>
   )
 }
