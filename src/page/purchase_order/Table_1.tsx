@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { Card } from "antd";
 import CDropDown from "component/Dropdown/DropDown";
 import { useNavigate } from "react-router-dom";
+import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 type Props = {
   data:any
   tableName:string
@@ -18,6 +19,59 @@ interface DataType {
   phone: string;
   status: "approve" | "waiting" | "cancle";
 }
+
+const elements: IsearchFormItem[] = [
+  {
+    name: "date",
+    label: "วัน",
+    input: {
+      type: "date-picker",
+      options: {
+        search: true,
+      },
+    },
+  },
+  {
+    name: "code",
+    label: "เลขใบสั่งซื้อ",
+    input: {
+      type: "input",
+      options: {
+        search: true,
+      },
+    },
+  },
+  {
+    name: "nameShop",
+    label: "ชื่อร้าน",
+    input: {
+      type: "input",
+      options: {
+        search: true,
+      },
+    },
+  },
+  {
+    name: "fullName",
+    label: "ชื่อ-นามสกุล",
+    input: {
+      type: "input",
+      options: {
+        search: true,
+      },
+    },
+  },
+  {
+    name: "phone",
+    label: "เบอร์โทร",
+    input: {
+      type: "input",
+      options: {
+        search: true,
+      },
+    },
+  },
+];
 
 const Table_1 = ({tableName, data}: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
@@ -54,6 +108,7 @@ const Table_1 = ({tableName, data}: Props) => {
     {
       title: "#",
       dataIndex: "key",
+      width: '5%'
     },
     {
       title: "วันที่สั่งซื้อ",
@@ -61,30 +116,37 @@ const Table_1 = ({tableName, data}: Props) => {
       render: (text, record) => {
         return <span>{dayjs(text).format("DD/MM/YYYY | HH.mm")}</span>;
       },
+      width: '10%'
     },
     {
       title: "เลขที่ใบสั่งซื้อ",
       dataIndex: "code",
+      width: '10%'
     },
     {
       title: "ชื่อสาขา",
       dataIndex: "branch",
+      width: '10%'
     },
     {
       title: "ชื่อ-นามสกุล",
       dataIndex: "fullname",
+      width: '10%'
     },
     {
       title: "เบอร์โทร",
       dataIndex: "phone",
+      width: '10%'
     },
     {
       title: "รวม(฿)",
       dataIndex: "pay",
+      width: '10%'
     },
     {
       title: "สถานะ",
       dataIndex: "status",
+      width: '20%',
       render: (text, record) => {
         switch(true) {
           case text === 'อนุมัติ' && ['รายการใบสั่งซื้อ'].includes(tableName):
@@ -151,8 +213,15 @@ const Table_1 = ({tableName, data}: Props) => {
     else setCurrentPage(page);
   };
 
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+
   return (
-      <MoTable
+      <>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
         headerTable={tableName}
         columns={columns}
         dataSource={data}
@@ -173,7 +242,8 @@ const Table_1 = ({tableName, data}: Props) => {
           fn: ()=>{console.log('download excel');
           }
         }]}
-      />
+        />
+      </>
   );
 };
 
