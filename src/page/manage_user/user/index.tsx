@@ -2,23 +2,14 @@ import { useTranslation } from "react-i18next";
 import TableUserManagement from "views/manage_user/user_mangement/TableUserManagement";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import { useNavigate } from "react-router";
-import Excel from "../../../assets/img/Excel.png";
-import { Image } from "antd";
 import Profile from "../../../assets/img/profile.jpg";
 import Profile2 from "../../../assets/img/profile-2.jpg";
 import CHeader from "component/headerPage/Header";
-
-type Props = {};
-
-interface DataType {
-  key: number;
-  profile: string;
-  name: string;
-  phone: string;
-  email: string;
-  role: string;
-  status: boolean;
-}
+import { DataType } from "./interface";
+import { useEffect, useState } from "react";
+import { Switch, Image } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import MoTable from "component/Table/MoTable";
 
 const elements: IsearchFormItem[] = [
   {
@@ -79,35 +70,108 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const onFinish = (values: any) => {
-  //โยนเข้า create query
-  console.log("Received values of form: ", values);
+
+const onChange = (checked: boolean) => {
+  console.log(`switch to ${checked}`);
 };
+
+const columns: ColumnsType<DataType> = [
+  {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
+    title: "ภาพโปรไฟล์",
+    dataIndex: "profile",
+    width: "10%",
+    render: (profile: string) => {
+      return (
+        <div className="w-[50px] h-[50px]">
+          <Image
+            style={{ borderRadius: "100%" }}
+            src={profile}
+            alt="profile"
+            preview={false}
+          ></Image>
+        </div>
+      );
+    },
+  },
+  {
+    title: "ชื่อ-นามสกุล (ผู้จัดการ)",
+    dataIndex: "name",
+    width: "16%",
+  },
+  {
+    title: "เบอร์โทร",
+    dataIndex: "phone",
+    width: "16%",
+  },
+  {
+    title: "อีเมล",
+    dataIndex: "email",
+    width: "20%",
+  },
+  {
+    title: "บทบาท",
+    dataIndex: "role",
+  },
+
+  {
+    title: "สถานะ",
+    dataIndex: "status",
+    width: "7%",
+    render: (status) => {
+      return <Switch defaultChecked onChange={onChange} />;
+    },
+  },
+];
+
+const Mockdata: DataType[] = [
+  {
+    key: 1,
+    profile: Profile,
+    name: "pangpang",
+    phone: "0912345678",
+    email: "pp@gmail.com",
+    role: "ผู้จัดการ",
+    status: true,
+  },
+  {
+    key: 2,
+    profile: Profile2,
+    name: "prakaifa",
+    phone: "09874561230",
+    email: "ppjj@gmail.com",
+    role: "ผู้จัดการ",
+    status: true,
+  },
+];
 
 const UserManagement = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const data: DataType[] = [
-    {
-      key: 1,
-      profile: Profile,
-      name: "pangpang",
-      phone: "0912345678",
-      email: "pp@gmail.com",
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 2,
-      profile: Profile2,
-      name: "prakaifa",
-      phone: "09874561230",
-      email: "ppjj@gmail.com",
-      role: "ผู้จัดการ",
-      status: true,
-    },
-  ];
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+
   return (
     <>
       <CHeader
@@ -124,9 +188,20 @@ const UserManagement = () => {
         ]}
       />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <TableUserManagement dataTable={data}></TableUserManagement>
+      <MoTable
+        headerTable={'จัดการผู้ใช้'}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+      />
     </>
   );
 };
 
 export default UserManagement;
+

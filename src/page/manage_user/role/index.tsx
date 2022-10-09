@@ -2,16 +2,11 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import TableRoleManagement from "views/manage_user/role_mangement/TableRoleManagement";
-import { Image } from "antd";
-import Excel from "../../../assets/img/Excel.png";
-
-type Props = {};
-interface DataType {
-  key: number;
-  role: string;
-  status: boolean;
-}
+import { Switch } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import { useState, useEffect } from "react";
+import MoTable from "component/Table/MoTable";
+import { DataType } from './interface'
 const elements: IsearchFormItem[] = [
   {
     name: "role",
@@ -38,26 +33,56 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const RoleManagement = (props: Props) => {
-  const { t } = useTranslation();
+const RoleManagement = () => {
   const navigate = useNavigate();
-  const data: DataType[] = [
-    {
-      key: 1,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-    {
-      key: 2,
-      role: "ผู้จัดการ",
-      status: true,
-    },
-  ];
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+
+  const onChange = (checked: boolean) => {
+    console.log(`switch to ${checked}`);
+  };
 
   const onFinish = (values: any) => {
     //โยนเข้า create query
     console.log("Received values of form: ", values);
   };
+
+  const columns: ColumnsType<DataType> = [
+    {
+      title: "#",
+      dataIndex: "key",
+      width: "7%",
+      align: "center",
+    },
+    {
+      title: "ชื่อบทบาท",
+      dataIndex: "role",
+    },
+    {
+      title: "การใช้งาน",
+      dataIndex: "status",
+      width: "10%",
+  
+      render: (status) => {
+        return (
+          <div className="mr-10">
+            <Switch defaultChecked onChange={onChange} />
+          </div>
+        );
+      },
+    },
+  ];
+  
   return (
     <>
       <CHeader
@@ -74,10 +99,32 @@ const RoleManagement = (props: Props) => {
         ]}
       />
       <SearchForm elements={elements} onFinish={onFinish} />
-      <TableRoleManagement dataTable={data}></TableRoleManagement>
-      
+      <MoTable
+        headerTable={'รายการบทบาท'}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+      />
     </>
   );
 };
 
 export default RoleManagement;
+
+const Mockdata: DataType[] = [
+  {
+    key: 1,
+    role: "ผู้จัดการ",
+    status: true,
+  },
+  {
+    key: 2,
+    role: "ผู้จัดการ",
+    status: true,
+  },
+];
