@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import TableUserManagement from "views/manage_user/user_mangement/TableUserManagement";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import { useNavigate } from "react-router";
 import Profile from "../../../assets/img/profile.jpg";
