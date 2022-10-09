@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PaginationProps } from "antd";
 import TableStoresBranches from "views/stores_branches/TableStoresBranches";
@@ -6,7 +6,9 @@ import SearchForm from "component/Form/searchForm";
 import { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useNavigate } from "react-router-dom";
-
+import { IDataType } from './interface'
+import type { ColumnsType } from "antd/es/table";
+import MoTable from "component/Table/MoTable";
 const elements: IsearchFormItem[] = [
   {
     name: "store",
@@ -59,15 +61,30 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-interface DataType {
-  key: React.Key;
-  store: string;
-  name: string;
-  phone: string;
-  status: boolean;
-}
+const columns: ColumnsType<IDataType> = [
+  {
+    title: "#",
+    dataIndex: "key",
+    align: "center",
+    width: "7%",
+  },
+  {
+    title: "ชื่อร้าน",
+    dataIndex: "store",
+    width: "20%",
+  },
+  {
+    title: "ชื่อนามสกุล(ผู้จัดการ)",
+    dataIndex: "name",
+  },
+  {
+    title: "เบอร์โทร",
+    dataIndex: "phone",
+  },
+];
 
-const data: DataType[] = [];
+
+const data: IDataType[] = [];
 for (let i = 0; i < 10; i++) {
   data.push({
     key: i,
@@ -79,19 +96,19 @@ for (let i = 0; i < 10; i++) {
 }
 
 const StoresBranches = () => {
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const connentlAPI = (values: any) => {
-    console.log("connentl API");
-    console.log("value", values);
-  };
 
-  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
-    current,
-    pageSize
-  ) => {
-    console.log(current, pageSize);
-    connentlAPI("ads");
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
   };
 
   const onFinish = (values: any) => {
@@ -113,7 +130,17 @@ const StoresBranches = () => {
         ]}
       />  
       <SearchForm elements={elements} onFinish={onFinish} />
-      <TableStoresBranches dataTable={data} headerTable={t("orderlist")} /> 
+      <MoTable
+        headerTable={t("orderlist")}
+        columns={columns}
+        dataSource={data}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+      />
     </>
   );
 };
