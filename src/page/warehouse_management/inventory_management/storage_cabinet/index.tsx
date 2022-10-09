@@ -2,9 +2,9 @@ import { Image } from "antd";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import TableWarehouseManagement from "views/warehouse_managment/inventory_management/TableWarehouseManagement";
-import Excel from "../../../../assets/img/Excel.png";
+import Excel from "assets/img/Excel.png";
 
 interface DataType {
   key: number;
@@ -19,7 +19,8 @@ interface DataType {
 }
 const StoreCabinet = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const location = useLocation();
+  console.log('location',location.state);
   const data: DataType[] = [
     {
       key: 1,
@@ -106,18 +107,6 @@ const StoreCabinet = () => {
       },
     },
   ];
-
-  // const onAdd = (value?: any) => {
-  //   if (value?.id) {
-  //     navigate("/setting/pdpa/edit", {
-  //       state: {
-  //         id: value?.id,
-  //       },
-  //     });
-  //   } else {
-  //     navigate("/setting/pdpa/add");
-  //   }
-  // };
 
   const onFinish = (values: any) => {
     //โยนเข้า create query

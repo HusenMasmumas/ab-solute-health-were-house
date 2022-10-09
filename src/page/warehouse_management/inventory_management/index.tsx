@@ -2,7 +2,7 @@ import { Image } from "antd";
 import { useTranslation } from "react-i18next";
 import Picture1 from "assets/img/pic-02.png";
 import Picture2 from "assets/img/pic-04.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
@@ -13,16 +13,16 @@ const WarehouseManagement = () => {
   const { t } = useTranslation();
 
   const data = [
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A1" },
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A2" },
-    { picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A3" },
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A4" },
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A5" },
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A6" },
-    { picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A7" },
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A8" },
-    { picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A9" },
-    { picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
+    { id:1, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A1" },
+    { id:2, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A2" },
+    { id:3, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A3" },
+    { id:4, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A4" },
+    { id:5, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A5" },
+    { id:6, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A6" },
+    { id:7, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A7" },
+    { id:8, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A8" },
+    { id:9, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A9" },
+    { id:10, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
   ];
 
   const elements: IsearchFormItem[] = [
@@ -54,23 +54,20 @@ const WarehouseManagement = () => {
   };
   return (
     <div>
-  
-        <CHeader
-          keyHeader="warehouseManagement"
-          arrPath={["warehouseManagement"]}
-          buttons={[
-            { 
-              colorButton: 'green',
-              keytext: 'createLocker',
-              fn:  () => {
-                    navigate("/warehouse-management/create-inventory");
-              }
+      <CHeader
+        keyHeader="warehouseManagement"
+        arrPath={["warehouseManagement"]}
+        buttons={[
+          { 
+            colorButton: 'green',
+            keytext: 'createLocker',
+            fn:  () => {
+                  navigate("/warehouse-management/create-inventory");
             }
-          ]}
-        />
-
-     
-        <SearchForm elements={elements} onFinish={onFinish} />
+          }
+        ]}
+      />
+      <SearchForm elements={elements} onFinish={onFinish} />
       
       {/* card */}
       <div className="grid xl:grid-cols-5 md:grid-cols-3 gap-4 mt-[12px;]">
@@ -95,12 +92,10 @@ const WarehouseManagement = () => {
                   width={"98%"}
                   height={"98%"}
                   preview={false}
-                ></Image>
+                />
               </div>
               <div>
-                <span className="text-lightgray !mb-0">{`${t(
-                  item.code
-                )}`}</span>
+                <span className="text-lightgray !mb-0">{`${t(item.code)}`}</span>
               </div>
               <div className="grid grid-cols-2">
                 <span
@@ -111,8 +106,8 @@ const WarehouseManagement = () => {
                 >
                   {item.storeNo}
                 </span>
-                <div className="flex text-green  items-end justify-end">
-                  <ArrowIcon />
+                <div className="flex text-green  items-end justify-end bg-red-300" >
+                  <ArrowIcon onClick={()=>{navigate("/warehouse-management/store-cabinet", {state:{id: item.id }})}}/> 
                 </div>
               </div>
             </div>
