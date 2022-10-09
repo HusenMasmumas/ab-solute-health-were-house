@@ -81,7 +81,7 @@ const WarehouseManagement = () => {
                 <div className="w-[28px] h-[28px] bg-lightsky text-green rounded-[5px] grid justify-center items-center">
                   <DotIcon
                     onClick={() => {
-                      navigate("/warehouse-management/create-inventory");
+                      // navigate("/warehouse-management/create-inventory");
                     }}
                   />
                 </div>
@@ -106,7 +106,7 @@ const WarehouseManagement = () => {
                 >
                   {item.storeNo}
                 </span>
-                <div className="flex text-green  items-end justify-end bg-red-300" >
+                <div className="flex text-green  items-end justify-end" >
                   <ArrowIcon onClick={()=>{navigate("/warehouse-management/store-cabinet", {state:{id: item.id }})}}/> 
                 </div>
               </div>
