@@ -131,7 +131,6 @@ const ProductsMangement = () => {
     },
     {
       title: "Name",
-      // dataIndex: "amount",
       width: "60%",
     },
   ]
@@ -141,7 +140,6 @@ const ProductsMangement = () => {
       <SubTable columns={subColumns} dataSource={subSku} pagination={false} showHeader={false}/>
     ),
     rowExpandable: (record: any) => record.name !== "Not Expandable",
-    // defaultExpandedRowKeys: ['0']
   };
 
 
