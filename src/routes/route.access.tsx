@@ -28,6 +28,7 @@ import CreateInventory from "page/warehouse_management/inventory_management/crae
 import ProductsManagemnet from "page/warehouse_management/products_management";
 import CreateProduct from "page/warehouse_management/products_management/create_products";
 import Examine from "page/purchase_order/Examine";
+import CreateStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -80,6 +81,12 @@ export const _requirePermission: RouteCustom[] = [
             keyName: "/warehouse-management/store-cabinet",
             requireAuth: true,
             element: <StoreCabinet />,
+          },
+          {
+            path: "create-Create-store-cabinet",
+            keyName: "/warehouse-management/store-cabinet",
+            requireAuth: true,
+            element: <CreateStoreCabinet />,
           },
           {
             path: "create-store-cabinet",

@@ -73,12 +73,6 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
-        keyName: "/warehouse-management/store-cabinet",
-        title_en: "Store Cabinet",
-        title_th: "ตู้เก็บสินค้า",
-        AccessPermission: ["create", "update", "delete", "viewers"],
-      },
-      {
         keyName: "/warehouse-management/create-store-cabinet",
         title_en: "Create Store Cabinet",
         title_th: "สร้างตู้เก็บสินค้า",
