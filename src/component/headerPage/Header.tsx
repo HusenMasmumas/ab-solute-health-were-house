@@ -20,8 +20,12 @@ type ICHeader = {
   arrPath?: string[];
 };
 
+
 const CHeader = ({ keyHeader, arrPath = [], buttons=[] }: ICHeader) => {
   const { t, i18n } = useTranslation();
+  const getText = (keytext:string)=>{
+    return i18n.exists(keytext) ? `${t(keytext)}` : keytext
+  }
   return (
     <div className="grid grid-cols-2 pb-5 pt-5" style={{ position: "sticky", width: "100%", top: 0, zIndex:1, backgroundColor:'#F5F5F5'}}>
       <div className="w-full">
@@ -35,17 +39,17 @@ const CHeader = ({ keyHeader, arrPath = [], buttons=[] }: ICHeader) => {
           buttons.map(({keytext, fn, colorButton}:IButton,index:number)=>{
             switch (colorButton) {
               case 'green':
-                return <GreenButton key={index} onClick={fn}>{i18n.exists(keytext) ? `${t(keytext)}` : keytext}</GreenButton>
+                return <GreenButton key={index} onClick={fn}>{getText(keytext)}</GreenButton>
               case 'whilte':
-                return <WhilteButton key={index} onClick={fn}>{keytext}</WhilteButton>
+                return <WhilteButton key={index} onClick={fn}>{getText(keytext)}</WhilteButton>
               case 'light-blue':
-                return <LightBlueButton key={index} onClick={fn}>{keytext}</LightBlueButton>
+                return <LightBlueButton key={index} onClick={fn}>{getText(keytext)}</LightBlueButton>
               case 'deep-blue':
-                return <DeepBlueButton key={index} onClick={fn}>{keytext}</DeepBlueButton>
+                return <DeepBlueButton key={index} onClick={fn}>{getText(keytext)}</DeepBlueButton>
               case 'blue':
-                return <BlueButton key={index} onClick={fn}>{keytext}</BlueButton>
+                return <BlueButton key={index} onClick={fn}>{getText(keytext)}</BlueButton>
               default:
-                return <WhilteButton key={index} onClick={fn}>{keytext}</WhilteButton>
+                return <WhilteButton key={index} onClick={fn}>{getText(keytext)}</WhilteButton>
             }
           })
         }
