@@ -7,50 +7,6 @@ import { t } from "i18next";
 import { IImportTable } from './interface'
 
 
-const ImportedReport = () => {
-  const [limitPage, setLimitPage] = useState<number>(10);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
-  }, [currentPage, limitPage]);
-
-  const onChangePage = (page: number, type?: string) => {
-    if (type === "pageSize") setLimitPage(page);
-    else setCurrentPage(page);
-  };
-
-  const onFinish = (values: any) => {
-    //โยนเข้า create query
-    console.log("Received values of form: ", values);
-  };
-  return (
-    <>
-      <CHeader keyHeader="report" arrPath={["report", "importedReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        headerTable={t("importedReport")}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-        actions={[{
-          type: 'excel',
-          fn: ()=>{console.log('download excel');
-          }
-        }]}
-      />
-    </>
-  );
-};
-
-export default ImportedReport;
-
 const elements: IsearchFormItem[] = [
   {
     name: "date",
@@ -164,6 +120,52 @@ const columns: ColumnsType<IImportTable> = [
     },
   },
 ];
+
+
+const ImportedReport = () => {
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+  return (
+    <>
+      <CHeader keyHeader="report" arrPath={["report", "importedReport"]} />
+      <SearchForm elements={elements} onFinish={onFinish} />
+      <MoTable
+        scroll={{x:900}}
+        headerTable={t("importedReport")}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
+      />
+    </>
+  );
+};
+
+export default ImportedReport;
 
 const Mockdata: IImportTable[] = [
   {

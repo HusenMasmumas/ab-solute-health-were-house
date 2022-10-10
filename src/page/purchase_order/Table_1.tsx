@@ -221,6 +221,7 @@ const Table_1 = ({tableName, data}: Props) => {
       <>
         <SearchForm elements={elements} onFinish={onFinish} />
         <MoTable
+        scroll={{x:900}}
         headerTable={tableName}
         columns={columns}
         dataSource={data}
