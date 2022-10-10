@@ -23,10 +23,10 @@ const MoTable = ({
   rowSelection,
   expandable,
   onChangePage,
-  scroll,
   headerTable,
   actions,
   config = { total: 15, currentPage: 1, pageSize: 10 },
+  scroll={x:900},
   ...props
 }: Props) => {
   
