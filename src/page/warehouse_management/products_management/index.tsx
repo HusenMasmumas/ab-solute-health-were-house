@@ -1,3 +1,4 @@
+import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
@@ -6,17 +7,9 @@ import MoTable from "component/Table/MoTable";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { ProductsType } from './interface'
+import { ProductsType, subSKU } from './interface'
+import SubTable from "component/Table/subTable";
 
-const expandable = {
-  expandedRowRender: (record: ProductsType) => (
-    <>
-        <div className="py-[12px] px-[65px]">{record.name}</div>
-        <div className="py-[12px] px-[65px]">{record.name}</div>
-    </>
-  ),
-  rowExpandable: (record: any) => record.name !== "Not Expandable",
-};
 
 const ProductsMangement = () => {
   const navigate = useNavigate();
@@ -105,6 +98,7 @@ const ProductsMangement = () => {
     {
       title: "สถานะ",
       dataIndex: "status",
+      width: "10%",
       render: (status, row) => {
         return (
           <CSelectStatus
@@ -124,10 +118,38 @@ const ProductsMangement = () => {
     },
   ];
 
+  const subColumns: ColumnsType<any> = [
+    {
+      title: "SKU/Sub SKU",
+      dataIndex: "name",
+      width: "20%",
+    },
+    {
+      title: "Name",
+      dataIndex: "amount",
+      width: "20%",
+    },
+    {
+      title: "Name",
+      // dataIndex: "amount",
+      width: "60%",
+    },
+  ]
+
+  const expandable = {
+    expandedRowRender: ({subSku, ...record}: ProductsType) => (    
+      <SubTable columns={subColumns} dataSource={subSku} pagination={false} showHeader={false}/>
+    ),
+    rowExpandable: (record: any) => record.name !== "Not Expandable",
+    // defaultExpandedRowKeys: ['0']
+  };
+
+
   const onFinish = (values: any) => {
     //โยนเข้า create query
     console.log("Received values of form: ", values);
   };
+  
   return (
     <>
       <CHeader
@@ -171,7 +193,7 @@ const data: ProductsType[] = [
     key: 1,
     name: "K8763666",
     sku: "โซเดียมไบคาร์บอเนต",
-    subSku: [{name:'SE-00001', amount: 20}, {name:'SE-00002', amount: 11}],
+    subSku: [{id:1, name:'SE-00001', amount: 20}, {id:2, name:'SE-00002', amount: 11}],
     category: "เคมีภัณฑ์",
     subCategory: "สารละลาย",
     priceNormal: 0,
@@ -182,11 +204,11 @@ const data: ProductsType[] = [
     key: 2,
     name: "K8763",
     sku: "โซเดียมไบคาร์บอเนต",
-    subSku: [{name:'SE-00003', amount: 20}, {name:'SE-00004', amount: 11}],
+    subSku: [{id:5, name:'SE-00003', amount: 20}, {id:4, name:'SE-00004', amount: 11}],
     category: "เคมีภัณฑ์",
     subCategory: "สารละลาย",
     priceNormal: 0,
     priceCost: 0,
     status: "ปิด",
-  },
+  }
 ];

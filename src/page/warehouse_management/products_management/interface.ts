@@ -1,4 +1,5 @@
 export interface subSKU {
+    id:number,
     name:string,
     amount:number
 } 
