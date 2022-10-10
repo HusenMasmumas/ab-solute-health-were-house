@@ -162,7 +162,6 @@ const OrderReport = () => {
     <>
       <CHeader keyHeader="report" arrPath={["report", "orderReport"]} />
       <SearchForm elements={elements} onFinish={onFinish} />
-      {/* <OrderTable dataTable={data} headerTable={t("orderReport")} /> */}
       <MoTable
         scroll={{x:900}}
         headerTable={t("orderReport")}
