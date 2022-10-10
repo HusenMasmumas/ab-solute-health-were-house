@@ -1,4 +1,3 @@
-import { Image } from "antd";
 import { useTranslation } from "react-i18next";
 import Picture1 from "assets/img/pic-02.png";
 import Picture2 from "assets/img/pic-04.png";
@@ -7,6 +6,7 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
 import { ReactComponent as DotIcon } from "assets/Icon/dot.svg";
+import CImage from "component/Image/CImage";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const WarehouseManagement = () => {
     { id:7, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A7" },
     { id:8, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A8" },
     { id:9, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A9" },
-    { id:10, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
+    { id:10, picture: 'asd', code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
   ];
 
   const elements: IsearchFormItem[] = [
@@ -87,7 +87,7 @@ const WarehouseManagement = () => {
                 </div>
               </div>
               <div className="grid justify-center items-center">
-                <Image
+                <CImage
                   src={item.picture}
                   width={"98%"}
                   height={"98%"}
