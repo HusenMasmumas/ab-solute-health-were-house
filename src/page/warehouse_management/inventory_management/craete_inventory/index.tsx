@@ -3,6 +3,8 @@ import { Button, Col, Form, Input, Row, Select } from "antd";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
+import GreenButton from 'component/Button/GreenButton';
+import WhilteButton from 'component/Button/whilteButton';
 const CreateInventory = () => {
   const { t } = useTranslation();
   const location = useLocation();
@@ -13,23 +15,28 @@ const CreateInventory = () => {
     // console.log('useLocation====',location.state);
   },[])
   return (
-    <div>
-      <div className="grid grid-cols-4">
-        <div className="col-span-3">
+    <>
           <CHeader
             keyHeader="warehouseManagement"
             arrPath={["warehouseManagement", location.state?.id ? "Locker "+location.state?.id :"addLocker"]}
+            buttons={[
+              { 
+                colorButton: 'whilte',
+                keytext: 'cancle',
+                fn:  () => {
+                  navigate("/warehouse-management/inventory-management");
+                }
+              },
+              { 
+                colorButton: 'green',
+                keytext: 'save',
+                fn:  () => {
+                  navigate("/warehouse-management/inventory-management");
+                }
+              }
+            ]}
           />
-        </div>
-        <div className="grid grid-cols-2 gap-4 justify-end items-center">
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px]" onClick={()=>{navigate("/warehouse-management/inventory-management")}}>
-            {`${t("ยกเลิก")}`}
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            {`${t("บันทึก")}`}
-          </Button>
-        </div>
-      </div>
+
       <div className="bg-white pt-[16px] px-[24px] mt-[24px] pb-[100px]">
         <div className="text-lightblue text-[20px] font-semibold">
           <span>ข้อมูลตู้เก็บสินค้า</span>
@@ -64,7 +71,7 @@ const CreateInventory = () => {
           </Row>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 export default CreateInventory;
