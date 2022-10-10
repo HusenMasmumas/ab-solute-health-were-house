@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, Row, Table } from "antd";
 import { ColumnType } from "antd/lib/table";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import TableCreateRole from "./TableCreateRole";
 
 interface DataType {
@@ -10,7 +11,7 @@ interface DataType {
 }
 const CreateRole = () => {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const data: DataType[] = [
     {
       key: 1,
@@ -26,24 +27,25 @@ const CreateRole = () => {
     },
   ];
   return (
-    <div>
-      <div className="grid grid-cols-2">
-        <CHeader
-          keyHeader="manageUser"
-          arrPath={["manageUser", "role", "addRole"]}
-        />
-        <div className="flex justify-end items-center gap-2">
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
-            ยกเลิก
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            บันทึก
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            บันทึกและดำเนินการต่อ
-          </Button>
-        </div>
-      </div>
+    <>
+      <CHeader
+        keyHeader="manageUser"
+        arrPath={["manageUser", "role", "addRole"]}
+        buttons={[
+          { colorButton: 'whilte',
+            keytext: 'cancle',
+            fn:  () => {
+              navigate("/user/role");
+            },
+          },
+          { colorButton: 'green',
+            keytext: 'save',
+            fn:  () => {
+              navigate("/user/role");
+            },
+          }
+        ]}
+      />
       {/* form */}
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
         <div className="text-[#231F20] text-[20px] font-semibold mb-[8px]">
@@ -63,7 +65,7 @@ const CreateRole = () => {
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
         <TableCreateRole dataTable={data}></TableCreateRole>
       </div>
-    </div>
+    </>
   );
 };
 export default CreateRole;
