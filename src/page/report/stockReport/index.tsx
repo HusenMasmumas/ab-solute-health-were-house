@@ -6,50 +6,6 @@ import { t } from "i18next";
 import { useState, useEffect } from "react";
 import { IStockTable } from './interface'
 
-const StockReport = () => {
-  const [limitPage, setLimitPage] = useState<number>(10);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
-  }, [currentPage, limitPage]);
-
-  const onChangePage = (page: number, type?: string) => {
-    if (type === "pageSize") setLimitPage(page);
-    else setCurrentPage(page);
-  };
-
-  const onFinish = (values: any) => {
-    //โยนเข้า create query
-    console.log("Received values of form: ", values);
-  };
-  
-  return (
-    <>
-      <CHeader keyHeader="report" arrPath={["report", "stockReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        headerTable={t("stockReport")}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-        actions={[{
-          type: 'excel',
-          fn: ()=>{console.log('download excel');
-          }
-        }]}
-      />
-    </>
-  );
-};
-
-export default StockReport;
 
 const elements: IsearchFormItem[] = [
   {
@@ -164,6 +120,51 @@ const columns: ColumnsType<IStockTable> = [
     },
   },
 ];
+
+const StockReport = () => {
+  const [limitPage, setLimitPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+  }, [currentPage, limitPage]);
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+  
+  return (
+    <>
+      <CHeader keyHeader="report" arrPath={["report", "stockReport"]} />
+      <SearchForm elements={elements} onFinish={onFinish} />
+      <MoTable
+        headerTable={t("stockReport")}
+        columns={columns}
+        dataSource={Mockdata}
+        onChangePage={onChangePage}
+        config={{
+          total: 20, //ค่าจาก backend ใช้หารหน้า
+          pageSize: limitPage,
+          currentPage: currentPage,
+        }}
+        actions={[{
+          type: 'excel',
+          fn: ()=>{console.log('download excel');
+          }
+        }]}
+      />
+    </>
+  );
+};
+
+export default StockReport;
 
 const Mockdata: IStockTable[] = [
   {
