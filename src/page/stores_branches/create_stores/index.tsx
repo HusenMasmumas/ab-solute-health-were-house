@@ -16,13 +16,13 @@ const CreateStore = () => {
             { colorButton: 'whilte',
               keytext: 'cancle',
               fn:  () => {
-                navigate("/craete-stores-branches");
+                navigate("/stores-branches");
               },
             },
             { colorButton: 'green',
               keytext: 'save',
               fn:  () => {
-                navigate("/craete-stores-branches");
+                navigate("/stores-branches");
               },
             }
           ]}
