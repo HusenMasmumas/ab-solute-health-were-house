@@ -22,7 +22,7 @@ const WarehouseManagement = () => {
     { id:7, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A7" },
     { id:8, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A8" },
     { id:9, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A9" },
-    { id:10, picture: 'asd', code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
+    { id:10, picture: '', code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
   ];
 
   const elements: IsearchFormItem[] = [
@@ -92,6 +92,8 @@ const WarehouseManagement = () => {
                   width={"98%"}
                   height={"98%"}
                   preview={false}
+                  onError={()=>{ console.log('error');
+                  }}
                 />
               </div>
               <div>
