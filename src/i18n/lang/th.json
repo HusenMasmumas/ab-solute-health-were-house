@@ -38,6 +38,7 @@
     "totalProducts" : "จำนวนสินค้าทั้งหมด",
     "expiredProducts":"จํานวนสินค้าที่หมดอายุ",
     "damagedGoods":"จํานวนสินค้าที่เสียหาย",
-    "circulation":"ยอดขาย"
-
+    "circulation":"ยอดขาย",
+    "save":"บันทึก",
+    "cancle":"ยกเลิก"
 }
