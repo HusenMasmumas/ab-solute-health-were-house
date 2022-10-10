@@ -174,7 +174,7 @@ const StoreCabinet = () => {
       render: (price: string) => {
         return (
           <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px] ">
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 ">
               <span className="grid justify-start items-center">฿</span>
               <span className="grid justify-end items-center">{price}</span>
             </div>
@@ -225,13 +225,13 @@ const StoreCabinet = () => {
     <>
       <CHeader
         keyHeader="warehouseManagement"
-        arrPath={["warehouseManagement", "locker "+location.state.id]}
+        arrPath={["warehouseManagement", "locker "+ location.state.id]}
         buttons={[
           { 
             colorButton: 'green',
             keytext: 'addproductlist',
             fn:  () => {
-                  navigate("/warehouse-management/create-store-cabinet");
+                  navigate("/warehouse-management/create-store-cabinet", {state:{id: location.state.id }} );
             }
           }
         ]}
