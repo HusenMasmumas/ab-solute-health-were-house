@@ -1,12 +1,8 @@
 import { useEffect } from 'react'
-import { Button, Col, Form, Input, Row, Select } from "antd";
+import { Col, Form, Input, Row, Select } from "antd";
 import CHeader from "component/headerPage/Header";
-import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
-import GreenButton from 'component/Button/GreenButton';
-import WhilteButton from 'component/Button/whilteButton';
 const CreateInventory = () => {
-  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { Option } = Select;
@@ -42,7 +38,6 @@ const CreateInventory = () => {
           <span>ข้อมูลตู้เก็บสินค้า</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        {/* form */}
         <Form layout="vertical">
           <Row gutter={[24, 0]}>
             <Col span={12}>
