@@ -8,13 +8,12 @@ import Arrow from "assets/img/Dashboard-4.png";
 import BarChart from "component/chart/bar-chart";
 import Linechart from "component/chart/line-chart";
 import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
-
 const OverAllPage = () => {
   const { t } = useTranslation();
   const { Option } = Select;
 
   return (
-    <div>
+    <div className="pt-10">
       <div className="grid grid-cols-2">
         <h1 className="text-darkblue font-[600] text-[24px] !mb-0">{`${t(
           "systemOverview"

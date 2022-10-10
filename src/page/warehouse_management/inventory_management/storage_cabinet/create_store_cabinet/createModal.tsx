@@ -75,7 +75,7 @@ const CreateModal = (props: Props) => {
     },
   ];
   return (
-    <div>
+    <>
       <div>
         <Row gutter={[16, 16]}>
           <Form className="w-full lg:flex">
@@ -153,7 +153,7 @@ const CreateModal = (props: Props) => {
           ยกเลิก
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 

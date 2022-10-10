@@ -5,7 +5,7 @@ const CreateDetailForm = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <>
       <div className="bg-white py-[35px] px-[24px]">
         <div className="text-lightblue text-[20px] font-semibold">
           <span>{`${t("รายละเอียด")}`}</span>
@@ -100,7 +100,7 @@ const CreateDetailForm = () => {
           </Row>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 export default CreateDetailForm;

@@ -14,7 +14,7 @@ const CreateDataForm = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="bg-white py-[35px] px-[24px]">
         <div className="text-lightblue text-[20px] font-semibold">
           <span>{`${t("ข้อมูลตู้เก็บสินค้า")}`}</span>
@@ -177,7 +177,7 @@ const CreateDataForm = () => {
       >
         <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen} />
       </Modal>
-    </div>
+    </>
   );
 };
 export default CreateDataForm;
