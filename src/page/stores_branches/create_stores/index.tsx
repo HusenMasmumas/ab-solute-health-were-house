@@ -2,28 +2,31 @@ import { Button, Col, Form, Input, Row } from "antd";
 import CHeader from "component/headerPage/Header";
 import MyUpload from "component/MyUpload/MyUpload";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const CreateStore = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
-    <div>
-      <div className="grid grid-cols-2">
+    <>
         <CHeader
           keyHeader="stores&branches"
           arrPath={["stores&branches", "addShop"]}
-        />
-        <div className="flex justify-end items-center gap-2">
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
-            ยกเลิก
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            บันทึก
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            บันทึกและดำเนินการต่อ
-          </Button>
-        </div>
-      </div>
+          buttons={[
+            { colorButton: 'whilte',
+              keytext: 'cancle',
+              fn:  () => {
+                navigate("/craete-stores-branches");
+              },
+            },
+            { colorButton: 'green',
+              keytext: 'save',
+              fn:  () => {
+                navigate("/craete-stores-branches");
+              },
+            }
+          ]}
+        />  
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
         <div className="text-[#231F20] !text-[20px] !font-semibold">
           เพิ่มร้านค้า&สาขา
@@ -88,7 +91,7 @@ const CreateStore = () => {
           </Row>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 
