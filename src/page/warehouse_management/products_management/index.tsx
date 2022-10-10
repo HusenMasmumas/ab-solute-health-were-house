@@ -10,7 +10,10 @@ import { ProductsType } from './interface'
 
 const expandable = {
   expandedRowRender: (record: ProductsType) => (
-    <div className="py-[12px] px-[65px]">{record.name}</div>
+    <>
+        <div className="py-[12px] px-[65px]">{record.name}</div>
+        <div className="py-[12px] px-[65px]">{record.name}</div>
+    </>
   ),
   rowExpandable: (record: any) => record.name !== "Not Expandable",
 };
@@ -168,7 +171,7 @@ const data: ProductsType[] = [
     key: 1,
     name: "K8763666",
     sku: "โซเดียมไบคาร์บอเนต",
-    subSku: "",
+    subSku: [{name:'SE-00001', amount: 20}, {name:'SE-00002', amount: 11}],
     category: "เคมีภัณฑ์",
     subCategory: "สารละลาย",
     priceNormal: 0,
@@ -179,7 +182,7 @@ const data: ProductsType[] = [
     key: 2,
     name: "K8763",
     sku: "โซเดียมไบคาร์บอเนต",
-    subSku: "",
+    subSku: [{name:'SE-00003', amount: 20}, {name:'SE-00004', amount: 11}],
     category: "เคมีภัณฑ์",
     subCategory: "สารละลาย",
     priceNormal: 0,

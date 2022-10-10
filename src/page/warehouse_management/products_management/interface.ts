@@ -1,8 +1,12 @@
+export interface subSKU {
+    name:string,
+    amount:number
+} 
 export interface ProductsType {
     key: number;
     name: string;
     sku: string;
-    subSku: string;
+    subSku: subSKU[],
     category: string;
     subCategory: string;
     priceNormal: number;
