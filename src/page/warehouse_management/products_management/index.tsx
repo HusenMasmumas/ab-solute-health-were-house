@@ -168,6 +168,7 @@ const ProductsMangement = () => {
       <SearchForm elements={elements} onFinish={onFinish} /> 
       <MoTable
         headerTable={`${t("รายการสินค้า")}`}
+        scroll={{x:900}}
         columns={columns}
         dataSource={data}
         expandable={expandable}
