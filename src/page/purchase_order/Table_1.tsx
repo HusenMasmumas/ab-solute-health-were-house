@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MoTable from "component/Table/MoTable";
 import type { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
-import { Card } from "antd";
 import CDropDown from "component/Dropdown/DropDown";
 import { useNavigate } from "react-router-dom";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
