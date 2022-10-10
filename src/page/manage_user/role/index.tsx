@@ -91,7 +91,7 @@ const RoleManagement = () => {
         buttons={[
           { 
             colorButton: 'green',
-            keytext: 'createrole',
+            keytext: 'addRole',
             fn:  () => {
                   navigate("/user/create-role");
             }
