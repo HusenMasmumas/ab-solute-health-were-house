@@ -2,33 +2,35 @@ import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import CHeader from "component/headerPage/Header";
 import MyUpload from "component/MyUpload/MyUpload";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const CreateUser = () => {
   const { t } = useTranslation();
   const Option = Select;
-
+  const navigate = useNavigate();
   const onChange = (checked: boolean) => {
     console.log(`switch to ${checked}`);
   };
   return (
-    <div>
-      <div className="grid grid-cols-2">
-        <CHeader
-          keyHeader="manageUser"
-          arrPath={["manageUser", "user", "addUser"]}
-        />
-        <div className="flex justify-end items-center gap-2">
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
-            ยกเลิก
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            บันทึก
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            บันทึกและดำเนินการต่อ
-          </Button>
-        </div>
-      </div>
+    <>
+      <CHeader
+        keyHeader="manageUser"
+        arrPath={["manageUser", "user", "addUser"]}
+        buttons={[
+          { colorButton: 'whilte',
+            keytext: 'cancle',
+            fn:  () => {
+              navigate("/user/manage");
+            },
+          },
+          { colorButton: 'green',
+            keytext: 'save',
+            fn:  () => {
+              navigate("/user/manage");
+            },
+          }
+        ]}
+      />
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
         <div className="text-[#231F20] text-[20px] font-semibold">
           เพิ่มข้อมูลร้านค้า&สาขา
@@ -125,7 +127,7 @@ const CreateUser = () => {
           </Row>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 
