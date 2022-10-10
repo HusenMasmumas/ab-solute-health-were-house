@@ -81,7 +81,7 @@ const WarehouseManagement = () => {
                 <div className="w-[28px] h-[28px] bg-lightsky text-green rounded-[5px] grid justify-center items-center hover:cursor-pointer">
                   <DotIcon
                     onClick={() => {
-                      // navigate("/warehouse-management/create-inventory");
+                      navigate("/warehouse-management/create-inventory", {state:{id: item.id }} );
                     }}
                   />
                 </div>
@@ -92,24 +92,17 @@ const WarehouseManagement = () => {
                   width={"98%"}
                   height={"98%"}
                   preview={false}
-                  onError={()=>{ console.log('error');
-                  }}
                 />
               </div>
               <div>
                 <span className="text-lightgray !mb-0">{`${t(item.code)}`}</span>
               </div>
               <div className="grid grid-cols-2 content-center !place-content-between">
-                <span
-                  className="text-lightblue text-[20px] font-bold flex items-center"
-                  onClick={() => {
-                    navigate("/warehouse-management/store-cabinet");
-                  }}
-                >
+                <span className="text-lightblue text-[20px] font-bold flex items-center">
                   {item.storeNo}
                 </span>
                 <div className=" text-green  w-full flex justify-end" >
-                  <ArrowIcon className="hover:cursor-pointer w-12" onClick={()=>{navigate("/warehouse-management/store-cabinet", {state:{id: item.id }})}}/> 
+                  <ArrowIcon className="hover:cursor-pointer w-12" onClick={()=>{navigate("/warehouse-management/store-cabinet", {state:{id: item.id }} )}}/> 
                 </div>
               </div>
             </div>

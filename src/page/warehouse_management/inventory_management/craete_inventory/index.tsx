@@ -1,22 +1,28 @@
+import { useEffect } from 'react'
 import { Button, Col, Form, Input, Row, Select } from "antd";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate, useLocation } from "react-router-dom";
 const CreateInventory = () => {
   const { t } = useTranslation();
-  const Option = Select;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { Option } = Select;
 
+  useEffect(()=>{
+    // console.log('useLocation====',location.state);
+  },[])
   return (
     <div>
       <div className="grid grid-cols-4">
         <div className="col-span-3">
           <CHeader
             keyHeader="warehouseManagement"
-            arrPath={["warehouseManagement", "addLocker"]}
+            arrPath={["warehouseManagement", location.state?.id ? "Locker "+location.state?.id :"addLocker"]}
           />
         </div>
         <div className="grid grid-cols-2 gap-4 justify-end items-center">
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
+          <Button className="!h-[45px] !rounded-[4px] !text-[16px]" onClick={()=>{navigate("/warehouse-management/inventory-management")}}>
             {`${t("ยกเลิก")}`}
           </Button>
           <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
