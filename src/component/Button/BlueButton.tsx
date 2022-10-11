@@ -7,8 +7,8 @@ const BlueButton = styled(BaseButton)<Props>`
   color: #FFFFFF;
   background-color: #4E8FCC;
   ${({ fontSize }) => ( fontSize ? `font-size: ${fontSize};` : null)}}
-  ${({ width }) => ( width ? `font-size: ${width};` : null)}}
-  ${({ height }) => ( height ? `font-size: ${height};` : null)}}
+  ${({ width }) => ( width ? `width: ${width};` : null)}}
+  ${({ height }) => ( height ? `height: ${height};` : null)}}
   &:hover,
   &:active,
   &:focus{
