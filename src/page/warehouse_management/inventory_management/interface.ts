@@ -1,11 +1,19 @@
+type IColor = 'yellow' | 'red'
+
+export interface ISlot {
+  color: IColor,
+  price: number,
+  qty: number
+} 
 export interface IStoreCabinet {
   key: number;
   name: string;
   sku: string;
   category: string;
   lot: string;
-  price: string;
+  price: number;
   dueDate: string;
-  qty: string;
+  qty: number;
   status: string;
+  slots: ISlot[]
 }

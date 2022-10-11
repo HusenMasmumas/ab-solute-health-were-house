@@ -1,4 +1,4 @@
-import { Button, Col, Form, Image, Input, Row } from "antd";
+import { Button, Col, ConfigProvider, Form, Image, Input, Row } from "antd";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
@@ -7,70 +7,28 @@ import { useState, useEffect } from "react";
 import CSelectStatus from "component/input/c-select-status";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
-import { IStoreCabinet } from '../interface'
+import { IStoreCabinet, ISlot } from '../interface'
+import WhilteButton from "component/Button/whilteButton";
+import BlueButton from "component/Button/BlueButton";
+import ColumnGroup from "antd/lib/table/ColumnGroup";
+import CInput from "component/input/c-input";
 
-const expandable = {
-  expandedRowRender: (record: any) => (
-    <div className="py-[12px] px-[65px]">
-      <div className="flex justify-end items-center gap-2">
-        <Button className="!py-0 !rounded-[4px] !w-[80px] !text-[16px]">
-          ยกเลิก
-        </Button>
-        <Button className="!py-0 !bg-lightblue !text-white !rounded-[4px] !w-[80px] !text-[16px]">
-          บันทึก
-        </Button>
-      </div>
-      <div className="grid grid-cols-3 px-[200px]">
-        <div className="col-span-2 flex text-[16px] justify-center pl-[500px]">
-          สีแดง
+const SpecialInput = (param:any) => {
+  return (
+    <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px] ">
+        <div className="grid grid-cols-2 ">
+          <span className="grid justify-start items-center">฿</span>
+          <span className="grid justify-end items-center">{param}</span>
         </div>
-        <div className=" flex justify-center items-center ">
-          <Form>
-            <Row gutter={[12, 0]}>
-              <Col xl={12}>
-                <Form.Item>
-                  <Input className="table-expend" />
-                </Form.Item>
-              </Col>
-              <Col xl={12}>
-                <Form.Item>
-                  <Input className="table-expend" />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        </div>
-      </div>
-      <div className="grid grid-cols-3 px-[200px]">
-        <div className="col-span-2 flex text-[16px] justify-center pl-[500px]">
-          สีเหลือง
-        </div>
-        <div className=" flex justify-center items-center ">
-          <Form>
-            <Row gutter={[12, 0]}>
-              <Col xl={12}>
-                <Form.Item>
-                  <Input className="table-expend" />
-                </Form.Item>
-              </Col>
-              <Col xl={12}>
-                <Form.Item>
-                  <Input className="table-expend" />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        </div>
-      </div>
     </div>
-  ),
-  rowExpandable: (record: any) => record.name !== "Not Expandable",
-};
+  )
+}
+
 
 const StoreCabinet = () => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   console.log('location',location.state);
@@ -171,34 +129,25 @@ const StoreCabinet = () => {
     {
       title: "Price Normal",
       dataIndex: "price",
-      render: (price: string) => {
+      render: (price: number) => {
         return (
-          <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px] ">
-            <div className="grid grid-cols-2 ">
-              <span className="grid justify-start items-center">฿</span>
-              <span className="grid justify-end items-center">{price}</span>
-            </div>
-          </div>
-        );
+          <CInput.InputNumberR defaultValue={price}/>
+        )
       },
     },
     {
       title: "QTY",
       dataIndex: "qty",
-      render: (qty: string) => {
+      render: (qty: number) => {
         return (
-          <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px]">
-            <div className="grid grid-cols-2">
-              <span className="">{qty}</span>
-            </div>
-          </div>
+          <CInput.InputNumberR defaultValue={qty}/>
         );
       },
     },
     {
       title: "สถานะ",
       dataIndex: "status",
-      render: (status, row) => {
+      render: (status) => {
         return (
           <CSelectStatus
             state={status}
@@ -216,6 +165,35 @@ const StoreCabinet = () => {
       },
     },
   ];
+
+  const expandable = {
+    expandedRowRender: (record: IStoreCabinet) => (
+      <>
+        <div className="flex space-x-5 justify-end">
+          <WhilteButton width='100px' height="36px">{ `${t('cancle')}`}</WhilteButton>
+          <BlueButton width='100px' height="36px">{ `${t('save')}`}</BlueButton>
+        </div>
+        <div>
+          {
+            record.slots.map((element:ISlot,index:number)=>{
+              return (
+                <div key={index} className="flex justify-end mt-3 space-x-4">
+                  <div>
+                    <div>{element.color}</div>
+                    <div>code sku</div>
+                  </div>  
+                  <CInput.InputNumberR defaultValue={element.price}/>
+                  <CInput.InputNumberR defaultValue={element.qty}/>
+                </div>
+              )
+            })
+          }
+        </div>
+      </>
+    ),
+    rowExpandable: (record: any) => record.name !== "Not Expandable",
+  };
+  
   
   const onFinish = (values: any) => {
     //โยนเข้า create query
@@ -266,10 +244,14 @@ const data: IStoreCabinet[] = [
     sku: "โซเดียมไบคาร์บอเนต",
     category: "เคมีภัณฑ์",
     lot: "19/09/2023",
-    price: "399",
+    price: 399,
     dueDate: "10/09/2022",
-    qty: "300",
+    qty: 300,
     status: "เปิดการขาย",
+    slots:[
+      {color:"red", price: 399, qty: 150},
+      {color:"yellow", price: 399, qty: 150},
+    ]
   },
   {
     key: 2,
@@ -277,9 +259,13 @@ const data: IStoreCabinet[] = [
     sku: "โซเดียมไบคาร์บอเนต",
     category: "เคมีภัณฑ์",
     lot: "19/09/2023",
-    price: "399",
+    price: 399,
     dueDate: "10/09/2022",
-    qty: "300",
+    qty: 300,
     status: "ปิดการขาย",
+    slots:[
+      {color:"red", price: 399, qty: 150},
+      {color:"yellow", price: 399, qty: 150},
+    ]
   },
 ];
