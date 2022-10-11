@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Modal, Row, Select } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
@@ -12,6 +12,23 @@ const CreateDataForm = () => {
     console.log("amount Received Modal ", values);
     console.log("indexArray", indexArray);
   };
+
+  const columns = [
+    {
+      title: "SKU",
+      dataIndex: "sku",
+      width: "30%",
+    },
+    {
+      title: "สี",
+      dataIndex: "colour",
+      width: "40%",
+    },
+    {
+      title: "จำนวน",
+      dataIndex: "amount",
+    },
+  ];
 
   return (
     <>
@@ -161,6 +178,10 @@ const CreateDataForm = () => {
           </Form.List>
         </Form>
       </div>
+      <Table
+        columns={columns}
+        // dataSource={dataSource}
+      />
       <Modal
         title={
           <span className="text-lightblue font-semibold text-[20px]">
