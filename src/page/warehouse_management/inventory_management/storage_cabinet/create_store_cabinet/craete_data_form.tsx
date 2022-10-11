@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Modal, Row, Select, Table } from "antd";
+import { Button, Col, ConfigProvider, Form, Input, Modal, Row, Select, Table } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
@@ -29,6 +29,11 @@ const CreateDataForm = () => {
       dataIndex: "amount",
     },
   ];
+
+  const customizeRenderEmpty = () => (
+    <div className="h-32">
+    </div>
+  );
 
   return (
     <>
@@ -177,11 +182,14 @@ const CreateDataForm = () => {
             )}
           </Form.List>
         </Form>
+        <ConfigProvider renderEmpty={customizeRenderEmpty}>
+          <Table
+            columns={columns}
+            // dataSource={dataSource}
+          />
+        </ConfigProvider>
       </div>
-      <Table
-        columns={columns}
-        // dataSource={dataSource}
-      />
+      
       <Modal
         title={
           <span className="text-lightblue font-semibold text-[20px]">
