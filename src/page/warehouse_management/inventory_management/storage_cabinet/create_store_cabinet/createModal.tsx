@@ -6,6 +6,9 @@ import CleanButton from "component/Button/CleanButton";
 import { Button, Col, Form, Row } from "antd";
 import SearchButton from "component/Button/SearchButton";
 import CInput from "component/input/c-input";
+import DeepBlueButton from "component/Button/DeepBlue";
+import WhilteButton from "component/Button/whilteButton";
+import BlueButton from "component/Button/BlueButton";
 
 type Props = {
   setSelectData: (row: any, arrindex: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
@@ -90,20 +93,19 @@ const CreateModal = (props: Props) => {
             <Col sm={24} lg={8}>
               <Row gutter={[12, 6]}>
                 <Col>
-                  <SearchButton
+                  <DeepBlueButton
                     size="large"
                     style={{
                       fontSize: "16px",
                       borderRadius: "5px",
-                      border: "none",
                       margin: 0,
-                    }}
+                    }}  
                   >
                     ค้นหา
-                  </SearchButton>
+                  </DeepBlueButton>
                 </Col>
                 <Col>
-                  <CleanButton
+                  <WhilteButton
                     size="large"
                     style={{
                       fontSize: "16px",
@@ -112,7 +114,7 @@ const CreateModal = (props: Props) => {
                     }}
                   >
                     ล้าง
-                  </CleanButton>
+                  </WhilteButton>
                 </Col>
               </Row>
             </Col>
@@ -134,24 +136,22 @@ const CreateModal = (props: Props) => {
           currentPage: currentPage,
         }}
       />
-      <div className="flex space-x-4">
-        <Button
-          className="!text-[16px] border !border-darkblue !text-darkblue !font-[16] !rounded-[5px] !h-[45px]"
+      <div className="flex space-x-4 justify-end">
+        <BlueButton
           onClick={() => {
             props.setSelectData([...historyData], [...selectKey]);
             props.setOpenMoDal(false);
           }}
         >
           ยืนยัน
-        </Button>
-        <Button
-          className="!text-[16px] !bg-darkblue !text-white !font-[16] !rounded-[5px] !h-[45px]"
+        </BlueButton>
+        <WhilteButton
           onClick={() => {
             props.setOpenMoDal(false);
           }}
         >
           ยกเลิก
-        </Button>
+        </WhilteButton>
       </div>
     </>
   );

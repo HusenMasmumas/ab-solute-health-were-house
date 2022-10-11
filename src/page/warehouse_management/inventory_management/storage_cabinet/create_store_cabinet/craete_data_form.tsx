@@ -185,7 +185,7 @@ const CreateDataForm = () => {
         <ConfigProvider renderEmpty={customizeRenderEmpty}>
           <Table
             columns={columns}
-            // dataSource={dataSource}
+            dataSource={[]}
           />
         </ConfigProvider>
       </div>
