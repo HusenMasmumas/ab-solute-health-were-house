@@ -2,12 +2,11 @@ import React from 'react'
 import { CopyFilled, SearchOutlined } from "@ant-design/icons";
 import { Input, InputNumber, InputNumberProps, InputProps} from "antd";
 import { useTranslation } from "react-i18next";
-// import style from 'styled-components'
+import styled from 'styled-components'
 
 interface CInputProps extends InputProps {
     option?: {
       search: boolean }; // เช็คไอคอน
-    darkmode?: boolean;
 }
 
 const CInput = ({option, ...props}: CInputProps) => {
@@ -26,4 +25,21 @@ const CInput = ({option, ...props}: CInputProps) => {
   )
 }
 
+
+const InputNumberRSytle = styled(Input)`
+  width: 100px;
+  .ant-input{
+    text-align: end
+  }
+`
+const InputNumberR = (props:InputProps) => {
+  return (
+    <InputNumberRSytle 
+      prefix='฿'
+      {...props}
+    />
+  )
+}
+
+CInput.InputNumberR = InputNumberR
 export default CInput
