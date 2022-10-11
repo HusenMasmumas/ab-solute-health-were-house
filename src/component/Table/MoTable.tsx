@@ -1,9 +1,16 @@
 import { Table, Pagination, TableProps, Card, Image } from "antd";
 import Excel from "assets/img/Excel.png";
+import styled from "styled-components";
 interface IAction {
   type: "excel" | "delete"
   fn?: (row?: any) => void;
 }
+
+const StyleTable = styled(Table)`
+  .ant-table-expanded-row td {
+    padding : 0px;
+  }
+`
 interface Props extends TableProps<any> {
   headerTable?: String;
   config?: any;
@@ -55,7 +62,7 @@ const MoTable = ({
           </div>
         </div>
          
-        <Table
+        <StyleTable
           columns={columns}
           dataSource={[...dataSource]}
           rowSelection={rowSelection}
