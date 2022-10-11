@@ -177,13 +177,13 @@ const StoreCabinet = () => {
           {
             record.slots.map((element:ISlot,index:number)=>{
               return (
-                <div key={index} className="flex justify-end mt-3 space-x-4">
+                <div key={index} className="flex justify-end mt-3 space-x-4 !pr-[250px]">
                   <div>
                     <div>{element.color}</div>
                     <div>code sku</div>
                   </div>  
-                  <CInput.InputNumberR defaultValue={element.price}/>
-                  <CInput.InputNumberR defaultValue={element.qty}/>
+                  <CInput.InputNumberR defaultValue={element.price} className="!ml-[40px]"/>
+                  <CInput.InputNumberR defaultValue={element.qty} className="!ml-[80px]"/>
                 </div>
               )
             })
