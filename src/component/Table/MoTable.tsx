@@ -40,7 +40,9 @@ const MoTable = ({
   return (
     <>
       <Card className="w-full !p-0 !my-10" bodyStyle={{ paddingTop: 10 }}>
-        <div className="flex h-16">
+        {
+          headerTable && 
+          <div className="flex h-16">
           <div className="text-[20px] font-semibold w-[70%] flex items-center">
             {headerTable ? headerTable : null}
           </div> 
@@ -61,7 +63,7 @@ const MoTable = ({
             }
           </div>
         </div>
-         
+        }
         <StyleTable
           columns={columns}
           dataSource={[...dataSource]}
