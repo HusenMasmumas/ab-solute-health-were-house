@@ -1,4 +1,3 @@
-import { Button, Col, ConfigProvider, Form, Image, Input, Row } from "antd";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
@@ -10,19 +9,8 @@ import MoTable from "component/Table/MoTable";
 import { IStoreCabinet, ISlot } from '../interface'
 import WhilteButton from "component/Button/whilteButton";
 import BlueButton from "component/Button/BlueButton";
-import ColumnGroup from "antd/lib/table/ColumnGroup";
 import CInput from "component/input/c-input";
 
-const SpecialInput = (param:any) => {
-  return (
-    <div className="flex justify-center items-center bg-white w-[100px] h-[35px] border-2 border-gray rounded-[4px] ">
-        <div className="grid grid-cols-2 ">
-          <span className="grid justify-start items-center">฿</span>
-          <span className="grid justify-end items-center">{param}</span>
-        </div>
-    </div>
-  )
-}
 
 
 const StoreCabinet = () => {
@@ -109,26 +97,32 @@ const StoreCabinet = () => {
     {
       title: "SKU/Sub SKU",
       dataIndex: "sku",
+      width:'15%'
     },
     {
       title: "Name",
       dataIndex: "name",
+      width:'20%'
     },
     {
       title: "Category/Sub Category",
       dataIndex: "category",
+      width:'15%'
     },
     {
       title: "Lot",
       dataIndex: "lot",
+      width:'10%'
     },
     {
       title: "Due Date",
       dataIndex: "dueDate",
+      width:'10%'
     },
     {
       title: "Price Normal",
       dataIndex: "price",
+      width:'10%',
       render: (price: number) => {
         return (
           <CInput.InputNumberR defaultValue={price}/>
@@ -138,6 +132,7 @@ const StoreCabinet = () => {
     {
       title: "QTY",
       dataIndex: "qty",
+      width:'10%',
       render: (qty: number) => {
         return (
           <CInput.InputNumberR defaultValue={qty}/>
@@ -147,6 +142,7 @@ const StoreCabinet = () => {
     {
       title: "สถานะ",
       dataIndex: "status",
+      width:'10%',
       render: (status) => {
         return (
           <CSelectStatus
@@ -167,29 +163,29 @@ const StoreCabinet = () => {
   ];
 
   const expandable = {
-    expandedRowRender: (record: IStoreCabinet) => (
-      <>
+    expandedRowRender: (record : IStoreCabinet, index:number) => (
+      <div>
         <div className="flex space-x-5 justify-end">
           <WhilteButton width='100px' height="36px">{ `${t('cancle')}`}</WhilteButton>
           <BlueButton width='100px' height="36px">{ `${t('save')}`}</BlueButton>
         </div>
-        <div>
           {
             record.slots.map((element:ISlot,index:number)=>{
               return (
-                <div key={index} className="flex justify-end mt-3 space-x-4 !pr-[250px]">
-                  <div>
+                <div key={index} className="flex mt-3 space-x-4 w-full bg-red-400">
+                  <div className="w-[58%] text-end bg-lime-600">
                     <div>{element.color}</div>
                     <div>code sku</div>
-                  </div>  
-                  <CInput.InputNumberR defaultValue={element.price} className="!ml-[40px]"/>
-                  <CInput.InputNumberR defaultValue={element.qty} className="!ml-[80px]"/>
+                  </div> 
+                  <div className="w-[42%]">
+                  <CInput.InputNumberR defaultValue={element.price} className="mr-"/>
+                  <CInput.InputNumberR defaultValue={element.qty} className="w-[120px]"/>
+                  </div> 
                 </div>
               )
             })
           }
-        </div>
-      </>
+      </div>
     ),
     rowExpandable: (record: any) => record.name !== "Not Expandable",
   };
@@ -249,8 +245,8 @@ const data: IStoreCabinet[] = [
     qty: 300,
     status: "เปิดการขาย",
     slots:[
-      {color:"red", price: 399, qty: 150},
-      {color:"yellow", price: 399, qty: 150},
+      {color:"red", price: 666, qty: 150},
+      {color:"yellow", price: 555, qty: 150},
     ]
   },
   {
@@ -264,8 +260,8 @@ const data: IStoreCabinet[] = [
     qty: 300,
     status: "ปิดการขาย",
     slots:[
-      {color:"red", price: 399, qty: 150},
-      {color:"yellow", price: 399, qty: 150},
+      {color:"red", price: 888, qty: 150},
+      {color:"yellow", price: 777, qty: 150},
     ]
   },
 ];
