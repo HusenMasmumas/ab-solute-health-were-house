@@ -14,7 +14,7 @@ const DeepBlueButton = styled(BaseButton)<Props>`
   &:focus{
     background-color: #004487;
     color: #FFFFFF;
-    border-color: red;
+    border-color: #004487;
   }
 `;
 
