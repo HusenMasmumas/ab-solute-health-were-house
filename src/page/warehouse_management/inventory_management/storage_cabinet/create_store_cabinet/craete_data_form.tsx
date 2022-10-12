@@ -1,8 +1,10 @@
-import { Button, Col, ConfigProvider, Form, Input, Modal, Row, Select, Table } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Col, ConfigProvider, Divider, Form, Input, Modal, Row, Select, Space, Table } from "antd";
+import CInput from "component/input/c-input";
+import CSelect from "component/input/c-select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
-
 const CreateDataForm = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -128,59 +130,67 @@ const CreateDataForm = () => {
         <Form
           name="dynamic_form_nest_item"
           layout="vertical"
-          initialValues={{ werehouse: [""] }}
+          initialValues={{ users:[{first:'',last:'',amount:0}]}}
         >
-          <Form.List name="werehouse">
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map(({ key, name, ...restField }) => (
-                  <div key={key}>
-                    <Row gutter={[24, 0]}>
-                      <Col span={24}>
-                        <div className="border-b-[1px] my-[16px] border-lightblue"></div>
-                      </Col>
-                    </Row>
-                    <Row gutter={[24, 0]}>
-                      <Col span={12}>
-                        <Form.Item {...fields} label="SKU">
-                          <Input
-                            className="input-form"
-                            placeholder="SKU"
-                          ></Input>
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                    <Row gutter={[24, 0]}>
-                      <Col span={12}>
-                        <Form.Item {...fields} label="สี">
-                          <Select defaultValue="สีแดง" placeholder="สีแดง">
-                            <Option value="สีแดง">สีแดง</Option>
-                            <Option value="สีเขียว">สีเขียว</Option>
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                      <Col span={12}>
-                        <Form.Item {...fields} label="จำนวน ( จำแนกตามสี )">
-                          <Input
-                            className="input-form"
-                            placeholder="จำนวน ( จำแนกตามสี )"
-                          ></Input>
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                  </div>
-                ))}
-                <Form.Item>
-                  <Button
-                    className="grid justify-start items-center !w-[170px] !h-[45px] !text-[16px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]"
-                    onClick={() => add()}
-                  >
-                    + เพิ่มตัวแปร
-                  </Button>
-                </Form.Item>
-              </>
-            )}
-          </Form.List>
+        <Form.List name="users">
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map(({ key, name, ...restField }) => (
+              <div key={key}>
+                <Divider />                
+                <Row gutter={[24, 0]}>
+                  <Col span={12}>
+                    <Form.Item
+                        {...restField}
+                        name={[name, 'first']}
+                        label="sku"
+                    >
+                      <CInput placeholder="sku" className="h-[45px]" />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <div className="w-full flex justify-end"><MinusCircleOutlined onClick={() => remove(name)} className="w-[50px]"/></div>
+                  </Col>
+                </Row>
+                <Row gutter={[24, 0]}>
+                  <Col span={12}>
+                    <Form.Item
+                    {...restField}
+                    name={[name, 'last']}
+                    label="สี"
+                    >
+                      <CSelect 
+                        style={{width:'100%', height:'40px !important'}}
+                        placeholder="สี" 
+                        option={{values: [
+                            { key: 1, value: "red", label: "สีแดง" },
+                            { key: 2, value: "green", label: "สีเขียว" }
+                          ]}}
+                      />
+                     </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item
+                      {...restField}
+                      name={[name, 'amount']}
+                      label="จำนวน"
+                    >
+                      <CInput placeholder="จำนวน" />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                {/* <MinusCircleOutlined onClick={() => remove(name)} /> */}
+              </div>
+            ))}
+             <Form.Item>
+              <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                เพิ่มตัวแปร
+              </Button>
+             </Form.Item>
+          </>
+        )}
+        
+      </Form.List>       
         </Form>
         <ConfigProvider renderEmpty={customizeRenderEmpty}>
           <Table
