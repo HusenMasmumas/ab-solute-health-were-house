@@ -217,6 +217,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
         onCancel={() => setOpen(false)}
         width={1000}
         // destroyOnClose={true}
+        zIndex={2000}
       >
         <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen} selectIndex={[]} />
       </Modal>
