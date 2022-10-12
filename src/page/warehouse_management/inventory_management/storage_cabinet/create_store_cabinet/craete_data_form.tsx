@@ -44,7 +44,9 @@ const CreateDataForm = () => {
           <span>{`${t("ข้อมูลตู้เก็บสินค้า")}`}</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        <Form layout="vertical">
+        {/* </div> */}
+        
+        <Form layout="vertical"  initialValues={{ users:[{first:'',last:'',amount:0}]}}>
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="SKU">
@@ -119,19 +121,17 @@ const CreateDataForm = () => {
               </Form.Item>
             </Col>
           </Row>
-        </Form>
-      </div>
-      <div className="bg-white py-[16px] px-[24px] mt-[16px]">
+
         <div className="text-lightblue text-[22px] font-semibold">
           <span>ข้อมูลตามประเภท</span>
         </div>
-
+        <div className="py-[35px] px-[24px] h-6"></div>
         {/* ฟอร์มล่าง */}
-        <Form
+        {/* <Form
           name="dynamic_form_nest_item"
           layout="vertical"
           initialValues={{ users:[{first:'',last:'',amount:0}]}}
-        >
+        > */}
         <Form.List name="users">
         {(fields, { add, remove }) => (
           <>
@@ -179,11 +179,10 @@ const CreateDataForm = () => {
                     </Form.Item>
                   </Col>
                 </Row>
-                {/* <MinusCircleOutlined onClick={() => remove(name)} /> */}
               </div>
             ))}
              <Form.Item>
-              <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+              <Button type="dashed" onClick={() => { add() }} block icon={<PlusOutlined />}>
                 เพิ่มตัวแปร
               </Button>
              </Form.Item>

@@ -9,10 +9,12 @@ import CInput from "component/input/c-input";
 import DeepBlueButton from "component/Button/DeepBlue";
 import WhilteButton from "component/Button/whilteButton";
 import BlueButton from "component/Button/BlueButton";
+import axios from "axios";
 
 type Props = {
   setSelectData: (row: any, arrindex: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
+  selectIndex: number[];
 };
 
 interface ProductsType {
@@ -33,10 +35,6 @@ const CreateModal = (props: Props) => {
   const [selectKey, setSelectKey] = useState<any>([]);
   const [keySearch, setKeySearch] = useState<string>("");
 
-  useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
-  }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
     if (type === "pageSize") setLimitPage(page);
@@ -77,6 +75,28 @@ const CreateModal = (props: Props) => {
       dataIndex: "priceNormal",
     },
   ];
+
+  const fakerFetchData = async (query:number | undefined) => {
+    if(query === undefined) return
+    
+    const { data } = await axios.get(`http://localhost:5000/cabinet/${query}`);
+    console.log('data::::',data);
+    
+    // setDataPage(arr);
+    //ทำงานปกติ
+  };
+  
+  useEffect(() => {
+    console.log("current", currentPage);
+    console.log("limitPage", limitPage);
+    fakerFetchData(currentPage)
+  }, [currentPage, limitPage]);
+
+  useEffect(() => {
+    setSelectKey([...props.selectIndex])
+    setCurrentPage(1)
+  }, []);
+
   return (
     <>
       <div>
@@ -84,7 +104,7 @@ const CreateModal = (props: Props) => {
           <Form className="w-full lg:flex">
             <Col sm={24} lg={8}>
               <Form.Item name="nameProduct" className="mb-0 w-full ">
-                <CInput
+                <CInput.withSerchICON
                   option={{ search: true }}
                   placeholder="ค้นหาชื่อ , รหัสสินค้า"
                 />

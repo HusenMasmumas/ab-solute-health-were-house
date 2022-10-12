@@ -10,6 +10,7 @@ import { IStoreCabinet, ISlot } from '../interface'
 import WhilteButton from "component/Button/whilteButton";
 import BlueButton from "component/Button/BlueButton";
 import CInput from "component/input/c-input";
+import CDropDown from "component/Dropdown/DropDown";
 
 
 
@@ -30,6 +31,19 @@ const StoreCabinet = () => {
     if (type === "pageSize") setLimitPage(page);
     else setCurrentPage(page);
   };
+
+  const open = () => {
+    console.log('open');
+  };
+
+  const close = () => {
+    console.log('close');
+  };
+
+  const orderAgain = ( value: string )=>{
+    console.log('สั่งอีกครั้ง', value);
+  }
+
 
   const elements: IsearchFormItem[] = [
     {
@@ -143,21 +157,27 @@ const StoreCabinet = () => {
       title: "สถานะ",
       dataIndex: "status",
       width:'10%',
-      render: (status) => {
-        return (
-          <CSelectStatus
-            state={status}
-            listOption={[
-              { label: "ปิดการขาย", value: "ปิดการขาย" },
-              { label: "เปิดการขาย", value: "เปิดการขาย" },
-            ]}
-            labelKey={"label"}
-            valueKey={"value"}
-            activeBackground={"#77C48B"}
-            initialValue={status}
-            activeValue={"เปิดการขาย"}
-          />
-        );
+      render: (text, record) => {
+        switch(true) {
+          case text === 'เปิดการขาย':
+            return <CDropDown 
+                      background="#77C48B" 
+                      hoverbackground="#5F9C6F"
+                      selection={
+                        {title:text, option:[
+                          {label: 'เปิดการขาย', value:'open' , action:open },
+                          {label: 'ปิดการขาย', value:'close' , action:close }
+                    ]}}/>
+          case text === 'ปิดการขาย':
+            return <CDropDown 
+                      background="#949594" 
+                      hoverbackground="#949594"
+                      selection={
+                        {title:text, option:[
+                          {label: 'เปิดการขาย', value:'open' , action:open },
+                          {label: 'ปิดการขาย', value:'close' , action:close }
+                    ]}}/>
+        }
       },
     },
   ];
