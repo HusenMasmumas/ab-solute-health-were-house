@@ -25,7 +25,7 @@ const withSerchICON = ({option, ...props}: CInputProps) => {
           option?.search ? (
             <SearchOutlined style={{ fontSize: 20, color: "#F0F0F0" }} />
           ) : undefined}
-        className='!py-0 h-[40px] !z-0'
+        className='!py-0 h-[40px]'
         {...props} 
         />
   )
