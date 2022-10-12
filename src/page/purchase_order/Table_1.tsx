@@ -151,7 +151,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case text === 'อนุมัติ' && ['รายการใบสั่งซื้อ'].includes(tableName):
             return <CDropDown 
                       background="#77C48B" 
-                      hoverBackground="#5F9C6F"
+                      hoverbackground="#5F9C6F"
                       selection={
                         {title:text, option:[
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
@@ -160,7 +160,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case text === 'อนุมัติ' && ['รายการการตีกลับ'].includes(tableName):
             return <CDropDown 
                       background="#77C48B" 
-                      hoverBackground="#5F9C6F" 
+                      hoverbackground="#5F9C6F" 
                       selection={
                         {title:text, option:[
                           {label:'สั่งอีกครั้ง', value:record.code , action:orderAgain },
@@ -168,7 +168,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case text ==='รออนุมัติ':
             return <CDropDown 
                       background="#4E8FCC" 
-                      hoverBackground="#36648E" 
+                      hoverbackground="#36648E" 
                       selection={{title:text, option:[
                         {label:'รอตรวจสอบ',value:record.code, action:check },
                       ]}}
@@ -184,7 +184,7 @@ const Table_1 = ({tableName, data}: Props) => {
           case ['เตรียมสำเร็จ'].includes(text):
               return <CDropDown 
                         background="#77C48B"
-                        hoverBackground="#5F9C6F" 
+                        hoverbackground="#5F9C6F" 
                         selection={
                           {title:text, option:[
                             {label:'รอส่งสินค้า', value:record.code , action:waitingDelivery },
@@ -192,12 +192,12 @@ const Table_1 = ({tableName, data}: Props) => {
           case ['รอส่งสินค้า', 'อยู่ระหว่างขนส่ง'].includes(text):
               return <CDropDown 
                         background="#949594" 
-                        hoverBackground="bg-blue-500" 
+                        hoverbackground="bg-blue-500" 
                         selection={{title:text, option:[]}}/>
           case ['สำเร็จ'].includes(text):
               return <CDropDown 
                         background="#77C48B" 
-                        hoverBackground="bg-blue-500" 
+                        hoverbackground="bg-blue-500" 
                         selection={{title:text, option:[]}}/>
                       
           default:
