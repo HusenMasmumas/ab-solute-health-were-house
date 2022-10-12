@@ -6,7 +6,7 @@ import CreateModal from "./createModal";
 const CreateDataForm = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const Option = Select;
+  const { Option } = Select;
 
   const onFinishModal = (values: any, indexArray: any) => {
     console.log("amount Received Modal ", values);
@@ -137,7 +137,7 @@ const CreateDataForm = () => {
                   <div key={key}>
                     <Row gutter={[24, 0]}>
                       <Col span={24}>
-                        <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
+                        <div className="border-b-[1px] my-[16px] border-lightblue"></div>
                       </Col>
                     </Row>
                     <Row gutter={[24, 0]}>
@@ -204,7 +204,7 @@ const CreateDataForm = () => {
         width={1000}
         // destroyOnClose={true}
       >
-        <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen} />
+        <CreateModal setSelectData={onFinishModal} setOpenMoDal={setOpen} selectIndex={[]} />
       </Modal>
     </>
   );
