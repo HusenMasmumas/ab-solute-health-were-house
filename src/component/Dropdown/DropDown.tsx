@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface Props  {
     background: string;
-    hoverBackground?: string;
+    hoverbackground?: string;
     selection: ISelectTable;
 }
 
@@ -30,7 +30,7 @@ const StyledMenu = styled(Menu)<IStyleMenu>`
     text-align: center;
     color:#fff !important;
     &:hover{
-      background-color: ${({ hoverBackground }) => hoverBackground} !important;
+      background-color: ${({ hoverbackground }) => hoverbackground} !important;
     }
   }
 `
@@ -42,7 +42,7 @@ const StyleDropdown = styled(Dropdown)<{cursor:boolean}>`
   }
 `
 
-const CDropDown = ({ background, hoverBackground, selection}: Props) => {
+const CDropDown = ({ background, hoverbackground, selection}: Props) => {
 
     const { option=[] } = selection
 
@@ -56,7 +56,7 @@ const CDropDown = ({ background, hoverBackground, selection}: Props) => {
     const menu = (
         <StyledMenu
           background={background}
-          hoverBackground={hoverBackground}
+          hoverbackground={hoverbackground ?? background}
           onClick={handleMenuClick}
           items={ option.map((item:IOptionTable) => (
                 {
