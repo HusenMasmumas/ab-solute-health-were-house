@@ -1,4 +1,3 @@
-import React from "react";
 import { Select, SelectProps, ConfigProvider } from "antd";
 const { Option } = Select;
 
@@ -14,7 +13,6 @@ interface CSelectProps extends SelectProps {
 const CSelect = ({ option , ...props}: CSelectProps) => {
   
   const getOptions = (): JSX.Element[] => {
-    // const { values, key, label } = option as IOption;
     if(option){
     return  option?.values.map((item:{key:any, value:any, label:string}) => {
       return (
