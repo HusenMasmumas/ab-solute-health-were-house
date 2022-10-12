@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ProductsType, subSKU } from './interface'
 import SubTable from "component/Table/subTable";
+import CDropDown from "component/Dropdown/DropDown";
 
 
 const ProductsMangement = () => {
@@ -27,6 +28,13 @@ const ProductsMangement = () => {
     else setCurrentPage(page);
   };
 
+  const open = () => {
+    console.log('open');
+  };
+
+  const close = () => {
+    console.log('close');
+  };
   const elements: IsearchFormItem[] = [
     {
       name: "SKU/Sub SKU",
@@ -99,21 +107,25 @@ const ProductsMangement = () => {
       title: "สถานะ",
       dataIndex: "status",
       width: "10%",
-      render: (status, row) => {
-        return (
-          <CSelectStatus
-            state={status}
-            listOption={[
-              { label: "ปิด", value: "ปิด" },
-              { label: "เปิด", value: "เปิด" },
-            ]}
-            labelKey={"label"}
-            valueKey={"value"}
-            activeBackground={"#77C48B"}
-            initialValue={status}
-            activeValue={"เปิด"}
-          />
-        );
+      render: (text, record) => {
+        switch(true) {
+          case text === 'เปิด':
+            return <CDropDown 
+                      background="#77C48B" 
+                      hoverbackground="#5F9C6F"
+                      selection={
+                        {title:text, option:[
+                          {label: 'ปิด', value:'close' , action:close }
+                    ]}}/>
+          case text === 'ปิด':
+            return <CDropDown 
+                      background="#949594" 
+                      hoverbackground="#949594"
+                      selection={
+                        {title:text, option:[
+                          {label: 'เปิด', value:'open' , action:open },
+                    ]}}/>
+        }
       },
     },
   ];
