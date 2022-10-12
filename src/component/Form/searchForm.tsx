@@ -48,7 +48,7 @@ const SearchForm = ({
   const getInputByType = (type: TPageHeaderInput) => {
     switch (type) {
       case "input":
-        return CInput;
+        return CInput.withSerchICON;
       case "select":
         return CSelect;
       case "date-picker":

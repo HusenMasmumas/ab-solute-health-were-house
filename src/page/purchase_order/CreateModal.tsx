@@ -213,7 +213,7 @@ const CreateModal = (props: Props) => {
           <Form form={_form} onFinish={onFinish} className="w-full lg:flex">
             <Col sm={24} lg={8}>
               <Form.Item name="nameProduct" className="mb-0 w-full ">
-                <CInput
+                <CInput.withSerchICON
                   option={{ search: true }}
                   placeholder="ค้นหาชื่อและรหัสสินค้า"
                 />
