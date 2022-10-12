@@ -1,11 +1,11 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Col, ConfigProvider, Divider, Form, Input, Modal, Row, Select, Space, Table } from "antd";
+import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Select, Space, Table } from "antd";
 import CInput from "component/input/c-input";
 import CSelect from "component/input/c-select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
-const CreateDataForm = () => {
+const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void } ) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const { Option } = Select;
@@ -46,10 +46,15 @@ const CreateDataForm = () => {
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         {/* </div> */}
         
-        <Form layout="vertical"  initialValues={{ users:[{first:'',last:'',amount:0}]}}>
+        <Form 
+          layout="vertical" 
+          initialValues={{ users:[{first:'',last:'',amount:0}]}} 
+          form={props.form}
+          onFinish={props.formFN}
+        >
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="SKU">
+              <Form.Item label="SKU" name="sku">
                 <Input className="input-form" placeholder="SKU"></Input>
               </Form.Item>
             </Col>
@@ -67,7 +72,7 @@ const CreateDataForm = () => {
           </Row>
           <Row>
             <Col span={24}>
-              <Form.Item label="Name">
+              <Form.Item label="Name" name="name">
                 <Input className="input-form" placeholder="Name"></Input>
               </Form.Item>
             </Col>

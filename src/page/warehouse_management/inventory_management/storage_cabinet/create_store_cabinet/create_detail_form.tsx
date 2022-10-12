@@ -1,7 +1,7 @@
-import { Col, Form, Input, Row } from "antd";
+import { Col, Form, FormInstance, Input, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
-const CreateDetailForm = () => {
+const CreateDetailForm = (props:{form:FormInstance, formFN: (value:any) => void  } ) => {
   const { t } = useTranslation();
 
   return (
@@ -11,17 +11,21 @@ const CreateDetailForm = () => {
           <span>{`${t("รายละเอียด")}`}</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        <Form layout="vertical">
+        <Form 
+          layout="vertical" 
+          form={props.form}
+          onFinish={props.formFN}  
+        >
           <Row gutter={[24, 0]}>
             <Col span={24}>
-              <Form.Item label="Drug label">
+              <Form.Item label="Drug label" name='DrugLabel'>
                 <Input className="input-form" placeholder="Drug label"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="Properties (TH)">
+              <Form.Item label="Properties (TH)" name='Properties_(TH)'>
                 <Input
                   className="input-form"
                   placeholder="Properties (TH)"

@@ -3,11 +3,18 @@ import CreateDataForm from "./craete_data_form";
 import CreateDetailForm from "./create_detail_form";
 import CHeader from "component/headerPage/Header";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { Form } from "antd";
 const CreateStoreCabinet = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [form] = Form.useForm();
 
+  const reciveTab1 = (value:any)=>{
+    console.log('reciveTab1',value);
+  }
+  const reciveTab2 = (value:any)=>{
+    console.log('reciveTab2',value);
+  }
   return (
     <>
       <CHeader
@@ -25,11 +32,14 @@ const CreateStoreCabinet = () => {
             colorButton: 'green',
             keytext: 'save',
             fn:  () => {
-              navigate("/warehouse-management/store-cabinet", {state:{id: location.state.id }});
+              form.submit()
+              // navigate("/warehouse-management/store-cabinet", {state:{id: location.state.id }});
             }
           }
         ]}
       />
+
+
       <Tabs
          defaultActiveKey="1"
          type="card"
@@ -37,12 +47,12 @@ const CreateStoreCabinet = () => {
            {
              label: `ข้อมูลสินค้า`,
              key: '1',
-             children:  <CreateDataForm />
+             children:  <CreateDataForm form={form} formFN={reciveTab1}/>
            },
            {
              label: `รายละเอียด`,
              key: '2',
-             children: <CreateDetailForm />
+             children: <CreateDetailForm  form={form} formFN={reciveTab2}/>
            }
          ]}
        />
