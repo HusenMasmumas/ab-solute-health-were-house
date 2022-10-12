@@ -4,13 +4,12 @@ const { Option } = Select;
 
 interface IOption {
   values: {key:any, value:any, label:string}[];
-  key: string;
-  label: string;
+  key?: string;
+  label?: string;
 }
 
 interface CSelectProps extends SelectProps {
   option?: IOption;
-  translation?: boolean;
 }
 const CSelect = ({ option , ...props}: CSelectProps) => {
   
