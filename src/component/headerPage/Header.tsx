@@ -27,7 +27,8 @@ const CHeader = ({ keyHeader, arrPath = [], buttons=[] }: ICHeader) => {
     return i18n.exists(keytext) ? `${t(keytext)}` : keytext
   }
   return (
-    <div className="grid grid-cols-2 pb-5 pt-5 z-40" style={{ position: "sticky", width: "100%", top: 0, backgroundColor:'#F5F5F5'}}>
+    //ant DateSelect Z-index = 1050
+    <div className="grid grid-cols-2 pb-5 pt-5 z-[2000]" style={{ position: "sticky", width: "100%", top: 0, backgroundColor:'#F5F5F5'}}>
       <div className="w-full">
         <div className="text-[24px] text-darkblue font-bold">
           {i18n.exists(keyHeader) ? `${t(keyHeader)}` : keyHeader}
