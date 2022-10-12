@@ -30,25 +30,22 @@ const CreateStoreCabinet = () => {
           }
         ]}
       />
-      <div className="mt-[24px]">
-        <Tabs defaultActiveKey="1" size="large" type="card">
-          <Tabs.TabPane
-            className="!text-[20px] font-semibold" 
-            tab="ข้อมูลสินค้า"
-            key="1"
-          >
-            <CreateDataForm />
-
-          </Tabs.TabPane>
-          <Tabs.TabPane
-            className="!text-[20px] font-semibold"
-            tab="รายละเอียด"
-            key="2"
-          >
-            <CreateDetailForm />
-          </Tabs.TabPane>
-        </Tabs>
-      </div>
+      <Tabs
+         defaultActiveKey="1"
+         type="card"
+         items={[
+           {
+             label: `ข้อมูลสินค้า`,
+             key: '1',
+             children:  <CreateDataForm />
+           },
+           {
+             label: `รายละเอียด`,
+             key: '2',
+             children: <CreateDetailForm />
+           }
+         ]}
+       />
     </>
   );
 };
