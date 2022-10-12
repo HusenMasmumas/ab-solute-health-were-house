@@ -9,30 +9,34 @@ interface CInputProps extends InputProps {
       search: boolean }; // เช็คไอคอน
 }
 
-const CInput = (props: InputProps) => {
+const InputSytle = styled(Input)`
+  width: 100%;
+  border-radius: 5px !important;
+`
+
+const CInput = ({className='!py-0 h-[45px]', ...props}: InputProps) => {
   return (
-        <Input 
-        className='!py-0 h-[40px]'
-        {...props} 
+        <InputSytle 
+          className={className}
+          {...props} 
         />
   )
 }
 
 const withSerchICON = ({option, ...props}: CInputProps) => {
   return (
-        <Input 
+        <CInput 
          prefix={
           option?.search ? (
             <SearchOutlined style={{ fontSize: 20, color: "#F0F0F0" }} />
           ) : undefined}
-        className='!py-0 h-[40px]'
         {...props} 
         />
   )
 }
 
 
-const InputNumberRSytle = styled(Input)`
+const InputNumberRSytle = styled(CInput)`
   width: 100px;
   .ant-input{
     text-align: end
