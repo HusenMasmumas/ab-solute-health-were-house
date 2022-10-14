@@ -3,7 +3,7 @@ import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CleanButton from "component/Button/CleanButton";
-import { Button, Col, Form, Row } from "antd";
+import { Button, Card, Col, Form, Row } from "antd";
 import SearchButton from "component/Button/SearchButton";
 import CInput from "component/input/c-input";
 import DeepBlueButton from "component/Button/DeepBlue";
@@ -115,13 +115,14 @@ const CreateModal = (props: Props) => {
   };
   return (
     <>
-      <SearchForm elements={elements} onFinish={onFinish} DeepBlue={true}/>
+      <SearchForm elements={elements} onFinish={onFinish} DeepBlue={true} NoPaddingY={true}/>
       <MoTable
         rowKey="index"
         columns={columns}
         dataSource={dataPage}
         rowSelection={rowSelection}
         onChangePage={onChangePage}
+        noMarginTop={true}
         scroll={{
           y: 340,
         }}
@@ -131,7 +132,7 @@ const CreateModal = (props: Props) => {
           currentPage: currentPage,
         }}
       />
-      <div className="flex space-x-4 justify-end">
+      <Card className="flex space-x-4 justify-end !p-0 !border-0" bodyStyle={{display:'flex', gap: '16px', padding: '0 0 0 0'}}>
         <BlueButton
           onClick={() => {
             props.setSelectData([...historyData], [...selectKey]);
@@ -147,7 +148,7 @@ const CreateModal = (props: Props) => {
         >
           ยกเลิก
         </WhilteButton>
-      </div>
+      </Card>
     </>
   );
 };

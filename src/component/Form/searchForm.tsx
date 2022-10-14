@@ -36,6 +36,7 @@ type searchFormProps = {
   onFinish?: (values: any) => void;
   onReset?: () => void;
   DeepBlue?: boolean;
+  NoPaddingY?:boolean;
 };
 
 const SearchForm = ({
@@ -44,7 +45,8 @@ const SearchForm = ({
   onFinish,
   onReset,
   initialValues,
-  DeepBlue=false
+  DeepBlue=false,
+  NoPaddingY=false
 }: searchFormProps) => {
   let [_form] = Form.useForm();
 
@@ -101,7 +103,10 @@ const SearchForm = ({
   };
 
   return (
-    <Card className="w-full !mt-[24px] !border-0">
+    <Card 
+      className={ `w-full !mt-[24px] !border-0`} 
+      bodyStyle={ NoPaddingY ? {padding: '0px 24px 0px 24px'} : {}}
+      >
       <Form layout="vertical" onFinish={onFinish} form={form ? form : _form}>
         <Row gutter={[12, 6]} align="bottom">
           {elements.map((item) => {
