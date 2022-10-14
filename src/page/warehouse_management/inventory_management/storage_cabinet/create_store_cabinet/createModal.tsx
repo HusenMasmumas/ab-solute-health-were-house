@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
-import { IsearchFormItem } from "component/Form/searchForm";
+import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CleanButton from "component/Button/CleanButton";
 import { Button, Col, Form, Row } from "antd";
 import SearchButton from "component/Button/SearchButton";
@@ -27,6 +27,19 @@ interface ProductsType {
   status: string;
 }
 
+const elements: IsearchFormItem[] = [
+  {
+    name: "code",
+    label: "ค้นหาชื่อรหัส",
+    input: {
+      type: "input",
+      options: {
+        search: true,
+      },
+    },
+  },
+];
+
 const CreateModal = (props: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -35,7 +48,7 @@ const CreateModal = (props: Props) => {
   const [selectKey, setSelectKey] = useState<any>([]);
   const [keySearch, setKeySearch] = useState<string>("");
 
-
+  let [_form] = Form.useForm();
   const onChangePage = (page: number, type?: string) => {
     if (type === "pageSize") setLimitPage(page);
     else setCurrentPage(page);
@@ -96,51 +109,13 @@ const CreateModal = (props: Props) => {
     setSelectKey([...props.selectIndex])
     setCurrentPage(1)
   }, []);
-
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
   return (
     <>
-      <div>
-        <Row gutter={[16, 16]}>
-          <Form className="w-full lg:flex">
-            <Col sm={24} lg={8}>
-              <Form.Item name="nameProduct" className="mb-0 w-full ">
-                <CInput.withSerchICON
-                  option={{ search: true }}
-                  placeholder="ค้นหาชื่อ , รหัสสินค้า"
-                />
-              </Form.Item>
-            </Col>
-            <Col sm={24} lg={8}>
-              <Row gutter={[12, 6]}>
-                <Col>
-                  <DeepBlueButton
-                    size="large"
-                    style={{
-                      fontSize: "16px",
-                      borderRadius: "5px",
-                      margin: 0,
-                    }}  
-                  >
-                    ค้นหา
-                  </DeepBlueButton>
-                </Col>
-                <Col>
-                  <WhilteButton
-                    size="large"
-                    style={{
-                      fontSize: "16px",
-                      borderRadius: "5px",
-                      margin: 0,
-                    }}
-                  >
-                    ล้าง
-                  </WhilteButton>
-                </Col>
-              </Row>
-            </Col>
-          </Form>
-        </Row>
-      </div>
+      <SearchForm elements={elements} onFinish={onFinish} DeepBlue={true}/>
       <MoTable
         rowKey="index"
         columns={columns}
