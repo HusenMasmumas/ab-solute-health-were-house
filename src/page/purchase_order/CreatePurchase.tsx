@@ -357,6 +357,7 @@ const CreatePurchase = (props: Props) => {
         onCancel={() => setOpen(false)}
         width={1000}
         destroyOnClose={true}
+        zIndex={2000}
       >
         <CreateModal 
           historyData={historyData} //โยน historyData เข้าไป initial 
