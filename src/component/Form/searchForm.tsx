@@ -6,6 +6,7 @@ import CSelect from "component/input/c-select";
 import CDatePicker from "component/input/c-date-picker";
 import LightButton from "component/Button/LightBlueButton";
 import WhilteButton from "component/Button/whilteButton";
+import DeepBlueButton from "component/Button/DeepBlue";
 export type TPageHeaderInput =
   | "input"
   | "select"
@@ -34,6 +35,7 @@ type searchFormProps = {
   initialValues?: Store; // ใส่ object:store แต่ยังไม่รู้หน้า { ?:?, ?:?, ?:?, }
   onFinish?: (values: any) => void;
   onReset?: () => void;
+  DeepBlue?: boolean;
 };
 
 const SearchForm = ({
@@ -42,6 +44,7 @@ const SearchForm = ({
   onFinish,
   onReset,
   initialValues,
+  DeepBlue=false
 }: searchFormProps) => {
   let [_form] = Form.useForm();
 
@@ -126,12 +129,12 @@ const SearchForm = ({
             <Form.Item className="mb-0">
               <Row gutter={[0, 6]}>
                 <Col className="flex space-x-4">
-                  <LightButton
-                    onClick={_onSubmit}
-                    size="large"
-                  >
-                    ค้นหา
-                  </LightButton>
+                  {
+                    DeepBlue ?  
+                    <DeepBlueButton onClick={_onSubmit}size="large"> ค้นหา </DeepBlueButton>
+                    : 
+                    <LightButton onClick={_onSubmit}size="large"> ค้นหา </LightButton>
+                  }
                   <WhilteButton
                     onClick={onReset ? onReset : _onReset}
                     size="large"
