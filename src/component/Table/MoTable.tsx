@@ -43,7 +43,7 @@ const MoTable = ({
     <>
       <Card className={`w-full !my-10 !border-0 ${noMarginTop ? '!my-0' : '!my-10'}`}>
         {
-          headerTable && actions &&
+          (headerTable || actions ) &&
           <div className="flex h-16">
             <div className="text-[20px] font-semibold w-[70%] flex items-center">
               {headerTable ? headerTable : null}
