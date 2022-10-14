@@ -101,7 +101,7 @@ const SearchForm = ({
   };
 
   return (
-    <Card className="w-full !mt-[24px]">
+    <Card className="w-full !mt-[24px] !border-0">
       <Form layout="vertical" onFinish={onFinish} form={form ? form : _form}>
         <Row gutter={[12, 6]} align="bottom">
           {elements.map((item) => {
