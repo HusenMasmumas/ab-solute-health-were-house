@@ -21,6 +21,7 @@ interface Props extends TableProps<any> {
   columns?: any[];
   actions?: IAction[];
   scroll?: any;
+  noMarginTop?: boolean;
 }
 
 const MoTable = ({
@@ -33,36 +34,37 @@ const MoTable = ({
   headerTable,
   actions,
   config = { total: 15, currentPage: 1, pageSize: 10 },
-  scroll={x:900},
+  scroll = {x:900},
+  noMarginTop = false,
   ...props
 }: Props) => {
   
   return (
     <>
-      <Card className="w-full !p-0 !my-10" bodyStyle={{ paddingTop: 10 }}>
+      <Card className={`w-full !my-10 !border-0 ${noMarginTop ? '!my-0' : '!my-10'}`}>
         {
-          headerTable && 
+          headerTable && actions &&
           <div className="flex h-16">
-          <div className="text-[20px] font-semibold w-[70%] flex items-center">
-            {headerTable ? headerTable : null}
-          </div> 
-          <div className="ml-8 w-[30%] flex items-center justify-end">
-            {
-              actions?.map((element:IAction,index:number)=>{
-                switch (element.type) {
-                  case 'excel':
-                    return (
-                      <div key={index} className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px] hover:cursor-pointer">
-                        <Image src={Excel} alt="excel" preview={false} onClick={element.fn} />
-                      </div>
-                    )
-                  default:
-                    return <span></span>
-                }
-              })
-            }
+            <div className="text-[20px] font-semibold w-[70%] flex items-center">
+              {headerTable ? headerTable : null}
+            </div> 
+            <div className="ml-8 w-[30%] flex items-center justify-end">
+              {
+                actions?.map((element:IAction,index:number)=>{
+                  switch (element.type) {
+                    case 'excel':
+                      return (
+                        <div key={index} className="w-[45px] h-[45px] bg-[#F5F5F5] p-[10px] rounded-[4px] mb-[8px] hover:cursor-pointer">
+                          <Image src={Excel} alt="excel" preview={false} onClick={element.fn} />
+                        </div>
+                      )
+                    default:
+                      return <span></span>
+                  }
+                })
+              }
+            </div>
           </div>
-        </div>
         }
         <StyleTable
           columns={columns}
