@@ -52,6 +52,7 @@ const InputNumberR = (props:InputProps) => {
 
 const InputNumberSytle = styled(InputNumber)`
   width: 100%;
+  border-radius: 5px !important;
 `
 const CInputNumberSytle = ({ 
   prefix="฿",
