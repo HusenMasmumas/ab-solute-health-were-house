@@ -62,7 +62,7 @@ const CreateModal = (props: Props) => {
     },
     {
       title: "Price Normal",
-      dataIndex: "price",
+      dataIndex: "pricecost",
     },
   ];
 

@@ -12,6 +12,9 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
 
   const onFinishModal = (values: any) => {
     console.log("amount Received Modal ", values);
+    props.form.setFieldsValue({
+      ...values
+    })
   };
 
   const columns = [
@@ -90,18 +93,6 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="Lot" name="lot">
-                <Input className="input-form" placeholder="Lot"></Input>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label="Due Date" name='dueDate'>
-                <Input className="input-form" placeholder="Due Date"></Input>
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
-            <Col span={12}>
               <Form.Item 
               label="Price Cost" 
               name='priceCost'
@@ -115,6 +106,18 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
                 name='priceNormal'
               >
                 <CInput.CInputNumberSytle />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={[24, 0]}>
+            <Col span={12}>
+              <Form.Item label="Lot" name="lot">
+                <Input className="input-form" placeholder="Lot"></Input>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="Due Date" name='dueDate'>
+                <Input className="input-form" placeholder="Due Date"></Input>
               </Form.Item>
             </Col>
           </Row>
