@@ -1,7 +1,5 @@
-import React from 'react'
 import { CopyFilled, SearchOutlined } from "@ant-design/icons";
 import { Input, InputNumber, InputNumberProps, InputProps} from "antd";
-import { useTranslation } from "react-i18next";
 import styled from 'styled-components'
 
 interface CInputProps extends InputProps {
@@ -51,6 +49,28 @@ const InputNumberR = (props:InputProps) => {
   )
 }
 
+
+const InputNumberSytle = styled(InputNumber)`
+  width: 100%;
+`
+const CInputNumberSytle = ({ 
+  prefix="฿",
+  size='large',
+  min=0,
+  controls=false, 
+  ...props}:InputNumberProps) => {
+  return (
+    <InputNumberSytle  
+      prefix={prefix}
+      size={size}
+      min={min}
+      controls={controls}
+      {...props}
+    />
+  )
+}
+
 CInput.InputNumberR = InputNumberR
 CInput.withSerchICON = withSerchICON
+CInput.CInputNumberSytle = CInputNumberSytle
 export default CInput

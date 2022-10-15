@@ -1,5 +1,5 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Select, Space, Table } from "antd";
+import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Select, InputNumber , Table } from "antd";
 import CInput from "component/input/c-input";
 import CSelect from "component/input/c-select";
 import { useState } from "react";
@@ -43,8 +43,6 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
           <span>{`${t("ข้อมูลตู้เก็บสินค้า")}`}</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        {/* </div> */}
-        
         <Form 
           layout="vertical" 
           initialValues={{ users:[{first:'',last:'',amount:0}]}} 
@@ -58,8 +56,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
               </Form.Item>
             </Col>
             <Col span={12}>
-              {/* button*/}
-              <Form.Item label=" ">
+              <Form.Item label=" " >
                 <Button
                   className="!text-[16px] !h-[45px] !rounded-[5px] !border-darkblue !text-darkblue !flex !justify-center !items-center"
                   onClick={() => setOpen(true)}
@@ -78,12 +75,12 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="Category">
+              <Form.Item label="Category" name="category">
                 <Input className="input-form" placeholder="Category"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Sub Category">
+              <Form.Item label="Sub Category" name="subCategory">
                 <Input
                   className="input-form"
                   placeholder="Sub Category"
@@ -93,49 +90,45 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="Lot">
+              <Form.Item label="Lot" name="lot">
                 <Input className="input-form" placeholder="Lot"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Due Date">
+              <Form.Item label="Due Date" name='dueDate'>
                 <Input className="input-form" placeholder="Due Date"></Input>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="Price Cost">
-                <Input className="input-form" placeholder="Price Cost"></Input>
+              <Form.Item 
+              label="Price Cost" 
+              name='priceCost'
+              >
+                <CInput.CInputNumberSytle />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Price Normal">
-                <Input
-                  className="input-form"
-                  placeholder="Price Normal"
-                ></Input>
+              <Form.Item 
+                label="Price Normal" 
+                name='priceNormal'
+              >
+                <CInput.CInputNumberSytle />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="QTY">
+              <Form.Item label="QTY" name='qty'>
                 <Input className="input-form" placeholder="QTY"></Input>
               </Form.Item>
             </Col>
-          </Row>
-
-        <div className="text-lightblue text-[22px] font-semibold">
+          </Row> 
+        <div className="text-lightblue text-[22px] font-semibold mt-16">
           <span>ข้อมูลตามประเภท</span>
         </div>
-        <div className="py-[35px] px-[24px] h-6"></div>
-        {/* ฟอร์มล่าง */}
-        {/* <Form
-          name="dynamic_form_nest_item"
-          layout="vertical"
-          initialValues={{ users:[{first:'',last:'',amount:0}]}}
-        > */}
+        <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         <Form.List name="users">
         {(fields, { add, remove }) => (
           <>
