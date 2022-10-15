@@ -1,10 +1,12 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Select, InputNumber , Table } from "antd";
+import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Select, DatePicker , Table } from "antd";
 import CInput from "component/input/c-input";
 import CSelect from "component/input/c-select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
+import CDatePicker from "component/input/c-date-picker";
+
 const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void } ) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -112,12 +114,12 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Lot" name="lot">
-                <Input className="input-form" placeholder="Lot"></Input>
+              <CDatePicker/>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Due Date" name='dueDate'>
-                <Input className="input-form" placeholder="Due Date"></Input>
+                <CDatePicker />
               </Form.Item>
             </Col>
           </Row>
