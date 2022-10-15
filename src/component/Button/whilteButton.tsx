@@ -12,7 +12,9 @@ const WhilteButton = styled(BaseButton)<BaseButtonProps>`
   ${({ color }) => ( color ? `color: ${color};` : null)}}
   ${({ borderColor }) => ( borderColor ? `border-color: ${borderColor};` : null)}}
   
-  &:hover{
+  &:hover,
+  &:active,
+  &:focus{
     border-color: #4E8FCC;
     color: #4E8FCC;
   }
