@@ -7,11 +7,11 @@
   border-radius: 5px !important;
   `;
     
-  const CDatePicker = (props: DatePickerProps) => {
+  const CDatePicker = ({size='large' , ...props}: DatePickerProps) => {
     
     return (
       <ConfigProvider getPopupContainer={(trigger:any) => trigger.parentElement}>
-        <StyleCDatePicker  size="large"/>
+        <StyleCDatePicker  size={size} {...props}/>
       </ConfigProvider>
     )
   };

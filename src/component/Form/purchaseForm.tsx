@@ -4,7 +4,7 @@ import CInput from "component/input/c-input";
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
 import styled from "styled-components";
-
+import CDatePicker from 'component/input/c-date-picker' 
 
 interface IForm {
   codeOrder?:string | null | undefined,
@@ -68,19 +68,12 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
                 
               >
-                  <StyleCDatePicker 
-                  // inputReadOnly={AllreadOnly}
-                  // open={AllreadOnly ? false : undefined}
-                  // allowClear={AllreadOnly ? false : true}
-                  // disabled={AllreadOnly}
-                  size="large" 
-                  // format={"YYYY-MM-DD"}
+                  <CDatePicker 
                   disabledDate={d =>  d.isBefore(moment(moment(), 'YYYY/MM/DD').subtract(1, 'days'))}
                   onChange={(d )=>{
                     setDate(new Date( moment(d).format('YYYY-MM-DD') ))
                     let overTimeDate = form.getFieldValue('overtimeDate')
                     console.log('dddddd',d);
-                    // form.setFieldsValue({ 'overtimeDate': d})
                     if(overTimeDate){ 
                       form.setFieldsValue({ 'overtimeDate': null})
                     }
@@ -108,12 +101,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 label={<span className="text-[20px]">วันครบกำหนด</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
               >
-                <StyleCDatePicker 
-                // inputReadOnly={AllreadOnly}
-                // open={AllreadOnly ? false : undefined}
-                // allowClear={AllreadOnly ? false : true}
-                
-                size="large" 
+                <CDatePicker 
                 disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
                 />
               </Form.Item>
