@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import CleanButton from "component/Button/CleanButton";
-import { Button, Card, Col, Form, Row } from "antd";
-import SearchButton from "component/Button/SearchButton";
-import CInput from "component/input/c-input";
-import DeepBlueButton from "component/Button/DeepBlue";
+import { Card, Form } from "antd";
 import WhilteButton from "component/Button/whilteButton";
 import BlueButton from "component/Button/BlueButton";
 import axios from "axios";
 
 type Props = {
-  setSelectData: (row: any, arrindex: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
+  setSelectData: (row: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
   selectIndex: number[];
 };
@@ -44,30 +40,11 @@ const CreateModal = (props: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [dataPage, setDataPage] = useState<any>([]);
-  const [historyData, sethistoryData] = useState<any>([]);
-  const [selectKey, setSelectKey] = useState<any>([]);
-  const [keySearch, setKeySearch] = useState<string>("");
+  const [selectKey, setSelectKey] = useState<number[]>([]);
+  const [rowData, setRowData] = useState<any>()
 
   let [_form] = Form.useForm();
-  const onChangePage = (page: number, type?: string) => {
-    if (type === "pageSize") setLimitPage(page);
-    else setCurrentPage(page);
-  };
-  const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: ProductsType[]) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
-    },
-  };
-
   const columns: ColumnsType<ProductsType> = [
-    {
-      title: "#",
-      width: "10%",
-    },
     {
       title: "SKU",
       dataIndex: "sku",
@@ -85,23 +62,48 @@ const CreateModal = (props: Props) => {
     },
     {
       title: "Price Normal",
-      dataIndex: "priceNormal",
+      dataIndex: "price",
     },
   ];
+
+  const onChangePage = (page: number, type?: string) => {
+    if (type === "pageSize") setLimitPage(page);
+    else setCurrentPage(page);
+  };
+  
+  const rowSelection = {
+    columnTitle:<div>#</div>,
+    selectedRowKeys:selectKey,
+    onSelect:(record:any, selected:any) => {    
+      if(selected === true){
+        //เลือก
+        setSelectKey([record.index])
+        setRowData({...record})
+      }else if(selected === false){
+        //เอาออก
+        setSelectKey([]);
+        setRowData(null)
+      }
+    }
+  };
 
   const fakerFetchData = async (query:number | undefined) => {
     if(query === undefined) return
     
     const { data } = await axios.get(`http://localhost:5000/cabinet/${query}`);
-    console.log('data::::',data);
-    
-    // setDataPage(arr);
+    // console.log('data::::',data);
+    setDataPage(data)
     //ทำงานปกติ
   };
   
+  const onFinish = (values: any) => {
+    //โยนเข้า create query
+    console.log("Received values of form: ", values);
+  };
+  
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
+    // console.log("current", currentPage);
+    // console.log("limitPage", limitPage);
     fakerFetchData(currentPage)
   }, [currentPage, limitPage]);
 
@@ -109,10 +111,7 @@ const CreateModal = (props: Props) => {
     setSelectKey([...props.selectIndex])
     setCurrentPage(1)
   }, []);
-  const onFinish = (values: any) => {
-    //โยนเข้า create query
-    console.log("Received values of form: ", values);
-  };
+
   return (
     <>
       <SearchForm elements={elements} onFinish={onFinish} DeepBlue={true} NoPaddingY={true}/>
@@ -135,7 +134,7 @@ const CreateModal = (props: Props) => {
       <Card className="flex space-x-4 justify-end !p-0 !border-0" bodyStyle={{display:'flex', gap: '16px', padding: '0 0 0 0'}}>
         <BlueButton
           onClick={() => {
-            props.setSelectData([...historyData], [...selectKey]);
+            props.setSelectData(rowData);
             props.setOpenMoDal(false);
           }}
         >

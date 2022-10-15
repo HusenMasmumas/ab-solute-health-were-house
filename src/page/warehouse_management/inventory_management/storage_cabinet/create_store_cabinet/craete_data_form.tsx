@@ -10,9 +10,8 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
   const [open, setOpen] = useState(false);
   const { Option } = Select;
 
-  const onFinishModal = (values: any, indexArray: any) => {
+  const onFinishModal = (values: any) => {
     console.log("amount Received Modal ", values);
-    console.log("indexArray", indexArray);
   };
 
   const columns = [
@@ -216,7 +215,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
         // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         width={1000}
-        // destroyOnClose={true}
+        destroyOnClose={true}
         zIndex={2000}
         bodyStyle={{padding: '0 0 20px 0'}}
       >
