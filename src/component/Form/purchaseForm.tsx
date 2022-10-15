@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Form, FormInstance, Row, Col, Input, DatePicker } from "antd";
-import CDatePicker from "component/input/c-date-picker";
 import CInput from "component/input/c-input";
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
