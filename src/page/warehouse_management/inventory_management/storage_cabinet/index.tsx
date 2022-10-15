@@ -99,7 +99,7 @@ const StoreCabinet = () => {
       name: "Lot",
       label: "Lot",
       input: {
-        type: "input",
+        type: "date-picker",
         options: {
           search: true,
         },
