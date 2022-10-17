@@ -73,7 +73,6 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                   onChange={(d )=>{
                     setDate(new Date( moment(d).format('YYYY-MM-DD') ))
                     let overTimeDate = form.getFieldValue('overtimeDate')
-                    console.log('dddddd',d);
                     if(overTimeDate){ 
                       form.setFieldsValue({ 'overtimeDate': null})
                     }
