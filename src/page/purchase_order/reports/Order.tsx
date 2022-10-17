@@ -2,9 +2,7 @@ import Table_1 from '../Table_1';
 
 const Order = () => {
   return (
-    <>
         <Table_1 data={mock} tableName="รายการใบสั่งซื้อ"/>
-    </>
   )
 }
 

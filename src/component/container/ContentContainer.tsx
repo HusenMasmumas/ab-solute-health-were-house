@@ -5,7 +5,8 @@ type Props = {
 };
 const Tages = styled.div `
   overflow: auto;
-  height: 82vh;
+  height: 80vh;
+  padding-bottom: 50px;
   ::-webkit-scrollbar {
     width: 0px;
   }
