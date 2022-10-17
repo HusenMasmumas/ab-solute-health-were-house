@@ -8,11 +8,16 @@ import Arrow from "assets/img/Dashboard-4.png";
 import BarChart from "component/chart/bar-chart";
 import Linechart from "component/chart/line-chart";
 import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
+import ContentContainer from "component/container/ContentContainer";
+import styled from "styled-components";
 const OverAllPage = () => {
   const { t } = useTranslation();
   const { Option } = Select;
-
+  const CustomContainer = styled(ContentContainer)`
+    height: 100%;
+  `
   return (
+   
     <div className="pt-10">
       <div className="grid grid-cols-2">
         <h1 className="text-darkblue font-[600] text-[24px] !mb-0">{`${t(
@@ -30,7 +35,7 @@ const OverAllPage = () => {
           </Select>
         </div>
       </div>
-      {/* dashboard */}
+      <CustomContainer>
       <div className="grid grid-cols-12 gap-6 mt-[12px]">
         <div className="grid xl:col-span-3 md:col-span-6">
           <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
@@ -324,6 +329,7 @@ const OverAllPage = () => {
           </div>
         </div>
       </div>
+      </CustomContainer>
     </div>
   );
 };
