@@ -33,23 +33,6 @@ const withSerchICON = ({option, ...props}: CInputProps) => {
   )
 }
 
-
-const InputNumberRSytle = styled(CInput)`
-  width: 100px;
-  .ant-input{
-    text-align: end
-  }
-`
-const InputNumberR = (props:InputProps) => {
-  return (
-    <InputNumberRSytle 
-      prefix='฿'
-      {...props}
-    />
-  )
-}
-
-
 interface CInputNumberProps extends InputNumberProps {
   textAlign?: 'end' | 'start'
 }
@@ -83,7 +66,6 @@ const CInputNumberSytle = ({
   )
 }
 
-CInput.InputNumberR = InputNumberR
 CInput.withSerchICON = withSerchICON
 CInput.CInputNumberSytle = CInputNumberSytle
 export default CInput
