@@ -1,5 +1,5 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Select, DatePicker , Table } from "antd";
+import { Button, Col, ConfigProvider, Divider, Form, FormInstance, Input, Modal, Row, Table } from "antd";
 import CInput from "component/input/c-input";
 import CSelect from "component/input/c-select";
 import { useState } from "react";
@@ -11,7 +11,6 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
   const [date, setDate] = useState<Date>(new Date())
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const { Option } = Select;
 
   const onFinishModal = (values: any) => {
     console.log("amount Received Modal ", values);
@@ -38,8 +37,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
   ];
 
   const customizeRenderEmpty = () => (
-    <div className="h-32">
-    </div>
+    <div className="h-32"></div>
   );
 
   return (
