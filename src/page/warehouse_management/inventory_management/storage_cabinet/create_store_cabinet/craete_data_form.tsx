@@ -6,8 +6,9 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
 import CDatePicker from "component/input/c-date-picker";
-
+import moment from 'moment';
 const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void } ) => {
+  const [date, setDate] = useState<Date>(new Date())
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const { Option } = Select;
@@ -114,12 +115,23 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
           <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Lot" name="lot">
-              <CDatePicker/>
+              <CDatePicker
+                disabledDate={d =>  d.isBefore(moment(moment(), 'YYYY/MM/DD').subtract(1, 'days'))}
+                onChange={(d )=>{
+                  setDate(new Date( moment(d).format('YYYY-MM-DD') ))
+                  let dueDate =  props.form.getFieldValue('dueDate')
+                  if(dueDate){ 
+                    props.form.setFieldsValue({ 'dueDate': null})
+                  }
+                }}
+              />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Due Date" name='dueDate'>
-                <CDatePicker />
+                <CDatePicker 
+                   disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
+                />
               </Form.Item>
             </Col>
           </Row>
