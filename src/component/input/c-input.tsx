@@ -34,7 +34,7 @@ const withSerchICON = ({option, ...props}: CInputProps) => {
 }
 
 interface CInputNumberProps extends InputNumberProps {
-  textAlign?: 'end' | 'start'
+  text_align?: 'end' | 'start'
 }
 const InputNumberSytle = styled(InputNumber)<CInputNumberProps>`
   width: 100%;
@@ -44,7 +44,7 @@ const InputNumberSytle = styled(InputNumber)<CInputNumberProps>`
   }
   .ant-input-number-input{
     padding-right: 5px !important;
-    text-align: ${({ textAlign }) => ( `${textAlign}`)}};
+    text-align: ${({ text_align }) => ( `${text_align}`)}};
   }
 `
 const CInputNumberSytle = ({ 
@@ -52,7 +52,7 @@ const CInputNumberSytle = ({
   size='large',
   min=0,
   controls=false, 
-  textAlign='start',
+  text_align='start',
   ...props}:CInputNumberProps) => {
   return (
     <InputNumberSytle  
@@ -60,7 +60,7 @@ const CInputNumberSytle = ({
       size={size}
       min={min}
       controls={controls}
-      textAlign={textAlign}
+      text_align={text_align}
       {...props}
     />
   )

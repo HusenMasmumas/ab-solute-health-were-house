@@ -139,7 +139,7 @@ const StoreCabinet = () => {
       width:'10%',
       render: (price: number) => {
         return (
-          <CInput.CInputNumberSytle defaultValue={price} textAlign='end'/>
+          <CInput.CInputNumberSytle defaultValue={price} text_align='end'/>
         )
       },
     },
@@ -149,7 +149,7 @@ const StoreCabinet = () => {
       width:'10%',
       render: (qty: number) => {
         return (
-          <CInput.CInputNumberSytle defaultValue={qty} textAlign='end'/>
+          <CInput.CInputNumberSytle defaultValue={qty} text_align='end'/>
         );
       },
     },
@@ -198,8 +198,8 @@ const StoreCabinet = () => {
                     <div>code sku</div>
                   </div> 
                   <div className="w-[42%]">
-                  <CInput.CInputNumberSytle defaultValue={element.price} className="mr-" textAlign="end"/>
-                  <CInput.CInputNumberSytle defaultValue={element.qty} className="w-[120px]" textAlign="end"/>
+                  <CInput.CInputNumberSytle defaultValue={element.price} className="mr-" text_align="end"/>
+                  <CInput.CInputNumberSytle defaultValue={element.qty} className="w-[120px]" text_align="end"/>
                   </div> 
                 </div>
               )
