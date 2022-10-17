@@ -11,6 +11,7 @@ import _ from 'lodash';
 import TextArea from 'antd/lib/input/TextArea';
 import BlueButton from 'component/Button/BlueButton';
 import styled from 'styled-components';
+import ContentContainer from 'component/container/ContentContainer';
 type Props = {}
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
@@ -134,122 +135,124 @@ const Examine = (props: Props) => {
           }
           ]}
           />
-          <Card className="w-full">
-            <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
-            <Divider />
-            <PurchaseForm
-              form={form}
-              setValue={{
-                codeOrder:'RESD5656',
-                sendDate: moment('2022-10-02'),
-                codeRef: "ERTSD",
-                overtimeDate: moment('2022-10-11'),
-                Description1:"ผู้ส่ง",
-                Description2:"ผู้รับ"
-              }}
-            />
-            <MoTable 
-              key='index'
-              rowKey="index"
-              headerTable='รายละเอียดสินค้า'
-              columns={columns} 
-              dataSource={ _.cloneDeep([])} 
-              pagination={false} 
-            />
-            <div className="mt-5">
-          {/* <BlueButton
-            onClick={() => setOpen(true)}
-          >
-            + เพิ่มสินค้า
-          </BlueButton> */}
-          <Row>
-            <Col sm={24} lg={12} className="!flex !items-end pb-6">
-              <div className="w-full">
-                <div className="text-[20px]">หมายเหตุ</div>
-                <TextArea rows={4} />
+          <ContentContainer>
+            <Card className="w-full">
+              <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
+              <Divider />
+              <PurchaseForm
+                form={form}
+                setValue={{
+                  codeOrder:'RESD5656',
+                  sendDate: moment('2022-10-02'),
+                  codeRef: "ERTSD",
+                  overtimeDate: moment('2022-10-11'),
+                  Description1:"ผู้ส่ง",
+                  Description2:"ผู้รับ"
+                }}
+              />
+              <MoTable 
+                key='index'
+                rowKey="index"
+                headerTable='รายละเอียดสินค้า'
+                columns={columns} 
+                dataSource={ _.cloneDeep([])} 
+                pagination={false} 
+              />
+              <div className="mt-5">
+            {/* <BlueButton
+              onClick={() => setOpen(true)}
+            >
+              + เพิ่มสินค้า
+            </BlueButton> */}
+            <Row>
+              <Col sm={24} lg={12} className="!flex !items-end pb-6">
+                <div className="w-full">
+                  <div className="text-[20px]">หมายเหตุ</div>
+                  <TextArea rows={4} />
+                </div>
+              </Col>
+              <Col sm={24} lg={12} >
+                <Row className="mb-5">
+                  <Col sm={6} offset={6}>
+
+                    <div className="text-[20px]">รวมเป็นเงิน</div>
+                  </Col>
+                  <Col sm={12}>
+                    <ConfigProvider direction="rtl">
+                    <StyledInputNumber
+                        prefix="฿"
+                        controls={false}
+                        readOnly={true}
+                        defaultValue="00.00"
+                        step="0.01"
+                        bg="white"
+                        fontSize={20}
+                      />
+                    </ConfigProvider>
+                  </Col>
+                </Row>
+                <Row className="mb-5">
+                  <Col sm={6} offset={6}>
+                    <div className="text-[20px]">ส่วนลด</div>
+                  </Col>
+                  <Col sm={12}>
+                    <ConfigProvider direction="rtl">
+                    <StyledInputNumber
+                        prefix="฿"
+                        controls={false}
+                        readOnly={true}
+                        defaultValue="00.00"
+                        step="0.01"
+                        bg="white"
+                        fontSize={20}
+                      />
+                    </ConfigProvider>
+                  </Col>
+                </Row>
+                <Row className="mb-5">
+                  <Col sm={6} offset={6}>
+
+                    <div className="text-[20px]">จำนวนเงินหลังหักส่วนลด</div>
+                  </Col>
+                  <Col sm={12}>
+                    <ConfigProvider direction="rtl">
+                      <StyledInputNumber
+                        prefix="฿"
+                        controls={false}
+                        readOnly={true}
+                        defaultValue="00.00"
+                        step="0.01"
+                        fontSize={20}
+                        bg="white"
+                      />
+                    </ConfigProvider>
+                  </Col>
+                </Row>
+                <Row className="mb-5">
+                  <Col sm={6} offset={6}>
+
+                    <div className="text-[20px]">จำนวนเงินรวมทั้งสิ้น</div>
+                  </Col>
+                  <Col sm={12}>
+                    <ConfigProvider direction="rtl">
+                      <StyledInputNumber
+                        prefix="฿"
+                        controls={false}
+                        readOnly={true}
+                        defaultValue="00.00"
+                        step="0.01"
+                        bg='#F3F9FF'
+                        fontSize={25}
+                        color='#01438F'
+                      />
+                    </ConfigProvider>
+                  </Col>
+                </Row>
+              </Col>
+              </Row>
               </div>
-            </Col>
-            <Col sm={24} lg={12} >
-              <Row className="mb-5">
-                <Col sm={6} offset={6}>
-                  
-                  <div className="text-[20px]">รวมเป็นเงิน</div>
-                </Col>
-                <Col sm={12}>
-                  <ConfigProvider direction="rtl">
-                  <StyledInputNumber
-                      prefix="฿"
-                      controls={false}
-                      readOnly={true}
-                      defaultValue="00.00"
-                      step="0.01"
-                      bg="white"
-                      fontSize={20}
-                    />
-                  </ConfigProvider>
-                </Col>
-              </Row>
-              <Row className="mb-5">
-                <Col sm={6} offset={6}>
-                  <div className="text-[20px]">ส่วนลด</div>
-                </Col>
-                <Col sm={12}>
-                  <ConfigProvider direction="rtl">
-                  <StyledInputNumber
-                      prefix="฿"
-                      controls={false}
-                      readOnly={true}
-                      defaultValue="00.00"
-                      step="0.01"
-                      bg="white"
-                      fontSize={20}
-                    />
-                  </ConfigProvider>
-                </Col>
-              </Row>
-              <Row className="mb-5">
-                <Col sm={6} offset={6}>
-                  
-                  <div className="text-[20px]">จำนวนเงินหลังหักส่วนลด</div>
-                </Col>
-                <Col sm={12}>
-                  <ConfigProvider direction="rtl">
-                    <StyledInputNumber
-                      prefix="฿"
-                      controls={false}
-                      readOnly={true}
-                      defaultValue="00.00"
-                      step="0.01"
-                      fontSize={20}
-                      bg="white"
-                    />
-                  </ConfigProvider>
-                </Col>
-              </Row>
-              <Row className="mb-5">
-                <Col sm={6} offset={6}>
-                  
-                  <div className="text-[20px]">จำนวนเงินรวมทั้งสิ้น</div>
-                </Col>
-                <Col sm={12}>
-                  <ConfigProvider direction="rtl">
-                    <StyledInputNumber
-                      prefix="฿"
-                      controls={false}
-                      readOnly={true}
-                      defaultValue="00.00"
-                      step="0.01"
-                      bg='#F3F9FF'
-                      fontSize={25}
-                      color='#01438F'
-                    />
-                  </ConfigProvider>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
-          </Card>
+            </Card>
+          </ContentContainer>
       </div>
     )
 }   

@@ -20,6 +20,7 @@ import {
   ConfigProvider,
   Modal,
 } from "antd";
+import ContentContainer from "component/container/ContentContainer";
 
 
 type Props = {
@@ -229,6 +230,7 @@ const CreatePurchase = (props: Props) => {
         ]}
       />
       }
+    <ContentContainer>
       <Card className="w-full">
         <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
         <Divider />
@@ -347,7 +349,7 @@ const CreatePurchase = (props: Props) => {
           </Row>
         </div>
       </Card>
-      
+      </ContentContainer>
       <Modal
         title={<span className="text-[#498DCB] text-[18px]">รายละเอียดสินค้า</span>}
         centered

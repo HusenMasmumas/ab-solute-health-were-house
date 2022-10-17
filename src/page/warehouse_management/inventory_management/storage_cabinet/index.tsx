@@ -11,6 +11,7 @@ import WhilteButton from "component/Button/whilteButton";
 import BlueButton from "component/Button/BlueButton";
 import CInput from "component/input/c-input";
 import CDropDown from "component/Dropdown/DropDown";
+import ContentContainer from "component/container/ContentContainer";
 
 
 
@@ -230,6 +231,7 @@ const StoreCabinet = () => {
           }
         ]}
       />
+      <ContentContainer>
       <SearchForm elements={elements} onFinish={onFinish} />
       <MoTable
         headerTable={`รายการสินค้า`}
@@ -248,6 +250,7 @@ const StoreCabinet = () => {
           }
         }]}
       />
+      </ContentContainer>
       </>
   );
 };

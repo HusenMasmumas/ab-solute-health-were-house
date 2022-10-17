@@ -2,9 +2,7 @@ import Table_1 from "../Table_1";
 
 const SendBack = () => {
   return (
-    <>
       <Table_1 data={mock} tableName="รายการการตีกลับ"/>
-    </>
   );
 };
 

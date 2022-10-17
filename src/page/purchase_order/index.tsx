@@ -32,24 +32,24 @@ const ManagePurcheaseOrder = () => {
         ]:undefined}
       />
       <ContentContainer>
-      <div className='flex space-x-5 mb-3'>
-        <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} active={tabe === 0 ? true : false }  />
-        <TabeButton onClick={()=>{setTabe(1)}} text={'prepareGoods'} active={tabe === 1 ? true : false } />
-        <TabeButton onClick={()=>{setTabe(2)}} text={'delivery'} active={tabe === 2 ? true : false }/>
-        <TabeButton onClick={()=>{setTabe(3)}} text={'returnOrder'} active={tabe === 3 ? true : false }/> 
-      </div>
-      {(() => {
-        switch(tabe) {
-          case 0:
-            return <Order />
-          case 1:
-            return <Prepare />
-          case 2:
-            return <Delivery />
-          case 3:
-            return <SendBack />
-        }
-      })()}
+        <div className='flex space-x-5 mb-3'>
+          <TabeButton onClick={()=>{setTabe(0)}} text={'purchaseOrder'} active={tabe === 0 ? true : false }  />
+          <TabeButton onClick={()=>{setTabe(1)}} text={'prepareGoods'} active={tabe === 1 ? true : false } />
+          <TabeButton onClick={()=>{setTabe(2)}} text={'delivery'} active={tabe === 2 ? true : false }/>
+          <TabeButton onClick={()=>{setTabe(3)}} text={'returnOrder'} active={tabe === 3 ? true : false }/> 
+        </div>
+        {(() => {
+          switch(tabe) {
+            case 0:
+              return <Order />
+            case 1:
+              return <Prepare />
+            case 2:
+              return <Delivery />
+            case 3:
+              return <SendBack />
+          }
+        })()}
       </ContentContainer>
     </>
   )

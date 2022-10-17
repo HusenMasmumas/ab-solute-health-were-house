@@ -4,6 +4,7 @@ import CreateDetailForm from "./create_detail_form";
 import CHeader from "component/headerPage/Header";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Form } from "antd";
+import ContentContainer from "component/container/ContentContainer";
 const CreateStoreCabinet = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,7 +40,7 @@ const CreateStoreCabinet = () => {
         ]}
       />
 
-
+      <ContentContainer>
       <Tabs
          defaultActiveKey="1"
          type="card"
@@ -56,6 +57,7 @@ const CreateStoreCabinet = () => {
            }
          ]}
        />
+       </ContentContainer>
     </>
   );
 };
