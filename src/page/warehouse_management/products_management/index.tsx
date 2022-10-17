@@ -20,8 +20,8 @@ const ProductsMangement = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
+    // console.log("current", currentPage);
+    // console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
