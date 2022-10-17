@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import { Tabs } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import Table from "antd/lib/table";
+import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 
@@ -44,6 +45,7 @@ const CreateProduct = () => {
           </Button>
         </div>
       </div>
+      <ContentContainer>
       <div className="mt-[24px]">
         <Tabs defaultActiveKey="1" size="large" type="card">
           <Tabs.TabPane
@@ -316,6 +318,7 @@ const CreateProduct = () => {
           </Tabs.TabPane>
         </Tabs>
       </div>
+      </ContentContainer>
     </div>
   );
 };
