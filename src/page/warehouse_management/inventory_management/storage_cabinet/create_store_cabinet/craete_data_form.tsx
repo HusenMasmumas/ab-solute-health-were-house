@@ -7,10 +7,20 @@ import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
 import CDatePicker from "component/input/c-date-picker";
 import moment from 'moment';
+import { ColumnsType } from "antd/lib/table";
+import * as _ from "lodash";
+import React, {useEffect} from 'react'
+interface Colomns {
+  index: React.Key,
+  sku:string,
+  color:string,
+  amount:number
+}
 const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void } ) => {
   const [date, setDate] = useState<Date>(new Date())
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [preview, setPreview] = useState<Colomns[]>();
 
   const onFinishModal = (values: any) => {
     console.log("amount Received Modal ", values);
@@ -19,7 +29,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
     })
   };
 
-  const columns = [
+  const columns: ColumnsType<Colomns> = [
     {
       title: "SKU",
       dataIndex: "sku",
@@ -27,7 +37,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
     },
     {
       title: "สี",
-      dataIndex: "colour",
+      dataIndex: "color",
       width: "40%",
     },
     {
@@ -40,6 +50,18 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
     <div className="h-32"></div>
   );
 
+  const onChangeList = (value:any)=>{
+    setPreview(_.cloneDeep(value))
+  }
+
+  const InitForm = async () => {
+    await props.form.setFieldValue('users',[{index:0, sku:'', color:null, amount:0}])
+    setPreview(_.cloneDeep(props.form.getFieldsValue().users));
+  }
+  useEffect(()=>{
+    InitForm()
+  },[])
+
   return (
     <>
       <div className="bg-white py-[35px] px-[24px]">
@@ -49,7 +71,6 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
         <Form 
           layout="vertical" 
-          initialValues={{ users:[{first:'',last:'',amount:0}]}} 
           form={props.form}
           onFinish={props.formFN}
         >
@@ -154,10 +175,11 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
                   <Col span={12}>
                     <Form.Item
                         {...restField}
-                        name={[name, 'first']}
-                        label="sku"
+                        name={[name, 'sku']}
+                        label= "sku"
+                        rules={[{ required: true, message:'' }]}
                     >
-                      <CInput placeholder="sku" className="h-[45px]" />
+                      <CInput placeholder="sku" className="h-[45px]" onChange={()=>{onChangeList(props.form.getFieldValue('users'))}}/>
                     </Form.Item>
                   </Col>
                   <Col span={12}>
@@ -168,8 +190,9 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
                   <Col span={12}>
                     <Form.Item
                     {...restField}
-                    name={[name, 'last']}
+                    name={[name, 'color']}
                     label="สี"
+                    rules={[{ required: true, message:'' }]}
                     >
                       <CSelect 
                         style={{width:'100%', height:'40px !important'}}
@@ -178,6 +201,7 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
                             { key: 1, value: "red", label: "สีแดง" },
                             { key: 2, value: "green", label: "สีเขียว" }
                           ]}}
+                        onChange={()=>{onChangeList(props.form.getFieldValue('users'))}}  
                       />
                      </Form.Item>
                   </Col>
@@ -186,31 +210,34 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
                       {...restField}
                       name={[name, 'amount']}
                       label="จำนวน"
+                      rules={[{ required: true, message:''}]}
                     >
-                      <CInput placeholder="จำนวน" />
+                      <CInput.CInputNumberSytle prefix={<></>} placeholder="จำนวน" onChange={()=>{onChangeList(props.form.getFieldValue('users'))}}/>
                     </Form.Item>
                   </Col>
                 </Row>
               </div>
             ))}
              <Form.Item>
-              <Button type="dashed" onClick={() => { add() }} block icon={<PlusOutlined />}>
+              <Button type="dashed" onClick={() => { 
+                add({index: props.form.getFieldsValue().users?.length ?? 1 - 1,sku:'', color:null ,amount:0}); 
+                setPreview(_.cloneDeep(props.form.getFieldsValue().users));
+              }} block icon={<PlusOutlined />}>
                 เพิ่มตัวแปร
               </Button>
              </Form.Item>
           </>
         )}
-        
       </Form.List>       
         </Form>
         <ConfigProvider renderEmpty={customizeRenderEmpty}>
           <Table
+            rowKey={'index'}
             columns={columns}
-            dataSource={[]}
+            dataSource={preview}
           />
         </ConfigProvider>
       </div>
-      
       <Modal
         title={
           <span className="text-lightblue font-semibold text-[20px]">
@@ -220,7 +247,6 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
         centered
         open={open}
         footer={false}
-        // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         width={1000}
         destroyOnClose={true}
