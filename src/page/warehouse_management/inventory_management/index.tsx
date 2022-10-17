@@ -7,6 +7,7 @@ import CHeader from "component/headerPage/Header";
 import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
 import { ReactComponent as DotIcon } from "assets/Icon/dot.svg";
 import CImage from "component/Image/CImage";
+import ContentContainer from "component/container/ContentContainer";
 
 const WarehouseManagement = () => {
   const navigate = useNavigate();
@@ -67,9 +68,8 @@ const WarehouseManagement = () => {
           }
         ]}
       />
+      <ContentContainer>
       <SearchForm elements={elements} onFinish={onFinish} />
-      
-      {/* card */}
       <div className="grid xl:grid-cols-5 md:grid-cols-3 gap-4 mt-[12px;]">
         {data.map((item, index) => {
           return (
@@ -108,7 +108,8 @@ const WarehouseManagement = () => {
             </div>
           );
         })}
-      </div>
+        </div>
+      </ContentContainer>
     </>
   );
 };

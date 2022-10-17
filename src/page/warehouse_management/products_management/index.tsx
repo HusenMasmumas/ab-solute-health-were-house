@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { ProductsType, subSKU } from './interface'
 import SubTable from "component/Table/subTable";
 import CDropDown from "component/Dropdown/DropDown";
+import ContentContainer from "component/container/ContentContainer";
 
 
 const ProductsMangement = () => {
@@ -175,25 +176,27 @@ const ProductsMangement = () => {
           }
         ]}
       />
-      <SearchForm elements={elements} onFinish={onFinish} /> 
-      <MoTable
-        headerTable={`${t("รายการสินค้า")}`}
-        scroll={{x:900}}
-        columns={columns}
-        dataSource={data}
-        expandable={expandable}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-        actions={[{
-          type: 'excel',
-          fn: ()=>{console.log('download excel');
-          }
-        }]}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} /> 
+        <MoTable
+          headerTable={`${t("รายการสินค้า")}`}
+          scroll={{x:900}}
+          columns={columns}
+          dataSource={data}
+          expandable={expandable}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+          actions={[{
+            type: 'excel',
+            fn: ()=>{console.log('download excel');
+            }
+          }]}
+        />
+      </ContentContainer>
     </>
   );
 };

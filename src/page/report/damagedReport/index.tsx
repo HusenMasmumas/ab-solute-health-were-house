@@ -5,6 +5,7 @@ import { t } from "i18next";
 import MoTable from "component/Table/MoTable";
 import { DataType } from './interface'
 import { ColumnsType } from "antd/lib/table";
+import ContentContainer from "component/container/ContentContainer";
 
 
 const elements: IsearchFormItem[] = [
@@ -138,24 +139,26 @@ const DamageReport = () => {
   return (
     <>
       <CHeader keyHeader="report" arrPath={["report", "damageReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        scroll={{x:900}}
-        headerTable={t("damageReport")}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-        actions={[{
-          type: 'excel',
-          fn: ()=>{console.log('download excel');
-          }
-        }]}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
+          scroll={{x:900}}
+          headerTable={t("damageReport")}
+          columns={columns}
+          dataSource={Mockdata}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+          actions={[{
+            type: 'excel',
+            fn: ()=>{console.log('download excel');
+            }
+          }]}
+        />
+      </ContentContainer>
     </>
   );
 };

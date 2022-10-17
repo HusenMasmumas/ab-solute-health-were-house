@@ -5,6 +5,7 @@ import CHeader from "component/headerPage/Header";
 import MoTable from "component/Table/MoTable";
 import { t } from "i18next";
 import { IImportTable } from './interface'
+import ContentContainer from "component/container/ContentContainer";
 
 
 const elements: IsearchFormItem[] = [
@@ -143,6 +144,7 @@ const ImportedReport = () => {
   return (
     <>
       <CHeader keyHeader="report" arrPath={["report", "importedReport"]} />
+      <ContentContainer>
       <SearchForm elements={elements} onFinish={onFinish} />
       <MoTable
         scroll={{x:900}}
@@ -161,6 +163,7 @@ const ImportedReport = () => {
           }
         }]}
       />
+      </ContentContainer>
     </>
   );
 };

@@ -6,6 +6,7 @@ import Prepare from 'page/purchase_order/reports/Prepare';
 import Delivery from 'page/purchase_order/reports/Delivery';
 import SendBack from 'page/purchase_order/reports/SendBack';
 import { useNavigate } from 'react-router-dom';
+import ContentContainer from 'component/container/ContentContainer';
 
 const arrPath = [
   ['purchaseOrderManagement','purchaseOrder'],
@@ -36,6 +37,7 @@ const ManagePurcheaseOrder = () => {
         <TabeButton onClick={()=>{setTabe(2)}} text={'delivery'} active={tabe === 2 ? true : false }/>
         <TabeButton onClick={()=>{setTabe(3)}} text={'returnOrder'} active={tabe === 3 ? true : false }/> 
       </div>
+      <ContentContainer>
       {(() => {
         switch(tabe) {
           case 0:
@@ -48,6 +50,7 @@ const ManagePurcheaseOrder = () => {
             return <SendBack />
         }
       })()}
+      </ContentContainer>
     </>
   )
 }

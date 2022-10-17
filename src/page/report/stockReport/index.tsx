@@ -1,4 +1,5 @@
 import { ColumnsType } from "antd/lib/table";
+import ContentContainer from "component/container/ContentContainer";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import MoTable from "component/Table/MoTable";
@@ -143,23 +144,25 @@ const StockReport = () => {
   return (
     <>
       <CHeader keyHeader="report" arrPath={["report", "stockReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        headerTable={t("stockReport")}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-        actions={[{
-          type: 'excel',
-          fn: ()=>{console.log('download excel');
-          }
-        }]}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
+          headerTable={t("stockReport")}
+          columns={columns}
+          dataSource={Mockdata}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+          actions={[{
+            type: 'excel',
+            fn: ()=>{console.log('download excel');
+            }
+          }]}
+        />
+      </ContentContainer>
     </>
   );
 };

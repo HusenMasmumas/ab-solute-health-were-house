@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { IDataType } from './interface'
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
+import ContentContainer from 'component/container/ContentContainer'
 const elements: IsearchFormItem[] = [
   {
     name: "store",
@@ -127,18 +128,20 @@ const StoresBranches = () => {
           }
         ]}
       />  
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        headerTable={t("orderlist")}
-        columns={columns}
-        dataSource={data}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
+          headerTable={t("orderlist")}
+          columns={columns}
+          dataSource={data}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+          />
+        </ContentContainer>
     </>
   );
 };

@@ -1,8 +1,6 @@
 import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import { Tabs } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-// import CreateDataForm from "./craete_data_form";
-// import CreateDetailForm from "./create_detail_form";
 import Table from "antd/lib/table";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Switch, Image } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
+import ContentContainer from "component/container/ContentContainer";
 
 const elements: IsearchFormItem[] = [
   {
@@ -186,18 +187,20 @@ const UserManagement = () => {
           }
         ]}
       />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        headerTable={'จัดการผู้ใช้'}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
+          headerTable={'จัดการผู้ใช้'}
+          columns={columns}
+          dataSource={Mockdata}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+        />
+      </ContentContainer>
     </>
   );
 };

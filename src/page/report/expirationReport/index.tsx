@@ -5,6 +5,7 @@ import { DataType } from './interface'
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import { useTranslation } from "react-i18next";
+import ContentContainer from "component/container/ContentContainer";
 
 const elements: IsearchFormItem[] = [
   {
@@ -149,24 +150,26 @@ const ExpirationReport = () => {
   return (
     <>
       <CHeader keyHeader="report" arrPath={["report", "expirationReport"]} />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        scroll={{x:900}}
-        headerTable={t("expirationReport")}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-        actions={[{
-          type: 'excel',
-          fn: ()=>{console.log('download excel');
-          }
-        }]}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
+          scroll={{x:900}}
+          headerTable={t("expirationReport")}
+          columns={columns}
+          dataSource={Mockdata}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+          actions={[{
+            type: 'excel',
+            fn: ()=>{console.log('download excel');
+            }
+          }]}
+        />
+      </ContentContainer>
     </>
   );
 };

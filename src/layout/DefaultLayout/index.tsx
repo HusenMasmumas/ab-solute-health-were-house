@@ -19,7 +19,6 @@ import { ReactComponent as ActiveMenuBar5 } from "assets/Icon/active/Menu5.svg";
 import Logo from "assets/img/logo.png";
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
-
 const { Header, Content, Sider } = Layout;
 
 type Props = {};
@@ -310,7 +309,8 @@ const DefaultLayout = (props: Props) => {
             openDrawer={openDrawer}
           />
         </Header>
-        <div className="!overflow-y-auto h-[88vh]">
+        {/* <div className="!overflow-y-auto h-[88vh]"> */}
+        <div>
           <Content
             className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full  transition-all "
             style={{

@@ -7,6 +7,7 @@ import { ColumnsType } from "antd/lib/table";
 import { useState, useEffect } from "react";
 import MoTable from "component/Table/MoTable";
 import { DataType } from './interface'
+import ContentContainer from "component/container/ContentContainer";
 const elements: IsearchFormItem[] = [
   {
     name: "role",
@@ -98,18 +99,20 @@ const RoleManagement = () => {
           }
         ]}
       />
-      <SearchForm elements={elements} onFinish={onFinish} />
-      <MoTable
-        headerTable={'รายการบทบาท'}
-        columns={columns}
-        dataSource={Mockdata}
-        onChangePage={onChangePage}
-        config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
-          pageSize: limitPage,
-          currentPage: currentPage,
-        }}
-      />
+      <ContentContainer>
+        <SearchForm elements={elements} onFinish={onFinish} />
+        <MoTable
+          headerTable={'รายการบทบาท'}
+          columns={columns}
+          dataSource={Mockdata}
+          onChangePage={onChangePage}
+          config={{
+            total: 20, //ค่าจาก backend ใช้หารหน้า
+            pageSize: limitPage,
+            currentPage: currentPage,
+          }}
+        />
+      </ContentContainer>
     </>
   );
 };
