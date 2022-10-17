@@ -52,7 +52,10 @@ const InputNumberR = (props:InputProps) => {
 
 const InputNumberSytle = styled(InputNumber)`
   width: 100%;
-  border-radius: 5px !important;
+  border-radius: 5px !important;  
+  .ant-input-number-input-wrap{
+    padding:2px;
+  }
 `
 const CInputNumberSytle = ({ 
   prefix="฿",
