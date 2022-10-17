@@ -50,11 +50,18 @@ const InputNumberR = (props:InputProps) => {
 }
 
 
-const InputNumberSytle = styled(InputNumber)`
+interface CInputNumberProps extends InputNumberProps {
+  textAlign?: 'end' | 'start'
+}
+const InputNumberSytle = styled(InputNumber)<CInputNumberProps>`
   width: 100%;
   border-radius: 5px !important;  
   .ant-input-number-input-wrap{
     padding:2px;
+  }
+  .ant-input-number-input{
+    padding-right: 5px !important;
+    text-align: ${({ textAlign }) => ( `${textAlign}`)}};
   }
 `
 const CInputNumberSytle = ({ 
@@ -62,13 +69,15 @@ const CInputNumberSytle = ({
   size='large',
   min=0,
   controls=false, 
-  ...props}:InputNumberProps) => {
+  textAlign='start',
+  ...props}:CInputNumberProps) => {
   return (
     <InputNumberSytle  
       prefix={prefix}
       size={size}
       min={min}
       controls={controls}
+      textAlign={textAlign}
       {...props}
     />
   )
