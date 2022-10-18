@@ -121,18 +121,11 @@ const Examine = (props: Props) => {
             },
             { 
               colorButton: 'green',
-              keytext: 'บันทึก',
+              keytext: 'อนุมัติ',
               fn:  () => {
                 navigate("/purchase-order/manage");
               }
             },
-            { 
-              colorButton: 'blue',
-              keytext: 'บันทึกและรออนุมัติ',
-              fn:  () => {
-                navigate("/purchase-order/manage");
-              }
-          }
           ]}
           />
           <ContentContainer>
