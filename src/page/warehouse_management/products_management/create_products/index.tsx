@@ -166,7 +166,7 @@ const CreateProduct = () => {
                         </Row>
                         <Row gutter={[24, 0]}>
                           <Col span={12}>
-                            <Form.Item {...restField} label="SKU">
+                            <Form.Item {...restField} label="SKU" name='sku'>
                               <Input
                                 className="input-form"
                                 placeholder="SKU"
@@ -176,7 +176,7 @@ const CreateProduct = () => {
                         </Row>
                         <Row gutter={[24, 0]}>
                           <Col span={12}>
-                            <Form.Item {...restField} label="สี">
+                            <Form.Item {...restField} label="สี" name='color'>
                               <Select
                                 defaultValue="สีแดง"
                                 placeholder="สีแดง"
@@ -187,7 +187,7 @@ const CreateProduct = () => {
                             </Form.Item>
                           </Col>
                           <Col span={12}>
-                            <Form.Item {...restField} label="จำนวน (จำแนกตามสี)">
+                            <Form.Item {...restField} label="จำนวน (จำแนกตามสี)" name='amount'>
                               <CInput />
                             </Form.Item>
                           </Col>
