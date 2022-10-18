@@ -277,6 +277,7 @@ const CreatePurchase = (props: Props) => {
           columns={columns} 
           dataSource={ _.cloneDeep(motalTableData)} 
           pagination={false} 
+          noMarginX={true}
         />
         <div className="mt-5">
           <BlueButton

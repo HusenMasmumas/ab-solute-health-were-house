@@ -275,6 +275,7 @@ const CreateModal = (props: Props) => {
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        noMarginX={true}
       />
       <Divider />
       <div className="flex space-x-4 justify-end">

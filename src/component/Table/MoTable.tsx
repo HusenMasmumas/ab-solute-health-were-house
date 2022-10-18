@@ -22,6 +22,7 @@ interface Props extends TableProps<any> {
   actions?: IAction[];
   scroll?: any;
   noMarginTop?: boolean;
+  noMarginX?:boolean;
 }
 
 const MoTable = ({
@@ -36,12 +37,16 @@ const MoTable = ({
   config = { total: 15, currentPage: 1, pageSize: 10 },
   scroll = {x:900},
   noMarginTop = false,
+  noMarginX = false,
   ...props
 }: Props) => {
   
   return (
     <>
-      <Card className={`w-full !my-10 !border-0 ${noMarginTop ? '!my-0' : '!my-10'}`}>
+      <Card 
+        className={`w-full !my-10 !border-0 ${noMarginTop ? '!my-0' : '!my-10'}`}
+        bodyStyle={{padding:`${noMarginX ? '24px 0px 24px 0px': '24px'}`}}
+        >
         {
           (headerTable || actions ) &&
           <div className="flex h-16">
