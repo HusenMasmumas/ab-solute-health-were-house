@@ -178,7 +178,6 @@ const CreateProduct = () => {
                           <Col span={12}>
                             <Form.Item {...restField} label="สี" name='color'>
                               <Select
-                                defaultValue="สีแดง"
                                 placeholder="สีแดง"
                               >
                                 <Option value="สีแดง">สีแดง</Option>
