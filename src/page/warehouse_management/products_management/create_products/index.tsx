@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import CInput from "component/input/c-input";
+import { FolderMinusIcon } from "@heroicons/react/24/solid";
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -38,13 +39,47 @@ const CreateProduct = () => {
     console.log(value);
   }
 
+  const initialEmptyForm = ()=>{
+    form.setFieldsValue({
+      bloodTube:'',
+      category:'',
+      drugLabel: '',
+      inspectionDetailsEN: '',
+      inspectionDetailsTH:'',
+      labCompany:'',
+      name:'',
+      priceCost:0,
+      priceNormal:0,
+      propertiesEN:'',
+      propertiesTH:'',
+      sbuCategory:'',
+      sku:'',
+      status:'',
+      subSKU:'',
+      supplier:'',
+      unit:'',
+      useEN:'',
+      useTH:'',
+      warming:'',
+      werehouse:[{
+        sku:'sku',
+        color:'red',
+        amount:0
+      }],
+    })
+  }
+
+  
   useEffect(()=>{
-    if(location.state){
+    if(location.state){      
       setMode('editProduct')
     }else{
       setMode('productlist')
+      initialEmptyForm()
     }
   },[])
+
+
 
   return (
     <>
@@ -160,19 +195,27 @@ const CreateProduct = () => {
                         </Row>
                         <Row gutter={[24, 0]}>
                           <Col span={12}>
-                            <Form.Item {...restField} label="SKU" name='sku'>
+                            <Form.Item 
+                              {...restField} 
+                              label="SKU" 
+                              name={[name, 'sku']}
+                            >
                               <Input
                                 className="input-form"
                                 placeholder="SKU"
-                              ></Input>
+                              />
                             </Form.Item>
                           </Col>
                         </Row>
                         <Row gutter={[24, 0]}>
                           <Col span={12}>
-                            <Form.Item {...restField} label="สี" name='color'>
+                            <Form.Item 
+                            {...restField} 
+                            label="สี" 
+                            name={[name, 'color']}
+                            >
                               <Select
-                                placeholder="สีแดง"
+                                placeholder="เลือกสี"
                               >
                                 <Option value="red">สีแดง</Option>
                                 <Option value="green">สีเขียว</Option>
@@ -180,7 +223,11 @@ const CreateProduct = () => {
                             </Form.Item>
                           </Col>
                           <Col span={12}>
-                            <Form.Item {...restField} label="จำนวน (จำแนกตามสี)" name='amount'>
+                            <Form.Item 
+                            {...restField} 
+                            label="จำนวน (จำแนกตามสี)" 
+                            name={[name, 'amount']}
+                            >
                               <CInput.CInputNumberSytle prefix=''/>
                             </Form.Item>
                           </Col>
