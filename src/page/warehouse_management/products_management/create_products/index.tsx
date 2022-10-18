@@ -1,19 +1,20 @@
 import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import { Tabs } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import Table from "antd/lib/table";
 import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
+import CInput from "component/input/c-input";
 
 const CreateProduct = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
-  const [mode, setMode] = useState<'editProduct' | 'productlist'>('productlist')
-  const Option = Select;
+  const [mode, setMode] = useState<'editProduct' | 'productlist'>('productlist');
+  const [form] = Form.useForm();
+  const { Option } = Select;
   const columns = [
     {
       title: "SKU",
@@ -28,12 +29,16 @@ const CreateProduct = () => {
       dataIndex: "ps",
     },
   ];
+  
   const onChange = (checked: boolean) => {
     console.log(`switch to ${checked}`);
   };
 
+  const onFinish = (value:any)=>{
+    console.log(value);
+  }
+
   useEffect(()=>{
-    console.log('location',location.state);
     if(location.state){
       setMode('editProduct')
     }else{
@@ -58,7 +63,7 @@ const CreateProduct = () => {
             colorButton: 'green',
             keytext: 'save',
             fn:  () => {
-              // form.submit()
+              form.submit()
               // navigate("/warehouse-management/store-cabinet", {state:{id: location.state.id }});
             }
           }
@@ -66,165 +71,155 @@ const CreateProduct = () => {
       />
       <ContentContainer>
       <div className="mt-[24px]">
-        <Tabs defaultActiveKey="1" size="large" type="card">
-          <Tabs.TabPane
-            className="!text-[20px] font-semibold"
-            tab="ข้อมูลสินค้า"
-            key="1"
-          >
+        <Form 
+          form={form}
+          onFinish={onFinish}
+          layout="vertical"
+        >
+        <Tabs items={[
+          { label: 'Tab 1', 
+            key: '1', 
+            children:
+            <>
             <div className="bg-white py-[35px] px-[24px]">
-              <div className="text-lightblue text-[20px] font-semibold">
-                <span>{`${t("ข้อมูลสินค้า")}`}</span>
-              </div>
-              <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-              <Form layout="vertical">
-                <Row gutter={[24, 0]}>
-                  <Col span={12}>
-                    <Form.Item label="SKU">
-                      <Input className="input-form" placeholder="SKU"></Input>
-                    </Form.Item>
-                  </Col>
-                  <Col span={12}>
-                    <Form.Item label="Sub SKU">
-                      <Input
-                        className="input-form"
-                        placeholder="Sub SKU"
-                      ></Input>
-                    </Form.Item>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span={24}>
-                    <Form.Item label="Name">
-                      <Input className="input-form" placeholder="Name"></Input>
-                    </Form.Item>
-                  </Col>
-                </Row>
-                <Row gutter={[24, 0]}>
-                  <Col span={12}>
-                    <Form.Item label="Category">
-                      <Input
-                        className="input-form"
-                        placeholder="Category"
-                      ></Input>
-                    </Form.Item>
-                  </Col>
-                  <Col span={12}>
-                    <Form.Item label="Sub Category">
-                      <Input
-                        className="input-form"
-                        placeholder="Sub Category"
-                      ></Input>
-                    </Form.Item>
-                  </Col>
-                </Row>
-                <Row gutter={[24, 0]}>
-                  <Col span={12}>
-                    <Form.Item label="Price Cost">
-                      <Input
-                        className="input-form"
-                        placeholder="Price Cost"
-                      ></Input>
-                    </Form.Item>
-                  </Col>
-                  <Col span={12}>
-                    <Form.Item label="Price Normal">
-                      <Input
-                        className="input-form"
-                        placeholder="Price Normal"
-                      ></Input>
-                    </Form.Item>
-                  </Col>
-                </Row>
-                <Row gutter={[24, 0]}>
-                  <Col span={12}>
-                    <Form.Item label="การใช้งาน">
-                      <Switch defaultChecked onChange={onChange} />
-                    </Form.Item>
-                  </Col>
-                </Row>
-              </Form>
+            <div className="text-lightblue text-[20px] font-semibold">
+              <span>{`${t("ข้อมูลสินค้า")}`}</span>
             </div>
-            <div className="bg-white py-[35px] px-[24px] mt-[16px]">
-              <div className="text-lightblue text-[22px] font-semibold">
-                <span>ข้อมูลตามประเภท</span>
-              </div>
-
-              {/* ฟอร์มล่าง */}
-              <Form
-                name="dynamic_form_nest_item"
-                layout="vertical"
-                initialValues={{ werehouse: [""] }}
-              >
-                <Form.List name="werehouse">
-                  {(fields, { add, remove }) => (
-                    <>
-                      {fields.map(({ key, name, ...restField }) => (
-                        <div key={key}>
-                          <Row gutter={[24, 0]}>
-                            <Col span={24}>
-                              <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-                            </Col>
-                          </Row>
-                          <Row gutter={[24, 0]}>
-                            <Col span={12}>
-                              <Form.Item {...fields} label="SKU">
-                                <Input
-                                  className="input-form"
-                                  placeholder="SKU"
-                                ></Input>
-                              </Form.Item>
-                            </Col>
-                            <Col span={12}>
-                              <Form.Item {...fields} label="สี">
-                                <Select
-                                  defaultValue="สีแดง"
-                                  placeholder="สีแดง"
-                                >
-                                  <Option value="สีแดง">สีแดง</Option>
-                                  <Option value="สีเขียว">สีเขียว</Option>
-                                </Select>
-                              </Form.Item>
-                            </Col>
-                          </Row>
-                          <Row gutter={[24, 0]}>
-                            <Col span={24}>
-                              <Form.Item label="หมายเหตุ">
-                                <TextArea placeholder="หมายเหตุ"></TextArea>
-                              </Form.Item>
-                            </Col>
-                          </Row>
-                        </div>
-                      ))}
-                      <Form.Item>
-                        <Button
-                          className="grid justify-start items-center !w-[170px] !h-[45px] !text-[16px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]"
-                          onClick={() => add()}
-                        >
-                          + เพิ่มตัวแปร
-                        </Button>
-                      </Form.Item>
-                    </>
-                  )}
-                </Form.List>
-              </Form>
+            <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
+              <Row gutter={[24, 0]}>
+                <Col span={12}>
+                  <Form.Item label="SKU" name='sku'>
+                    <Input className="input-form" placeholder="SKU"></Input>
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item label="Sub SKU" name='subSKU'>
+                    <Input
+                      className="input-form"
+                      placeholder="Sub SKU"
+                    ></Input>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <Form.Item label="Name" name='name'>
+                    <Input className="input-form" placeholder="Name"></Input>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={[24, 0]}>
+                <Col span={12}>
+                  <Form.Item label="Category" name='category'>
+                    <Input
+                      className="input-form"
+                      placeholder="Category"
+                    ></Input>
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item label="Sub Category" name='sbuCategory'>
+                    <Input
+                      className="input-form"
+                      placeholder="Sub Category"
+                    ></Input>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={[24, 0]}>
+                <Col span={12}>
+                  <Form.Item label="Price Cost" name='priceCost'>
+                    <Input
+                      className="input-form"
+                      placeholder="Price Cost"
+                    ></Input>
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item label="Price Normal" name='priceNormal'>
+                    <Input
+                      className="input-form"
+                      placeholder="Price Normal"
+                    ></Input>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={[24, 0]}>
+                <Col span={12}>
+                  <Form.Item label="การใช้งาน" name='status' valuePropName="checked">
+                    <Switch defaultChecked={false} onChange={onChange} />
+                  </Form.Item>
+                </Col>
+              </Row>
+            <div className="text-lightblue text-[22px] font-semibold">
+              <span>ข้อมูลตามประเภท</span>
             </div>
-            <Table
-              columns={columns}
-              // dataSource={dataSource}
-            />
-          </Tabs.TabPane>
-          <Tabs.TabPane
-            className="!text-[20px] font-semibold"
-            tab="รายละเอียด"
-            key="2"
-          >
-            <div className="bg-white py-[35px] px-[24px]">
+              <Form.List name="werehouse">
+                {(fields, { add, remove }) => (
+                  <>
+                    {fields.map(({ key, name, ...restField }) => (
+                      <div key={key}>
+                        <Row gutter={[24, 0]}>
+                          <Col span={24}>
+                            <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
+                          </Col>
+                        </Row>
+                        <Row gutter={[24, 0]}>
+                          <Col span={12}>
+                            <Form.Item {...restField} label="SKU">
+                              <Input
+                                className="input-form"
+                                placeholder="SKU"
+                              ></Input>
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                        <Row gutter={[24, 0]}>
+                          <Col span={12}>
+                            <Form.Item {...restField} label="สี">
+                              <Select
+                                defaultValue="สีแดง"
+                                placeholder="สีแดง"
+                              >
+                                <Option value="สีแดง">สีแดง</Option>
+                                <Option value="สีเขียว">สีเขียว</Option>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                          <Col span={12}>
+                            <Form.Item {...restField} label="จำนวน (จำแนกตามสี)">
+                              <CInput />
+                            </Form.Item>
+                          </Col>
+                        </Row>
+                      </div>
+                    ))}
+                    <Form.Item>
+                      <Button
+                        className="grid justify-start items-center !w-[170px] !h-[45px] !text-[16px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]"
+                        onClick={() => add()}
+                      >
+                        + เพิ่มตัวแปร
+                      </Button>
+                    </Form.Item>
+                  </>
+                )}
+              </Form.List>
+          </div>
+          <Table
+            columns={columns}
+            // dataSource={dataSource}
+          /> 
+          </>
+          
+          },
+          { label: 'Tab 2', key: '2', children: 
+            <>
+              <div className="bg-white py-[35px] px-[24px]">
               <div className="text-lightblue text-[20px] font-semibold">
                 <span>{`${t("รายละเอียด")}`}</span>
               </div>
               <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-              <Form layout="vertical">
                 <Row gutter={[24, 0]}>
                   <Col span={24}>
                     <Form.Item label="Drug label">
@@ -332,10 +327,11 @@ const CreateProduct = () => {
                     </Form.Item>
                   </Col>
                 </Row>
-              </Form>
             </div>
-          </Tabs.TabPane>
-        </Tabs>
+            </>
+          },
+        ]}  defaultActiveKey="1" size="large" type="card" />
+        </Form>
       </div>
       </ContentContainer>
     </>
