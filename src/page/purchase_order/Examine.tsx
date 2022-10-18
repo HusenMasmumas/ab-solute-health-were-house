@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CHeader from 'component/headerPage/Header';
 import { useNavigate } from "react-router-dom";
-import { Card, Col, ConfigProvider, Divider, Form, InputNumber, Row } from 'antd';
+import { Card, Col, ConfigProvider, Divider, Form, InputNumber, Modal, Row } from 'antd';
 import form from 'antd/lib/form';
 import PurchaseForm from 'component/Form/purchaseForm';
 import moment from 'moment';
@@ -12,6 +12,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import BlueButton from 'component/Button/BlueButton';
 import styled from 'styled-components';
 import ContentContainer from 'component/container/ContentContainer';
+import CreateModal from './CreateModal';
 type Props = {}
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
@@ -35,7 +36,9 @@ interface TableType {
 }
 
 const Examine = (props: Props) => {
-    
+  const [open, setOpen] = useState(false);
+  const [historyData, sethistoryData] = useState<any>([]);
+  const [selectIndex, setSelectIndex] = useState<number[]>([]);
   const columns: ColumnsType<TableType> = [
     {
       title: "#",
@@ -106,8 +109,22 @@ const Examine = (props: Props) => {
 
     const navigate = useNavigate();
     let [form] = Form.useForm();
+
+    const onFinishModal = (values: any,indexArray:any) => {
+      // console.log("amount Received Modal ", values); //ตัวที่เคย get มาทั้งหมด
+      sethistoryData([...values])
+      // console.log("indexArray",indexArray) //ตัวที่เลือก
+      setSelectIndex([...indexArray])
+    };
+
+    useEffect(()=>{
+      //set history จากฐานข้อมูลไปก่อน
+      //set select เป็นเลือกทั้งหมด
+      //โยนเข้า Modal
+    },[])
+  
     return (
-      <div>
+      <>
           <CHeader
           keyHeader="purchaseOrderManagement"
           arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
@@ -152,11 +169,11 @@ const Examine = (props: Props) => {
                 pagination={false} 
               />
               <div className="mt-5">
-            {/* <BlueButton
-              onClick={() => setOpen(true)}
-            >
-              + เพิ่มสินค้า
-            </BlueButton> */}
+              <BlueButton
+               onClick={() => setOpen(true)}
+              >
+                + เพิ่มสินค้า
+              </BlueButton>
             <Row>
               <Col sm={24} lg={12} className="!flex !items-end pb-6">
                 <div className="w-full">
@@ -246,7 +263,25 @@ const Examine = (props: Props) => {
               </div>
             </Card>
           </ContentContainer>
-      </div>
+          <Modal
+            title={<span className="text-[#498DCB] text-[18px]">รายละเอียดสินค้า</span>}
+            centered
+            open={open}
+            footer={false}
+            // onOk={() => setOpen(false)}
+            onCancel={() => setOpen(false)}
+            width={1000}
+            destroyOnClose={true}
+            zIndex={2000}
+          >
+            <CreateModal 
+              historyData={historyData} //โยน historyData เข้าไป initial 
+              selectIndex={selectIndex} //โยนเข้าไป initial
+              setSelectData={onFinishModal} 
+              setOpenMoDal={setOpen}
+            />
+        </Modal>
+      </>
     )
 }   
 
