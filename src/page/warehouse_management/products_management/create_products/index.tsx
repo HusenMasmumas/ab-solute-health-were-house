@@ -112,7 +112,7 @@ const CreateProduct = () => {
           layout="vertical"
         >
         <Tabs items={[
-          { label: 'Tab 1', 
+          { label: 'ข้อมูลสินค้า', 
             key: '1', 
             children:
             <>
@@ -253,7 +253,7 @@ const CreateProduct = () => {
           </>
           
           },
-          { label: 'Tab 2', key: '2', children: 
+          { label: 'รายละเอียดสินค้า', key: '2', children: 
             <>
               <div className="bg-white py-[35px] px-[24px]">
               <div className="text-lightblue text-[20px] font-semibold">
