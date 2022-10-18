@@ -181,6 +181,7 @@ const CreatePurchase = (props: Props) => {
   useEffect(()=>{
     if(location.state){      
       console.log('fetch fill form');
+      setMode('confirm')
     }else{
       console.log('new create');
     }
@@ -228,7 +229,11 @@ const CreatePurchase = (props: Props) => {
             keytext: 'ยกเลิก',
             fn:  () => {
               // navigate("/purchase-order/manage");
-              setMode('edit')
+              if(location.state){
+                navigate("/purchase-order/manage");
+              }else{
+                setMode('edit')
+              }
             }
           },
           { colorButton: 'green',
