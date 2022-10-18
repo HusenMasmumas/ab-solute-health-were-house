@@ -76,6 +76,7 @@ const Table_1 = ({tableName, data}: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const navigate = useNavigate();
+
   useEffect(() => {
     // console.log("current", currentPage);
     // console.log("limitPage", limitPage);
@@ -104,8 +105,9 @@ const Table_1 = ({tableName, data}: Props) => {
 
   const goToDraft = (value:string)=>{
     console.log(value); 
-    navigate("/purchase-order/create");
+    navigate("/purchase-order/create", {state:{id: value }});
   }
+
 
 
   const columns: ColumnsType<DataType> = [

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
 import CreateModal from "./CreateModal";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PurchaseForm from "component/Form/purchaseForm";
 import BlueButton from "component/Button/BlueButton";
 import * as _ from "lodash";
@@ -72,6 +72,7 @@ const CreatePurchase = (props: Props) => {
   const [forms, setForm] = useState<any>()
   
   const navigate = useNavigate();
+  const location = useLocation();
   let [form] = Form.useForm();
   
 
@@ -176,6 +177,14 @@ const CreatePurchase = (props: Props) => {
   useEffect(()=>{
     setMotableData([...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )])    
   },[historyData, selectIndex])
+
+  useEffect(()=>{
+    if(location.state){      
+      console.log('fetch fill form');
+    }else{
+      console.log('new create');
+    }
+  },[])
 
   return (
     <>
