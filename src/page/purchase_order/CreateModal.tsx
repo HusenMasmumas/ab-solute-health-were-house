@@ -279,10 +279,14 @@ const CreateModal = (props: Props) => {
       <Divider />
       <div className="flex space-x-4 justify-end">
         <BlueButton onClick={()=>{
+          console.log('confirm');
+          
           props.setSelectData([...historyData],[...selectKey])
           props.setOpenMoDal(false)
         }}>ยืนยัน</BlueButton>
         <WhilteButton onClick={()=>{
+          console.log('cancle');
+          
           props.setOpenMoDal(false)
         }}>ยกเลิก</WhilteButton>
       </div>

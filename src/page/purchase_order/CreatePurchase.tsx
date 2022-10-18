@@ -385,7 +385,7 @@ const CreatePurchase = (props: Props) => {
         zIndex={2000}
       >
         <CreateModal 
-          historyData={historyData} //โยน historyData เข้าไป initial 
+          historyData={_.cloneDeep(historyData)} //โยน historyData เข้าไป initial 
           selectIndex={selectIndex} //โยนเข้าไป initial
           setSelectData={onFinishModal} 
           setOpenMoDal={setOpen}/>

@@ -13,6 +13,7 @@ import BlueButton from 'component/Button/BlueButton';
 import styled from 'styled-components';
 import ContentContainer from 'component/container/ContentContainer';
 import CreateModal from './CreateModal';
+import { DeleteFilled } from '@ant-design/icons';
 type Props = {}
 
 const StyledInputNumber = styled(InputNumber)<{bg:string, fontSize:number}>`
@@ -39,6 +40,7 @@ const Examine = (props: Props) => {
   const [open, setOpen] = useState(false);
   const [historyData, sethistoryData] = useState<any>([]);
   const [selectIndex, setSelectIndex] = useState<number[]>([]);
+  const [motalTableData, setMotableData] = useState<any>([]);
   const columns: ColumnsType<TableType> = [
     {
       title: "#",
@@ -73,15 +75,15 @@ const Examine = (props: Props) => {
               min={1}
               defaultValue={1}
               value={amount}
-            //   onChange={(value) => {
-            //     console.log('value', value,'__typeof' ,typeof value);
+              onChange={(value) => {
+                console.log('value', value,'__typeof' ,typeof value);
                 
-            //     if (typeof value === "number")
-            //       setNewValue(value, record)
-            //     else {
-            //       setNewValue(1, record)
-            //     }
-            //   }}
+                if (typeof value === "number")
+                  setNewValue(value, record)
+                else {
+                  setNewValue(1, record)
+                }
+              }}
           />
         )
        }
@@ -99,8 +101,12 @@ const Examine = (props: Props) => {
       dataIndex: "pay",
       render: ( _, record) => {
         return (
-          <div>
+          <div className="flex items-center justify-around">
             {(record.price * record.amount).toFixed(2)}
+            <DeleteFilled onClick={()=>{
+              // console.log('record',record);
+              deleteSelected(record.index)
+            }} />
           </div>
         )
       }
@@ -110,12 +116,36 @@ const Examine = (props: Props) => {
     const navigate = useNavigate();
     let [form] = Form.useForm();
 
+    const setNewValue = (amount:number, record:TableType )=>{
+      const arr = historyData.map((element:TableType)=>{
+        if(element.index === record.index){
+          element.amount = amount
+          console.log('change value',element);
+          return element
+        }
+          return element
+      })
+      sethistoryData([...arr])
+  }
+
     const onFinishModal = (values: any,indexArray:any) => {
+      console.log('working');
       // console.log("amount Received Modal ", values); //ตัวที่เคย get มาทั้งหมด
       sethistoryData([...values])
       // console.log("indexArray",indexArray) //ตัวที่เลือก
       setSelectIndex([...indexArray])
     };
+
+    const deleteSelected = (index:number) => {
+      console.log('index',index);
+      let indexArr = selectIndex.filter((item:number) => item !== index)
+      console.log('indexArr',indexArr);
+      setSelectIndex([...indexArr])
+    }
+
+    useEffect(()=>{
+      setMotableData([...historyData.filter( (element:TableType) => selectIndex.includes(element.index) )])    
+    },[historyData, selectIndex])
 
     useEffect(()=>{
       //set history จากฐานข้อมูลไปก่อน
@@ -165,7 +195,7 @@ const Examine = (props: Props) => {
                 rowKey="index"
                 headerTable='รายละเอียดสินค้า'
                 columns={columns} 
-                dataSource={ _.cloneDeep([])} 
+                dataSource={ _.cloneDeep(motalTableData)} 
                 pagination={false} 
               />
               <div className="mt-5">
@@ -275,7 +305,7 @@ const Examine = (props: Props) => {
             zIndex={2000}
           >
             <CreateModal 
-              historyData={historyData} //โยน historyData เข้าไป initial 
+              historyData={_.cloneDeep(historyData)} //โยน historyData เข้าไป initial 
               selectIndex={selectIndex} //โยนเข้าไป initial
               setSelectData={onFinishModal} 
               setOpenMoDal={setOpen}
