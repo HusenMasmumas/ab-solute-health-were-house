@@ -5,9 +5,9 @@ import WhilteButton from "component/Button/whilteButton";
 import DeepBlueButton from "component/Button/DeepBlue";
 import LightBlueButton from "component/Button/LightBlueButton";
 import BlueButton from "component/Button/BlueButton";
-
-
-type colorButtons = 'green'|'whilte'|'light-blue'|'deep-blue'|'blue'
+import { Image } from 'antd';
+import Printer from "assets/img/Printer.png";
+type colorButtons = 'green'|'whilte'|'light-blue'|'deep-blue'|'blue'|'print'
 interface IButton {
   colorButton: colorButtons;
   keytext: string;
@@ -34,7 +34,7 @@ const CHeader = ({ keyHeader, arrPath = [], buttons=[] }: ICHeader) => {
         </div>
         <NevigationPath textPath={arrPath} />
       </div>
-      <div className="justify-end flex items-center space-x-1.5">
+      <div className="justify-end flex items-start space-x-4">
         {
           buttons.map(({keytext, fn, colorButton}:IButton,index:number)=>{
             switch (colorButton) {
@@ -48,6 +48,14 @@ const CHeader = ({ keyHeader, arrPath = [], buttons=[] }: ICHeader) => {
                 return <DeepBlueButton key={index} onClick={fn}>{getText(keytext)}</DeepBlueButton>
               case 'blue':
                 return <BlueButton key={index} onClick={fn}>{getText(keytext)}</BlueButton>
+              case 'print':
+                return (
+                  <div  key={index}  className="h-full flex items-center">
+                    <div className='!h-[35px] !w-[35px] hover:cursor-pointer flex items-center justify-center bg-white'>
+                      <Image src={Printer} alt="excel" preview={false} onClick={fn}  className='!h-[28px] !w-[28px]'/>
+                    </div>
+                  </div>
+                )
               default:
                 return <WhilteButton key={index} onClick={fn}>{getText(keytext)}</WhilteButton>
             }

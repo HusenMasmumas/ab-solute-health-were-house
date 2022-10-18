@@ -185,13 +185,15 @@ const CreatePurchase = (props: Props) => {
         keyHeader="purchaseOrder"
         arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
         buttons={[
-          { colorButton: 'whilte',
+          { 
+            colorButton: 'whilte',
             keytext: 'ยกเลิก',
             fn:  () => {
               navigate("/purchase-order/manage");
             }
           },
-          { colorButton: 'blue',
+          { 
+            colorButton: 'blue',
             keytext: 'บันทึก',
             fn:  () => {
               form.submit()
@@ -206,6 +208,13 @@ const CreatePurchase = (props: Props) => {
         keyHeader="purchaseOrder"
         arrPath={["purchaseOrderManagement", "createPurchaseOrder"]}
         buttons={[
+          { 
+            colorButton: 'print',
+            keytext: '',
+            fn:  () => {
+              console.log('print');
+            }
+          },
           { colorButton: 'whilte',
             keytext: 'ยกเลิก',
             fn:  () => {
