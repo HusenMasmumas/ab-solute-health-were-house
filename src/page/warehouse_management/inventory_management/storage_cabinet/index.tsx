@@ -21,7 +21,6 @@ const StoreCabinet = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('location',location.state);
 
   useEffect(() => {
     console.log("current", currentPage);

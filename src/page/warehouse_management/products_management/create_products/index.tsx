@@ -5,9 +5,14 @@ import Table from "antd/lib/table";
 import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
+  const [mode, setMode] = useState<'editProduct' | 'productlist'>('productlist')
   const Option = Select;
   const columns = [
     {
@@ -27,24 +32,38 @@ const CreateProduct = () => {
     console.log(`switch to ${checked}`);
   };
 
+  useEffect(()=>{
+    console.log('location',location.state);
+    if(location.state){
+      setMode('editProduct')
+    }else{
+      setMode('productlist')
+    }
+  },[])
+
   return (
-    <div>
-      <div className="grid grid-cols-4">
-        <div className="col-span-3">
-          <CHeader
-            keyHeader="manageGoods"
-            arrPath={["manageGoods", "productlist"]}
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-4 justify-end items-center">
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px]">
-            {`${t("ยกเลิก")}`}
-          </Button>
-          <Button className="!h-[45px] !rounded-[4px] !text-[16px] !text-white !bg-green">
-            {`${t("บันทึก")}`}
-          </Button>
-        </div>
-      </div>
+    <>
+      <CHeader
+        keyHeader="manageGoods"
+        arrPath={["manageGoods", mode]}
+        buttons={[
+          { 
+            colorButton: 'whilte',
+            keytext: 'cancle',
+            fn:  () => {
+              navigate("/warehouse-management/products-management");
+            }
+          },
+          { 
+            colorButton: 'green',
+            keytext: 'save',
+            fn:  () => {
+              // form.submit()
+              // navigate("/warehouse-management/store-cabinet", {state:{id: location.state.id }});
+            }
+          }
+        ]}
+      />
       <ContentContainer>
       <div className="mt-[24px]">
         <Tabs defaultActiveKey="1" size="large" type="card">
@@ -319,7 +338,7 @@ const CreateProduct = () => {
         </Tabs>
       </div>
       </ContentContainer>
-    </div>
+    </>
   );
 };
 export default CreateProduct;

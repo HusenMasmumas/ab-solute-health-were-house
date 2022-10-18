@@ -190,6 +190,12 @@ const ProductsMangement = () => {
             pageSize: limitPage,
             currentPage: currentPage,
           }}
+          onRow={(record)=>({
+            onDoubleClick: () => {
+              console.log(record);
+              navigate("/warehouse-management/craete-products-management", {state:{id: record.key }} );
+              }
+          })}
           actions={[{
             type: 'excel',
             fn: ()=>{console.log('download excel');

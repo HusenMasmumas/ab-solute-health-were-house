@@ -27,6 +27,7 @@
     "locker": "Locker",
     "addproductlist": "+ Add product list",
     "productlist" : "Add product list",
+    "editProduct":"edit product information",
     "addLocker": "Add Locker",
     "addUser": "+ Add User",
     "addRole": "Add Role",
