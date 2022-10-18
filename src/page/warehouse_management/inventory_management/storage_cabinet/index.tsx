@@ -157,7 +157,7 @@ const StoreCabinet = () => {
       title: "สถานะ",
       dataIndex: "status",
       width:'10%',
-      render: (text, record) => {
+      render: (text) => {
         switch(true) {
           case text === 'เปิดการขาย':
             return <CDropDown 
@@ -166,7 +166,6 @@ const StoreCabinet = () => {
                       selection={
                         {title:text, option:[
                           {label: 'เปิดการขาย', value:'open' , action:open },
-                          {label: 'ปิดการขาย', value:'close' , action:close }
                     ]}}/>
           case text === 'ปิดการขาย':
             return <CDropDown 
@@ -174,7 +173,6 @@ const StoreCabinet = () => {
                       hoverbackground="#949594"
                       selection={
                         {title:text, option:[
-                          {label: 'เปิดการขาย', value:'open' , action:open },
                           {label: 'ปิดการขาย', value:'close' , action:close }
                     ]}}/>
         }
