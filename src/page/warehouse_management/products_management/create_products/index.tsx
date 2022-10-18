@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
+import { Button, Col, ConfigProvider, Form, Input, Row, Select, Switch } from "antd";
 import { Tabs } from "antd";
 import Table from "antd/lib/table";
 import ContentContainer from "component/container/ContentContainer";
@@ -69,6 +69,9 @@ const CreateProduct = () => {
     })
   }
 
+  const customizeRenderEmpty = () => (
+    <div className="h-32"></div>
+  );
   
   useEffect(()=>{
     if(location.state){      
@@ -245,11 +248,14 @@ const CreateProduct = () => {
                   </>
                 )}
               </Form.List>
+              <ConfigProvider renderEmpty={customizeRenderEmpty}>
+                <Table
+                 rowKey={'index'}
+                 columns={columns}
+                 dataSource={[]}
+                />
+              </ConfigProvider>        
           </div>
-          <Table
-            columns={columns}
-            // dataSource={dataSource}
-          /> 
           </>
           
           },
