@@ -102,6 +102,11 @@ const Table_1 = ({tableName, data}: Props) => {
     console.log('??? รอส่งสินค้า');
   }
 
+  const goToDraft = (value:string)=>{
+    console.log(value); 
+    navigate("/purchase-order/create");
+  }
+
 
   const columns: ColumnsType<DataType> = [
     {
@@ -199,7 +204,14 @@ const Table_1 = ({tableName, data}: Props) => {
                         background="#77C48B" 
                         hoverbackground="bg-blue-500" 
                         selection={{title:text, option:[]}}/>
-                      
+          case ['แบบร่าง'].includes(text):
+            return <CDropDown 
+                      background="#4E8FCC" 
+                      hoverbackground="#36648E" 
+                      selection={{title:text, option:[
+                        {label:'รอตรวจสอบ',value:record.code, action:goToDraft },
+                      ]}}
+                      />          
           default:
             return null
         }
