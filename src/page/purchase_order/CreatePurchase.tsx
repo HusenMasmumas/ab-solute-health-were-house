@@ -188,7 +188,7 @@ const CreatePurchase = (props: Props) => {
   },[])
 
   return (
-    <>
+    <div>
       {
         mode==='edit'&&
         <CHeader
@@ -255,7 +255,7 @@ const CreatePurchase = (props: Props) => {
       }
     <ContentContainer>
       <Card className="w-full">
-        <div className="text-[#498DCB] text-[26px]">รายละเอียดใบสั่งซื้อ</div>
+        <div className="text-[#498DCB] text-[26px] !font-normal">รายละเอียดใบสั่งซื้อ</div>
         <Divider />
         <PurchaseForm
           form={form}
@@ -284,18 +284,17 @@ const CreatePurchase = (props: Props) => {
           >
             + เพิ่มสินค้า
           </BlueButton>
-          <Row>
+          <Row >
             <Col sm={24} lg={12} className="!flex !items-end pb-6">
               <div className="w-full">
-                <div className="text-[20px]">หมายเหตุ</div>
+                <div className="text-[20px] !font-normal">หมายเหตุ</div>
                 <TextArea rows={4} />
               </div>
             </Col>
             <Col sm={24} lg={12} >
-              <Row className="mb-5">
-                <Col sm={6} offset={6}>
-                  
-                  <div className="text-[20px]">รวมเป็นเงิน</div>
+              <Row className="mb-5 ">
+                <Col sm={9} offset={3}>
+                  <div className="text-[15px] !font-normal h-full flex items-center">รวมเป็นเงิน</div>
                 </Col>
                 <Col sm={12}>
                   <ConfigProvider direction="rtl">
@@ -312,8 +311,8 @@ const CreatePurchase = (props: Props) => {
                 </Col>
               </Row>
               <Row className="mb-5">
-                <Col sm={6} offset={6}>
-                  <div className="text-[20px]">ส่วนลด</div>
+                <Col sm={9} offset={3}>
+                  <div className="text-[15px] !font-normal h-full flex items-center">ส่วนลด</div>
                 </Col>
                 <Col sm={12}>
                   <ConfigProvider direction="rtl">
@@ -330,9 +329,9 @@ const CreatePurchase = (props: Props) => {
                 </Col>
               </Row>
               <Row className="mb-5">
-                <Col sm={6} offset={6}>
+                <Col sm={9} offset={3}>
                   
-                  <div className="text-[20px]">จำนวนเงินหลังหักส่วนลด</div>
+                  <div className="text-[15px] !font-normal h-full flex items-center">จำนวนเงินหลังหักส่วนลด</div>
                 </Col>
                 <Col sm={12}>
                   <ConfigProvider direction="rtl">
@@ -349,9 +348,9 @@ const CreatePurchase = (props: Props) => {
                 </Col>
               </Row>
               <Row className="mb-5">
-                <Col sm={6} offset={6}>
+                <Col sm={9} offset={3}>
                   
-                  <div className="text-[20px]">จำนวนเงินรวมทั้งสิ้น</div>
+                  <div className="text-[15px] !font-normal h-full flex items-center">จำนวนเงินรวมทั้งสิ้น</div>
                 </Col>
                 <Col sm={12}>
                   <ConfigProvider direction="rtl">
@@ -390,7 +389,7 @@ const CreatePurchase = (props: Props) => {
           setSelectData={onFinishModal} 
           setOpenMoDal={setOpen}/>
         </Modal>
-    </>
+    </div>
     
   );
 };

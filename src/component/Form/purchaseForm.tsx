@@ -54,7 +54,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
               <Form.Item
                 className="mb-0"
                 name="codeOrder"
-                label={<span className="text-[20px]">เลขที่ใบสั่งซื้อ</span>}
+                label={<span className="text-[20px] !font-semibold">เลขที่ใบสั่งซื้อ</span>}
               >
                 <CInput readOnly={AllreadOnly}/>
               </Form.Item>
@@ -64,7 +64,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
               <Form.Item
                 className="mb-0"
                 name="sendDate"
-                label={<span className="text-[20px]">วันที่ส่ง</span>}
+                label={<span className="text-[20px] !font-semibold">วันที่ส่ง</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
                 
               >
@@ -87,7 +87,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 className="mb-0"
                 name="codeRef"
                 label={
-                  <span className="text-[20px]">เลขที่ใบส่งที่อ้างอิง</span>
+                  <span className="text-[20px] !font-semibold">เลขที่ใบส่งที่อ้างอิง</span>
                 }
               >
                 <CInput  readOnly={AllreadOnly} disabled={refDisable}/>
@@ -97,7 +97,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
               <Form.Item
                 className="mb-0"
                 name="overtimeDate"
-                label={<span className="text-[20px]">วันครบกำหนด</span>}
+                label={<span className="text-[20px] !font-semibold">วันครบกำหนด</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
               >
                 <CDatePicker 
@@ -110,7 +110,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 className="mb-0"
                 name="Description1"
                 label={
-                  <span className="text-[20px]">รายละเอียดผู้ส่งสินค้า</span>
+                  <span className="text-[20px] !font-semibold">รายละเอียดผู้ส่งสินค้า</span>
                 }
               >
                 <TextArea rows={4} readOnly={AllreadOnly}/>
@@ -121,7 +121,7 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 className="mb-0"
                 name="Description2"
                 label={
-                  <span className="text-[20px]">รายละเอียดผู้สั่งสินค้า</span>
+                  <span className="text-[20px] !font-semibold">รายละเอียดผู้สั่งสินค้า</span>
                 }
               >
                 <TextArea rows={4} readOnly={AllreadOnly}/>
