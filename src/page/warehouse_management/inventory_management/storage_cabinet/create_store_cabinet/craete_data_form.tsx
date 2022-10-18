@@ -219,12 +219,15 @@ const CreateDataForm = ( props:{form:FormInstance , formFN: (value:any) => void 
               </div>
             ))}
              <Form.Item>
-              <Button type="dashed" onClick={() => { 
-                add({index: props.form.getFieldsValue().users?.length ?? 1 - 1,sku:'', color:null ,amount:0}); 
-                setPreview(_.cloneDeep(props.form.getFieldsValue().users));
-              }} block icon={<PlusOutlined />}>
-                เพิ่มตัวแปร
-              </Button>
+              <Button
+                  className="grid justify-start items-center !w-[170px] !h-[45px] !text-[16px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]"
+                  onClick={() => { 
+                    add({index: props.form.getFieldsValue().users?.length ?? 1 - 1,sku:'', color:null ,amount:0}); 
+                    setPreview(_.cloneDeep(props.form.getFieldsValue().users));
+                  }}
+                >
+                  + เพิ่มตัวแปร
+              </Button>              
              </Form.Item>
           </>
         )}
