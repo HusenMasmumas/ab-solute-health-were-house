@@ -7,9 +7,16 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import CInput from "component/input/c-input";
-import { FolderMinusIcon } from "@heroicons/react/24/solid";
+import * as _ from "lodash";
 
+interface Colomns {
+  index: React.Key,
+  sku:string,
+  color:string,
+  amount:number
+}
 const CreateProduct = () => {
+  const [preview, setPreview] = useState<Colomns[]>();
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
@@ -20,14 +27,16 @@ const CreateProduct = () => {
     {
       title: "SKU",
       dataIndex: "sku",
+      width: "30%",
     },
     {
       title: "สี",
-      dataIndex: "colour",
+      dataIndex: "color",
+      width: "40%",
     },
     {
       title: "หมายเหตุ",
-      dataIndex: "ps",
+      dataIndex: "amount",
     },
   ];
   
@@ -61,12 +70,12 @@ const CreateProduct = () => {
       useEN:'',
       useTH:'',
       warming:'',
-      werehouse:[{
-        sku:'sku',
-        color:'red',
-        amount:0
-      }],
+      werehouse:[{index:0, sku:'', color:null, amount:0}],
     })
+  }
+
+  const onChangeList = (value:any)=>{
+    setPreview(_.cloneDeep(value))
   }
 
   const customizeRenderEmpty = () => (
@@ -206,6 +215,7 @@ const CreateProduct = () => {
                               <Input
                                 className="input-form"
                                 placeholder="SKU"
+                                onChange={()=>{onChangeList(form.getFieldValue('werehouse'))}}
                               />
                             </Form.Item>
                           </Col>
@@ -219,6 +229,7 @@ const CreateProduct = () => {
                             >
                               <Select
                                 placeholder="เลือกสี"
+                                onChange={()=>{onChangeList(form.getFieldValue('werehouse'))}}
                               >
                                 <Option value="red">สีแดง</Option>
                                 <Option value="green">สีเขียว</Option>
@@ -231,7 +242,7 @@ const CreateProduct = () => {
                             label="จำนวน (จำแนกตามสี)" 
                             name={[name, 'amount']}
                             >
-                              <CInput.CInputNumberSytle prefix=''/>
+                              <CInput.CInputNumberSytle prefix='' onChange={()=>{onChangeList(form.getFieldValue('werehouse'))}}/>
                             </Form.Item>
                           </Col>
                         </Row>
@@ -240,7 +251,11 @@ const CreateProduct = () => {
                     <Form.Item>
                       <Button
                         className="grid justify-start items-center !w-[170px] !h-[45px] !text-[16px] !text-darkblue !rounded-[4px] !border-darkblue mt-[16px]"
-                        onClick={() => add()}
+                        onClick={() => { 
+                          console.log('onclick', form.getFieldsValue().werehouse?.length);
+                          add({index: form.getFieldsValue().werehouse?.length ?? 1 - 1,sku:'', color:null ,amount:0}); 
+                          setPreview(_.cloneDeep(form.getFieldsValue().werehouse));
+                        }}
                       >
                         + เพิ่มตัวแปร
                       </Button>
@@ -252,7 +267,7 @@ const CreateProduct = () => {
                 <Table
                  rowKey={'index'}
                  columns={columns}
-                 dataSource={[]}
+                 dataSource={preview}
                 />
               </ConfigProvider>        
           </div>
