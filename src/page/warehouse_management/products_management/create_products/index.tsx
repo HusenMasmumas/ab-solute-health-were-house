@@ -129,18 +129,12 @@ const CreateProduct = () => {
               <Row gutter={[24, 0]}>
                 <Col span={12}>
                   <Form.Item label="Price Cost" name='priceCost'>
-                    <Input
-                      className="input-form"
-                      placeholder="Price Cost"
-                    ></Input>
+                    <CInput.CInputNumberSytle />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item label="Price Normal" name='priceNormal'>
-                    <Input
-                      className="input-form"
-                      placeholder="Price Normal"
-                    ></Input>
+                    <CInput.CInputNumberSytle />
                   </Form.Item>
                 </Col>
               </Row>
@@ -187,7 +181,7 @@ const CreateProduct = () => {
                           </Col>
                           <Col span={12}>
                             <Form.Item {...restField} label="จำนวน (จำแนกตามสี)" name='amount'>
-                              <CInput />
+                              <CInput.CInputNumberSytle prefix=''/>
                             </Form.Item>
                           </Col>
                         </Row>
