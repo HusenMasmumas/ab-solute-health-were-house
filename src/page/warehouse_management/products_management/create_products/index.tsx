@@ -180,8 +180,8 @@ const CreateProduct = () => {
                               <Select
                                 placeholder="สีแดง"
                               >
-                                <Option value="สีแดง">สีแดง</Option>
-                                <Option value="สีเขียว">สีเขียว</Option>
+                                <Option value="red">สีแดง</Option>
+                                <Option value="green">สีเขียว</Option>
                               </Select>
                             </Form.Item>
                           </Col>
