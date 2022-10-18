@@ -10,7 +10,7 @@ const WhilteButton = styled(BaseButton)<BaseButtonProps>`
   ${({ width }) => ( width ? `width: ${width};` : null)}}
   ${({ height }) => ( height ? `height: ${height};` : null)}}
   ${({ color }) => ( color ? `color: ${color};` : null)}}
-  ${({ borderColor }) => ( borderColor ? `border-color: ${borderColor};` : null)}}
+  ${({ bordercolor }) => ( bordercolor ? `border-color: ${bordercolor};` : null)}}
   
   &:hover,
   &:active,

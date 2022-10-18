@@ -240,7 +240,7 @@ const CreateModal = (props: Props) => {
                 <Col>
                   <WhilteButton
                     color="#004C97"
-                    borderColor="#004C97"
+                    bordercolor="#004C97"
                     onClick={() => {
                       _form.resetFields();
                       _form.submit();
