@@ -109,7 +109,13 @@ export const mocRoleAuth = {
         AccessPermission: ["create", "update", "delete", "viewers"],
       },
       {
-        keyName: "purchase-order/checkStock",
+        keyName: "purchase-order/previewPrepare",
+        title_en: "Purchase order management",
+        title_th: "จัดการใบสั่งซื้อ",
+        AccessPermission: ["create", "update", "delete", "viewers"],
+      },
+      {
+        keyName: "purchase-order/editPrepare",
         title_en: "Purchase order management",
         title_th: "จัดการใบสั่งซื้อ",
         AccessPermission: ["create", "update", "delete", "viewers"],
