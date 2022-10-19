@@ -80,9 +80,9 @@ const Prepare = () => {
   }, [currentPage, limitPage]);
 
   //ตรวจสอบ อนุมัติ หรือ ยกเลิกใบสั่งซื้อ
-  const check = (id:string)=>{
+  const PreviewCheck = (id:string)=>{
     console.log('ตรวจสอบใบสั่งซื้อที่ ID : ', id);
-    navigate("/purchase-order/checkStock",{state:{id: id }});
+    navigate("/purchase-order/previewPrepare",{state:{id: id }});
   }
 
   //??? รอส่งสินค้า
@@ -139,7 +139,7 @@ const Prepare = () => {
               return <CDropDown 
                         background="#4E8FCC" 
                         selection={{title:text, option:[
-                          {label:'รอตรวจสอบ',value:record.code, action:check },
+                          {label:'รอตรวจสอบ',value:record.code, action:PreviewCheck },
                         ]}}/> 
           case 'เตรียมสำเร็จ':
               return <CDropDown 
