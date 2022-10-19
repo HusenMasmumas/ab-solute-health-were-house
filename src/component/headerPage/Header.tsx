@@ -8,7 +8,7 @@ import BlueButton from "component/Button/BlueButton";
 import { Image } from 'antd';
 import Printer from "assets/img/Printer.png";
 type colorButtons = 'green'|'whilte'|'light-blue'|'deep-blue'|'blue'|'print'
-interface IButton {
+export interface IButton {
   colorButton: colorButtons;
   keytext: string;
   fn: () => void;
