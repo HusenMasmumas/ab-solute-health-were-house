@@ -28,6 +28,7 @@ import ProductsManagemnet from "page/warehouse_management/products_management";
 import CreateProduct from "page/warehouse_management/products_management/create_products";
 import Examine from "page/purchase_order/order/Examine";
 import CreateStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
+import CheckStock from "page/purchase_order/prepare/CheckStock";
 
 export const _routesDefault: RouteCustom[] = [
   {
@@ -119,6 +120,12 @@ export const _requirePermission: RouteCustom[] = [
         keyName: "purchase-order/manage",
         requireAuth: true,
         element: <ManagePurcheaseOrder />,
+      },
+      {
+        path: "purchase-order/checkStock",
+        keyName: "purchase-order/checkStock",
+        requireAuth: true,
+        element: <CheckStock />,
       },
       {
         path: "purchase-order/create",
