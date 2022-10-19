@@ -50,7 +50,7 @@ const MoTable = ({
         {
           (headerTable || actions ) &&
           <div className="flex h-16">
-            <div className="text-[20px] font-semibold w-[70%] flex items-center">
+            <div className="text-[20px] w-[70%] flex items-center font-bold">
               {headerTable ? headerTable : null}
             </div> 
             <div className="ml-8 w-[30%] flex items-center justify-end">
