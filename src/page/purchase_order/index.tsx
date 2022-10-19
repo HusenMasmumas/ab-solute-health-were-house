@@ -2,9 +2,9 @@ import CHeader from 'component/headerPage/Header'
 import { useState } from 'react'
 import TabeButton from 'component/Button/TabeButton'
 import Order from 'page/purchase_order/order/Order';
-import Prepare from 'page/purchase_order/reports/Prepare';
-import Delivery from 'page/purchase_order/reports/Delivery';
-import SendBack from 'page/purchase_order/reports/SendBack';
+import Prepare from 'page/purchase_order/prepare/Prepare';
+import Delivery from 'page/purchase_order/delivery/Delivery';
+import SendBack from 'page/purchase_order/sendBack/SendBack';
 import { useNavigate } from 'react-router-dom';
 import ContentContainer from 'component/container/ContentContainer';
 
