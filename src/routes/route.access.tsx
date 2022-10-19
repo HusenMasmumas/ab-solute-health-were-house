@@ -20,7 +20,6 @@ import RoleManagement from "page/manage_user/role";
 import CreateUser from "page/manage_user/user/create_user";
 import CreateRole from "page/manage_user/role/craete_role";
 import CreatePurchase from "page/purchase_order/order/CreatePurchase";
-import ApprovePurchase from "page/purchase_order/ApprovePurchase";
 import StoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet";
 import ManageStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
 import CreateStore from "page/stores_branches/create_stores";
@@ -126,12 +125,6 @@ export const _requirePermission: RouteCustom[] = [
         keyName: "purchase-order/create",
         requireAuth: true,
         element: <CreatePurchase />,
-      },
-      {
-        path: "purchase-order/approve",
-        keyName: "purchase-order/approve",
-        requireAuth: true,
-        element: <ApprovePurchase />,
       },
       {
         path: "purchase-order/examine",
