@@ -77,6 +77,9 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                       form.setFieldsValue({ 'overtimeDate': null})
                     }
                   }}
+                  inputReadOnly={AllreadOnly}
+                  open={AllreadOnly ? false : undefined}
+                  allowClear={AllreadOnly ? false : undefined}
                   />
               
               </Form.Item>
@@ -100,8 +103,11 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
                 label={<span className="text-[20px] !font-semibold">วันครบกำหนด</span>}
                 rules={[{ required: true, message: "โปรดเลือกวันที่" }]}
               >
-                <CDatePicker 
-                disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
+                <CDatePicker
+                  disabledDate={d =>  d.isBefore(moment(date, 'YYYY/MM/DD'))}
+                  inputReadOnly={AllreadOnly}
+                  open={AllreadOnly ? false : undefined}
+                  allowClear={AllreadOnly ? false : undefined}
                 />
               </Form.Item>
             </Col>
