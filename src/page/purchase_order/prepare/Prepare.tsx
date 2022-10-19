@@ -79,30 +79,15 @@ const Prepare = () => {
     // console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
-  // นำรายการสั่งซื้อนี้ มาทำรายการอีกที
-  const orderAgain = ( value: string )=>{
-    console.log('สั่งอีกครั้ง', value);
-  }
-
-  // รอเตรียมพัสดุ ---> nevigate ไปที่หน้าเตรียมพัสดุของรายการสั่งซื้อนี้
-  const prepareOrder = ( value: string )=>{
-    console.log('เตรียมพัสดุ', value);
-  }
-
   //ตรวจสอบ อนุมัติ หรือ ยกเลิกใบสั่งซื้อ
   const check = (id:string)=>{
     console.log('ตรวจสอบใบสั่งซื้อที่ ID : ', id);
-    navigate("/purchase-order/examine");
+    navigate("/purchase-order/checkStock",{state:{id: id }});
   }
 
   //??? รอส่งสินค้า
   const waitingDelivery = ()=>{
     console.log('??? รอส่งสินค้า');
-  }
-
-  const goToDraft = (value:string)=>{
-    console.log(value); 
-    navigate("/purchase-order/create", {state:{id: value }});
   }
 
   const columns: ColumnsType<DataType> = [
@@ -153,7 +138,9 @@ const Prepare = () => {
           case 'รอเตรียมสินค้า':
               return <CDropDown 
                         background="#4E8FCC" 
-                        selection={{title:text, option:[]}}/> 
+                        selection={{title:text, option:[
+                          {label:'รอตรวจสอบ',value:record.code, action:check },
+                        ]}}/> 
           case 'เตรียมสำเร็จ':
               return <CDropDown 
                         background="#77C48B"
