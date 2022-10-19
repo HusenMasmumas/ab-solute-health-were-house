@@ -19,7 +19,7 @@ import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
 import CreateUser from "page/manage_user/user/create_user";
 import CreateRole from "page/manage_user/role/craete_role";
-import CreatePurchase from "page/purchase_order/CreatePurchase";
+import CreatePurchase from "page/purchase_order/order/CreatePurchase";
 import ApprovePurchase from "page/purchase_order/ApprovePurchase";
 import StoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet";
 import ManageStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
@@ -27,7 +27,7 @@ import CreateStore from "page/stores_branches/create_stores";
 import CreateInventory from "page/warehouse_management/inventory_management/craete_inventory";
 import ProductsManagemnet from "page/warehouse_management/products_management";
 import CreateProduct from "page/warehouse_management/products_management/create_products";
-import Examine from "page/purchase_order/Examine";
+import Examine from "page/purchase_order/order/Examine";
 import CreateStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
 
 export const _routesDefault: RouteCustom[] = [

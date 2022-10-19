@@ -1,7 +1,7 @@
 import CHeader from 'component/headerPage/Header'
 import { useState } from 'react'
 import TabeButton from 'component/Button/TabeButton'
-import Order from 'page/purchase_order/reports/Order';
+import Order from 'page/purchase_order/order/Order';
 import Prepare from 'page/purchase_order/reports/Prepare';
 import Delivery from 'page/purchase_order/reports/Delivery';
 import SendBack from 'page/purchase_order/reports/SendBack';
