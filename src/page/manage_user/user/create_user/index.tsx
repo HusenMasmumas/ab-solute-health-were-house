@@ -13,7 +13,6 @@ const CreateUser = () => {
   const [form] = Form.useForm();
 
   const onFinish = (value:any)=>{
-    console.log('55555');
     console.log(value);
   }
 
@@ -38,7 +37,6 @@ const CreateUser = () => {
             fn:  () => {
               // navigate("/user/manage");
               form.submit();
-              console.log('wwww');
             },
           }
         ]}
