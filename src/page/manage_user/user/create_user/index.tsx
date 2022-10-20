@@ -1,4 +1,5 @@
-import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
+import { Col, Form, Input, Row, Select, Switch } from "antd";
+import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
 import MyUpload from "component/MyUpload/MyUpload";
 import { useTranslation } from "react-i18next";
@@ -31,6 +32,7 @@ const CreateUser = () => {
           }
         ]}
       />
+      <ContentContainer>
       <div className="bg-white mt-[24px] px-[30px] py-[24px]">
         <div className="text-[#231F20] text-[20px] font-semibold">
           เพิ่มข้อมูลร้านค้า&สาขา
@@ -127,6 +129,7 @@ const CreateUser = () => {
           </Row>
         </Form>
       </div>
+      </ContentContainer>
     </>
   );
 };
