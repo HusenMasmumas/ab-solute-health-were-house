@@ -39,7 +39,6 @@ const MyUpload = ({ value, onChange }: Props) => {
       });
     }
   };
-  console.log("value", value);
   return (
     <div>
       <Upload
