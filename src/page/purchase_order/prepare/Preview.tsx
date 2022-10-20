@@ -172,7 +172,7 @@ const Preview = (props: Props) => {
               <Col sm={24} lg={12} className="!flex !items-end pb-6">
                 <div className="w-full">
                   <div className="text-[20px] font-bold">หมายเหตุ</div>
-                  <TextArea rows={4} />
+                  <TextArea rows={4} readOnly={true}/>
                 </div>
               </Col>
               <LabelPay 
