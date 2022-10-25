@@ -10,7 +10,7 @@ import CCheckBox from "component/input/c-checkBox";
 import { useEffect, useState } from "react";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import _ from "lodash";
-import { useCreateRole, useGetRole } from "service/permission";
+import { useCreateRole, useGetRoleForm } from "service/permission";
 import { Permission } from "service/permission/interface";
 import { useQueryClient } from "@tanstack/react-query";
 interface DataType {
@@ -35,7 +35,7 @@ const CreateRole = () => {
   const navigate = useNavigate();
   const [GlobalTemp, setGlobalTemp] = useState<Permission[]>([]);
   const [name, setName] = useState<String>('')
-  const { data } = useGetRole();
+  const { data } = useGetRoleForm();
   const queryClient = useQueryClient();
   
   const setting = (

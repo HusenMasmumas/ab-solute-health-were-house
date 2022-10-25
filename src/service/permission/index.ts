@@ -3,7 +3,7 @@ import axios from 'axios_config';
 import { IGlobal } from 'service/IGlobal.interface';
 import { IPostRole, IRole, Permission } from './interface';
 
-export const useGetRole = (): UseQueryResult<IGlobal<IRole[]>> => {
+export const useGetRoleForm = (): UseQueryResult<IGlobal<IRole[]>> => {
     return useQuery(["get-role"], async () => {
       const res = await axios.get(`/role/form`);      
       if (res.status >= 200 && res.status < 300)  {
