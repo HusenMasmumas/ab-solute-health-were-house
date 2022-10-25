@@ -12,3 +12,8 @@ export interface Permission {
     isEdit:   boolean;
     subMenu?: Permission[];
 }
+export interface IPostRole {
+    name:       string;
+    isActive:   boolean;
+    permission: Permission[];
+}
