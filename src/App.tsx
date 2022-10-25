@@ -1,8 +1,18 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthContextProvider } from "context/Auth/store";
 import { ThemeProvider } from "context/SwitchTheam";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { HashRouter } from "react-router-dom";
 import RenderRoute from "routes/_RenderRoute";
+
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const loading = (
   <div className="pt-3 text-center">
@@ -12,15 +22,17 @@ const loading = (
 
 function App() {
   return (
-    <HashRouter>
-      <Suspense fallback={loading}>
-        <ThemeProvider initialTheme={"light"}>
-          <AuthContextProvider>
-            <RenderRoute />
-          </AuthContextProvider>
-        </ThemeProvider>
-      </Suspense>
-    </HashRouter>
+    <QueryClientProvider client={client}>
+      <HashRouter>
+        <Suspense fallback={loading}>
+          <ThemeProvider initialTheme={"light"}>
+            <AuthContextProvider>
+              <RenderRoute />
+            </AuthContextProvider>
+          </ThemeProvider>
+        </Suspense>
+      </HashRouter>
+    </QueryClientProvider>
   );
 }
 
