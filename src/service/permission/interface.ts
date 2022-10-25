@@ -17,3 +17,8 @@ export interface IPostRole {
     isActive:   boolean;
     permission: Permission[];
 }
+export interface IGetRole {
+    id:       number;
+    isActive: boolean;
+    name:     string;
+}

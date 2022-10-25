@@ -1,6 +1,5 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { Switch } from "antd";
 import { ColumnsType } from "antd/lib/table";
@@ -8,6 +7,9 @@ import { useState, useEffect } from "react";
 import MoTable from "component/Table/MoTable";
 import { DataType } from './interface'
 import ContentContainer from "component/container/ContentContainer";
+import { useGetRole } from "service/permission";
+import { IGetRole } from "service/permission/interface";
+
 const elements: IsearchFormItem[] = [
   {
     name: "role",
@@ -38,6 +40,12 @@ const RoleManagement = () => {
   const navigate = useNavigate();
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const { data } = useGetRole()
+  console.log('data',data?.result?.[0].data);
+
+  useEffect(()=>{
+
+  },[data])
 
   useEffect(() => {
     console.log("current", currentPage);
@@ -58,23 +66,22 @@ const RoleManagement = () => {
     console.log("Received values of form: ", values);
   };
 
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<IGetRole> = [
     {
       title: "#",
-      dataIndex: "key",
+      dataIndex: "id",
       width: "7%",
       align: "center",
     },
     {
       title: "ชื่อบทบาท",
-      dataIndex: "role",
+      dataIndex: "name",
     },
     {
       title: "การใช้งาน",
-      dataIndex: "status",
+      dataIndex: "isActive",
       width: "10%",
-  
-      render: (status) => {
+      render: () => {
         return (
           <div className="mr-10">
             <Switch defaultChecked onChange={onChange} />
@@ -102,12 +109,13 @@ const RoleManagement = () => {
       <ContentContainer>
         <SearchForm elements={elements} onFinish={onFinish} />
         <MoTable
+          rowKey={'id'}
           headerTable={'รายการบทบาท'}
           columns={columns}
-          dataSource={Mockdata}
+          dataSource={data?.result?.[0].data || []}
           onChangePage={onChangePage}
           config={{
-            total: 20, //ค่าจาก backend ใช้หารหน้า
+            total: data?.result?.[0].total, //ค่าจาก backend ใช้หารหน้า
             pageSize: limitPage,
             currentPage: currentPage,
           }}
