@@ -16,10 +16,10 @@ interface AxiosCustomError<T = any, D = any> extends AxiosError<T, D> {
   config: AxiosCustomRequestConfig<D>;
 }
 const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
-  const acToken = JSON.parse(localStorage.getItem("token") ?? '');
+  const acToken = localStorage.getItem("token");
   config.validateStatus = (_) => true;
   config.headers = {
-    Authorization: `Bearer ${acToken.accessToken}`,
+    Authorization: `Bearer ${acToken ? JSON.parse(acToken)?.accessToken : undefined}`,
   };
   return config;
 };
