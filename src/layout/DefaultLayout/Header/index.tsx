@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import "./style.css";
 import { ThemeContext } from "context/SwitchTheam";
 import { useTranslation } from "react-i18next";
-import Profile from "../../../assets/img/profile-2.jpg";
+import Profile from "assets/img/profile-2.jpg";
 import { Image } from "antd";
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
