@@ -12,7 +12,7 @@ function _localStorageGetItem<T>(key: string, initialValue: T) {
   }
 }
 const localStorageToken: Token = _localStorageGetItem<Token>("token", {
-  accessToken: "345",
+  accessToken: "",
 });
 
 const localStorageUserInfo: UserInfo = _localStorageGetItem<UserInfo>(
