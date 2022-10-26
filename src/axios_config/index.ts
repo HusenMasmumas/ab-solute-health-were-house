@@ -2,7 +2,8 @@ import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiURL } from "config/api";
 
 const axios = Axios.create({
-  baseURL: apiURL,
+  // baseURL: apiURL,
+  baseURL: 'http://192.168.2.122:3003/api/',
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
   validateStatus: (status) => status >= 400,
