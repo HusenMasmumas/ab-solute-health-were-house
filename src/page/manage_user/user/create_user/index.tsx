@@ -5,7 +5,7 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
+import { useCreateUser } from 'service/user/index'
 const CreateUser = () => {
   const { t } = useTranslation();
   const { Option } = Select;
@@ -13,7 +13,8 @@ const CreateUser = () => {
   const [form] = Form.useForm();
 
   const onFinish = (value:any)=>{
-    console.log(value);
+
+    console.log(value.img);
   }
 
   useEffect(()=>{
@@ -51,6 +52,23 @@ const CreateUser = () => {
           className="!mb-[100px]" 
           form={form}
           onFinish={onFinish}
+          initialValues={
+            {
+            firstName:'',
+            lastName:'',
+            isActive:'',
+            username:'',
+            phone:'',
+            email:'',
+            address:'',
+            district:'',
+            province:'',
+            subDistrict:'',
+            zipcode:'',
+            password:'',
+            roleId:'',
+            }
+          }
         >
           <div className="flex justify-center items-center">
             <Form.Item name="img">
