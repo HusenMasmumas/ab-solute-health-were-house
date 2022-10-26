@@ -309,7 +309,6 @@ const DefaultLayout = (props: Props) => {
             openDrawer={openDrawer}
           />
         </Header>
-        {/* <div className="!overflow-y-auto h-[88vh]"> */}
         <div>
           <Content
             className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full  transition-all "
