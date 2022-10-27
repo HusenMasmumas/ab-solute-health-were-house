@@ -21,9 +21,24 @@ const CreateUser = () => {
       {
         onSuccess: async () => {
           alert('success')
+          form.setFieldsValue({
+            firstName:'',
+            lastName:'',
+            isActive:true,
+            username:'',
+            phone:'',
+            email:'',
+            address:'',
+            district:'',
+            province:'',
+            subDistrict:'',
+            zipcode:'',
+            password:'',
+            roleId:'',
+            })
         },
-        onError: async () => {
-          alert('onError')
+        onError: async (errorStr) => {
+          alert(errorStr)
         },
       }
     )
