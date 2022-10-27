@@ -58,10 +58,19 @@ export const useDelete = () => {
   });
 };
 
-
-
 export const useUpdateRole = () => {
   return useMutation(async (body :IPostRole & { id:number }) => {
+    const res = await axios.put(`/role/${body.id}`, body);
+
+    if (res.status >= 200 && res.status < 300) {
+      return res.data.result?.[0];
+    }
+  throw new Error(res.data.message)  
+  });
+};
+
+export const useUpdateRoleActive = () => {
+  return useMutation(async (body : { id:number, name:string, isActive:boolean }) => {
     const res = await axios.put(`/role/${body.id}`, body);
 
     if (res.status >= 200 && res.status < 300) {

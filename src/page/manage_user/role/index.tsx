@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import MoTable from "component/Table/MoTable";
 import { DataType } from './interface'
 import ContentContainer from "component/container/ContentContainer";
-import { useGetRole } from "service/permission";
+import { useGetRole, useUpdateRoleActive } from "service/permission";
 import { IGetRole } from "service/permission/interface";
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 const elements: IsearchFormItem[] = [
@@ -41,12 +41,8 @@ const RoleManagement = () => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data } = useGetRole()
-  // console.log('data',data?.result?.[0].data);
   const queryClient = useQueryClient()
-
-  useEffect(()=>{
-
-  },[data])
+  const updateRoleActive = useUpdateRoleActive();
 
   useEffect(() => {
     console.log("current", currentPage);
@@ -58,8 +54,24 @@ const RoleManagement = () => {
     else setCurrentPage(page);
   };
 
-  const onChange = (checked: boolean) => {
+  const onChange = (checked: boolean, record:IGetRole) => {
     console.log(`switch to ${checked}`);
+    updateRoleActive.mutate(
+      {
+        id:record.id,
+        name:record.name,
+        isActive: checked
+      },
+      {
+        onSuccess: async () => {
+          // alert('success')
+          queryClient.invalidateQueries(["get-roles", record.id])
+        },
+        onError: async () => {
+          alert('onError')
+        },
+      }
+    )
   };
 
   const onFinish = (values: any) => {
@@ -82,10 +94,10 @@ const RoleManagement = () => {
       title: "การใช้งาน",
       dataIndex: "isActive",
       width: "10%",
-      render: () => {
+      render: (_, record) => {
         return (
           <div className="mr-10">
-            <Switch defaultChecked onChange={onChange} />
+            <Switch defaultChecked={record.isActive} onChange={(checked:boolean)=>{onChange(checked, record)}} />
           </div>
         );
       },
@@ -121,6 +133,9 @@ const RoleManagement = () => {
             currentPage: currentPage,
           }}
           onRow={(record:IGetRole)=>({
+            onClick:()=>{
+              console.log('oneClick',record);
+            },
             onDoubleClick: () => {
                 queryClient.invalidateQueries(["get-role", record.id])
                 navigate("/user/create-role",{state:{ id : record.id }});
@@ -133,16 +148,3 @@ const RoleManagement = () => {
 };
 
 export default RoleManagement;
-
-const Mockdata: DataType[] = [
-  {
-    key: 1,
-    role: "ผู้จัดการ",
-    status: true,
-  },
-  {
-    key: 2,
-    role: "ผู้จัดการ",
-    status: true,
-  },
-];
