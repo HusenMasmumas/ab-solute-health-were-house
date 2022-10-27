@@ -13,5 +13,5 @@ export interface IUser {
     zipcode:     string;
     password:    string;
     roleId:      number;
-    imageId:     number;
+    imageId?:     number;
 }
