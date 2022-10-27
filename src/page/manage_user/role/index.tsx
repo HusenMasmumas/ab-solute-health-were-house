@@ -9,7 +9,7 @@ import { DataType } from './interface'
 import ContentContainer from "component/container/ContentContainer";
 import { useGetRole } from "service/permission";
 import { IGetRole } from "service/permission/interface";
-
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 const elements: IsearchFormItem[] = [
   {
     name: "role",
@@ -41,7 +41,8 @@ const RoleManagement = () => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data } = useGetRole()
-  console.log('data',data?.result?.[0].data);
+  // console.log('data',data?.result?.[0].data);
+  const queryClient = useQueryClient()
 
   useEffect(()=>{
 
@@ -119,6 +120,12 @@ const RoleManagement = () => {
             pageSize: limitPage,
             currentPage: currentPage,
           }}
+          onRow={(record:IGetRole)=>({
+            onDoubleClick: () => {
+                queryClient.invalidateQueries(["get-role", record.id])
+                navigate("/user/create-role",{state:{ id : record.id }});
+              }
+          })}
         />
       </ContentContainer>
     </>

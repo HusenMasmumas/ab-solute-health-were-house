@@ -22,3 +22,10 @@ export interface IGetRole {
     isActive: boolean;
     name:     string;
 }
+
+export interface IGetRoleByID {
+    id:       number;
+    isActive: boolean;
+    name:     string;
+    permission: Permission[];
+}
