@@ -5,16 +5,28 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useGetRole } from "service/permission";
 import { useCreateUser } from 'service/user/index'
 const CreateUser = () => {
   const { t } = useTranslation();
   const { Option } = Select;
   const navigate = useNavigate();
   const [form] = Form.useForm();
-
+  const { data } = useGetRole()
+  const createUser = useCreateUser();
   const onFinish = (value:any)=>{
-
-    console.log(value.img);
+    console.log('value',value);
+    createUser.mutate(
+      value,
+      {
+        onSuccess: async () => {
+          alert('success')
+        },
+        onError: async () => {
+          alert('onError')
+        },
+      }
+    )
   }
 
   useEffect(()=>{
@@ -56,7 +68,7 @@ const CreateUser = () => {
             {
             firstName:'',
             lastName:'',
-            isActive:'',
+            isActive:true,
             username:'',
             phone:'',
             email:'',
@@ -71,7 +83,9 @@ const CreateUser = () => {
           }
         >
           <div className="flex justify-center items-center">
-            <Form.Item name="img">
+            <Form.Item 
+            // name="img"  // รอพี่นายแก้ให้แอด png jpg ได้ก่อน
+            >
               <MyUpload />
             </Form.Item>
           </div>
@@ -130,8 +144,11 @@ const CreateUser = () => {
             <Col span={8}>
               <Form.Item label={t("บทบาท")} name='roleId'>
                 <Select placeholder="บทบาท">
-                  <Option value='1'>ผู้จัดการ</Option>
-                  <Option value='2'>พนักงาน</Option>
+                  {
+                    data?.result[0].data.map((item)=>{
+                      return <Option key={item.id} value={item.id}>{item.name}</Option>
+                    })
+                  }
                 </Select>
               </Form.Item>
             </Col>
