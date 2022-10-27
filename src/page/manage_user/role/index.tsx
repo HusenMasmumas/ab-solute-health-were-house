@@ -55,7 +55,6 @@ const RoleManagement = () => {
   };
 
   const onChange = (checked: boolean, record:IGetRole) => {
-    console.log(`switch to ${checked}`);
     updateRoleActive.mutate(
       {
         id:record.id,
@@ -64,8 +63,7 @@ const RoleManagement = () => {
       },
       {
         onSuccess: async () => {
-          // alert('success')
-          queryClient.invalidateQueries(["get-roles", record.id])
+          queryClient.invalidateQueries(["get-roles"])
         },
         onError: async () => {
           alert('onError')
