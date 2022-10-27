@@ -10,6 +10,7 @@ import { Switch, Image } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import ContentContainer from "component/container/ContentContainer";
+import CImage from "component/Image/CImage";
 
 const elements: IsearchFormItem[] = [
   {
@@ -89,12 +90,7 @@ const columns: ColumnsType<DataType> = [
     render: (profile: string) => {
       return (
         <div className="w-[50px] h-[50px]">
-          <Image
-            style={{ borderRadius: "100%" }}
-            src={profile}
-            alt="profile"
-            preview={false}
-          ></Image>
+          <CImage.CIcon />
         </div>
       );
     },
@@ -192,7 +188,7 @@ const UserManagement = () => {
         <MoTable
           headerTable={'จัดการผู้ใช้'}
           columns={columns}
-          dataSource={Mockdata}
+          dataSource={[]}
           onChangePage={onChangePage}
           config={{
             total: 20, //ค่าจาก backend ใช้หารหน้า
