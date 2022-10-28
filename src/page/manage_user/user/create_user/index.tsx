@@ -4,49 +4,103 @@ import CHeader from "component/headerPage/Header";
 import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useGetRole } from "service/permission";
-import { useCreateUser } from 'service/user/index'
+import { useCreateUser, useGetUserBYID, useUpdateUser } from 'service/user/index'
 const CreateUser = () => {
   const { t } = useTranslation();
   const { Option } = Select;
   const navigate = useNavigate();
+  const location = useLocation();
   const [form] = Form.useForm();
-  const { data } = useGetRole()
+  const { data:listRole } = useGetRole()
   const createUser = useCreateUser();
+  const updateUser = useUpdateUser(); 
+  const { data:User } = useGetUserBYID(location.state?.id);
   const onFinish = (value:any)=>{
-    console.log('value',value);
-    createUser.mutate(
-      value,
-      {
-        onSuccess: async () => {
-          alert('success')
-          form.setFieldsValue({
-            firstName:'',
-            lastName:'',
-            isActive:true,
-            username:'',
-            phone:'',
-            email:'',
-            address:'',
-            district:'',
-            province:'',
-            subDistrict:'',
-            zipcode:'',
-            password:'',
-            roleId:'',
-            })
-        },
-        onError: async (errorStr) => {
-          alert(errorStr)
-        },
+    // console.log('value',value);
+    if(!location.state?.id){
+      createUser.mutate(
+        value,
+        {
+          onSuccess: async () => {
+            alert('success')
+            form.setFieldsValue({
+              firstName:'',
+              lastName:'',
+              isActive:true,
+              username:'',
+              phone:'',
+              email:'',
+              address:'',
+              district:'',
+              province:'',
+              subDistrict:'',
+              zipcode:'',
+              password:'',
+              roleId:'',
+              })
+          },
+          onError: async (errorStr) => {
+            alert(errorStr)
+          },
+        }
+      )
+    }else{
+      if(value.password.length === 0 ){
+        delete value.password
       }
-    )
+      value.id = location.state.id
+      console.log(value);
+      
+      updateUser.mutate(
+        value,
+        {
+          onSuccess: async () => {
+            alert('success')
+            // form.setFieldsValue({
+            //   firstName:'',
+            //   lastName:'',
+            //   isActive:true,
+            //   username:'',
+            //   phone:'',
+            //   email:'',
+            //   address:'',
+            //   district:'',
+            //   province:'',
+            //   subDistrict:'',
+            //   zipcode:'',
+            //   password:'',
+            //   roleId:'',
+            //   })
+          },
+          onError: async (errorStr) => {
+            alert(errorStr)
+          },
+        }
+      )
+    }
   }
 
   useEffect(()=>{
-
-  },[])
+    if(User){
+      form.setFieldsValue({
+        firstName: User.result.firstName,
+        lastName: User.result.lastName,
+        isActive: User.result.isActive,
+        username: User.result.username,
+        phone: User.result.phone,
+        email: User.result.email,
+        address: User.result.address,
+        district: User.result.district,
+        province: User.result.province,
+        subDistrict: User.result.subDistrict,
+        zipcode: User.result.zipcode,
+        password: '', //น่าจะให้ยัด password ใหม่เข้าไป
+        roleId: User.result.roleId,
+      })
+    }
+  },[User])
 
   return (
     <>
@@ -160,7 +214,7 @@ const CreateUser = () => {
               <Form.Item label={t("บทบาท")} name='roleId'>
                 <Select placeholder="บทบาท">
                   {
-                    data?.result[0].data.map((item)=>{
+                    listRole?.result[0].data.map((item)=>{
                       return <Option key={item.id} value={item.id}>{item.name}</Option>
                     })
                   }

@@ -1,16 +1,14 @@
-import { useTranslation } from "react-i18next";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import { useNavigate } from "react-router";
-import Profile from "../../../assets/img/profile.jpg";
-import Profile2 from "../../../assets/img/profile-2.jpg";
 import CHeader from "component/headerPage/Header";
-import { DataType } from "./interface";
 import { useEffect, useState } from "react";
-import { Switch, Image } from "antd";
+import { Switch } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import ContentContainer from "component/container/ContentContainer";
 import CImage from "component/Image/CImage";
+import { IGetUsers } from "service/user/interface";
+import { useGetUsers } from "service/user";
 
 const elements: IsearchFormItem[] = [
   {
@@ -76,10 +74,10 @@ const onChange = (checked: boolean) => {
   console.log(`switch to ${checked}`);
 };
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<IGetUsers> = [
   {
     title: "#",
-    dataIndex: "key",
+    dataIndex: "id",
     align: "center",
     width: "7%",
   },
@@ -99,6 +97,11 @@ const columns: ColumnsType<DataType> = [
     title: "ชื่อ-นามสกุล (ผู้จัดการ)",
     dataIndex: "name",
     width: "16%",
+    render:(_, data)=>{
+      return (
+        <span>{data.firstName} {data.lastName}</span>
+      )
+    }
   },
   {
     title: "เบอร์โทร",
@@ -112,7 +115,10 @@ const columns: ColumnsType<DataType> = [
   },
   {
     title: "บทบาท",
-    dataIndex: "role",
+    dataIndex: "role.name",
+    render(_, record) {
+      return (<span>{record.role.name}</span>)
+    },
   },
 
   {
@@ -125,37 +131,14 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const Mockdata: DataType[] = [
-  {
-    key: 1,
-    profile: Profile,
-    name: "pangpang",
-    phone: "0912345678",
-    email: "pp@gmail.com",
-    role: "ผู้จัดการ",
-    status: true,
-  },
-  {
-    key: 2,
-    profile: Profile2,
-    name: "prakaifa",
-    phone: "09874561230",
-    email: "ppjj@gmail.com",
-    role: "ผู้จัดการ",
-    status: true,
-  },
-];
-
 const UserManagement = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const { data:dataUsers } = useGetUsers();
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
+  
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
+
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -188,13 +171,19 @@ const UserManagement = () => {
         <MoTable
           headerTable={'จัดการผู้ใช้'}
           columns={columns}
-          dataSource={[]}
+          rowKey={'id'}
+          dataSource={dataUsers?.result[0].data}
           onChangePage={onChangePage}
           config={{
-            total: 20, //ค่าจาก backend ใช้หารหน้า
+            total: dataUsers?.result[0].total, //ค่าจาก backend ใช้หารหน้า
             pageSize: limitPage,
             currentPage: currentPage,
           }}
+          onRow={(record:IGetUsers)=>({
+            onDoubleClick: () => {
+                navigate("/user/create-user",{state:{ id : record.id }});
+              }
+          })}
         />
       </ContentContainer>
     </>
