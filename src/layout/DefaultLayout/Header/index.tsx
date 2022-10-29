@@ -8,7 +8,7 @@ import Profile from "assets/img/profile-2.jpg";
 import { Image } from "antd";
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { useAuthContextDispatch } from "context/Auth/store";
+import { useAuthContextDispatch, useAuthContextState } from "context/Auth/store";
 interface Props {
   setOpenDrawer: (value: boolean) => void;
   openDrawer: boolean;
@@ -19,7 +19,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
   const { t, i18n } = useTranslation();
   const { setTheme, getTheme }: any = React.useContext(ThemeContext);
   const [crrLanguage, setLanguage] = React.useState("th");
-
+  let { userInfo } = useAuthContextState();
   const { _signOut } = useAuthContextDispatch();
 
   const menu = (
@@ -88,13 +88,13 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
                   style={{ borderRadius: "100%" }}
                 />
               </div>
-              <div className="h-auto ml-4 py-1 flex flex-col leading-3 justify-center ">
-                <span className="text-lg text-[#FFFFFF] dark:text-[#FFFFFF]">
-                  NongPang Prakaifa
-                </span>
-                <span className="text-[#FFFFFF] dark:text-[#FFFFFF] text-base -mt-2 dark:opacity-50">
-                  Super Admin
-                </span>
+              <div className="h-auto ml-4 py-1 leading-3 justify-center ">
+                <div className="text-lg text-[#FFFFFF] dark:text-[#FFFFFF]">
+                  <span className="mr-3">{ userInfo?.firstName ?? "undefine" }</span><span>{ userInfo?.firstName ?? "undefine" }</span>
+                </div>
+                <div className="text-[#FFFFFF] dark:text-[#FFFFFF] text-base -mt-2 dark:opacity-50">
+                  { userInfo?.role ?? "undefine" }
+                </div>
               </div>
               <DownOutlined className="!text-white" />
             </div>
