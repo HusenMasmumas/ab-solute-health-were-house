@@ -10,12 +10,13 @@ import Linechart from "component/chart/line-chart";
 import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
 import ContentContainer from "component/container/ContentContainer";
 import styled from "styled-components";
+const CustomContainer = styled(ContentContainer)`
+height: 100%;
+`
 const OverAllPage = () => {
   const { t } = useTranslation();
   const { Option } = Select;
-  const CustomContainer = styled(ContentContainer)`
-    height: 100%;
-  `
+
   return (
    
     <div className="pt-10">
