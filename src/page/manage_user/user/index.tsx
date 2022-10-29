@@ -159,8 +159,6 @@ const UserManagement = () => {
   ];
   
   useEffect(() => {
-    console.log('currentPage',currentPage);
-    console.log('limitPage',limitPage);
     let temp = {...search}
     temp.page = currentPage
     temp.limit = limitPage 
@@ -174,13 +172,14 @@ const UserManagement = () => {
 
   const onFinish = (values: any) => {
     console.log('onFinish',values);
+    console.log('11111');
     
     setSearch(
       {
         page: currentPage,
         limit: limitPage,
         orderBy:'DESC',
-        search: values.fullname,
+        search: values.search,
         phone: values.phone,
         email: values.email,
         roleId: values.roleId
@@ -227,7 +226,7 @@ const UserManagement = () => {
           dataSource={dataUsers?.result[0].data}
           onChangePage={onChangePage}
           config={{
-            total: dataUsers?.result[0].total ?? 0 / limitPage, //ค่าจาก backend ใช้หารหน้า
+            total: dataUsers?.result[0].total ?? 0 / limitPage,
             pageSize: limitPage,
             currentPage: currentPage,
           }}
