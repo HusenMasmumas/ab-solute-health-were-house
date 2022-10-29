@@ -1,6 +1,7 @@
 import {useMutation, useQuery, UseQueryResult} from '@tanstack/react-query'
 import axios from 'axios_config';
 import { IGlobal, ITotal } from 'service/IGlobal.interface';
+import { createQueryString } from 'utils/utils';
 import { IPostUser, IGetUsers } from './interface';
 
 export const useCreateUser = () => {
@@ -14,9 +15,11 @@ export const useCreateUser = () => {
     });
 };
 
-export const useGetUsers = (): UseQueryResult<IGlobal<ITotal<IGetUsers[]>[]>> => {
-  return useQuery(["get-users"], async () => {
-    const res = await axios.get(`/user`);      
+export const useGetUsers = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IGetUsers[]>[]>> => {
+  return useQuery(["get-users", qs], async () => {
+    const queryStr = createQueryString(qs);
+    console.log('queryStr',queryStr);
+    const res = await axios.get(`/user/`+queryStr);      
     if (res.status >= 200 && res.status < 300)  {
       return res.data;
     } else {

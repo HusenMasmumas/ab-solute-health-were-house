@@ -2,17 +2,17 @@ import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import { useNavigate } from "react-router";
 import CHeader from "component/headerPage/Header";
 import { useEffect, useState } from "react";
-import { Switch } from "antd";
+import { Form, Switch } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import ContentContainer from "component/container/ContentContainer";
 import CImage from "component/Image/CImage";
-import { IGetUsers } from "service/user/interface";
-import { useGetUsers } from "service/user";
+import { IGetUsers, IPostUser } from "service/user/interface";
+import { useGetUsers, useUpdateUser } from "service/user";
 
 const elements: IsearchFormItem[] = [
   {
-    name: "fullname",
+    name: "search",
     label: "ชื่อ-นามสกุล(ผู้จัดการ)",
     input: {
       type: "input",
@@ -22,7 +22,7 @@ const elements: IsearchFormItem[] = [
     },
   },
   {
-    name: "tel",
+    name: "phone",
     label: "เบอร์โทร",
     input: {
       type: "input",
@@ -32,7 +32,7 @@ const elements: IsearchFormItem[] = [
     },
   },
   {
-    name: "mail",
+    name: "email",
     label: "อีเมล",
     input: {
       type: "input",
@@ -42,7 +42,7 @@ const elements: IsearchFormItem[] = [
     },
   },
   {
-    name: "role",
+    name: "roleId",
     label: "บทบาท",
     input: {
       type: "select",
@@ -69,76 +69,102 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-
-const onChange = (checked: boolean) => {
-  console.log(`switch to ${checked}`);
-};
-
-const columns: ColumnsType<IGetUsers> = [
-  {
-    title: "#",
-    dataIndex: "id",
-    align: "center",
-    width: "7%",
-  },
-  {
-    title: "ภาพโปรไฟล์",
-    dataIndex: "profile",
-    width: "10%",
-    render: (profile: string) => {
-      return (
-        <div className="w-[50px] h-[50px]">
-          <CImage.CIcon />
-        </div>
-      );
-    },
-  },
-  {
-    title: "ชื่อ-นามสกุล (ผู้จัดการ)",
-    dataIndex: "name",
-    width: "16%",
-    render:(_, data)=>{
-      return (
-        <span>{data.firstName} {data.lastName}</span>
-      )
-    }
-  },
-  {
-    title: "เบอร์โทร",
-    dataIndex: "phone",
-    width: "16%",
-  },
-  {
-    title: "อีเมล",
-    dataIndex: "email",
-    width: "20%",
-  },
-  {
-    title: "บทบาท",
-    dataIndex: "role.name",
-    render(_, record) {
-      return (<span>{record.role.name}</span>)
-    },
-  },
-
-  {
-    title: "สถานะ",
-    dataIndex: "status",
-    width: "7%",
-    render: (status) => {
-      return <Switch defaultChecked onChange={onChange} />;
-    },
-  },
-];
-
 const UserManagement = () => {
   const navigate = useNavigate();
-  const { data:dataUsers } = useGetUsers();
-  const [limitPage, setLimitPage] = useState<number>(10);
+  const [limitPage, setLimitPage] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [search, setSearch] = useState<any>(
+    {
+      page: 1,
+      limit: 1,
+      orderBy:'DESC',
+    }
+  );
+  const { data:dataUsers } = useGetUsers(search);
+  const updateUser = useUpdateUser();
+  const [form] = Form.useForm();
+  const activeUSer = (checked: boolean, record:any) => {
+    //อัพเดตรไม่ได้
+    // console.log(`switch to ${checked}`);
+    record.isActive = checked;
+    // console.log('record after',record);
+    updateUser.mutate(
+      record,
+      {
+        onSuccess: async () => {
+          alert('success ขี้น success แต่ยังใช้ไม่ได้')
+        },
+        onError: async (errorStr) => {
+          alert(errorStr)
+        },
+      }
+    )
+  };
+
+  const columns: ColumnsType<IGetUsers> = [
+    {
+      title: "#",
+      dataIndex: "id",
+      align: "center",
+      width: "7%",
+    },
+    {
+      title: "ภาพโปรไฟล์",
+      dataIndex: "profile",
+      width: "10%",
+      render: (profile: string) => {
+        return (
+          <div className="w-[50px] h-[50px]">
+            <CImage.CIcon />
+          </div>
+        );
+      },
+    },
+    {
+      title: "ชื่อ-นามสกุล (ผู้จัดการ)",
+      dataIndex: "name",
+      width: "16%",
+      render:(_, data)=>{
+        return (
+          <span>{data.firstName} {data.lastName}</span>
+        )
+      }
+    },
+    {
+      title: "เบอร์โทร",
+      dataIndex: "phone",
+      width: "16%",
+    },
+    {
+      title: "อีเมล",
+      dataIndex: "email",
+      width: "20%",
+    },
+    {
+      title: "บทบาท",
+      dataIndex: "role.name",
+      render( _ , record) {
+        return (<span>{record.role.name}</span>)
+      },
+    },
+  
+    {
+      title: "สถานะ",
+      dataIndex: "status",
+      width: "7%",
+      render: ( _ , record) => {
+        return <Switch defaultChecked onChange={(value)=>{ activeUSer(value, record) }} />;
+      },
+    },
+  ];
   
   useEffect(() => {
-
+    console.log('currentPage',currentPage);
+    console.log('limitPage',limitPage);
+    let temp = {...search}
+    temp.page = currentPage
+    temp.limit = limitPage 
+    setSearch({...temp})
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -147,9 +173,35 @@ const UserManagement = () => {
   };
 
   const onFinish = (values: any) => {
-    //โยนเข้า create query
-    console.log("Received values of form: ", values);
+    console.log('onFinish',values);
+    
+    setSearch(
+      {
+        page: currentPage,
+        limit: limitPage,
+        orderBy:'DESC',
+        search: values.fullname,
+        phone: values.phone,
+        email: values.email,
+        roleId: values.roleId
+      }
+    )
   };
+
+  const onReset = ()=>{
+    form.resetFields();
+    setSearch(
+      {
+        page: currentPage,
+        limit: limitPage,
+        orderBy:'DESC',
+        search: '',
+        phone: '',
+        email: '',
+        roleId: undefined
+      }
+    )
+  }
 
   return (
     <>
@@ -167,7 +219,7 @@ const UserManagement = () => {
         ]}
       />
       <ContentContainer>
-        <SearchForm elements={elements} onFinish={onFinish} />
+        <SearchForm elements={elements} onFinish={onFinish} form={form} onReset={onReset}/>
         <MoTable
           headerTable={'จัดการผู้ใช้'}
           columns={columns}
@@ -175,7 +227,7 @@ const UserManagement = () => {
           dataSource={dataUsers?.result[0].data}
           onChangePage={onChangePage}
           config={{
-            total: dataUsers?.result[0].total, //ค่าจาก backend ใช้หารหน้า
+            total: dataUsers?.result[0].total ?? 0 / limitPage, //ค่าจาก backend ใช้หารหน้า
             pageSize: limitPage,
             currentPage: currentPage,
           }}
