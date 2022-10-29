@@ -7,7 +7,7 @@ import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import ContentContainer from "component/container/ContentContainer";
 import CImage from "component/Image/CImage";
-import { IGetUsers, IPostUser } from "service/user/interface";
+import { IGetUsers} from "service/user/interface";
 import { useGetUsers, useUpdateUser } from "service/user";
 
 const elements: IsearchFormItem[] = [
@@ -171,9 +171,6 @@ const UserManagement = () => {
   };
 
   const onFinish = (values: any) => {
-    console.log('onFinish',values);
-    console.log('11111');
-    
     setSearch(
       {
         page: currentPage,
