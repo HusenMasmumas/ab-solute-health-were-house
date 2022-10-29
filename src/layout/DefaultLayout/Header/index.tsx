@@ -62,7 +62,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
         ></div>
       </div>
       <div className="flex !items-center">
-        <div className="h-14 flex items-center ">
+        {/* <div className="h-14 flex items-center ">
           <Select
             defaultValue="th"
             className="flex !text-[16px] !font-semibold cto_select tracking-wider  w-32 !px-2"
@@ -77,10 +77,10 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
               EN
             </Option>
           </Select>
-        </div>
+        </div> */}
         <Dropdown overlay={menu} trigger={["click"]}>
           <a onClick={(e) => e.preventDefault()}>
-            <div className="flex items-center space-x-5">
+            <div className="flex items-center space-x-5 border-l-stone-50 border-l-4">
               <div className="max-h-12 w-12 ml-4 bg-[#F2F8FF] rounded-full border-2 border-[#3B8DE2]">
                 <Image
                   src={Profile}
@@ -88,12 +88,13 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
                   style={{ borderRadius: "100%" }}
                 />
               </div>
-              <div className="h-auto ml-4 py-1 leading-3 justify-center ">
-                <div className="text-lg text-[#FFFFFF] dark:text-[#FFFFFF]">
-                  <span className="mr-3">{ userInfo?.firstName ?? "undefine" }</span><span>{ userInfo?.firstName ?? "undefine" }</span>
+              <div className="h-auto ml-4 py-1 leading-3 text-lg text-white flex justify-center ">
+                <div className="pr-4">
+                  <div className="mb-3">{ userInfo?.firstName ?? "undefine" }</div>
+                  <div className="text-[16px]">{ userInfo?.role ?? "undefine" }</div>
                 </div>
-                <div className="text-[#FFFFFF] dark:text-[#FFFFFF] text-base -mt-2 dark:opacity-50">
-                  { userInfo?.role ?? "undefine" }
+                <div className="">
+                  <span>{ userInfo?.firstName ?? "undefine" }</span>
                 </div>
               </div>
               <DownOutlined className="!text-white" />
