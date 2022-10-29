@@ -71,7 +71,7 @@ const elements: IsearchFormItem[] = [
 
 const UserManagement = () => {
   const navigate = useNavigate();
-  const [limitPage, setLimitPage] = useState<number>(1);
+  const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [search, setSearch] = useState<any>(
     {
