@@ -12,7 +12,7 @@ import { IGetRole } from "service/permission/interface";
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 const elements: IsearchFormItem[] = [
   {
-    name: "role",
+    name: "search",
     label: "ชื่อบทบาท",
     input: {
       type: "input",
@@ -38,15 +38,25 @@ const elements: IsearchFormItem[] = [
 
 const RoleManagement = () => {
   const navigate = useNavigate();
-  const [limitPage, setLimitPage] = useState<number>(10);
+  const [limitPage, setLimitPage] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const { data } = useGetRole()
   const queryClient = useQueryClient()
   const updateRoleActive = useUpdateRoleActive();
-
+  const [search, setSearch] = useState<any>(
+    {
+      page: currentPage,
+      limit: limitPage,
+      orderBy:'DESC',
+    }
+  );
+  const { data:listRoles } = useGetRole(search)
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
+    console.log('wwww');
+    
+    let temp = {...search}
+    temp.page = currentPage
+    temp.limit = limitPage 
+    setSearch({...temp})
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -75,6 +85,14 @@ const RoleManagement = () => {
   const onFinish = (values: any) => {
     //โยนเข้า create query
     console.log("Received values of form: ", values);
+    setSearch(
+      {
+        page: currentPage,
+        limit: limitPage,
+        orderBy:'DESC',
+        search: values.search,
+      }
+    )
   };
 
   const columns: ColumnsType<IGetRole> = [
@@ -123,16 +141,16 @@ const RoleManagement = () => {
           rowKey={'id'}
           headerTable={'รายการบทบาท'}
           columns={columns}
-          dataSource={data?.result?.[0].data || []}
+          dataSource={listRoles?.result?.[0].data || []}
           onChangePage={onChangePage}
           config={{
-            total: data?.result?.[0].total, //ค่าจาก backend ใช้หารหน้า
+            total: listRoles?.result?.[0].total ?? 0 / limitPage,
             pageSize: limitPage,
             currentPage: currentPage,
           }}
           onRow={(record:IGetRole)=>({
             onClick:()=>{
-              console.log('oneClick',record);
+              // console.log('oneClick',record);
             },
             onDoubleClick: () => {
                 queryClient.invalidateQueries(["get-role", record.id])

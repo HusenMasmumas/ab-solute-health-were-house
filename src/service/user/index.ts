@@ -18,7 +18,7 @@ export const useCreateUser = () => {
 export const useGetUsers = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IGetUsers[]>[]>> => {
   return useQuery(["get-users", qs], async () => {
     const queryStr = createQueryString(qs);
-    const res = await axios.get(`/user/`+queryStr);      
+    const res = await axios.get(`/user`+queryStr);      
     if (res.status >= 200 && res.status < 300)  {
       return res.data;
     } else {

@@ -1,6 +1,7 @@
 import {useMutation, useQuery, UseQueryResult} from '@tanstack/react-query'
 import axios from 'axios_config';
 import { IGlobal, ITotal } from 'service/IGlobal.interface';
+import { createQueryString } from 'utils/utils';
 import { IGetRole, IGetRoleByID, IPostRole, IRole, Permission } from './interface';
 
 export const useGetRoleForm = (id:number): UseQueryResult<IGlobal<IRole[]>> => {
@@ -14,9 +15,10 @@ export const useGetRoleForm = (id:number): UseQueryResult<IGlobal<IRole[]>> => {
     },{enabled: !id });
 };
 
-export const useGetRole = (): UseQueryResult<IGlobal<ITotal<IGetRole[]>[]>> => {
-  return useQuery(["get-roles"], async () => {
-    const res = await axios.get(`/role`);      
+export const useGetRole = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IGetRole[]>[]>> => {
+  return useQuery(["get-roles", qs], async () => {
+    const queryStr = createQueryString(qs);
+    const res = await axios.get(`/role`+queryStr);      
     if (res.status >= 200 && res.status < 300)  {
       return res.data;
     } else {
