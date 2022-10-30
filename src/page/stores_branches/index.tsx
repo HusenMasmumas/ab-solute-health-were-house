@@ -82,18 +82,6 @@ const columns: ColumnsType<IDataType> = [
   },
 ];
 
-
-const data: IDataType[] = [];
-for (let i = 0; i < 10; i++) {
-  data.push({
-    key: i,
-    store: `ร้านขายยาวังทองหลาง`,
-    name: `สมพงษ์ ตามังกร`,
-    phone: "09123456789",
-    status: true,
-  });
-}
-
 const StoresBranches = () => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -133,7 +121,7 @@ const StoresBranches = () => {
         <MoTable
           headerTable={t("orderlist")}
           columns={columns}
-          dataSource={data}
+          dataSource={[]}
           onChangePage={onChangePage}
           config={{
             total: 20, //ค่าจาก backend ใช้หารหน้า
