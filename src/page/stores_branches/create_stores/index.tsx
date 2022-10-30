@@ -1,12 +1,55 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Col, Form, Input, Row } from "antd";
 import CHeader from "component/headerPage/Header";
+import CInput from "component/input/c-input";
 import MyUpload from "component/MyUpload/MyUpload";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useCreateBranch } from "service/branch";
 
+const initialForm = {
+  firstName	:	'',
+  lastName	:	'',
+  name	    :	'',
+  phone	    :	'',
+  address	    :	'',
+  district	:	'',
+  province	:	'',
+  subDistrict	:	'',
+  zipcode	    :	'',
+}
 const CreateStore = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [form] = Form.useForm();
+  const createBranch = useCreateBranch()
+  const onFinish = (value:any)=>{
+    console.log('onFinish',value); 
+    if(location.state?.id){
+
+    }else{
+      createBranch.mutate(
+        value,
+        {
+          onSuccess: async () => {
+            alert('success')
+            form.setFieldsValue(initialForm)
+          },
+          onError: async (errorStr) => {
+            alert(errorStr)
+          },
+        }
+      )
+    }
+  }
+
+  useEffect(() => {
+    form.setFieldsValue(initialForm)
+    return () => {
+    }
+  }, [])
+  
   return (
     <>
         <CHeader
@@ -22,7 +65,8 @@ const CreateStore = () => {
             { colorButton: 'green',
               keytext: 'save',
               fn:  () => {
-                navigate("/stores-branches");
+                form.submit()
+                // navigate("/stores-branches");
               },
             }
           ]}
@@ -31,61 +75,103 @@ const CreateStore = () => {
         <div className="text-[#231F20] !text-[20px] !font-semibold">
           เพิ่มร้านค้า&สาขา
         </div>
-        <Form layout="vertical" className="!mb-[100px]">
-          {/* upload image */}
+        <Form 
+          layout="vertical" 
+          form={form} 
+          onFinish={onFinish}
+          className="!mb-[100px]"
+          >
           <div className="flex justify-center items-center !mb-[60px]">
-            <Form.Item name="profile">
+            <Form.Item 
+              // name="imageId" รอพี่นายแก้
+              >
               <MyUpload />
             </Form.Item>
           </div>
           <Row gutter={[24, 0]}>
             <Col span={8}>
-              <Form.Item label={t("ชื่อร้าน")}>
-                <Input placeholder="ชื่อร้าน" />
+              <Form.Item 
+                name='name' 
+                label={t("ชื่อร้าน")}
+                rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+                >
+                <CInput placeholder="ชื่อร้าน" type="email"/>
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item label={t("ชื่อ (ผู้จัดการ)")}>
-                <Input placeholder="ชื่อ (ผู้จัดการ)" />
+              <Form.Item 
+                name='firstName' 
+                label={t("ชื่อ (ผู้จัดการ)")}
+                // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+                >
+                <CInput placeholder="ชื่อ (ผู้จัดการ)" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item label={t("นามสกุล (ผู้จัดการ)")}>
-                <Input placeholder="นามสกุล (ผู้จัดการ)" />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
-            <Col span={8}>
-              <Form.Item label={t("เบอร์โทร")}>
-                <Input placeholder="เบอร์โทร" />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item label={t("บ้านเลขที่")}>
-                <Input placeholder="บ้านเลขที่" />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item label={t("ตำบล")}>
-                <Input placeholder="ตำบล" />
+              <Form.Item 
+                name='lastName' 
+                label={t("นามสกุล (ผู้จัดการ)")}
+                // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+                >
+                <CInput placeholder="นามสกุล (ผู้จัดการ)" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={8}>
-              <Form.Item label={t("อำเภอ")}>
-                <Input placeholder="อำเภอ" />
+              <Form.Item 
+              name='phone' 
+              label={t("เบอร์โทร")}
+              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
+                <CInput placeholder="เบอร์โทร" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item label={t("จังหวัด")}>
-                <Input placeholder="จังหวัด" />
+              <Form.Item 
+              name='address' 
+              label={t("บ้านเลขที่")}
+              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
+                <CInput placeholder="บ้านเลขที่" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item label={t("รหัสไปรษณีย์")}>
-                <Input placeholder="รหัสไปรษณีย์" />
+              <Form.Item 
+              name='subDistrict' 
+              label={t("ตำบล")}
+              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
+                <CInput placeholder="ตำบล" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={[24, 0]}>
+            <Col span={8}>
+              <Form.Item 
+              name="district" 
+              label={t("อำเภอ")}
+              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
+                <CInput placeholder="อำเภอ" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item 
+              name='province' 
+              label={t("จังหวัด")}
+              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
+                <CInput placeholder="จังหวัด" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item 
+              name='zipcode' 
+              label={t("รหัสไปรษณีย์")}
+              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
+                <CInput placeholder="รหัสไปรษณีย์" />
               </Form.Item>
             </Col>
           </Row>
