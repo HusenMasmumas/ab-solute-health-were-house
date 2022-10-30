@@ -18,8 +18,24 @@ const CreateUser = () => {
   const updateUser = useUpdateUser(); 
   const { data:User } = useGetUserBYID(location.state?.id);
   const onFinish = (value:any)=>{
-    // console.log('value',value);
-    if(!location.state?.id){
+    if(location.state?.id){
+      if(value.password.length === 0 ){
+        delete value.password
+      }
+      value.id = location.state.id
+      
+      updateUser.mutate(
+        value,
+        {
+          onSuccess: async () => {
+            alert('success')
+          },
+          onError: async (errorStr) => {
+            alert(errorStr)
+          },
+        }
+      )
+    }else{
       createUser.mutate(
         value,
         {
@@ -40,24 +56,6 @@ const CreateUser = () => {
               password:'',
               roleId:'',
               })
-          },
-          onError: async (errorStr) => {
-            alert(errorStr)
-          },
-        }
-      )
-    }else{
-      if(value.password.length === 0 ){
-        delete value.password
-      }
-      value.id = location.state.id
-      console.log(value);
-      
-      updateUser.mutate(
-        value,
-        {
-          onSuccess: async () => {
-            alert('success')
           },
           onError: async (errorStr) => {
             alert(errorStr)
