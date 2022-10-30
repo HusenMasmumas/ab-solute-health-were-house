@@ -8,6 +8,8 @@ import { IDataType } from './interface'
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
 import ContentContainer from 'component/container/ContentContainer'
+import { useGetBranchs } from "service/branch";
+import { IListBranch } from "service/branch/interface";
 const elements: IsearchFormItem[] = [
   {
     name: "store",
@@ -60,21 +62,23 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const columns: ColumnsType<IDataType> = [
+const columns: ColumnsType<IListBranch> = [
   {
     title: "#",
-    dataIndex: "key",
+    dataIndex: "id",
     align: "center",
     width: "7%",
   },
   {
     title: "ชื่อร้าน",
-    dataIndex: "store",
+    dataIndex: "name",
     width: "20%",
   },
   {
     title: "ชื่อนามสกุล(ผู้จัดการ)",
-    dataIndex: "name",
+    render: (_, record) =>{
+      return <div>หลังบ้านไม่ได้ส่งมาด้วย</div>
+    }
   },
   {
     title: "เบอร์โทร",
@@ -87,7 +91,9 @@ const StoresBranches = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const { data:dataList } = useGetBranchs()
+  console.log('dataList', dataList);
+  
   useEffect(() => {
     console.log("current", currentPage);
     console.log("limitPage", limitPage);
@@ -120,11 +126,12 @@ const StoresBranches = () => {
         <SearchForm elements={elements} onFinish={onFinish} />
         <MoTable
           headerTable={t("orderlist")}
+          rowKey={'id'}
           columns={columns}
-          dataSource={[]}
+          dataSource={dataList?.result[0].data}
           onChangePage={onChangePage}
           config={{
-            total: 20, //ค่าจาก backend ใช้หารหน้า
+            total: dataList?.result[0].total ?? 0 / limitPage, 
             pageSize: limitPage,
             currentPage: currentPage,
           }}
