@@ -10,9 +10,10 @@ import MoTable from "component/Table/MoTable";
 import ContentContainer from 'component/container/ContentContainer'
 import { useGetBranchs } from "service/branch";
 import { IListBranch } from "service/branch/interface";
+import { Form } from "antd";
 const elements: IsearchFormItem[] = [
   {
-    name: "store",
+    name: "branchName",
     label: "ชื่อร้าน",
     input: {
       type: "input",
@@ -87,16 +88,25 @@ const columns: ColumnsType<IListBranch> = [
 ];
 
 const StoresBranches = () => {
-  const [limitPage, setLimitPage] = useState<number>(10);
+  const [limitPage, setLimitPage] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { data:dataList } = useGetBranchs()
-  console.log('dataList', dataList);
+  const [form] = Form.useForm();
+  const [search, setSearch] = useState<any>(
+    {
+      page: 1,
+      limit: 1,
+      orderBy:'DESC',
+    }
+  );
+  const { data:dataList } = useGetBranchs(search)
   
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
+    let temp = {...search}
+    temp.page = currentPage
+    temp.limit = limitPage 
+    setSearch({...temp})
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -105,9 +115,32 @@ const StoresBranches = () => {
   };
 
   const onFinish = (values: any) => {
-    //โยนเข้า create query
-    console.log("Received values of form: ", values);
+    setSearch(
+      {
+        page: currentPage,
+        limit: limitPage,
+        orderBy:'DESC',
+        branchName: values?.branchName,
+        name: values?.name,
+        phone: values?.phone
+      }
+    )
   };
+
+  const onReset = ()=>{
+    form.resetFields();
+    setSearch(
+      {
+        page: currentPage,
+        limit: limitPage,
+        orderBy:'DESC',
+        branchName: '',
+        name: '',
+        phone: ''
+      }
+    )
+  }
+  
   return (
     <>
       <CHeader
@@ -123,7 +156,7 @@ const StoresBranches = () => {
         ]}
       />  
       <ContentContainer>
-        <SearchForm elements={elements} onFinish={onFinish} />
+        <SearchForm elements={elements} onFinish={onFinish} form={form} onReset={onReset}/>
         <MoTable
           headerTable={t("orderlist")}
           rowKey={'id'}

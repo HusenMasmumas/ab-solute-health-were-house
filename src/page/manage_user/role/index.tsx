@@ -1,7 +1,7 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useNavigate } from "react-router";
-import { Switch } from "antd";
+import { Form, Switch } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { useState, useEffect } from "react";
 import MoTable from "component/Table/MoTable";
@@ -41,6 +41,7 @@ const RoleManagement = () => {
   const [limitPage, setLimitPage] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const queryClient = useQueryClient()
+  const [form] = Form.useForm();
   const updateRoleActive = useUpdateRoleActive();
   const [search, setSearch] = useState<any>(
     {
@@ -50,9 +51,7 @@ const RoleManagement = () => {
     }
   );
   const { data:listRoles } = useGetRole(search)
-  useEffect(() => {
-    console.log('wwww');
-    
+  useEffect(() => {    
     let temp = {...search}
     temp.page = currentPage
     temp.limit = limitPage 
@@ -83,8 +82,6 @@ const RoleManagement = () => {
   };
 
   const onFinish = (values: any) => {
-    //โยนเข้า create query
-    console.log("Received values of form: ", values);
     setSearch(
       {
         page: currentPage,
@@ -94,6 +91,21 @@ const RoleManagement = () => {
       }
     )
   };
+
+  const onReset = ()=>{
+    form.resetFields();
+    setSearch(
+      {
+        page: currentPage,
+        limit: limitPage,
+        orderBy:'DESC',
+        search: '',
+        phone: '',
+        email: '',
+        roleId: undefined
+      }
+    )
+  }
 
   const columns: ColumnsType<IGetRole> = [
     {
@@ -136,7 +148,7 @@ const RoleManagement = () => {
         ]}
       />
       <ContentContainer>
-        <SearchForm elements={elements} onFinish={onFinish} />
+        <SearchForm elements={elements} form={form} onFinish={onFinish} onReset={onReset}/>
         <MoTable
           rowKey={'id'}
           headerTable={'รายการบทบาท'}
