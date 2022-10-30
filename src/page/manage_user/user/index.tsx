@@ -9,65 +9,7 @@ import ContentContainer from "component/container/ContentContainer";
 import CImage from "component/Image/CImage";
 import { IGetUsers} from "service/user/interface";
 import { useGetUsers, useUpdateUser } from "service/user";
-
-const elements: IsearchFormItem[] = [
-  {
-    name: "search",
-    label: "ชื่อ-นามสกุล(ผู้จัดการ)",
-    input: {
-      type: "input",
-      options: {
-        search: true,
-      },
-    },
-  },
-  {
-    name: "phone",
-    label: "เบอร์โทร",
-    input: {
-      type: "input",
-      options: {
-        search: true,
-      },
-    },
-  },
-  {
-    name: "email",
-    label: "อีเมล",
-    input: {
-      type: "input",
-      options: {
-        search: true,
-      },
-    },
-  },
-  {
-    name: "roleId",
-    label: "บทบาท",
-    input: {
-      type: "select",
-      options: {
-        values: [
-          { key: 1, value: "marketing", label: "การตลาด" },
-          { key: 2, value: "manager", label: "ผู้จัดการ" },
-        ],
-      },
-    },
-  },
-  {
-    name: "status",
-    label: "การใช้งาน",
-    input: {
-      type: "select",
-      options: {
-        values: [
-          { key: 1, value: "active", label: "ใช้งาน" },
-          { key: 2, value: "inactive", label: "ไม่ใช้งาน" },
-        ],
-      },
-    },
-  },
-];
+import { useGetRole } from "service/permission";
 
 const UserManagement = () => {
   const navigate = useNavigate();
@@ -82,7 +24,11 @@ const UserManagement = () => {
   );
   const { data:dataUsers } = useGetUsers(search);
   const updateUser = useUpdateUser();
+  const {data:listRoles} = useGetRole()
   const [form] = Form.useForm();
+  console.log('listRoles',listRoles);
+  console.log(listRoles?.result[0].data);
+  
   const activeUSer = (checked: boolean, record:any) => {
     //อัพเดตรไม่ได้
     // console.log(`switch to ${checked}`);
@@ -100,6 +46,64 @@ const UserManagement = () => {
       }
     )
   };
+
+  const elements: IsearchFormItem[] = [
+    {
+      name: "search",
+      label: "ชื่อ-นามสกุล(ผู้จัดการ)",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "phone",
+      label: "เบอร์โทร",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "email",
+      label: "อีเมล",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "roleId",
+      label: "บทบาท",
+      input: {
+        type: "select",
+        options: {
+          values: listRoles?.result[0].data.map((item)=>{
+             return { key:item.id, value:item.id, label: item.name }
+          }) || [],
+        },
+      },
+    },
+    {
+      name: "status",
+      label: "การใช้งาน",
+      input: {
+        type: "select",
+        options: {
+          values: [
+            { key: 1, value: "active", label: "ใช้งาน" },
+            { key: 2, value: "inactive", label: "ไม่ใช้งาน" },
+          ],
+        },
+      },
+    },
+  ];
 
   const columns: ColumnsType<IGetUsers> = [
     {
