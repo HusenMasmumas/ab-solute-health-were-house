@@ -10,11 +10,13 @@ import CImage from "component/Image/CImage";
 import { IGetUsers} from "service/user/interface";
 import { useGetUsers, useUpdateUser } from "service/user";
 import { useGetRole } from "service/permission";
+import { useQueryClient } from "@tanstack/react-query";
 
 const UserManagement = () => {
   const navigate = useNavigate();
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const queryClient = useQueryClient();
   const [search, setSearch] = useState<any>(
     {
       page: 1,
@@ -26,19 +28,28 @@ const UserManagement = () => {
   const updateUser = useUpdateUser();
   const {data:listRoles} = useGetRole()
   const [form] = Form.useForm();
-  console.log('listRoles',listRoles);
-  console.log(listRoles?.result[0].data);
-  
-  const activeUSer = (checked: boolean, record:any) => {
-    //อัพเดตรไม่ได้
-    // console.log(`switch to ${checked}`);
-    record.isActive = checked;
-    // console.log('record after',record);
+
+  const activeUSer = (checked: boolean, record:IGetUsers) => {
+    const temp = {
+      id:          record.id,
+      firstName:   record.firstName,
+      lastName:    record.lastName,
+      isActive:    checked,
+      username:    record.username,
+      phone:       record.phone,
+      email:       record.email,
+      address:     record.address,
+      district:    record.district,
+      province:    record.province,
+      subDistrict: record.subDistrict,
+      zipcode:     record.zipcode,
+      roleId:      record.roleId,
+    }
     updateUser.mutate(
-      record,
+      temp,
       {
         onSuccess: async () => {
-          alert('success ขี้น success แต่ยังใช้ไม่ได้')
+          queryClient.invalidateQueries(['get-users'])
         },
         onError: async (errorStr) => {
           alert(errorStr)
@@ -91,14 +102,14 @@ const UserManagement = () => {
       },
     },
     {
-      name: "status",
+      name: "isActive",
       label: "การใช้งาน",
       input: {
         type: "select",
         options: {
           values: [
-            { key: 1, value: "active", label: "ใช้งาน" },
-            { key: 2, value: "inactive", label: "ไม่ใช้งาน" },
+            { key: 1, value: true, label: "ใช้งาน" },
+            { key: 2, value: false, label: "ไม่ใช้งาน" },
           ],
         },
       },
@@ -154,10 +165,10 @@ const UserManagement = () => {
   
     {
       title: "สถานะ",
-      dataIndex: "status",
+      dataIndex: "isActive",
       width: "7%",
-      render: ( _ , record) => {
-        return <Switch defaultChecked onChange={(value)=>{ activeUSer(value, record) }} />;
+      render: ( value , record) => {
+        return <Switch defaultChecked={value} onChange={(value)=>{ activeUSer(value, record) }} />;
       },
     },
   ];
@@ -174,7 +185,7 @@ const UserManagement = () => {
     else setCurrentPage(page);
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: any) => { 
     setSearch(
       {
         page: currentPage,
@@ -183,7 +194,8 @@ const UserManagement = () => {
         search: values.search,
         phone: values.phone,
         email: values.email,
-        roleId: values.roleId
+        roleId: values.roleId,
+        isActive: values.isActive
       }
     )
   };
@@ -198,7 +210,8 @@ const UserManagement = () => {
         search: '',
         phone: '',
         email: '',
-        roleId: undefined
+        roleId: undefined,
+        isActive: null
       }
     )
   }

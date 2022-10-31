@@ -39,7 +39,7 @@ export const useGetUserBYID = (id:number): UseQueryResult<IGlobal<IGetUsers>> =>
 };
 
 export const useUpdateUser = () => {
-  return useMutation(async (body :IPostUser & { id:number }) => {
+  return useMutation(async (body : IPostUser & { id:number}) => {
     const res = await axios.put(`/user/${body.id}`, body);
 
     if (res.status >= 200 && res.status < 300) {

@@ -11,7 +11,7 @@ export interface IPostUser {
     province:    string;
     subDistrict: string;
     zipcode:     string;
-    password:    string;
+    password?:    string;
     roleId:      number;
     imageId?:     number;
 }
