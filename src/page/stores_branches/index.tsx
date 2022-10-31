@@ -41,25 +41,6 @@ const elements: IsearchFormItem[] = [
       },
     },
   },
-  {
-    name: "status",
-    label: "การใช้งาน",
-    input: {
-      type: "select",
-      options: {
-        values: [
-          { key: 1, value: "activs", label: "ใช้งาน" },
-          {
-            key: 2,
-            value: "inactive",
-            label: "ไม่มีการใช้งาน",
-          },
-        ],
-        key: "stateProduct",
-        label: "stateProduct",
-      },
-    },
-  },
 ];
 
 const columns: ColumnsType<IBranch> = [
