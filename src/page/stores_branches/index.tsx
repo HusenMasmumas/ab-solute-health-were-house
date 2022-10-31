@@ -4,12 +4,11 @@ import SearchForm from "component/Form/searchForm";
 import { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
 import { useNavigate } from "react-router-dom";
-import { IDataType } from './interface'
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
 import ContentContainer from 'component/container/ContentContainer'
 import { useGetBranchs } from "service/branch";
-import { IListBranch } from "service/branch/interface";
+import { IBranch } from "service/branch/interface";
 import { Form } from "antd";
 const elements: IsearchFormItem[] = [
   {
@@ -63,7 +62,7 @@ const elements: IsearchFormItem[] = [
   },
 ];
 
-const columns: ColumnsType<IListBranch> = [
+const columns: ColumnsType<IBranch> = [
   {
     title: "#",
     dataIndex: "id",
@@ -168,6 +167,15 @@ const StoresBranches = () => {
             pageSize: limitPage,
             currentPage: currentPage,
           }}
+          onRow={(record:IBranch)=>({
+            onClick:()=>{
+              // console.log('oneClick',record);
+            },
+            onDoubleClick: () => {
+                // console.log(record);
+                navigate("/craete-stores-branches",{state:{ id : record.id }});
+              }
+          })}
           />
         </ContentContainer>
     </>

@@ -2,10 +2,10 @@ import { useMutation, useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios_config";
 import { IGlobal, ITotal } from "service/IGlobal.interface";
 import { createQueryString } from "utils/utils";
-import { IListBranch, IPostBranch } from "./interface";
+import { IBranch } from "./interface";
 
 export const useCreateBranch = () => {
-    return useMutation(async (body :IPostBranch) => {
+    return useMutation(async (body :IBranch) => {
       const res = await axios.post(`/branch`, body);
   
       if (res.status >= 200 && res.status < 300) {
@@ -15,7 +15,7 @@ export const useCreateBranch = () => {
     });
 };
 
-export const useGetBranchs = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IListBranch[]>[]>> => {
+export const useGetBranchs = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IBranch[]>[]>> => {
   return useQuery(["get-branchs", qs], async () => {
     const queryStr = createQueryString(qs);
     const res = await axios.get(`/branch`+queryStr);      
@@ -25,4 +25,15 @@ export const useGetBranchs = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IListBra
       throw new Error(res.data.message) 
     }
   });
+};
+
+export const useGetBranchBYID = (id:number): UseQueryResult<IGlobal<IBranch>> => {
+  return useQuery(["get-branch", id], async () => {
+    const res = await axios.get(`/branch/`+id);      
+    if (res.status >= 200 && res.status < 300)  {
+      return {...res.data, result: res.data.result[0]};
+    } else {
+      throw new Error(res.data.message) 
+    }
+  }, {enabled: !!id});
 };

@@ -1,4 +1,5 @@
-export interface IPostBranch {
+export interface IBranch {
+    id?         :   string
     firstName	:	string
     lastName	:	string
     name	    :	string
@@ -9,17 +10,4 @@ export interface IPostBranch {
     subDistrict	:	string
     zipcode	    :	string
     imageId?    :	number    
-}
-
-
-export interface IListBranch {
-    id:          number;
-    name:        string;
-    phone:       string;
-    address:     string;
-    district:    string;
-    province:    string;
-    subDistrict: string;
-    zipcode:     string;
-    imageId:     null;
 }

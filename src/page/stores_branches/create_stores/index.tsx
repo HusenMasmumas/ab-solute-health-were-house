@@ -5,7 +5,7 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCreateBranch } from "service/branch";
+import { useCreateBranch, useGetBranchBYID } from "service/branch";
 
 const initialForm = {
   firstName	:	'',
@@ -23,11 +23,33 @@ const CreateStore = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [form] = Form.useForm();
-  const createBranch = useCreateBranch()
-  const onFinish = (value:any)=>{
-    console.log('onFinish',value); 
-    if(location.state?.id){
+  const createBranch = useCreateBranch();
+  const { data:dataBranch } = useGetBranchBYID(location.state?.id);
 
+  useEffect(()=>{
+    if(dataBranch){
+      const { result } = dataBranch 
+      console.log('dataBranch111',dataBranch.result);
+      form.setFieldsValue({
+        firstName	:	dataBranch.result?.firstName,
+        lastName	:	result?.lastName,
+        name	    :	result?.name,
+        phone	    :	result?.phone,
+        address	    :	result?.address,
+        district	:	result?.district,
+        province	:	result?.province,
+        subDistrict	:	result?.subDistrict,
+        zipcode	    :	result?.zipcode,
+      })
+    }else{
+      form.setFieldsValue(initialForm)
+    }
+  },[dataBranch])
+
+  const onFinish = (value:any)=>{
+    // console.log('onFinish',value); 
+    if(location.state?.id){
+      
     }else{
       createBranch.mutate(
         value,
@@ -43,12 +65,6 @@ const CreateStore = () => {
       )
     }
   }
-
-  useEffect(() => {
-    form.setFieldsValue(initialForm)
-    return () => {
-    }
-  }, [])
   
   return (
     <>
