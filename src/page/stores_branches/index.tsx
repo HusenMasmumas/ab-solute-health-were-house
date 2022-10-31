@@ -77,7 +77,7 @@ const columns: ColumnsType<IBranch> = [
   {
     title: "ชื่อนามสกุล(ผู้จัดการ)",
     render: (_, record) =>{
-      return <div>หลังบ้านไม่ได้ส่งมาด้วย</div>
+      return <div className="flex space-x-4"><span>{record.firstName}</span><span>{record.lastName}</span></div>
     }
   },
   {

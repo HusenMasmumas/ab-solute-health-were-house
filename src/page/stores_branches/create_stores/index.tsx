@@ -5,7 +5,8 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCreateBranch, useGetBranchBYID } from "service/branch";
+import { useCreateBranch, useGetBranchBYID, useUpdateBranch } from "service/branch";
+import { IBranch } from "service/branch/interface";
 
 const initialForm = {
   firstName	:	'',
@@ -24,6 +25,7 @@ const CreateStore = () => {
   const location = useLocation();
   const [form] = Form.useForm();
   const createBranch = useCreateBranch();
+  const updateBranch = useUpdateBranch();
   const { data:dataBranch } = useGetBranchBYID(location.state?.id);
 
   useEffect(()=>{
@@ -46,17 +48,32 @@ const CreateStore = () => {
     }
   },[dataBranch])
 
-  const onFinish = (value:any)=>{
-    // console.log('onFinish',value); 
+  const onFinish = (value:IBranch)=>{
     if(location.state?.id){
-      
+      let temp : IBranch & { id:string };
+      temp = {...value, id: location.state.id}
+      console.log('temp',temp);
+      updateBranch.mutate(
+        temp,
+        {
+          onSuccess: async () => {
+            alert('success')
+            form.setFieldsValue(initialForm)
+          },
+          onError: async (errorStr) => {
+            alert(errorStr)
+          },
+        }
+      )
     }else{
       createBranch.mutate(
         value,
         {
           onSuccess: async () => {
             alert('success')
-            form.setFieldsValue(initialForm)
+            if(location.state?.id){
+              form.setFieldsValue(initialForm)
+            }
           },
           onError: async (errorStr) => {
             alert(errorStr)

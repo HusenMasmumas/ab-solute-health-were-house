@@ -37,3 +37,13 @@ export const useGetBranchBYID = (id:number): UseQueryResult<IGlobal<IBranch>> =>
     }
   }, {enabled: !!id});
 };
+
+export const useUpdateBranch = () => {
+  return useMutation(async (body : IBranch & { id:string } ) => {
+    const res = await axios.put(`/branch/${body.id}`, body);
+    if (res.status >= 200 && res.status < 300) {
+      return res.data.result?.[0];
+    }
+  throw new Error(res.data.message)  
+  });
+};
