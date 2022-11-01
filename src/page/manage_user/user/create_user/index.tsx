@@ -5,6 +5,7 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCreatImg } from "service/img";
 import { useGetRole } from "service/permission";
 import { useCreateUser, useGetUserBYID, useUpdateUser } from 'service/user/index'
 const CreateUser = () => {
@@ -17,6 +18,7 @@ const CreateUser = () => {
   const createUser = useCreateUser();
   const updateUser = useUpdateUser(); 
   const { data:User } = useGetUserBYID(location.state?.id);
+  const saveImg = useCreatImg()
   const onFinish = (value:any)=>{
     if(location.state?.id){
       if(value.password.length === 0 ){
@@ -35,33 +37,76 @@ const CreateUser = () => {
           },
         }
       )
-    }else{
-      createUser.mutate(
-        value,
-        {
-          onSuccess: async () => {
-            alert('success')
-            form.setFieldsValue({
-              firstName:'',
-              lastName:'',
-              isActive:true,
-              username:'',
-              phone:'',
-              email:'',
-              address:'',
-              district:'',
-              province:'',
-              subDistrict:'',
-              zipcode:'',
-              password:'',
-              roleId:'',
-              })
+    }else{      
+      const formdata = new FormData()
+      formdata.append('file', value.img.file)
+      if(value.img){
+          saveImg.mutate(formdata,{
+          onSuccess: async (data) => {
+            console.log('onSuccess',data.id);
+            value.imageId = data.id
+            console.log('check ImageID',value);
+            createUser.mutate(
+              value,
+              {
+                onSuccess: async () => {
+                  alert('success')
+                  form.setFieldsValue({
+                    firstName:'',
+                    lastName:'',
+                    isActive:true,
+                    username:'',
+                    phone:'',
+                    email:'',
+                    address:'',
+                    district:'',
+                    province:'',
+                    subDistrict:'',
+                    zipcode:'',
+                    password:'',
+                    roleId:'',
+                    imageId:null
+                    })
+                },
+                onError: async (errorStr:any) => {
+                  alert(errorStr)
+                },
+              }
+            )
           },
           onError: async (errorStr) => {
             alert(errorStr)
-          },
-        }
-      )
+            return
+          }
+        })
+      }else{
+        createUser.mutate(
+          value,
+          {
+            onSuccess: async () => {
+              alert('success')
+              form.setFieldsValue({
+                firstName:'',
+                lastName:'',
+                isActive:true,
+                username:'',
+                phone:'',
+                email:'',
+                address:'',
+                district:'',
+                province:'',
+                subDistrict:'',
+                zipcode:'',
+                password:'',
+                roleId:'',
+                })
+            },
+            onError: async (errorStr) => {
+              alert(errorStr)
+            },
+          }
+        )
+      }
     }
   }
 
@@ -136,7 +181,7 @@ const CreateUser = () => {
         >
           <div className="flex justify-center items-center">
             <Form.Item 
-            // name="img"  // รอพี่นายแก้ให้แอด png jpg ได้ก่อน
+            name="img" 
             >
               <MyUpload />
             </Form.Item>
