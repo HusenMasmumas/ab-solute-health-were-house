@@ -22,14 +22,14 @@ const elements: IsearchFormItem[] = [
     },
   },
   {
-    name: "status",
+    name: "isActive",
     label: "การใช้งาน",
     input: {
       type: "select",
       options: {
         values: [
-          { key: 1, value: "active", label: "ใช้งาน" },
-          { key: 2, value: "inactive", label: "ไม่ใช้งาน" },
+          { key: 1, value: true, label: "ใช้งาน" },
+          { key: 2, value: false, label: "ไม่ใช้งาน" },
         ],
       },
     },
@@ -88,6 +88,7 @@ const RoleManagement = () => {
         limit: limitPage,
         orderBy:'DESC',
         search: values.search,
+        isActive: values.isActive
       }
     )
   };
@@ -100,9 +101,7 @@ const RoleManagement = () => {
         limit: limitPage,
         orderBy:'DESC',
         search: '',
-        phone: '',
-        email: '',
-        roleId: undefined
+        isActive: null,
       }
     )
   }
