@@ -29,7 +29,7 @@ const CIcon = ({
       <Image
         style={{ borderRadius: "100%" }}
         alt={alt}
-        src={src}
+        src={src ?? noProfile}
         fallback={noProfile}
         preview={preview}
         {...props}
