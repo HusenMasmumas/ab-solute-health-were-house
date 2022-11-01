@@ -125,12 +125,12 @@ const UserManagement = () => {
     },
     {
       title: "ภาพโปรไฟล์",
-      dataIndex: "profile",
+      dataIndex: "image",
       width: "10%",
-      render: (profile: string) => {
+      render: (image: string) => {
         return (
           <div className="w-[50px] h-[50px]">
-            <CImage.CIcon />
+            <CImage.CIcon src={image}/>
           </div>
         );
       },
