@@ -83,18 +83,15 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
             <div className="flex items-center space-x-5 border-l-stone-50 border-l-4">
               <div className="max-h-12 w-12 ml-4 bg-[#F2F8FF] rounded-full border-2 border-[#3B8DE2]">
                 <Image
-                  src={Profile}
+                  src={userInfo?.image}
                   preview={false}
                   style={{ borderRadius: "100%" }}
                 />
               </div>
-              <div className="h-auto ml-4 py-1 leading-3 text-lg text-white flex justify-center ">
+              <div className="h-auto ml-4 leading-3 text-lg text-white flex justify-center ">
                 <div className="pr-4">
-                  <div className="mb-3">{ userInfo?.firstName ?? "undefine" }</div>
-                  <div className="text-[16px]">{ userInfo?.role ?? "undefine" }</div>
-                </div>
-                <div className="">
-                  <span>{ userInfo?.firstName ?? "undefine" }</span>
+                  <div className="mb-3 font-semibold">{ userInfo?.firstName ?? "undefine" }{'   '}{ userInfo?.firstName ?? "undefine" }</div>
+                  <div className="text-[12px] font-semibold">{ userInfo?.role ?? "undefine" }</div>
                 </div>
               </div>
               <DownOutlined className="!text-white" />

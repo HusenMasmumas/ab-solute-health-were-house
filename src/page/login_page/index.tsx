@@ -20,7 +20,7 @@ const LoginPage = () => {
         console.log("sucess", res);
         _signIn({
           token: { accessToken: res.accessToken },
-          userInfo: { id: "", email: "", role: res.role, firstName: res.firstName, lastName: res.lastName },
+          userInfo: { id: "", email: "", role: res.role, firstName: res.firstName, lastName: res.lastName, image: res.image},
         });
         navigate("/", { replace: true });
       },
