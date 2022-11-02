@@ -14,19 +14,6 @@ const WarehouseManagement = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const {data:listContainer} = useGetContainers()
-  // const data = [
-  //   { id:1, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A1" },
-  //   { id:2, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A2" },
-  //   { id:3, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A3" },
-  //   { id:4, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A4" },
-  //   { id:5, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A5" },
-  //   { id:6, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A6" },
-  //   { id:7, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A7" },
-  //   { id:8, picture: Picture1, code: "A00124680", storeNo: "ตู้จัดเก็บ A8" },
-  //   { id:9, picture: Picture2, code: "A00124680", storeNo: "ตู้จัดเก็บ A9" },
-  //   { id:10, picture: '', code: "A00124680", storeNo: "ตู้จัดเก็บ A10" },
-  // ];
-
   const elements: IsearchFormItem[] = [
     {
       name: "ชื่อตู้เก็บ",
