@@ -12,7 +12,7 @@ const CImage = ({
     <Image
         width={width}
         height={height}
-        src={src}
+        src={src ?? noProfile}
         fallback={fallback}
         {...props}
     />
