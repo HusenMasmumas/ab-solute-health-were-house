@@ -1,24 +1,22 @@
 import { Avatar, Upload, UploadProps } from "antd";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState, memo, useMemo } from "react";
 import { RcFile, UploadChangeParam, UploadFile } from "antd/lib/upload";
 import { getBase64 } from "utils/utils";
 
 interface Props {
-  value?: { imageRender: string; file: Blob };
+  imageRender?: string | undefined;
   onChange?: (value: any) => void;
 }
-const MyUpload = ({ value, onChange }: Props) => {
+const MyUpload = ({ imageRender, onChange }: Props) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
-
   const dummyRequest = ({ onSuccess }: any) => {
-    // setTimeout(() => {
-    //   onSuccess("ok");
-    // }, 1000);
     onSuccess("ok");
   };
-
+  useEffect(()=>{
+    setImageUrl(imageRender)
+  },[imageRender])
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -40,7 +38,6 @@ const MyUpload = ({ value, onChange }: Props) => {
     }
   };
   return (
-    <div>
       <Upload
         name="avatar"
         showUploadList={false}
@@ -49,16 +46,19 @@ const MyUpload = ({ value, onChange }: Props) => {
         customRequest={dummyRequest}
       >
         <div className="relative">
-          {value && value.imageRender ? (
+          {imageUrl ? (
             <div className="static h-[150px] w-[150px] rounded-full ">
               <img
-                src={value.imageRender}
+                src={imageUrl}
                 alt="avatar"
                 style={{ width: "100%", borderRadius: "100%" }}
               />
             </div>
           ) : (
-            <Avatar size={140} icon={<UserOutlined />} />
+            <Avatar 
+              size={140} 
+              icon={<UserOutlined />} 
+            />
           )}
 
           <div className=" bg-green w-[50px] h-[50px] outline outline-offset-1 outline-1 outline-white rounded-full flex justify-center items-center absolute right-[5px] bottom-[5px]">
@@ -66,7 +66,6 @@ const MyUpload = ({ value, onChange }: Props) => {
           </div>
         </div>
       </Upload>
-    </div>
   );
-};
+}
 export default MyUpload;

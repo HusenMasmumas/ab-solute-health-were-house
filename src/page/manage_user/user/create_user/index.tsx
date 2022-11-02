@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { Col, Form, Input, Row, Select, Switch } from "antd";
 import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
@@ -8,6 +9,21 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useCreatImg } from "service/img";
 import { useGetRole } from "service/permission";
 import { useCreateUser, useGetUserBYID, useUpdateUser } from 'service/user/index'
+const emtryForm = {
+  firstName:'',
+  lastName:'',
+  isActive:true,
+  username:'',
+  phone:'',
+  email:'',
+  address:'',
+  district:'',
+  province:'',
+  subDistrict:'',
+  zipcode:'',
+  password:'',
+  roleId:'',
+  }
 const CreateUser = () => {
   const { t } = useTranslation();
   const { Option } = Select;
@@ -19,31 +35,59 @@ const CreateUser = () => {
   const updateUser = useUpdateUser(); 
   const { data:User } = useGetUserBYID(location.state?.id);
   const saveImg = useCreatImg()
+  const queryClient = useQueryClient();
+  console.log('333333',User);
   const onFinish = (value:any)=>{
     if(location.state?.id){
       if(value.password.length === 0 ){
         delete value.password
       }
       value.id = location.state.id
-      
-      updateUser.mutate(
-        value,
-        {
-          onSuccess: async () => {
-            alert('success')
+
+      if(typeof value.img !== "string"){ 
+        const formdata = new FormData()
+        formdata.append('file', value.img.file)
+        saveImg.mutate(formdata,{
+          onSuccess: async (data) => {
+            value.imageId = data.id
+            updateUser.mutate(
+              value,
+              {
+                onSuccess: async () => {
+                  alert('success')
+                },
+                onError: async (errorStr:any) => {
+                  alert(errorStr)
+                  return
+                },
+              }
+            )
           },
-          onError: async (errorStr) => {
+          onError: async (errorStr:any) => {
             alert(errorStr)
+            return
           },
-        }
-      )
+        })
+      }else{
+        updateUser.mutate(
+          value,
+          {
+            onSuccess: async () => {
+              alert('success')
+            },
+            onError: async (errorStr) => {
+              alert(errorStr)
+            },
+          }
+        )
+      }
+      
     }else{      
       const formdata = new FormData()
       formdata.append('file', value.img.file)
       if(value.img){
           saveImg.mutate(formdata,{
           onSuccess: async (data) => {
-            console.log('onSuccess',data.id);
             value.imageId = data.id
             console.log('check ImageID',value);
             createUser.mutate(
@@ -51,25 +95,11 @@ const CreateUser = () => {
               {
                 onSuccess: async () => {
                   alert('success')
-                  form.setFieldsValue({
-                    firstName:'',
-                    lastName:'',
-                    isActive:true,
-                    username:'',
-                    phone:'',
-                    email:'',
-                    address:'',
-                    district:'',
-                    province:'',
-                    subDistrict:'',
-                    zipcode:'',
-                    password:'',
-                    roleId:'',
-                    imageId:null
-                    })
+                  form.setFieldsValue(emtryForm)
                 },
                 onError: async (errorStr:any) => {
                   alert(errorStr)
+                  return
                 },
               }
             )
@@ -85,21 +115,7 @@ const CreateUser = () => {
           {
             onSuccess: async () => {
               alert('success')
-              form.setFieldsValue({
-                firstName:'',
-                lastName:'',
-                isActive:true,
-                username:'',
-                phone:'',
-                email:'',
-                address:'',
-                district:'',
-                province:'',
-                subDistrict:'',
-                zipcode:'',
-                password:'',
-                roleId:'',
-                })
+              form.setFieldsValue(emtryForm)
             },
             onError: async (errorStr) => {
               alert(errorStr)
@@ -126,9 +142,10 @@ const CreateUser = () => {
         zipcode: User.result.zipcode,
         password: '', //น่าจะให้ยัด password ใหม่เข้าไป
         roleId: User.result.roleId,
+        img: User.result.image
       })
     }
-  },[User])
+  },[User])  
 
   return (
     <>
@@ -183,7 +200,7 @@ const CreateUser = () => {
             <Form.Item 
             name="img" 
             >
-              <MyUpload />
+              <MyUpload imageRender={ User?.result.image ?? undefined}/>
             </Form.Item>
           </div>
           <Row gutter={[24, 0]}>

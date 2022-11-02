@@ -27,15 +27,17 @@ export const useGetUsers = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IGetUsers[
   });
 };
 
+export const Prefetch = async (id:number) => {
+  const res = await axios.get(`/user/`+id);      
+  if (res.status >= 200 && res.status < 300)  {
+    return {...res.data, result: res.data.result[0]};
+  } else {
+    throw new Error(res.data.message) 
+  }
+}
+
 export const useGetUserBYID = (id:number): UseQueryResult<IGlobal<IGetUsers>> => {
-  return useQuery(["get-user", id], async () => {
-    const res = await axios.get(`/user/`+id);      
-    if (res.status >= 200 && res.status < 300)  {
-      return {...res.data, result: res.data.result[0]};
-    } else {
-      throw new Error(res.data.message) 
-    }
-  }, {enabled: !!id});
+  return useQuery(["get-user", id], ()=>{return Prefetch(id)} , {enabled: !!id });
 };
 
 export const useUpdateUser = () => {

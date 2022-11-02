@@ -8,7 +8,7 @@ import MoTable from "component/Table/MoTable";
 import ContentContainer from "component/container/ContentContainer";
 import CImage from "component/Image/CImage";
 import { IGetUsers} from "service/user/interface";
-import { useGetUsers, useUpdateUser } from "service/user";
+import { useGetUsers, Prefetch, useUpdateUser } from "service/user";
 import { useGetRole } from "service/permission";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -245,7 +245,8 @@ const UserManagement = () => {
             currentPage: currentPage,
           }}
           onRow={(record:IGetUsers)=>({
-            onDoubleClick: () => {
+            onDoubleClick: async () => {
+                await queryClient.prefetchQuery(["get-user", record.id],()=>{return Prefetch(record.id)})
                 navigate("/user/create-user",{state:{ id : record.id }});
               }
           })}
