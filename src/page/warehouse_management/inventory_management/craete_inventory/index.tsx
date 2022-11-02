@@ -2,11 +2,25 @@ import { useEffect } from 'react'
 import { Col, Form, Input, Row, Select } from "antd";
 import CHeader from "component/headerPage/Header";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCreateContainer } from 'service/container';
+import { IContainer } from 'service/container/interface';
 const CreateInventory = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { Option } = Select;
-
+  const [form] = Form.useForm();
+  const createContainer = useCreateContainer()
+  const onFinish = (value:IContainer)=>{
+    console.log('create container',value);
+    createContainer.mutate(value,{
+      onSuccess() {
+        alert('success')
+      },
+      onError(error,) {
+        alert(error)
+      },
+    })
+  }
   useEffect(()=>{
     // console.log('useLocation====',location.state);
   },[])
@@ -27,7 +41,8 @@ const CreateInventory = () => {
                 colorButton: 'green',
                 keytext: 'save',
                 fn:  () => {
-                  navigate("/warehouse-management/inventory-management");
+                  form.submit()
+                  // navigate("/warehouse-management/inventory-management");
                 }
               }
             ]}
@@ -38,28 +53,45 @@ const CreateInventory = () => {
           <span>ข้อมูลตู้เก็บสินค้า</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        <Form layout="vertical">
+        <Form 
+          layout="vertical" 
+          form={form}
+          onFinish={onFinish}
+          requiredMark={false}
+          >
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="SKU">
-                <Input className="input-form" placeholder="SKU"></Input>
+              <Form.Item 
+                label="ชื่อตู้สินค้า" 
+                name='name'
+                rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+                >
+                <Input className="input-form" placeholder="ชื่อตู้สินค้า"/>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="รหัสตู้สินค้า">
+              <Form.Item 
+              label="รหัสตู้สินค้า" 
+              name='code'
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              >
                 <Input
                   className="input-form"
                   placeholder="รหัสตู้สินค้า"
-                ></Input>
+                />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="เลือกสีตู้">
+              <Form.Item 
+              label="เลือกสีตู้" 
+              name='color'
+              rules={[{ required: true, message: 'เลือกสีตู้' }]}
+              >
                 <Select placeholder="เลือกสีตู้">
-                  <Option value="สีน้ำเงิน">สีน้ำเงิน</Option>
-                  <Option value="สีเขียว">สีเขียว</Option>
+                  <Option value="blue">สีน้ำเงิน</Option>
+                  <Option value="green">สีเขียว</Option>
                 </Select>
               </Form.Item>
             </Col>
