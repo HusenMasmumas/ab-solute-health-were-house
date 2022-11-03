@@ -3,7 +3,8 @@ import { apiURL } from "config/api";
 
 const axios = Axios.create({
   // baseURL: apiURL,
-  baseURL: 'http://192.168.2.122:3003/api/',
+  // baseURL: 'http://192.168.2.122:3003/api/',  //ของพี่นาย
+  baseURL: 'http://192.168.2.143:3003/api/',  //ของตัวเอง
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
   validateStatus: (status) => status >= 400,
@@ -46,3 +47,14 @@ axios.interceptors.request.use(onRequest, onRequestError);
 
 axios.interceptors.response.use(onResponse, onResponseError);
 export default axios;
+
+export const throwResponse = (res: AxiosResponse) => {
+  const { message } = res.data;
+  if (!Array.isArray(message)) {
+    throw new Error(message.TH);
+  }
+  const text = message.reduce((result: string, item: {TH:string, EN:string}) => {
+    return `${result}${item.TH}\n`;
+  }, "");
+  throw new Error(text);
+};
