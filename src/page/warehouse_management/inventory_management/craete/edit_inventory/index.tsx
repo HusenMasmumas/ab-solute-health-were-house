@@ -22,7 +22,7 @@ const CreateInventory = () => {
     })
   }
   useEffect(()=>{
-    // console.log('useLocation====',location.state);
+    console.log('useLocation====',location.state);
   },[])
   return (
     <>

@@ -60,7 +60,7 @@ const WarehouseManagement = () => {
       <ContentContainer>
         <SearchForm elements={elements} onFinish={onFinish} />
         <div className="grid xl:grid-cols-5 md:grid-cols-3 gap-4 mt-[12px;]">
-          {listContainer?.result[0].data.map((item, index) => {
+          {listContainer?.result[0].data.map((item) => {
             return (
               <div
                 key={item.id}
