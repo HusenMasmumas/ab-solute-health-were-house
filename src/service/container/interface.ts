@@ -1,5 +1,5 @@
 export interface IContainer{
-    id?: number,
+    id: number,
     name: string,
     code: string,
     color: string
