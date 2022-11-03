@@ -17,7 +17,7 @@ import StockReport from "page/report/stockReport";
 import ImportedReport from "page/report/importedReport";
 import UserManagement from "page/manage_user/user";
 import RoleManagement from "page/manage_user/role";
-import CreateUser from "page/manage_user/user/create_user";
+import CreateUser from "page/manage_user/user/create_edit";
 import CreateRole from "page/manage_user/role/craete_role";
 import CreatePurchase from "page/purchase_order/order/CreatePurchase";
 import StoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet";
