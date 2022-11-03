@@ -28,7 +28,7 @@
 
 .Nav_select {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: #0e254e;
+  --tw-gradient-from: #3b8de2;
   --tw-gradient-stops:#3b8de2,
     var(--tw-gradient-to, rgb(14 37 79 / 0));
   --tw-gradient-to: var(--tw-gradient-from);
@@ -91,7 +91,7 @@
 
 .inNav_select:hover {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: #0e254e;
+  --tw-gradient-from: #3b8de2;
   --tw-gradient-stops:#3b8de2,
     var(--tw-gradient-to, rgb(14 37 79 / 0));
   --tw-gradient-to: var(--tw-gradient-from);
