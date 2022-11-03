@@ -23,7 +23,7 @@ import CreatePurchase from "page/purchase_order/order/CreatePurchase";
 import StoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet";
 import ManageStoreCabinet from "page/warehouse_management/inventory_management/storage_cabinet/create_store_cabinet";
 import CreateStore from "page/stores_branches/create_stores";
-import CreateInventory from "page/warehouse_management/inventory_management/craete/edit_inventory";
+import CreateInventory from "page/warehouse_management/inventory_management/craete_edit";
 import ProductsManagemnet from "page/warehouse_management/products_management";
 import CreateProduct from "page/warehouse_management/products_management/create_products";
 import Examine from "page/purchase_order/order/Examine";
