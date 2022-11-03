@@ -1,5 +1,5 @@
 import {useMutation} from '@tanstack/react-query'
-import axios from 'axios_config';
+import axios, { throwResponse } from 'axios_config';
 import { IUserLogin } from './interface';
 
 export const useLogin = () => {
@@ -9,6 +9,6 @@ export const useLogin = () => {
       if (res.status >= 200 && res.status < 300) {
         return res.data.result?.[0];
       }
-    throw new Error(res.data.message?.TH)  
+      throwResponse(res)
     });
 };

@@ -1,5 +1,5 @@
 import {useMutation, useQuery, UseQueryResult} from '@tanstack/react-query'
-import axios from 'axios_config';
+import axios, { throwResponse } from 'axios_config';
 import { IGlobal, ITotal } from 'service/IGlobal.interface';
 import { createQueryString } from 'utils/utils';
 import { IGetRole, IGetRoleByID, IPostRole, IRole, Permission } from './interface';
@@ -9,9 +9,8 @@ export const useGetRoleForm = (id:number): UseQueryResult<IGlobal<IRole[]>> => {
       const res = await axios.get(`/role/form`);      
       if (res.status >= 200 && res.status < 300)  {
         return res.data;
-      } else {
-        throw new Error(res.data.message) 
       }
+      throwResponse(res)
     },{enabled: !id });
 };
 
@@ -21,9 +20,8 @@ export const useGetRole = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IGetRole[]>
     const res = await axios.get(`/role`+queryStr);      
     if (res.status >= 200 && res.status < 300)  {
       return res.data;
-    } else {
-      throw new Error(res.data.message) 
     }
+    throwResponse(res)
   });
 };
 
@@ -32,9 +30,8 @@ export const useGetRoleBYID = (id:number): UseQueryResult<IGlobal<IGetRoleByID>>
     const res = await axios.get(`/role/`+id);      
     if (res.status >= 200 && res.status < 300)  {
       return {...res.data, result: res.data.result[0]};
-    } else {
-      throw new Error(res.data.message) 
     }
+    throwResponse(res)
   }, {enabled: !!id});
 };
 
@@ -45,7 +42,7 @@ export const useCreateRole = () => {
     if (res.status >= 200 && res.status < 300) {
       return res.data.result?.[0];
     }
-  throw new Error(res.data.message)  
+    throwResponse(res)
   });
 };
 
@@ -56,7 +53,7 @@ export const useDelete = () => {
     if (res.status >= 200 && res.status < 300) {
       return res.data.result?.[0];
     }
-  throw new Error(res.data.message)  
+    throwResponse(res)
   });
 };
 
@@ -67,7 +64,7 @@ export const useUpdateRole = () => {
     if (res.status >= 200 && res.status < 300) {
       return res.data.result?.[0];
     }
-  throw new Error(res.data.message)  
+    throwResponse(res)
   });
 };
 
@@ -78,6 +75,6 @@ export const useUpdateRoleActive = () => {
     if (res.status >= 200 && res.status < 300) {
       return res.data.result?.[0];
     }
-  throw new Error(res.data.message)  
+    throwResponse(res)
   });
 };

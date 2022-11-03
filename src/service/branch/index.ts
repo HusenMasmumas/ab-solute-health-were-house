@@ -1,5 +1,5 @@
 import { useMutation, useQuery, UseQueryResult } from "@tanstack/react-query";
-import axios from "axios_config";
+import axios, { throwResponse } from "axios_config";
 import { IGlobal, ITotal } from "service/IGlobal.interface";
 import { createQueryString } from "utils/utils";
 import { IBranch } from "./interface";
@@ -11,7 +11,7 @@ export const useCreateBranch = () => {
       if (res.status >= 200 && res.status < 300) {
         return res.data.result?.[0];
       }
-    throw new Error(res.data.message)  
+      throwResponse(res)
     });
 };
 
@@ -22,7 +22,7 @@ export const useGetBranchs = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IBranch[
     if (res.status >= 200 && res.status < 300)  {
       return res.data;
     } else {
-      throw new Error(res.data.message) 
+      throwResponse(res)
     }
   });
 };
@@ -33,7 +33,7 @@ export const useGetBranchBYID = (id:number): UseQueryResult<IGlobal<IBranch>> =>
     if (res.status >= 200 && res.status < 300)  {
       return {...res.data, result: res.data.result[0]};
     } else {
-      throw new Error(res.data.message) 
+      throwResponse(res)
     }
   }, {enabled: !!id});
 };
@@ -44,6 +44,6 @@ export const useUpdateBranch = () => {
     if (res.status >= 200 && res.status < 300) {
       return res.data.result?.[0];
     }
-  throw new Error(res.data.message)  
+    throwResponse(res)
   });
 };
