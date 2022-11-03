@@ -44,6 +44,7 @@ const CreateStore = () => {
         province	:	result?.province,
         subDistrict	:	result?.subDistrict,
         zipcode	    :	result?.zipcode,
+        image : result?.image
       })
     }else{
       form.setFieldsValue(initialForm)
@@ -51,9 +52,14 @@ const CreateStore = () => {
   },[dataBranch])
 
   const onFinish = (value:any)=>{
+    console.log('1111',location.state?.id);
+    
     if(location.state?.id){
+      console.log('222',typeof value.image);
+      
       value = {...value, id: location.state.id}
       if(typeof value.image !== "string"){
+        
         saveImg.mutate(value.image,{
           onSuccess: async (data) => {
             value.imageId = data.id
@@ -62,12 +68,13 @@ const CreateStore = () => {
           onError: AlertService.onError
         })
       }else{
+        console.log('aaaa');
+        
         updateBranch.mutate(
           value,
           {
             onSuccess: async () => {
               onSuccess()
-              form.setFieldsValue(initialForm)
             },
             onError: onError
           }

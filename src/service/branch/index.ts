@@ -1,4 +1,4 @@
-import { useMutation, useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient, UseQueryResult } from "@tanstack/react-query";
 import axios, { throwResponse } from "axios_config";
 import { IGlobal, ITotal } from "service/IGlobal.interface";
 import { createQueryString } from "utils/utils";
@@ -28,9 +28,12 @@ export const useGetBranchs = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IBranch[
 };
 
 export const useGetBranchBYID = (id:number): UseQueryResult<IGlobal<IBranch & {image : string}>> => {
+  const queryClient = useQueryClient()
   return useQuery(["get-branch", id], async () => {
     const res = await axios.get(`/branch/`+id);      
     if (res.status >= 200 && res.status < 300)  {
+      queryClient.invalidateQueries(["get-branch", id])
+      queryClient.invalidateQueries(["get-branchs", {}])
       return {...res.data, result: res.data.result[0]};
     } else {
       throwResponse(res)
