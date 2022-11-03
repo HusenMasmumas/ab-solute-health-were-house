@@ -5,8 +5,10 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AlertService, AlertSuccess } from "service/alert";
 import { useCreateBranch, useGetBranchBYID, useUpdateBranch } from "service/branch";
 import { IBranch } from "service/branch/interface";
+import { useCreatImg } from "service/img";
 
 const initialForm = {
   firstName	:	'',
@@ -27,11 +29,11 @@ const CreateStore = () => {
   const createBranch = useCreateBranch();
   const updateBranch = useUpdateBranch();
   const { data:dataBranch } = useGetBranchBYID(location.state?.id);
-
+  const saveImg = useCreatImg()
+  const { onError, onSuccess } = AlertService
   useEffect(()=>{
     if(dataBranch){
       const { result } = dataBranch 
-      console.log('dataBranch111',dataBranch.result);
       form.setFieldsValue({
         firstName	:	dataBranch.result?.firstName,
         lastName	:	result?.lastName,
@@ -48,38 +50,56 @@ const CreateStore = () => {
     }
   },[dataBranch])
 
-  const onFinish = (value:IBranch)=>{
+  const onFinish = (value:any)=>{
     if(location.state?.id){
-      let temp : IBranch & { id:string };
-      temp = {...value, id: location.state.id}
-      console.log('temp',temp);
-      updateBranch.mutate(
-        temp,
-        {
-          onSuccess: async () => {
-            alert('success')
-            form.setFieldsValue(initialForm)
+      value = {...value, id: location.state.id}
+      if(typeof value.image !== "string"){
+        saveImg.mutate(value.image,{
+          onSuccess: async (data) => {
+            value.imageId = data.id
+            updateBranch.mutate(value, AlertService)
           },
-          onError: async (errorStr) => {
-            alert(errorStr)
-          },
-        }
-      )
+          onError: AlertService.onError
+        })
+      }else{
+        updateBranch.mutate(
+          value,
+          {
+            onSuccess: async () => {
+              onSuccess()
+              form.setFieldsValue(initialForm)
+            },
+            onError: onError
+          }
+        )
+      }
+    }else{
+    if(value.img){
+        saveImg.mutate(value.img,{
+        onSuccess: async (data) => {
+          value.imageId = data.id
+          createBranch.mutate(value, 
+            {
+              onSuccess: ()=>{
+                form.setFieldsValue(initialForm)
+                onSuccess()
+              },
+              onError: onError
+            })},
+        onError: onError
+      })
     }else{
       createBranch.mutate(
         value,
         {
           onSuccess: async () => {
-            alert('success')
-            if(location.state?.id){
-              form.setFieldsValue(initialForm)
-            }
+            form.setFieldsValue(initialForm)
+            onSuccess()
           },
-          onError: async (errorStr) => {
-            alert(errorStr)
-          },
+          onError: onError
         }
       )
+    }
     }
   }
   
@@ -116,9 +136,9 @@ const CreateStore = () => {
           >
           <div className="flex justify-center items-center !mb-[60px]">
             <Form.Item 
-              // name="imageId" รอพี่นายแก้
+              name="image"
               >
-              <MyUpload />
+              <MyUpload imageRender={ dataBranch?.result.image ?? undefined}/>
             </Form.Item>
           </div>
           <Row gutter={[24, 0]}>
@@ -135,7 +155,7 @@ const CreateStore = () => {
               <Form.Item 
                 name='firstName' 
                 label={t("ชื่อ (ผู้จัดการ)")}
-                // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+                rules={[{ required: true, message: 'กรอกข้อมูล' }]}
                 >
                 <CInput placeholder="ชื่อ (ผู้จัดการ)" />
               </Form.Item>
@@ -144,7 +164,7 @@ const CreateStore = () => {
               <Form.Item 
                 name='lastName' 
                 label={t("นามสกุล (ผู้จัดการ)")}
-                // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+                rules={[{ required: true, message: 'กรอกข้อมูล' }]}
                 >
                 <CInput placeholder="นามสกุล (ผู้จัดการ)" />
               </Form.Item>
@@ -155,7 +175,7 @@ const CreateStore = () => {
               <Form.Item 
               name='phone' 
               label={t("เบอร์โทร")}
-              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
               >
                 <CInput placeholder="เบอร์โทร" />
               </Form.Item>
@@ -164,7 +184,7 @@ const CreateStore = () => {
               <Form.Item 
               name='address' 
               label={t("บ้านเลขที่")}
-              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
               >
                 <CInput placeholder="บ้านเลขที่" />
               </Form.Item>
@@ -173,7 +193,7 @@ const CreateStore = () => {
               <Form.Item 
               name='subDistrict' 
               label={t("ตำบล")}
-              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
               >
                 <CInput placeholder="ตำบล" />
               </Form.Item>
@@ -184,7 +204,7 @@ const CreateStore = () => {
               <Form.Item 
               name="district" 
               label={t("อำเภอ")}
-              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
               >
                 <CInput placeholder="อำเภอ" />
               </Form.Item>
@@ -193,7 +213,7 @@ const CreateStore = () => {
               <Form.Item 
               name='province' 
               label={t("จังหวัด")}
-              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
               >
                 <CInput placeholder="จังหวัด" />
               </Form.Item>
@@ -202,7 +222,7 @@ const CreateStore = () => {
               <Form.Item 
               name='zipcode' 
               label={t("รหัสไปรษณีย์")}
-              // rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
               >
                 <CInput placeholder="รหัสไปรษณีย์" />
               </Form.Item>

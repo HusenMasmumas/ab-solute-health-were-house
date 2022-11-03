@@ -27,7 +27,7 @@ export const useGetBranchs = ( qs?:any ): UseQueryResult<IGlobal<ITotal<IBranch[
   });
 };
 
-export const useGetBranchBYID = (id:number): UseQueryResult<IGlobal<IBranch>> => {
+export const useGetBranchBYID = (id:number): UseQueryResult<IGlobal<IBranch & {image : string}>> => {
   return useQuery(["get-branch", id], async () => {
     const res = await axios.get(`/branch/`+id);      
     if (res.status >= 200 && res.status < 300)  {
