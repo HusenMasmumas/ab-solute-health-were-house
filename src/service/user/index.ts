@@ -5,7 +5,7 @@ import { createQueryString } from 'utils/utils';
 import { IPostUser, IGetUsers } from './interface';
 
 export const useCreateUser = () => {
-    return useMutation(async (data: IPostUser) => {
+    return useMutation(async (data: IPostUser & {password: string}) => {
       const res = await axios.post(`/user`, data);
   
       if (res.status >= 200 && res.status < 300) {
@@ -41,7 +41,6 @@ export const useGetUserBYID = (id:number): UseQueryResult<IGlobal<IGetUsers>> =>
 export const useUpdateUser = () => {
   return useMutation(async (body : IPostUser & { id:number}) => {
     const res = await axios.put(`/user/${body.id}`, body);
-
     if (res.status >= 200 && res.status < 300) {
       return res.data.result?.[0];
     }

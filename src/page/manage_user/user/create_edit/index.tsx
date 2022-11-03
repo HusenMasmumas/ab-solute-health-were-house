@@ -6,6 +6,7 @@ import MyUpload from "component/MyUpload/MyUpload";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
+import { AlertService } from "service/alert";
 import { useCreatImg } from "service/img";
 import { useGetRole } from "service/permission";
 import { useCreateUser, useGetUserBYID, useUpdateUser } from 'service/user/index'
@@ -35,79 +36,31 @@ const CreateUser = () => {
   const updateUser = useUpdateUser(); 
   const { data:User } = useGetUserBYID(location.state?.id);
   const saveImg = useCreatImg()
-  const queryClient = useQueryClient();
-  console.log('333333',User);
+
   const onFinish = (value:any)=>{
     if(location.state?.id){
       if(value.password.length === 0 ){
         delete value.password
       }
       value.id = location.state.id
-
       if(typeof value.img !== "string"){ 
-        const formdata = new FormData()
-        formdata.append('file', value.img.file)
-        saveImg.mutate(formdata,{
+        saveImg.mutate(value.img,{
           onSuccess: async (data) => {
             value.imageId = data.id
-            updateUser.mutate(
-              value,
-              {
-                onSuccess: async () => {
-                  alert('success')
-                },
-                onError: async (errorStr:any) => {
-                  alert(errorStr)
-                  return
-                },
-              }
-            )
+            updateUser.mutate(value, AlertService)
           },
-          onError: async (errorStr:any) => {
-            alert(errorStr)
-            return
-          },
+          onError: AlertService.onError
         })
       }else{
-        updateUser.mutate(
-          value,
-          {
-            onSuccess: async () => {
-              alert('success')
-            },
-            onError: async (errorStr) => {
-              alert(errorStr)
-            },
-          }
-        )
+        updateUser.mutate(value, AlertService)
       }
-      
     }else{      
-      const formdata = new FormData()
-      formdata.append('file', value.img.file)
       if(value.img){
-          saveImg.mutate(formdata,{
+          saveImg.mutate(value.img,{
           onSuccess: async (data) => {
             value.imageId = data.id
-            console.log('check ImageID',value);
-            createUser.mutate(
-              value,
-              {
-                onSuccess: async () => {
-                  alert('success')
-                  form.setFieldsValue(emtryForm)
-                },
-                onError: async (errorStr:any) => {
-                  alert(errorStr)
-                  return
-                },
-              }
-            )
-          },
-          onError: async (errorStr) => {
-            alert(errorStr)
-            return
-          }
+            createUser.mutate(value, AlertService)},
+          onError: AlertService.onError
         })
       }else{
         createUser.mutate(
@@ -117,9 +70,7 @@ const CreateUser = () => {
               alert('success')
               form.setFieldsValue(emtryForm)
             },
-            onError: async (errorStr) => {
-              alert(errorStr)
-            },
+            onError: AlertService.onError,
           }
         )
       }
@@ -178,23 +129,7 @@ const CreateUser = () => {
           className="!mb-[100px]" 
           form={form}
           onFinish={onFinish}
-          initialValues={
-            {
-            firstName:'',
-            lastName:'',
-            isActive:true,
-            username:'',
-            phone:'',
-            email:'',
-            address:'',
-            district:'',
-            province:'',
-            subDistrict:'',
-            zipcode:'',
-            password:'',
-            roleId:'',
-            }
-          }
+          initialValues={emtryForm}
         >
           <div className="flex justify-center items-center">
             <Form.Item 
@@ -284,7 +219,11 @@ const CreateUser = () => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item label={t("รหัสผ่าน")} name='password'>
+              <Form.Item 
+                label={t("รหัสผ่าน")} 
+                name='password'
+                rules={[{ required: !location.state?.id, message: 'กรอกข้อมูล' }]}
+              >
                 <Input.Password placeholder="รหัสผ่าน" />
               </Form.Item>
             </Col>
