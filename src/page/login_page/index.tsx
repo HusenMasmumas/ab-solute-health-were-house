@@ -10,7 +10,6 @@ import CInput from "component/input/c-input";
 import DeepBlueButton from "component/Button/DeepBlue";
 import { useLogin } from "service/auth";
 import { useEffect } from "react";
-import clsx from "clsx";
 const LoginPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
