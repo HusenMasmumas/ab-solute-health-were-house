@@ -12,7 +12,7 @@ const NevigationPath = ({ textPath = [], ...props }: INevigationPath) => {
       {textPath.map((item, index) => {
         return (
           <Breadcrumb.Item key={index}>
-            <span className={clsx('text-[15px]', { 'text-[#01438F]': index == textPath.length - 1 })}>
+            <span className={clsx('text-[15px]', { 'text-[#01438F]': index === textPath.length - 1 })}>
               {i18n.exists(item) ? `${t(item)}` : item}
             </span>
           </Breadcrumb.Item>
