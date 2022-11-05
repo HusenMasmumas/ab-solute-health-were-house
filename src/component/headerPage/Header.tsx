@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import NevigationPath, { INevigationPath } from "component/Path/nevigationPath";
+import NevigationPath from "component/Path/nevigationPath";
 import GreenButton from "component/Button/GreenButton";
 import WhilteButton from "component/Button/whilteButton";
 import DeepBlueButton from "component/Button/DeepBlue";
