@@ -72,7 +72,7 @@ const CreateRole = () => {
           record.subMenu !== undefined &&
           record.subMenu !== null
         ) {
-          item.subMenu?.map((subItem: DataType) => {
+          item.subMenu?.forEach((subItem: DataType) => {
             setting(keyname, state ? true : false, subItem);
           });
         }
@@ -221,8 +221,8 @@ const CreateRole = () => {
       const { expanded, onExpand, record } = props;
       if (
         record.subMenu?.length !== 0 &&
-        record.subMenu != undefined &&
-        record.subMenu != null
+        record.subMenu !== undefined &&
+        record.subMenu !== null
       ) {
         return expanded ? (
           <div className="w-7 flex items-center">

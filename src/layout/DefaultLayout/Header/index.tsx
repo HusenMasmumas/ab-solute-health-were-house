@@ -34,7 +34,7 @@ const Hader = ({ setOpenDrawer, openDrawer }: Props) => {
     />
   );
   useEffect(() => {
-    if (window.localStorage.getItem("i18nextLng") != undefined) {
+    if (window.localStorage.getItem("i18nextLng") !== undefined) {
       const lang = window.localStorage.getItem("i18nextLng");
       setLanguage(lang as string);
       i18n.changeLanguage(lang as string);
