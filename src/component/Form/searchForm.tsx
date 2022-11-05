@@ -71,35 +71,10 @@ const SearchForm = ({
   };
 
   const _onSubmit = () => {
-    // ทำงานเหมือนกดปุ่ม เรียกปุ่ม submit buttom
     if (form) {
       return form.submit();
     }
     _form.submit();
-  };
-
-  const getPlaceholder = (
-    input: TPageHeaderInput,
-    name: string
-  ): string | undefined => {
-    const list: TPageHeaderInput[] = [
-      "input",
-      "select",
-      "select-car-brand",
-      "select-car-type",
-      "select-color",
-      "select-pagination",
-    ];
-    if (list.includes(input)) {
-      return name;
-    }
-  };
-
-  const getOnEnter = (input: TPageHeaderInput): object => {
-    if (input === "input") {
-      return { onPressEnter: _onSubmit };
-    }
-    return {};
   };
 
   return (
@@ -111,8 +86,6 @@ const SearchForm = ({
         <Row gutter={[12, 6]} align="bottom">
           {elements.map((item) => {
             const Element = getInputByType(item.input.type) as ElementType;
-            const onEnter = getOnEnter(item.input.type);
-            const placeholder = getPlaceholder(item.input.type, item.label);
             return (
               <Col span={8} key={item.name}>
                 <Form.Item

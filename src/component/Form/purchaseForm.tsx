@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Form, FormInstance, Row, Col, Input, DatePicker } from "antd";
+import { Form, FormInstance, Row, Col, Input} from "antd";
 import CInput from "component/input/c-input";
 import moment from 'moment';
 import { ConfigProvider } from 'antd';
-import styled from "styled-components";
 import CDatePicker from 'component/input/c-date-picker' 
 
 interface IForm {
@@ -15,11 +14,6 @@ interface IForm {
   Description2?:string | null | undefined,
 }
 
-const StyleCDatePicker = styled(DatePicker)`
-  width: 100%;
-  background-color: #FFF !important;
-  color: #231F20 !important;
-`;
 
 type Props = {
     form: FormInstance,
@@ -34,14 +28,12 @@ const PurchaseForm = ( {form, onFinish, refDisable=false, setValue, AllreadOnly=
   //let [form] = Form.useForm();
   const { TextArea } = Input;
 
-  useEffect(()=>{
-    console.log('setValueeeeeeeeeee',setValue);
-    
+  useEffect(()=>{    
     form.setFieldsValue({
       ...setValue,
-      // sendDate: moment(new Date())
     })
-  },[])
+    return
+  },[setValue, form])
 
   return (
     <Form 

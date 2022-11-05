@@ -1,6 +1,6 @@
 import { Avatar, Upload, UploadProps } from "antd";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons";
-import { useEffect, useState, memo, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { RcFile, UploadChangeParam, UploadFile } from "antd/lib/upload";
 import { getBase64 } from "utils/utils";
 
