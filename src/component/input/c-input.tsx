@@ -1,4 +1,4 @@
-import { CopyFilled, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { Input, InputNumber, InputNumberProps, InputProps} from "antd";
 import styled from 'styled-components'
 
