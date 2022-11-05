@@ -5,11 +5,10 @@ import { Form, Switch } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { useState, useEffect } from "react";
 import MoTable from "component/Table/MoTable";
-import { DataType } from './interface'
 import ContentContainer from "component/container/ContentContainer";
 import { useGetRole, useUpdateRoleActive } from "service/permission";
 import { IGetRole } from "service/permission/interface";
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 const elements: IsearchFormItem[] = [
   {
     name: "search",
