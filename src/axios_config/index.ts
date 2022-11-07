@@ -1,9 +1,6 @@
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiURL } from "config/api";
 
-console.log('process.env.NODE_ENV===',process.env.NODE_ENV);
-console.log('apiURL===',process.env.REACT_APP_API_URL);
-
 const axios = Axios.create({
   baseURL: apiURL,
   // baseURL: 'http://192.168.2.122:3003/api/',  //ของพี่นาย
