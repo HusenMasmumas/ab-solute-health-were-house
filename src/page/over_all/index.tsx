@@ -7,9 +7,9 @@ import Dashboard3 from "assets/img/Dashboard-3.png";
 import Arrow from "assets/img/Dashboard-4.png";
 import BarChart from "component/chart/bar-chart";
 import Linechart from "component/chart/line-chart";
-import { ReactComponent as ArrowIcon } from "assets/Icon/Arrow.svg";
 import ContentContainer from "component/container/ContentContainer";
 import styled from "styled-components";
+import CouterWidget from './couter_widget'
 const CustomContainer = styled(ContentContainer)`
 height: 100%;
 `
@@ -38,100 +38,10 @@ const OverAllPage = () => {
       </div>
       <CustomContainer>
       <div className="grid grid-cols-12 gap-6 mt-[12px]">
-        <div className="grid xl:col-span-3 md:col-span-6">
-          <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("allorderlist")}`}</p>
-            <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
-            <div className="grid grid-cols-3">
-              <div className=" text-green">
-                <div className="bg-[#F5FAF7] h-[65px] w-[65px] rounded-full flex items-center justify-center p-4">
-                  <Image
-                    src={Dashboard}
-                    alt="dashboard"
-                    preview={false}
-                  ></Image>
-                </div>
-              </div>
-              <div className="basis-4/6 text-[42px] md:text-[38px] font-semibold text-[#0F1B45]">
-                {`${t("300 K")}`}
-              </div>
-              <div className="flex text-lightblue items-end justify-end pt-[40px]">
-                <ArrowIcon />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="grid xl:col-span-3 md:col-span-6">
-          <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("totalProducts")}`}</p>
-            <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
-            <div className="grid grid-cols-3">
-              <div className=" text-green">
-                <div className="bg-[#F5FAF7] h-[65px] w-[65px] rounded-full flex items-center justify-center p-4">
-                  <Image
-                    src={Dashboard1}
-                    alt="dashboard"
-                    preview={false}
-                  ></Image>
-                </div>
-              </div>
-              <div className="basis-4/6 text-[42px] md:text-[38px] font-semibold text-[#0F1B45] ">
-                {`${t("300 K")}`}
-              </div>
-              <div className="flex text-[#4E8FCC] items-end justify-end  pt-[40px]">
-                <ArrowIcon />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="grid xl:col-span-3 md:col-span-6">
-          {" "}
-          <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("expiredProducts")}`}</p>
-            <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
-            <div className="grid grid-cols-3">
-              <div className=" text-green">
-                <div className="bg-[#F5FAF7] h-[65px] w-[65px] rounded-full flex items-center justify-center p-4">
-                  <Image
-                    src={Dashboard2}
-                    alt="dashboard"
-                    preview={false}
-                  ></Image>
-                </div>
-              </div>
-              <div className="basis-4/6 text-[42px] md:text-[38px] font-semibold text-[#0F1B45] ">
-                {`${t("300 K")}`}
-              </div>
-              <div className="flex text-[#4E8FCC] items-end justify-end  pt-[40px]">
-                <ArrowIcon />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="grid xl:col-span-3 md:col-span-6">
-          {" "}
-          <div className="bg-white px-[24px] pt-[16px] py-[10px] rounded-[10px]">
-            <p className="!mb-0">{`${t("damagedGoods")}`}</p>
-            <div className="border-b-[0.1px] my-[16px] border-lightgray"></div>
-            <div className="grid grid-cols-3">
-              <div className=" text-green">
-                <div className="bg-[#F5FAF7] h-[65px] w-[65px] rounded-full flex items-center justify-center p-4">
-                  <Image
-                    src={Dashboard3}
-                    alt="dashboard"
-                    preview={false}
-                  ></Image>
-                </div>
-              </div>
-              <div className="basis-4/6 text-[42px] md:text-[38px] font-semibold text-[#0F1B45] ">
-                {`${t("300 K")}`}
-              </div>
-              <div className="flex text-[#4E8FCC] items-end justify-end  pt-[40px]">
-                <ArrowIcon />
-              </div>
-            </div>
-          </div>
-        </div>
+        <CouterWidget name='รายการการสั่งสินค้าทั่งหมด' display={300} icon={Dashboard}/>
+        <CouterWidget name='จำนวนสินค้าทั้งหมด' display={200} icon={Dashboard1}/>
+        <CouterWidget name='จำนวนสินค้าที่หมดอายุ' display={100} icon={Dashboard2}/>
+        <CouterWidget name='จำนวนสินค้าที่เสียหาย' display={400} icon={Dashboard3}/>
         {/* chart */}
         <div className="grid xl:col-span-8 md:col-span-12">
           <div className="bg-white rounded-[10px] px-[24px] pt-[16px] py-[10px]">
