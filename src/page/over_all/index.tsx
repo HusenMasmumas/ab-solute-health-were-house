@@ -106,7 +106,7 @@ const OverAllPage = () => {
                   width={"75%"}
                   height={"75%"}
                   preview={false}
-                ></Image>
+                />
               </div>
               <div className="my-[8px] col-span-6 grid items-center">
                 แอ็บโซลูท เฮลธ์ คลินิค สาขาสุขุมวิท
@@ -120,7 +120,7 @@ const OverAllPage = () => {
                   width={"75%"}
                   height={"75%"}
                   preview={false}
-                ></Image>
+                />
               </div>
               <div className="my-[8px] col-span-6 grid items-center">
                 แอ็บโซลูท เฮลธ์ คลินิค สาขาอโศก
@@ -134,7 +134,7 @@ const OverAllPage = () => {
                   width={"75%"}
                   height={"75%"}
                   preview={false}
-                ></Image>
+                />
               </div>
               <div className="my-[8px] col-span-6 grid items-center">
                 แอ็บโซลูท เฮลธ์ คลินิค สาขาพระราม
@@ -148,7 +148,7 @@ const OverAllPage = () => {
                   width={"75%"}
                   height={"75%"}
                   preview={false}
-                ></Image>
+                />
               </div>
               <div className="my-[8px] col-span-6 grid items-center">
                 แอ็บโซลูท เฮลธ์ คลินิค สาขานานา
@@ -162,7 +162,7 @@ const OverAllPage = () => {
                   width={"75%"}
                   height={"75%"}
                   preview={false}
-                ></Image>
+                />
               </div>
               <div className="my-[8px] col-span-6 grid items-center">
                 แอ็บโซลูท เฮลธ์ คลินิค สาขาพระราม
