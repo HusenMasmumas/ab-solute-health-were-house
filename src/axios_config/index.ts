@@ -1,10 +1,13 @@
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiURL } from "config/api";
 
+console.log('process.env.NODE_ENV===',process.env.NODE_ENV);
+console.log('apiURL===',process.env.REACT_APP_API_URL);
+
 const axios = Axios.create({
-  // baseURL: apiURL,
+  baseURL: apiURL,
   // baseURL: 'http://192.168.2.122:3003/api/',  //ของพี่นาย
-  baseURL: 'http://192.168.2.143:3003/api/',  //ของตัวเอง
+  // baseURL: 'http://192.168.2.143:3003/api/',  //ของตัวเอง อยู่หอใช้ 2.33 อยู่บอใช้ 2.143
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
   validateStatus: (status) => status >= 400,
