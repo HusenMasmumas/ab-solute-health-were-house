@@ -109,52 +109,42 @@ const StoreCabinet = () => {
 
   const columns: ColumnsType<IStoreCabinet> = [
     {
-      title: "SKU/Sub SKU",
-      dataIndex: "sku",
-      width:'15%'
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-      width:'20%'
-    },
-    {
-      title: "Category/Sub Category",
+      title: "Category",
       dataIndex: "category",
       width:'15%'
     },
     {
-      title: "Lot",
-      dataIndex: "lot",
+      title: "Sub Category",
+      dataIndex: "SubCategory",
+      width:'20%'
+    },
+    {
+      title: "SKU",
+      dataIndex: "sku",
+      width:'15%'
+    },
+    {
+      title: "subSKU",
+      dataIndex: "subSKU",
       width:'10%'
     },
     {
-      title: "Due Date",
+      title: "Name",
       dataIndex: "dueDate",
       width:'10%'
     },
     {
+      title: "Price Cost",
+      dataIndex: "priceCost",
+      width:'10%',
+    },
+    {
       title: "Price Normal",
-      dataIndex: "price",
+      dataIndex: "priceNormal",
       width:'10%',
-      render: (price: number) => {
-        return (
-          <CInput.CInputNumberSytle defaultValue={price} text_align='end'/>
-        )
-      },
     },
     {
-      title: "QTY",
-      dataIndex: "qty",
-      width:'10%',
-      render: (qty: number) => {
-        return (
-          <CInput.CInputNumberSytle defaultValue={qty} text_align='end'/>
-        );
-      },
-    },
-    {
-      title: "สถานะ",
+      title: "Status",
       dataIndex: "status",
       width:'10%',
       render: (text) => {
@@ -180,33 +170,6 @@ const StoreCabinet = () => {
     },
   ];
 
-  const expandable = {
-    expandedRowRender: (record : IStoreCabinet, index:number) => (
-      <div>
-        <div className="flex space-x-5 justify-end">
-          <WhilteButton width='100px' height="36px">{ `${t('cancle')}`}</WhilteButton>
-          <BlueButton width='100px' height="36px">{ `${t('save')}`}</BlueButton>
-        </div>
-          {
-            record.slots.map((element:ISlot,index:number)=>{
-              return (
-                <div key={index} className="flex mt-3 space-x-4 w-full bg-red-400">
-                  <div className="w-[58%] text-end bg-lime-600">
-                    <div>{element.color}</div>
-                    <div>code sku</div>
-                  </div> 
-                  <div className="w-[42%]">
-                  <CInput.CInputNumberSytle defaultValue={element.price} className="mr-" text_align="end"/>
-                  <CInput.CInputNumberSytle defaultValue={element.qty} className="w-[120px]" text_align="end"/>
-                  </div> 
-                </div>
-              )
-            })
-          }
-      </div>
-    ),
-    rowExpandable: (record: any) => record.name !== "Not Expandable",
-  };
   
   
   const onFinish = (values: any) => {
@@ -233,8 +196,7 @@ const StoreCabinet = () => {
       <MoTable
         headerTable={`รายการสินค้า`}
         columns={columns}
-        dataSource={data}
-        expandable={expandable}
+        // dataSource={data}
         onChangePage={onChangePage}
         config={{
           total: 20, //ค่าจาก backend ใช้หารหน้า
