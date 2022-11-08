@@ -1,30 +1,20 @@
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import CSelectStatus from "component/input/c-select-status";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
-import { IStoreCabinet, ISlot } from '../interface'
-import WhilteButton from "component/Button/whilteButton";
-import BlueButton from "component/Button/BlueButton";
-import CInput from "component/input/c-input";
+import { IStoreCabinet } from '../interface'
 import CDropDown from "component/Dropdown/DropDown";
 import ContentContainer from "component/container/ContentContainer";
-
-
 
 const StoreCabinet = () => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    console.log("current", currentPage);
-    console.log("limitPage", limitPage);
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -39,11 +29,6 @@ const StoreCabinet = () => {
   const close = () => {
     console.log('close');
   };
-
-  const orderAgain = ( value: string )=>{
-    console.log('สั่งอีกครั้ง', value);
-  }
-
 
   const elements: IsearchFormItem[] = [
     {
@@ -178,7 +163,6 @@ const StoreCabinet = () => {
   
   
   const onFinish = (values: any) => {
-    //โยนเข้า create query
     console.log("Received values of form: ", values);
   };
   return (
@@ -201,10 +185,10 @@ const StoreCabinet = () => {
       <MoTable
         headerTable={`รายการสินค้า`}
         columns={columns}
-        // dataSource={data}
+        dataSource={[]}
         onChangePage={onChangePage}
         config={{
-          total: 20, //ค่าจาก backend ใช้หารหน้า
+          total: 20,
           pageSize: limitPage,
           currentPage: currentPage,
         }}
@@ -219,36 +203,3 @@ const StoreCabinet = () => {
   );
 };
 export default StoreCabinet;
-
-const data: IStoreCabinet[] = [
-  {
-    key: 1,
-    name: "K8763",
-    sku: "โซเดียมไบคาร์บอเนต",
-    category: "เคมีภัณฑ์",
-    lot: "19/09/2023",
-    price: 399,
-    dueDate: "10/09/2022",
-    qty: 300,
-    status: "เปิดการขาย",
-    slots:[
-      {color:"red", price: 666, qty: 150},
-      {color:"yellow", price: 555, qty: 150},
-    ]
-  },
-  {
-    key: 2,
-    name: "K8763",
-    sku: "โซเดียมไบคาร์บอเนต",
-    category: "เคมีภัณฑ์",
-    lot: "19/09/2023",
-    price: 399,
-    dueDate: "10/09/2022",
-    qty: 300,
-    status: "ปิดการขาย",
-    slots:[
-      {color:"red", price: 888, qty: 150},
-      {color:"yellow", price: 777, qty: 150},
-    ]
-  },
-];
