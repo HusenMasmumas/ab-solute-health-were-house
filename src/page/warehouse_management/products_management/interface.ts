@@ -1,16 +1,11 @@
-export interface subSKU {
-    id:number,
-    name:string,
-    amount:number
-} 
 export interface ProductsType {
-    key: number;
+    id: number;
     name: string;
     sku: string;
-    subSku: subSKU[],
+    subSku: string,
     category: string;
     subCategory: string;
     priceNormal: number;
     priceCost: number;
-    status: string;
+    status: boolean;
 }
