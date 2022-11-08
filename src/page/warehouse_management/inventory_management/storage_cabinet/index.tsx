@@ -109,6 +109,11 @@ const StoreCabinet = () => {
 
   const columns: ColumnsType<IStoreCabinet> = [
     {
+      title: "#",
+      dataIndex: "id",
+      width:'5%'
+    },
+    {
       title: "Category",
       dataIndex: "category",
       width:'15%'
