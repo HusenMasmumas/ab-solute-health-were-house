@@ -1,17 +1,13 @@
-import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
 import CHeader from "component/headerPage/Header";
-import CSelectStatus from "component/input/c-select-status";
 import MoTable from "component/Table/MoTable";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { ProductsType, subSKU } from './interface'
-import SubTable from "component/Table/subTable";
+import { ProductsType } from './interface'
 import CDropDown from "component/Dropdown/DropDown";
 import ContentContainer from "component/container/ContentContainer";
-
 
 const ProductsMangement = () => {
   const navigate = useNavigate();
@@ -90,40 +86,65 @@ const ProductsMangement = () => {
 
   const columns: ColumnsType<ProductsType> = [
     {
-      title: "SKU/Sub SKU",
-      dataIndex: "sku",
+      title: "#",
+      dataIndex: "id",
+      width: "3%",
+    },
+    {
+      title: "Category",
+      dataIndex: "category",
       width: "20%",
+    },
+    {
+      title: "Sub category",
+      dataIndex: "subCategory",
+      width: "20%",
+    },
+    {
+      title: "SKU",
+      dataIndex: "sku",
+      width: "10%",
+    },
+    {
+      title: "Sub SKU",
+      dataIndex: "subSku",
+      width: "10%",
     },
     {
       title: "Name",
       dataIndex: "name",
-      width: "20%",
+      width: "10%",
     },
     {
-      title: "Category/Sub Category",
-      dataIndex: "category",
-      width: "50%",
+      title: "Price Cost",
+      dataIndex: "priceCost",
+      width: "10%",
+    },
+    {
+      title: "Price Normal",
+      dataIndex: "priceNormal",
+      width: "10%",
     },
     {
       title: "สถานะ",
       dataIndex: "status",
       width: "10%",
-      render: (text, record) => {
+      render: (state:boolean) => {
         switch(true) {
-          case text === 'เปิด':
+          case state===true:
             return <CDropDown 
                       background="#77C48B" 
                       hoverbackground="#5F9C6F"
                       selection={
-                        {title:text, option:[
+                        {title:'เปิด', option:[
                           {label: 'ปิด', value:'close' , action:close }
                     ]}}/>
-          case text === 'ปิด':
+          case state === false:
             return <CDropDown 
                       background="#949594" 
                       hoverbackground="#949594"
                       selection={
-                        {title:text, option:[
+                        {title:'ปิด', option:[
                           {label: 'เปิด', value:'open' , action:open },
                     ]}}/>
         }
@@ -131,33 +152,7 @@ const ProductsMangement = () => {
     },
   ];
 
-  const subColumns: ColumnsType<any> = [
-    {
-      title: "SKU/Sub SKU",
-      dataIndex: "name",
-      width: "20%",
-    },
-    {
-      title: "Name",
-      dataIndex: "amount",
-      width: "20%",
-    },
-    {
-      title: "Name",
-      width: "60%",
-    },
-  ]
-
-  const expandable = {
-    expandedRowRender: ({subSku, ...record}: ProductsType) => (    
-      <SubTable columns={subColumns} dataSource={subSku} pagination={false} showHeader={false}/>
-    ),
-    rowExpandable: (record: any) => record.name !== "Not Expandable",
-  };
-
-
   const onFinish = (values: any) => {
-    //โยนเข้า create query
     console.log("Received values of form: ", values);
   };
   
@@ -183,10 +178,9 @@ const ProductsMangement = () => {
           scroll={{x:900}}
           columns={columns}
           dataSource={data}
-          expandable={expandable}
           onChangePage={onChangePage}
           config={{
-            total: 20, //ค่าจาก backend ใช้หารหน้า
+            total: 20,
             pageSize: limitPage,
             currentPage: currentPage,
           }}
@@ -210,25 +204,25 @@ export default ProductsMangement;
 
 const data: ProductsType[] = [
   {
-    key: 1,
-    name: "K8763666",
-    sku: "โซเดียมไบคาร์บอเนต",
-    subSku: [{id:1, name:'SE-00001', amount: 20}, {id:2, name:'SE-00002', amount: 11}],
-    category: "เคมีภัณฑ์",
-    subCategory: "สารละลาย",
+    id: 1,
+    name: "K876366688888",
+    sku: "T001",
+    subSku: "T001-ALA-001",
+    category: "Treatment Service",
+    subCategory: "Detoxification",
     priceNormal: 0,
     priceCost: 0,
-    status: "เปิด",
+    status: true,
   },
   {
-    key: 2,
-    name: "K8763",
-    sku: "โซเดียมไบคาร์บอเนต",
-    subSku: [{id:5, name:'SE-00003', amount: 20}, {id:4, name:'SE-00004', amount: 11}],
-    category: "เคมีภัณฑ์",
-    subCategory: "สารละลาย",
+    id: 2,
+    name: "K876366688888",
+    sku: "T001",
+    subSku: "T001-ALA-001",
+    category: "Treatment Service",
+    subCategory: "Detoxification",
     priceNormal: 0,
     priceCost: 0,
-    status: "ปิด",
-  }
+    status: false,
+  },
 ];
