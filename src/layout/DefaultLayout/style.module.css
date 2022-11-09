@@ -23,7 +23,7 @@
   background-color: transparent;
   transition: 500ms;
   color: rgb(101, 101, 101) !important;
-  padding-left: 60px !important;
+  /* padding-left: 60px */
 }
 
 .Nav_select {
@@ -44,8 +44,7 @@
 .Sub_Nav_select {
   background-color: #F3F9FF !important;;
   color: rgb(101, 101, 101)  !important;
-  padding-left: 60px !important; 
-
+  /* padding-left: 60px !important;  */
   /* border-radius: 5px !important; */
  
   /* width: calc(266px - 20px) !important;
@@ -106,7 +105,7 @@
 .sub_inNav_select:hover {
   background-color: #F3F9FF;
   color: #01438F !important;
-  padding-left: 60px !important;
+  /* padding-left: 60px !important; */
 }
 
 
