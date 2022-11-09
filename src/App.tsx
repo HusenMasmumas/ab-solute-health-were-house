@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthContextProvider } from "context/Auth/store";
 import { ThemeProvider } from "context/SwitchTheam";
 import { Suspense } from "react";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import RenderRoute from "routes/_RenderRoute";
 
 const client = new QueryClient({
@@ -23,7 +23,7 @@ const loading = (
 function App() {
   return (
     <QueryClientProvider client={client}>
-      <HashRouter>
+      <BrowserRouter>
         <Suspense fallback={loading}>
           <ThemeProvider initialTheme={"light"}>
             <AuthContextProvider>
@@ -31,7 +31,7 @@ function App() {
             </AuthContextProvider>
           </ThemeProvider>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }
