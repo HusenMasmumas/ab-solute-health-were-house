@@ -63,7 +63,8 @@ const CreateProduct = () => {
             colorButton: "whilte",
             keytext: "cancle",
             fn: () => {
-              navigate("/warehouse-management/products-management");
+              // navigate("/warehouse-management/products-management");
+              navigate(-1);
             },
           },
           {

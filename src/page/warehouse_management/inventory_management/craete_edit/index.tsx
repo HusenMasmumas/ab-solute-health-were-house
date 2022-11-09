@@ -59,7 +59,8 @@ const CreateInventory = () => {
             colorButton: 'whilte',
             keytext: 'cancle',
             fn:  () => {
-              navigate("/warehouse-management/inventory-management");
+              // navigate("/warehouse-management/inventory-management");
+              navigate(-1);
             }
           },
           { 

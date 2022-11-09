@@ -250,7 +250,8 @@ const CreateRole = () => {
             colorButton: "whilte",
             keytext: "cancle",
             fn: () => {
-              navigate("/user/role");
+              // navigate("/user/role");
+              navigate(-1);
             },
           },
           {

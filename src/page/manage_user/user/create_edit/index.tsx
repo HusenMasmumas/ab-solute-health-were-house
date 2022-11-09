@@ -1,4 +1,3 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { Col, Form, Input, Row, Select, Switch } from "antd";
 import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
@@ -36,7 +35,6 @@ const CreateUser = () => {
   const updateUser = useUpdateUser(); 
   const { data:User } = useGetUserBYID(location.state?.id);
   const saveImg = useCreatImg()
-
   const onFinish = (value:any)=>{
     if(location.state?.id){
       if(value.password.length === 0 ){
@@ -107,7 +105,8 @@ const CreateUser = () => {
           { colorButton: 'whilte',
             keytext: 'cancle',
             fn:  () => {
-              navigate("/user/manage");
+              // navigate("/user/manage");
+              navigate(-1);
             },
           },
           { colorButton: 'green',
