@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 interface CInputProps extends InputProps {
     option?: {
-      search: boolean }; // เช็คไอคอน
+      search: boolean }; 
 }
 
 const InputSytle = styled(Input)`
