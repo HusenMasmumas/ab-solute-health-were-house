@@ -20,6 +20,7 @@ export type TPageHeaderInput =
 export interface IsearchFormItem {
   name: string; //ใช้เป็นชื่อ FormItemName ควรเป็นอิง
   label: string; //ใช้เป็นข้อความที่แสดง
+  placeholder?: string,
   input: {
     //เลือกประเภท
     type: TPageHeaderInput;
@@ -91,12 +92,12 @@ const SearchForm = ({
                 <Form.Item
                   className="mb-0"
                   name={item.name}
-                  label={<span className="!text-[14px]">{item.label}</span>}
+                  label={ item.label ? <span className="!text-[14px]">{item.label}</span> : null}
                 >
                   <Element
                     style={{ fontSize: "14px", borderRadius: "4px" }}
                     size="large"
-                    placeholder={item.label}
+                    placeholder={ item?.placeholder ? item?.placeholder : item.label}
                     option={item.input.options}
                   />
                 </Form.Item>
