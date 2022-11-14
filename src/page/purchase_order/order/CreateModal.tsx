@@ -1,14 +1,10 @@
 import { Col, Form, Row, InputNumber, Divider } from "antd";
 import { ColumnsType } from "antd/lib/table";
-import CleanButton from "component/Button/CleanButton";
-import SearchButton from "component/Button/SearchButton";
 import CInput from "component/input/c-input";
 import MoTable from "component/Table/MoTable";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { createQueryString } from 'utils/utils'
 import WhilteButton from "component/Button/whilteButton";
-import LightBlueButton from "component/Button/LightBlueButton";
 import DeepBlueButton from "component/Button/DeepBlue";
 import BlueButton from "component/Button/BlueButton";
 type Props = {
