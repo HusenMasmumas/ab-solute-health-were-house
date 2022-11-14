@@ -9,64 +9,37 @@ import {
   Switch,
 } from "antd";
 import CInput from "component/input/c-input";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import CreateModal from "./createModal";
+import CreateModal, { ProductsType } from "./createModal";
 import CDatePicker from "component/input/c-date-picker";
 import moment from "moment";
-import { ColumnsType } from "antd/lib/table";
 import * as _ from "lodash";
-import React, { useEffect } from "react";
-interface Colomns {
-  index: React.Key;
-  sku: string;
-  color: string;
-  amount: number;
-}
+import { useEffect, useState } from "react";
+import DiverderBlue from "component/Divider/DiverderBlue";
+import styled from 'styled-components'
+
+const InputSytle = styled(Input)<{readOnly:string}>`
+  width: 100%;
+  border-radius: 5px !important;
+`
+
 const CreateDataForm = (props: {
   form: FormInstance;
   formFN: (value: any) => void;
 }) => {
   const [date, setDate] = useState<Date>(new Date());
-  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [preview, setPreview] = useState<Colomns[]>();
 
-  const onFinishModal = (values: any) => {
+  const onFinishModal = (values: ProductsType) => {
     console.log("amount Received Modal ", values);
     props.form.setFieldsValue({
       ...values,
     });
   };
 
-  const columns: ColumnsType<Colomns> = [
-    {
-      title: "SKU",
-      dataIndex: "sku",
-      width: "30%",
-    },
-    {
-      title: "สี",
-      dataIndex: "color",
-      width: "40%",
-    },
-    {
-      title: "จำนวน",
-      dataIndex: "amount",
-    },
-  ];
-
-  const customizeRenderEmpty = () => <div className="h-32"></div>;
-
-  const onChangeList = (value: any) => {
-    setPreview(_.cloneDeep(value));
-  };
-
   const InitForm = async () => {
     await props.form.setFieldValue("users", [
       { index: 0, sku: "", color: null, amount: 0 },
     ]);
-    setPreview(_.cloneDeep(props.form.getFieldsValue().users));
   };
   useEffect(() => {
     InitForm();
@@ -75,13 +48,11 @@ const CreateDataForm = (props: {
   return (
     <>
       <div className="bg-white py-[35px] px-[24px]">
-        <div className="text-lightblue text-[20px] font-semibold">
-          <span>{`${t("ข้อมูลตู้เก็บสินค้า")}`}</span>
-        </div>
-        <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
+        <div className="text-lightblue text-[20px] font-semibold">ข้อมูลตู้เก็บสินค้า</div>
+        <DiverderBlue />
         <Form layout="vertical" form={props.form} onFinish={props.formFN}>
           <Row gutter={[24, 0]}>
-            <Col span={12}>
+            <Col span={24}>
               <Form.Item label=" ">
                 <Button
                   className="!text-[16px] !h-[45px] !rounded-[5px] !border-darkblue !text-darkblue !flex !justify-center !items-center"
@@ -91,69 +62,51 @@ const CreateDataForm = (props: {
                 </Button>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Category" name="category">
-                <Input className="input-form" placeholder="Category" />
+                <CInput className="input-form" placeholder="Category" disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Sub Category" name="subCategory">
-                <Input
-                  className="input-form"
-                  placeholder="Sub Category"
-                ></Input>
+                <CInput className="input-form" placeholder="Sub Category" disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="SKU" name="sku">
-                <Input className="input-form" placeholder="Category" />
+                <CInput className="input-form" placeholder="Category" disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Sub SKU" name="subsku">
-                <Input
-                  className="input-form"
-                  placeholder="Sub Category"
-                ></Input>
+              <Form.Item label="Sub SKU" name="subSku">
+                <CInput className="input-form" placeholder="Sub Category" disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row>
             <Col span={24}>
               <Form.Item label="Name" name="name">
-                <Input className="input-form" placeholder="Name" />
+                <CInput className="input-form" placeholder="Name" disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Price Cost" name="priceCost">
-                <CInput.CInputNumberSytle />
+                <CInput.CInputNumberSytle disabled />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Price Normal" name="priceNormal">
-                <CInput.CInputNumberSytle />
+                <CInput.CInputNumberSytle disabled />
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item label="การใช้งาน" name="status">
+              <Form.Item label="การใช้งาน" name="status" valuePropName="checked">
                 <Switch />
               </Form.Item>
             </Col>
-          </Row>
-          <div className="text-lightblue text-[22px] font-semibold mt-16">
-            <span>ข้อมูลตามคลังสินค้า</span>
-          </div>
-          <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-          <Row gutter={[24, 0]}>
-            <Col span={12}>
+          <Col span={24}>
+            <div className="text-lightblue text-[22px] font-semibold mt-16">ข้อมูลตามคลังสินค้า</div>
+            <DiverderBlue />
+          </Col>
+          <Col span={12}>
               <Form.Item label="Lot" name="lot">
                 <CDatePicker
                   disabledDate={(d) =>
@@ -178,8 +131,6 @@ const CreateDataForm = (props: {
                 />
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="QTY" name="qty">
                 <Input className="input-form" placeholder="qty" />
@@ -204,7 +155,7 @@ const CreateDataForm = (props: {
         bodyStyle={{ padding: "0 0 20px 0" }}
       >
         <CreateModal
-          setSelectData={onFinishModal}
+          onFinishModal={onFinishModal}
           setOpenMoDal={setOpen}
           selectIndex={[]}
         />

@@ -2,31 +2,30 @@ import { useEffect, useState } from "react";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import { Card, Form } from "antd";
-import WhilteButton from "component/Button/whilteButton";
-import BlueButton from "component/Button/BlueButton";
 import axios from "axios";
 
 type Props = {
-  setSelectData: (row: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
+  onFinishModal: (row: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
   selectIndex: number[];
 };
 
-interface ProductsType {
-  key: number;
+export interface ProductsType {
+  id: number;
   name: string;
   sku: string;
+  subSku: string;
   category: string;
+  subCategory: string;
   priceNormal: number;
   priceCost: number;
-  status: string;
 }
 
 const elements: IsearchFormItem[] = [
   {
     name: "code",
-    label: "ค้นหาชื่อรหัส",
+    label: "",
+    placeholder: "ค้นหาชื่อและรหัสสินค้า",
     input: {
       type: "input",
       options: {
@@ -40,29 +39,47 @@ const CreateModal = (props: Props) => {
   const [limitPage, setLimitPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [dataPage, setDataPage] = useState<any>([]);
-  const [selectKey, setSelectKey] = useState<number[]>([]);
-  const [rowData, setRowData] = useState<any>()
 
-  let [_form] = Form.useForm();
   const columns: ColumnsType<ProductsType> = [
+    {
+      title: "#",
+      dataIndex: "id",
+      width: "5%", 
+    },
+    {
+      title: "Category",
+      dataIndex: "category",
+      width: "10%",
+    },
+    {
+      title: "Sub Category",
+      dataIndex: "subCategory",
+      width: "10%",
+    },
     {
       title: "SKU",
       dataIndex: "sku",
-      width: "18%",
+      width: "10%",
+    },
+    {
+      title: "Sub SKU",
+      dataIndex: "subSku",
+      width: "10%",
     },
     {
       title: "Name",
       dataIndex: "name",
-      width: "18%",
+      width: "10%",
     },
     {
-      title: "Category / Sub Category",
-      dataIndex: "category",
-      width: "30%",
+      title: "Price Cost",
+      dataIndex: "priceCost",
+      width: "10%",
     },
     {
       title: "Price Normal",
-      dataIndex: "pricecost",
+      dataIndex: "priceNormal",
+      width: "10%",
     },
   ];
 
@@ -71,44 +88,21 @@ const CreateModal = (props: Props) => {
     else setCurrentPage(page);
   };
   
-  const rowSelection = {
-    columnTitle:<div>#</div>,
-    selectedRowKeys:selectKey,
-    onSelect:(record:any, selected:any) => {    
-      if(selected === true){
-        //เลือก
-        setSelectKey([record.index])
-        setRowData({...record})
-      }else if(selected === false){
-        //เอาออก
-        setSelectKey([]);
-        setRowData(null)
-      }
-    }
-  };
-
   const fakerFetchData = async (query:number | undefined) => {
     if(query === undefined) return
-    
-    const { data } = await axios.get(`http://localhost:5000/cabinet/${query}`);
-    // console.log('data::::',data);
-    setDataPage(data)
-    //ทำงานปกติ
+    // const { data } = await axios.get(`http://localhost:5000/cabinet/${query}`);
+    setDataPage(mockData)
   };
   
   const onFinish = (values: any) => {
-    //โยนเข้า create query
     console.log("Received values of form: ", values);
   };
   
   useEffect(() => {
-    // console.log("current", currentPage);
-    // console.log("limitPage", limitPage);
     fakerFetchData(currentPage)
   }, [currentPage, limitPage]);
 
   useEffect(() => {
-    setSelectKey([...props.selectIndex])
     setCurrentPage(1)
   }, []);
 
@@ -116,40 +110,61 @@ const CreateModal = (props: Props) => {
     <>
       <SearchForm elements={elements} onFinish={onFinish} DeepBlue={true} NoPaddingY={true}/>
       <MoTable
-        rowKey="index"
+        rowKey="id"
         columns={columns}
         dataSource={dataPage}
-        rowSelection={rowSelection}
         onChangePage={onChangePage}
         noMarginTop={true}
         scroll={{
           y: 340,
         }}
         config={{
-          total: 40, //ค่าจาก backend ใช้หารหน้า
+          total: 40,
           pageSize: limitPage,
           currentPage: currentPage,
         }}
+        onRow={(record)=>({
+          onDoubleClick: () => {
+            props.onFinishModal(record)
+            props.setOpenMoDal(false)
+          }
+        })}
       />
-      <Card className="flex space-x-4 justify-end !p-0 !border-0" bodyStyle={{display:'flex', gap: '16px', padding: '0 0 0 0'}}>
-        <BlueButton
-          onClick={() => {
-            props.setSelectData(rowData);
-            props.setOpenMoDal(false);
-          }}
-        >
-          ยืนยัน
-        </BlueButton>
-        <WhilteButton
-          onClick={() => {
-            props.setOpenMoDal(false);
-          }}
-        >
-          ยกเลิก
-        </WhilteButton>
-      </Card>
     </>
   );
 };
 
 export default CreateModal;
+
+const mockData: ProductsType[] = [
+  {
+    id:1,
+    name: 'ALA 300mg',
+    priceCost: 3000,
+    priceNormal: 1500,
+    sku: 'SKU',
+    subSku: 'T001-ALA-300',
+    category: 'Treatment Service',
+    subCategory: 'Detoxfication'
+  },
+  {
+    id:2,
+    name: 'ALA 300mg',
+    priceCost: 3500,
+    priceNormal: 4000,
+    sku: 'T002',
+    subSku: 'T002-ALA-600',
+    category: 'Treatment Service',
+    subCategory: 'Detoxfication'
+  },
+  {
+    id:3,
+    name: 'PRM-Anti IL-4',
+    priceCost: 2500,
+    priceNormal: 1500,
+    sku: 'DS004',
+    subSku: 'DS004-ALA-020',
+    category: 'Drugs & Supplements',
+    subCategory: 'Homeo'
+  },
+]

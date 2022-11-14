@@ -1,4 +1,5 @@
 import { Col, Form, FormInstance, Input, Row } from "antd";
+import CInput from "component/input/c-input";
 import { useTranslation } from "react-i18next";
 
 const CreateDetailForm = (props:{form:FormInstance, formFN: (value:any) => void  } ) => {
@@ -19,86 +20,62 @@ const CreateDetailForm = (props:{form:FormInstance, formFN: (value:any) => void 
           <Row gutter={[24, 0]}>
             <Col span={24}>
               <Form.Item label="Drug label" name='DrugLabel'>
-                <Input className="input-form" placeholder="Drug label"></Input>
+                <CInput className="input-form" placeholder="Drug label" disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Properties (TH)" name='Properties_(TH)'>
-                <Input
-                  className="input-form"
-                  placeholder="Properties (TH)"
-                ></Input>
+                <CInput className="input-form" placeholder="Properties (TH)" disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Properties (EN)">
-                <Input
-                  className="input-form"
-                  placeholder="Properties (EN)"
-                ></Input>
+              <Form.Item label="Properties (EN)" name='Properties_(EN)'>
+                <CInput className="input-form" placeholder="Properties (EN)" disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Use (TH)">
-                <Input className="input-form" placeholder="Use (TH)"></Input>
+                <CInput className="input-form" placeholder="Use (TH)" name='useTH' disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Use (EN)">
-                <Input className="input-form" placeholder="Use (EN)"></Input>
+                <CInput className="input-form" placeholder="Use (EN)" name='useEN' disabled/>                
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Unit">
-                <Input className="input-form" placeholder="Unit"></Input>
+                <CInput className="input-form" placeholder="Unit" name='unit' disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Warming">
-                <Input className="input-form" placeholder="Warming"></Input>
+                <CInput className="input-form" placeholder="Warming" name='warming' disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Supplier">
-                <Input className="input-form" placeholder="Supplier"></Input>
+                <CInput className="input-form" placeholder="Supplier" name='supplier' disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Blood Tube">
-                <Input className="input-form" placeholder="Blood Tube"></Input>
+                <CInput className="input-form" placeholder="Blood Tube" name='bloodTube' disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="InspectionDetails (TH)">
-                <Input
-                  className="input-form"
-                  placeholder="InspectionDetails (TH)"
-                ></Input>
+                <CInput className="input-form" placeholder="InspectionDetails (TH)" name='InspectionDetailsTH' disabled/>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="InspectionDetails (EN)">
-                <Input
-                  className="input-form"
-                  placeholder="InspectionDetails (EN)"
-                ></Input>
+                <CInput className="input-form" placeholder="InspectionDetails (EN)" name='InspectionDetailsEN' disabled/>
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={[24, 0]}>
             <Col span={12}>
               <Form.Item label="Lab Company">
-                <Input className="input-form" placeholder="Lab Company"></Input>
+                <CInput className="input-form" placeholder="Lab Company" name='labCompany' disabled/>
               </Form.Item>
             </Col>
           </Row>
