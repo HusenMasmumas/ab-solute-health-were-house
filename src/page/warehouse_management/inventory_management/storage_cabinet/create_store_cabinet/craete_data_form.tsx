@@ -1,19 +1,14 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Button,
   Col,
-  ConfigProvider,
-  Divider,
   Form,
   FormInstance,
   Input,
   Modal,
   Row,
   Switch,
-  Table,
 } from "antd";
 import CInput from "component/input/c-input";
-import CSelect from "component/input/c-select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CreateModal from "./createModal";
