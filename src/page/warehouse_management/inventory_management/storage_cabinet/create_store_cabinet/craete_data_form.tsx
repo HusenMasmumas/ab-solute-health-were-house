@@ -3,7 +3,6 @@ import {
   Col,
   Form,
   FormInstance,
-  Input,
   Modal,
   Row,
   Switch,
@@ -15,12 +14,6 @@ import moment from "moment";
 import * as _ from "lodash";
 import { useEffect, useState } from "react";
 import DiverderBlue from "component/Divider/DiverderBlue";
-import styled from 'styled-components'
-
-const InputSytle = styled(Input)<{readOnly:string}>`
-  width: 100%;
-  border-radius: 5px !important;
-`
 
 const CreateDataForm = (props: {
   form: FormInstance;
