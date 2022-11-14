@@ -133,7 +133,7 @@ const CreateDataForm = (props: {
             </Col>
             <Col span={12}>
               <Form.Item label="QTY" name="qty">
-                <Input className="input-form" placeholder="qty" />
+                <CInput className="input-form" placeholder="qty" />
               </Form.Item>
             </Col>
           </Row>
