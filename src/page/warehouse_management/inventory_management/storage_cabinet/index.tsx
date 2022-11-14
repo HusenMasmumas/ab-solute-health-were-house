@@ -101,26 +101,26 @@ const StoreCabinet = () => {
     {
       title: "Category",
       dataIndex: "category",
-      width:'15%'
+      width:'10%'
     },
     {
       title: "Sub Category",
       dataIndex: "SubCategory",
-      width:'20%'
+      width:'10%'
     },
     {
       title: "SKU",
       dataIndex: "sku",
-      width:'15%'
-    },
-    {
-      title: "subSKU",
-      dataIndex: "subSKU",
       width:'10%'
     },
     {
-      title: "Name",
-      dataIndex: "dueDate",
+      title: "subSKU",
+      dataIndex: "subSku",
+      width:'10%'
+    },
+    {
+      title: "name",
+      dataIndex: "name",
       width:'10%'
     },
     {
@@ -137,31 +137,29 @@ const StoreCabinet = () => {
       title: "Status",
       dataIndex: "status",
       width:'10%',
-      render: (text) => {
-        switch(true) {
-          case text === 'เปิดการขาย':
+      render: (state:boolean) => {
+        switch(state) {
+          case true:
             return <CDropDown 
                       background="#77C48B" 
                       hoverbackground="#5F9C6F"
                       selection={
-                        {title:text, option:[
-                          {label: 'เปิดการขาย', value:'open' , action:open },
+                        {title:'เปิด', option:[
+                          {label: 'ปิด', value:'close' , action:close },
                     ]}}/>
-          case text === 'ปิดการขาย':
+          case false:
             return <CDropDown 
                       background="#949594" 
                       hoverbackground="#949594"
                       selection={
-                        {title:text, option:[
-                          {label: 'ปิดการขาย', value:'close' , action:close }
+                        {title:'ปิด', option:[
+                          {label: 'เปิด', value:'open' , action:open }
                     ]}}/>
         }
       },
     },
   ];
 
-  
-  
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
   };
@@ -183,9 +181,10 @@ const StoreCabinet = () => {
       <ContentContainer>
       <SearchForm elements={elements} onFinish={onFinish} />
       <MoTable
+        rowKey={'id'}
         headerTable={`รายการสินค้า`}
         columns={columns}
-        dataSource={[]}
+        dataSource={mockData}
         onChangePage={onChangePage}
         config={{
           total: 20,
@@ -203,3 +202,28 @@ const StoreCabinet = () => {
   );
 };
 export default StoreCabinet;
+
+const mockData:IStoreCabinet[] = [
+  {
+    id: 1,
+    name: 'Treatment Service',
+    sku: 'T002',
+    subSku: 'T002-ALA-600',
+    category: 'Treatment Service',
+    subCategory: 'Detoxfication',
+    priceCost: 2500,
+    priceNormal: 3500,
+    status: true
+  },
+  {
+    id: 2,
+    name: 'PRM-Anti IL-4',
+    sku: 'DS004',
+    subSku: 'DS004-ALA-020',
+    category: 'Drugs & Supplements',
+    subCategory: 'Homeo',
+    priceCost: 1500,
+    priceNormal: 500,
+    status: false
+  }
+]
