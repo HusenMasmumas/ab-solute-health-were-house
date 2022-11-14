@@ -7,9 +7,19 @@ interface CInputProps extends InputProps {
       search: boolean }; 
 }
 
-const InputSytle = styled(Input)`
+const InputSytle = styled(Input)<InputProps>`
   width: 100%;
   border-radius: 5px !important;
+  ${({readOnly}) => readOnly ? 
+  ` &:hover,
+    &:active,
+    &:focus {
+      cursor: default;
+      border-color: inherit;
+      box-shadow: none;
+  }` : null};
+  background-color: #fff !important;
+  color: #000 !important;
 `
 
 const CInput = ({className='!py-0 h-[45px]', ...props}: InputProps) => {
@@ -46,6 +56,8 @@ const InputNumberSytle = styled(InputNumber)<CInputNumberProps>`
     padding-right: 5px !important;
     text-align: ${({ text_align }) => ( `${text_align}`)}};
   }
+  background-color: #fff !important;  
+  color: #000 !important;
 `
 const CInputNumberSytle = ({ 
   prefix="฿",
