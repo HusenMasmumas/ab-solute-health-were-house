@@ -3,8 +3,6 @@ import { apiURL } from "config/api";
 
 const axios = Axios.create({
   baseURL: apiURL,
-  // baseURL: 'http://192.168.2.122:3003/api/',  //ของพี่นาย
-  // baseURL: 'http://192.168.2.143:3003/api/',  //ของตัวเอง อยู่หอใช้ 2.33 อยู่บอใช้ 2.143
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
   validateStatus: (status) => status >= 400,
