@@ -6,14 +6,13 @@ export interface ISlot {
   qty: number
 } 
 export interface IStoreCabinet {
-  key: number;
+  id: number;
   name: string;
   sku: string;
+  subSku: string;
   category: string;
-  lot: string;
-  price: number;
-  dueDate: string;
-  qty: number;
-  status: string;
-  slots: ISlot[]
+  subCategory: string;
+  priceCost: number;
+  priceNormal: number;
+  status: boolean;
 }

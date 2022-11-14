@@ -105,7 +105,7 @@ const StoreCabinet = () => {
     },
     {
       title: "Sub Category",
-      dataIndex: "SubCategory",
+      dataIndex: "subCategory",
       width:'10%'
     },
     {
