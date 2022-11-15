@@ -34,8 +34,38 @@ const ProductsMangement = () => {
   };
   const elements: IsearchFormItem[] = [
     {
-      name: "SKU/Sub SKU",
-      label: "SKU/Sub SKU",
+      name: "Category",
+      label: "category",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "Sub Category",
+      label: "subCategory",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "sku",
+      label: "SKU",
+      input: {
+        type: "input",
+        options: {
+          search: true,
+        },
+      },
+    },
+    {
+      name: "subSku",
+      label: "Sub SKU",
       input: {
         type: "input",
         options: {
@@ -69,16 +99,6 @@ const ProductsMangement = () => {
           ],
           key: "stateProduct",
           label: "stateProduct",
-        },
-      },
-    },
-    {
-      name: "Category/Sub Category",
-      label: "Category/Sub Category",
-      input: {
-        type: "input",
-        options: {
-          search: true,
         },
       },
     },
@@ -174,6 +194,7 @@ const ProductsMangement = () => {
       <ContentContainer>
         <SearchForm elements={elements} onFinish={onFinish} /> 
         <MoTable
+          rowKey={'id'}
           headerTable={`${t("รายการสินค้า")}`}
           scroll={{x:900}}
           columns={columns}
