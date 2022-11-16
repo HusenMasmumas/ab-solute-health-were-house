@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, InputNumber, InputNumberProps, InputProps } from "antd";
 import styled from "styled-components";
@@ -7,6 +8,11 @@ interface CInputProps extends InputProps {
     search: boolean;
   };
 }
+
+type NonationType = {
+  WithSearchICON: FC<CInputProps>;
+  CInputNumberSytle: FC<CInputNumberProps>;
+};
 
 const InputSytle = styled(Input)<InputProps>`
   width: 100%;
@@ -25,11 +31,14 @@ const InputSytle = styled(Input)<InputProps>`
   color: #000 !important;
 `;
 
-const CInput = ({ className = "!py-0 h-[45px]", ...props }: InputProps) => {
+const CInput: FC<InputProps> & NonationType = ({
+  className = "!py-0 h-[45px]",
+  ...props
+}) => {
   return <InputSytle className={className} {...props} />;
 };
 
-const withSearchICON = ({ option, ...props }: CInputProps) => {
+const withSearchICON: FC<CInputProps> = ({ option, ...props }) => {
   return (
     <CInput
       prefix={
@@ -58,14 +67,14 @@ const InputNumberSytle = styled(InputNumber)<CInputNumberProps>`
   background-color: #fff !important;  
   color: #000 !important;
 `;
-const CInputNumberSytle = ({
+const CInputNumberSytle: FC<CInputNumberProps> = ({
   prefix = "฿",
   size = "large",
   min = 0,
   controls = false,
   text_align = "start",
   ...props
-}: CInputNumberProps) => {
+}) => {
   return (
     <InputNumberSytle
       prefix={prefix}

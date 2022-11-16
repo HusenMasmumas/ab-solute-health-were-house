@@ -22,7 +22,7 @@ const RenderRoute = (props: Props) => {
       return {
         ...obj,
         element: <Navigate to={obj.navigateElement.to} replace={true} />,
-      };
+      } as RouteObject;
     }
     if (!!obj.requireAuth) {
       return {
@@ -32,16 +32,16 @@ const RenderRoute = (props: Props) => {
             {Component as React.ReactNode}
           </RequireAuth>
         ),
-      };
+      } as RouteObject;
     } else {
-      return { ...obj, element: Component };
+      return { ...obj, element: Component } as RouteObject;
     }
   };
   const mapElementRoutesOfChildren = (
     routeChildren: RouteCustom[]
   ): RouteObject[] => {
     const newChildren: RouteObject[] = routeChildren.map((route) => {
-      let newChild: RouteObject = route;
+      let newChild: RouteObject = route as RouteObject;
       if (!!route.navigateElement || !!route.element) {
         newChild = renderElementComponent({ obj: route });
       }
@@ -49,14 +49,14 @@ const RenderRoute = (props: Props) => {
         newChild = {
           ...newChild,
           children: mapElementRoutesOfChildren(route.children),
-        };
+        } as RouteObject;
       }
       return newChild;
     });
     return newChildren;
   };
   const mapRoutes: RouteObject[] = routes.map((route) => {
-    let newRoute: RouteObject = route;
+    let newRoute: RouteObject = route as RouteObject;
     if (!!route.navigateElement || !!route.element) {
       newRoute = renderElementComponent({ obj: route });
     }
@@ -64,7 +64,7 @@ const RenderRoute = (props: Props) => {
       newRoute = {
         ...newRoute,
         children: mapElementRoutesOfChildren(route.children),
-      };
+      } as RouteObject;
     }
     return newRoute;
   });
