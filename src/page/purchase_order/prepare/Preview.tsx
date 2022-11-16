@@ -1,20 +1,9 @@
-import { DeleteFilled } from "@ant-design/icons";
-import {
-  Card,
-  Col,
-  ConfigProvider,
-  Divider,
-  Form,
-  InputNumber,
-  Row,
-} from "antd";
-import form from "antd/lib/form";
+import { Card, Col, Divider, Form, Row } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { ColumnsType } from "antd/lib/table";
 import ContentContainer from "component/container/ContentContainer";
 import PurchaseForm from "component/Form/purchaseForm";
-import CHeader, { IButton } from "component/headerPage/Header";
-import CInput from "component/input/c-input";
+import CHeader from "component/headerPage/Header";
 import MoTable from "component/Table/MoTable";
 import _ from "lodash";
 import moment from "moment";
@@ -34,17 +23,17 @@ interface TableType {
 }
 
 const Preview = (props: Props) => {
-  const [selectIndex, setSelectIndex] = useState<number[]>([]);
+  // const [selectIndex, setSelectIndex] = useState<number[]>([]);
   const [idOrder, setIdOrder] = useState<any>();
   const navigate = useNavigate();
   let location = useLocation();
   let [form] = Form.useForm();
-  const deleteSelected = (index: number) => {
-    console.log("index", index);
-    let indexArr = selectIndex.filter((item: number) => item !== index);
-    console.log("indexArr", indexArr);
-    setSelectIndex([...indexArr]);
-  };
+  // const deleteSelected = (index: number) => {
+  //   console.log("index", index);
+  //   let indexArr = selectIndex.filter((item: number) => item !== index);
+  //   console.log("indexArr", indexArr);
+  //   setSelectIndex([...indexArr]);
+  // };
 
   const columns: ColumnsType<TableType> = [
     {
@@ -111,6 +100,7 @@ const Preview = (props: Props) => {
 
   useEffect(() => {
     setIdOrder(location.state.id);
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -172,10 +162,10 @@ const Preview = (props: Props) => {
               <Col sm={24} lg={12} className="!flex !items-end pb-6">
                 <div className="w-full">
                   <div className="text-[20px] font-bold">หมายเหตุ</div>
-                  <TextArea rows={4} readOnly={true}/>
+                  <TextArea rows={4} readOnly={true} />
                 </div>
               </Col>
-              <LabelPay 
+              <LabelPay
                 total={0}
                 discount={0}
                 totalWithoutDiscount={0}

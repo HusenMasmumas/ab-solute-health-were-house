@@ -8,10 +8,10 @@ import WhilteButton from "component/Button/whilteButton";
 import DeepBlueButton from "component/Button/DeepBlue";
 import BlueButton from "component/Button/BlueButton";
 type Props = {
-  setSelectData: (row: any, arrindex:any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
+  setSelectData: (row: any, arrindex: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
   setOpenMoDal: (row: any) => void; //เปิดปิด modal
-  historyData:any;
-  selectIndex:number[];
+  historyData: any;
+  selectIndex: number[];
 };
 
 interface TableType {
@@ -30,14 +30,14 @@ const CreateModal = (props: Props) => {
 
   const [dataPage, setDataPage] = useState<any>([]); // ข้อมูลที่ list Table ให้เลือกตามหน้า
   const [historyData, sethistoryData] = useState<any>([]); // ข้อมูลที่ list Table ทั้งหมดที่เคย fetch มา ทำเพื่อเก็บข้อมูลการแก้ไขชั่วคราว
-  
+
   const [selectKey, setSelectKey] = useState<number[]>([]); // item ที่เลือก
-  
-  const [keySearch, setKeySearch] = useState<string>(''); // คำที่ใช้ค้นหา
+
+  const [keySearch, setKeySearch] = useState<string>(""); // คำที่ใช้ค้นหา
   let [_form] = Form.useForm();
-  const onFinish = ({ nameProduct }: {nameProduct:string}) => {
-    console.log('nameProduct',nameProduct);
-    setKeySearch(nameProduct)
+  const onFinish = ({ nameProduct }: { nameProduct: string }) => {
+    console.log("nameProduct", nameProduct);
+    setKeySearch(nameProduct);
   };
 
   const columns: ColumnsType<TableType> = [
@@ -96,13 +96,13 @@ const CreateModal = (props: Props) => {
   ];
 
   const onChangeInputAmout = (value: number, record: any, index: any) => {
-    const changeArr = historyData.map((obj:any)=>{ 
-        if(record.index === obj.index){
-          return record
-        } 
-        return obj 
-    })
-    sethistoryData([...changeArr])
+    const changeArr = historyData.map((obj: any) => {
+      if (record.index === obj.index) {
+        return record;
+      }
+      return obj;
+    });
+    sethistoryData([...changeArr]);
     const newData = [...dataPage];
     newData[index].amount = value;
     setDataPage([...newData]);
@@ -110,96 +110,101 @@ const CreateModal = (props: Props) => {
 
   const rowSelection = {
     // columnWidth:'150px',
-    columnTitle:<span>#</span>,
+    columnTitle: <span>#</span>,
     selectedRowKeys: selectKey,
-    onSelect:(record:any, selected:any, selectedRows:any)=>{
-
-      if(selectKey.includes(record.index)){
-        let indexArr = selectKey.filter((item:number) => item !== record.index)
-        setSelectKey([...indexArr])
-      }else{
-        setSelectKey((prevState:any) => { return [...prevState, record.index]})
+    onSelect: (record: any, selected: any, selectedRows: any) => {
+      if (selectKey.includes(record.index)) {
+        let indexArr = selectKey.filter(
+          (item: number) => item !== record.index
+        );
+        setSelectKey([...indexArr]);
+      } else {
+        setSelectKey((prevState: any) => {
+          return [...prevState, record.index];
+        });
       }
-    }
+    },
   };
 
   const onChangePage = (page: number, type?: string) => {
-    if (type === "pageSize"){
-      setLimitPage(page)
-    }
-    else {
-      setCurrentPage(page)
+    if (type === "pageSize") {
+      setLimitPage(page);
+    } else {
+      setCurrentPage(page);
     }
   };
 
-  const specialSwitch =async () => {
-    await sethistoryData([...props.historyData])
-    setCurrentPage(1)
-  }
+  const specialSwitch = async () => {
+    await sethistoryData([...props.historyData]);
+    setCurrentPage(1);
+  };
 
   useEffect(() => {
-    setSelectKey([...props.selectIndex])
-    specialSwitch()
+    setSelectKey([...props.selectIndex]);
+    specialSwitch();
+    // eslint-disable-next-line
   }, []);
 
-  useEffect(()=>{
-    const obj = {limit: limitPage, page: currentPage, key: keySearch}
-    fakerFetchData(currentPage)
-  },[currentPage])
+  useEffect(() => {
+    // const obj = { limit: limitPage, page: currentPage, key: keySearch };
+    fakerFetchData(currentPage);
+    // eslint-disable-next-line
+  }, [currentPage]);
 
-  useEffect(()=>{
-    const obj = {limit: limitPage, page: 1, key: keySearch}
+  useEffect(() => {
+    // const obj = { limit: limitPage, page: 1, key: keySearch };
     // console.log(createQueryString(obj));
     // fetchData(createQueryString(obj));
     // fakerFetchData(4)
-  },[limitPage])
+    // eslint-disable-next-line
+  }, [limitPage]);
 
-  useEffect(()=>{
-    const obj = {limit: limitPage, page: 1, key: keySearch}
+  useEffect(() => {
+    // const obj = { limit: limitPage, page: 1, key: keySearch };
     // console.log(createQueryString(obj));
     // fetchData(createQueryString(obj));
     // fakerFetchData(3)
-  },[keySearch])
+    // eslint-disable-next-line
+  }, [keySearch]);
 
-  const fetchData = async (query:string) => {
-    const { data } = await axios.get(`http://localhost:5000/product${query}`);
-    const arr = data.map((element:any) => {
-      const find = historyData.find((obj:any)=>{ 
-        return obj.index === element.index 
-      })
-      if(find){
-        return find
-      }else{
-        sethistoryData((prevState:any) => {
-          return [ ...prevState, element ]
-        })
-        return element
-      }
-    });
-    setDataPage(arr);//ทำงานปกติ
-  };
+  // const fetchData = async (query: string) => {
+  //   const { data } = await axios.get(`http://localhost:5000/product${query}`);
+  //   const arr = data.map((element: any) => {
+  //     const find = historyData.find((obj: any) => {
+  //       return obj.index === element.index;
+  //     });
+  //     if (find) {
+  //       return find;
+  //     } else {
+  //       sethistoryData((prevState: any) => {
+  //         return [...prevState, element];
+  //       });
+  //       return element;
+  //     }
+  //   });
+  //   setDataPage(arr); //ทำงานปกติ
+  // };
 
-  const fakerFetchData = async (query:number | undefined) => {
-    if(query === undefined) return
-    
+  const fakerFetchData = async (query: number | undefined) => {
+    if (query === undefined) return;
+
     const { data } = await axios.get(`http://localhost:5000/product/${query}`);
-    
-    const arr = data.map((element:any) => {
-      
-      const find = historyData.find((obj:any)=>{ 
-        return obj.index === element.index 
-      })
 
-      if(find){
-        return find // return ออกไป arr  มีแล้วก็ไม่ต้องเก็บ
-      }else{
-        sethistoryData((prevState:any) => {
-          return [ ...prevState, element ]
-        }) // เอาเข้าไปเก็บใน history
-        return element // return ออกไป arr
+    const arr = data.map((element: any) => {
+      const find = historyData.find((obj: any) => {
+        return obj.index === element.index;
+      });
+
+      if (find) {
+        return find; // return ออกไป arr  มีแล้วก็ไม่ต้องเก็บ
+      } else {
+        sethistoryData((prevState: any) => {
+          return [...prevState, element];
+        }); // เอาเข้าไปเก็บใน history
+        return element; // return ออกไป arr
       }
     });
-    setDataPage(arr);//ทำงานปกติ
+    setDataPage(arr); //ทำงานปกติ
   };
 
   return (
@@ -209,7 +214,7 @@ const CreateModal = (props: Props) => {
           <Form form={_form} onFinish={onFinish} className="w-full lg:flex">
             <Col sm={24} lg={8}>
               <Form.Item name="nameProduct" className="mb-0 w-full ">
-                <CInput.withSerchICON
+                <CInput.WithSearchICON
                   option={{ search: true }}
                   placeholder="ค้นหาชื่อและรหัสสินค้า"
                 />
@@ -257,7 +262,7 @@ const CreateModal = (props: Props) => {
         </Row>
       </div>
       <MoTable
-        key='index'
+        key="index"
         rowKey="index"
         columns={columns}
         dataSource={dataPage}
@@ -275,13 +280,21 @@ const CreateModal = (props: Props) => {
       />
       <Divider />
       <div className="flex space-x-4 justify-end">
-        <BlueButton onClick={()=>{
-          props.setSelectData([...historyData],[...selectKey])
-          props.setOpenMoDal(false)
-        }}>ยืนยัน</BlueButton>
-        <WhilteButton onClick={()=>{
-          props.setOpenMoDal(false)
-        }}>ยกเลิก</WhilteButton>
+        <BlueButton
+          onClick={() => {
+            props.setSelectData([...historyData], [...selectKey]);
+            props.setOpenMoDal(false);
+          }}
+        >
+          ยืนยัน
+        </BlueButton>
+        <WhilteButton
+          onClick={() => {
+            props.setOpenMoDal(false);
+          }}
+        >
+          ยกเลิก
+        </WhilteButton>
       </div>
     </>
   );

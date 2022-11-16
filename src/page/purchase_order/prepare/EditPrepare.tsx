@@ -1,6 +1,5 @@
 import { DeleteFilled } from "@ant-design/icons";
-import { Card, Divider, Row, Col, Form, } from "antd";
-import form from "antd/lib/form";
+import { Card, Divider, Row, Col, Form } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { ColumnsType } from "antd/lib/table";
 import ContentContainer from "component/container/ContentContainer";
@@ -10,10 +9,9 @@ import LabelPay from "component/Labels/LabelPay";
 import MoTable from "component/Table/MoTable";
 import _ from "lodash";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import CInput from 'component/input/c-input'
-type Props = {};
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CInput from "component/input/c-input";
 
 interface TableType {
   index: number;
@@ -25,52 +23,52 @@ interface TableType {
   total: number;
 }
 
-const EditPrepare = (props: Props) => {
-  const [selectIndex, setSelectIndex] = useState<number[]>([]);
+const EditPrepare = () => {
   const [data, setData] = useState<any>();
   const navigate = useNavigate();
-  let location = useLocation();
-  const [idOrder, setIdOrder] = useState<any>();
-  let [form] = Form.useForm();
+  const [form] = Form.useForm();
 
   const deleteSelected = (index: number) => {
     let temp = data.filter((item: any) => item.index !== index);
-    setData([...temp])
+    setData([...temp]);
   };
 
-  const onChangeInputnumber = (value:any)=>{
-    console.log('value ::',value);
-    
-  }
-  
+  const onChangeInputnumber = (value: any) => {
+    console.log("value ::", value);
+  };
+
   const expandable = {
-    expandedRowRender: (record : any) => {
-      return <>
-        {
-          record.storage.map((item:any, index:number)=>{
-            return <div key={index} className="h-[50px] pl-5">{item.text}</div>
-          })
-        }
-      </>
+    expandedRowRender: (record: any) => {
+      return (
+        <>
+          {record.storage.map((item: any, index: number) => {
+            return (
+              <div key={index} className="h-[50px] pl-5">
+                {item.text}
+              </div>
+            );
+          })}
+        </>
+      );
     },
     // columnWidth:'2%'
-  }
+  };
 
   const columns: ColumnsType<TableType> = [
     {
       title: "SKU",
       dataIndex: "sku",
-      width:'10%'
+      width: "10%",
     },
     {
       title: "ชื่อสินค้า",
       dataIndex: "name",
-      width:'20%'
+      width: "20%",
     },
     {
       title: "ราคา/หน่วย",
       dataIndex: "price",
-      width:'10%',
+      width: "10%",
       render: (price: number) => {
         return <span>{price.toFixed(2)}</span>;
       },
@@ -78,59 +76,76 @@ const EditPrepare = (props: Props) => {
     {
       title: "สต็อคคงเหลือ",
       dataIndex: "stock",
-      width:'10%',
+      width: "10%",
     },
     {
       title: "จำนวนที่ต้องการ",
       dataIndex: "amount",
-      width:'10%',
-      render:(value:number) =>{
+      width: "10%",
+      render: (value: number) => {
         return (
-          <CInput.CInputNumberSytle value={value} prefix='' text_align="end"/>
-        )
-      }
+          <CInput.CInputNumberSytle value={value} prefix="" text_align="end" />
+        );
+      },
     },
     {
       title: "จำนวนที่แพ็คได้",
       dataIndex: "handle",
-      width:'10%',
+      width: "10%",
       render: (_: any, record: any) => {
         if (record.amount <= record.stock) {
-          return <CInput.CInputNumberSytle value={record.amount} prefix='' text_align="end" onChange={onChangeInputnumber}/>;
+          return (
+            <CInput.CInputNumberSytle
+              value={record.amount}
+              prefix=""
+              text_align="end"
+              onChange={onChangeInputnumber}
+            />
+          );
         }
         if (record.amount > record.stock) {
-          return <CInput.CInputNumberSytle value={record.stock} className='!text-red-500' prefix='' text_align="end" onChange={onChangeInputnumber}/>;;
+          return (
+            <CInput.CInputNumberSytle
+              value={record.stock}
+              className="!text-red-500"
+              prefix=""
+              text_align="end"
+              onChange={onChangeInputnumber}
+            />
+          );
         }
       },
     },
     {
       title: "หน่วย",
       dataIndex: "unit",
-      width:'8%',
+      width: "8%",
     },
     {
       title: "ราคารวม (฿)",
       dataIndex: "pay",
-      width:'10%',
+      width: "10%",
       render: (_, record) => {
         return (
           <div className="flex justify-between">
             <div className="text-blue-700 font-bold">
               {(record.price * record.amount).toFixed(2)}
             </div>
-            <DeleteFilled onClick={()=>{
-              deleteSelected(record.index)
-            }} />
+            <DeleteFilled
+              onClick={() => {
+                deleteSelected(record.index);
+              }}
+            />
           </div>
         );
       },
     },
   ];
 
-  useEffect(()=>{
-    setData(_.cloneDeep(mock.products))  
-  },[])
-  
+  useEffect(() => {
+    setData(_.cloneDeep(mock.products));
+  }, []);
+
   return (
     <>
       <CHeader
@@ -220,7 +235,7 @@ const mock = {
       unit: "ชิ้น",
       storage: [
         { text: "ตู้จัดเก็บ A1 รหัสตู้ A 001236 10 ชิ้น" },
-        { text: "ตู้จัดเก็บ A1 รหัสตู้ A 001236 10 ชิ้น"  },
+        { text: "ตู้จัดเก็บ A1 รหัสตู้ A 001236 10 ชิ้น" },
       ],
     },
     {
