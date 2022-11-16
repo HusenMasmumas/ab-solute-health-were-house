@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthContextState } from "context/Auth/store";
+import { useAuthContextDispatch, useAuthContextState } from "context/Auth/store";
 import { useLocation, Navigate } from "react-router-dom";
 import { _findObjectOfArrayByKeyName } from "utils/utils";
 import { Permission, RouteCustom } from "routes/route.interface";
@@ -9,7 +9,8 @@ type Props = {
   permissionAllow: Permission[];
   route: RouteCustom;
 };
-const RequireAuth = ({ children, route, permissionAllow }: Props) => {
+const RequireAuth = ({ children, route, permissionAllow }: Props) => {  
+  // const { _setLoading } = useAuthContextDispatch();
   const keyName = route.keyName
     ? route.keyName
     : route.path

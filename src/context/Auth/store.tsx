@@ -3,13 +3,13 @@ import { useReducer, useContext, createContext } from 'react'
 import { initialValue } from './initialState'
 import { InitialState } from './interface/auth'
 import { CreateContext } from './interface/action';
-import { signIn, signOut, onReLoad } from './action'
+import { signIn, signOut, onReLoad, setLoading } from './action'
 
 import Reducer from './reducer'
 
 const StateContext = createContext<InitialState>(initialValue)
 // const DispatchContext = createContext<CreateContext>({})
-const DispatchContext = createContext<CreateContext>({ dispatch: () => null, _signIn: () => null, _onReLoad: () => null, _signOut: () => null });
+const DispatchContext = createContext<CreateContext>({ _setLoading:()=>null, dispatch: () => null, _signIn: () => null, _onReLoad: () => null, _signOut: () => null });
 
 
 const AuthContextProvider = ({ children }: { children?: React.ReactNode; }) => {
@@ -18,6 +18,7 @@ const AuthContextProvider = ({ children }: { children?: React.ReactNode; }) => {
     _signIn: signIn(dispatch),
     _signOut: signOut(dispatch),
     _onReLoad: onReLoad(dispatch),
+    _setLoading: setLoading(dispatch)
   }
   return (
     <StateContext.Provider value={state}>

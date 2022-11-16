@@ -20,6 +20,8 @@ const reducerState = (
       return { ...state, auth: false };
     case Types.RefreshTokens:
       return { ...state };
+    case Types.Loading:
+        return { ...state, loading: action.payload.loading };
     default:
       return state;
   }

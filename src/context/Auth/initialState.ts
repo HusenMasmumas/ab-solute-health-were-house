@@ -29,4 +29,5 @@ export const initialValue: InitialState = {
   auth: !!localStorageToken.accessToken,
   token: localStorageToken,
   userInfo: localStorageUserInfo,
+  loading: true
 };

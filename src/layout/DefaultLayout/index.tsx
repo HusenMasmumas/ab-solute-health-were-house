@@ -1,4 +1,4 @@
-import { Layout, Menu, Image } from "antd";
+import { Layout, Image, Skeleton, Spin } from "antd";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
@@ -19,6 +19,10 @@ import { ReactComponent as ActiveMenuBar5 } from "assets/Icon/active/Menu5.svg";
 import Logo from "assets/img/logo.png";
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
+import { useAuthContextState } from "context/Auth/store";
+import { LoadingOutlined } from "@ant-design/icons";
+import { useIsFetching, useIsMutating  } from '@tanstack/react-query'
+import CustomMenu from 'component/SideNav/sideNav'
 const { Header, Content, Sider } = Layout;
 
 type Props = {};
@@ -29,12 +33,15 @@ const DefaultLayout = (props: Props) => {
   const [Path, setPath] = useState(location.pathname);
   const [openDrawer, setOpenDrawer] = useState(true);
   const [isTabletSize, setIsTabletSize] = useState(false);
-  let KeyCur = [""];
+  let KeyCur = ['/stores-branches'];
   const { t } = useTranslation();
-
-  useEffect(() => {
+  const isFetching = useIsFetching();
+  const isMutating = useIsMutating()
+  const { auth } = useAuthContextState();
+  useEffect(() => {    
     setPath(location.pathname);
-    MenuList.map((item) => {
+    
+    MenuList.map((item) => {  
       if (localPath[1].toLowerCase() === item.page.toLowerCase()) {
         KeyCur[0] = item.key;
       }
@@ -43,29 +50,36 @@ const DefaultLayout = (props: Props) => {
 
   const localPath = Path.split("/");
   const activeMenu = (page: string) => {
-    const inActive =
-      localPath[1].toLowerCase() === page.toLowerCase()
-        ? styles.Nav_select
-        : "";
+    const haveSub = ['warehouse-management', 'report', 'user']
+    let inActive
+    if(localPath[1].toLowerCase() === page.toLowerCase() && haveSub.includes(page.toLowerCase())){
+      inActive = styles.Nav_select_have_sub
+    }else if(localPath[1].toLowerCase() === page.toLowerCase()){
+      inActive = styles.Nav_select
+    }else{
+      inActive = styles.inNav_select
+    }
 
     return clsx(
-      "cursor-pointer duration-500 relative !hover:text-white !bg-white",
+      "cursor-pointer relative !hover:text-white !bg-white",
       inActive,
-      styles.inNav_select
     );
   };
 
-  const activeSubMenu = (page: string) => {
-    const inActive =
-      localPath[2]?.toLowerCase() === page.toLowerCase()
-        ? styles.Sub_Nav_select
-        : "";
-
+  const activeSubMenu = (path1:string, page: string) => {
+    console.log(localPath[2]?.toLowerCase() === page.toLowerCase());
+    let style 
+    if(localPath[2]?.toLowerCase() === page.toLowerCase()){
+      style = styles.Sub_Nav_Active 
+    }else if(localPath[1]?.toLowerCase() === path1.toLowerCase()){
+      style = styles.Sub_Nav_near_Active 
+    }else{
+      style = styles.Sub_Nav_InActive;
+    }
     return clsx(
-      "cursor-pointer duration-500 relative !hover:text-white !text-[18px] ",
-      inActive,
-      styles.sub_inNav_select
-    );
+      "!h-[65px] !bg-white",
+      style,
+    )
   };
 
   const activeIcon = (page: string, icon: any) => {
@@ -78,14 +92,14 @@ const DefaultLayout = (props: Props) => {
   };
 
   const onChangePath = (pathname: string) => {
-    navigate(pathname, { replace: true });
+    navigate("../" + pathname, { replace: true });
   };
 
   const MenuList = [
     {
       key: "/over-all",
       label: isTabletSize && openDrawer ? null : t("overAll"),
-      page: "Over all",
+      page: "over-all",
       icon: activeIcon("over-all", {
         inactive: <MenuBar className="w-6 h-6 hover:fill-white" />,
         active: <ActiveMenuBar className="w-6 h-6 " />,
@@ -109,22 +123,12 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("manageInventory"),
           key: "warehouse-management/inventory-management",
-          className: activeSubMenu("inventory-management"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("warehouse-management","inventory-management"),
         },
         {
           label: t("manageGoods"),
           key: "warehouse-management/products-management",
-          className: activeSubMenu("products-management"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("warehouse-management","products-management"),
         },
       ],
     },
@@ -156,52 +160,27 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("orderReport"),
           key: "report/orderReport",
-          className: activeSubMenu("orderReport"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("report","orderReport"),
         },
         {
           label: t("expirationReport"),
           key: "report/expirationReport",
-          className: activeSubMenu("expirationReport"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("report","expirationReport"),
         },
         {
           label: t("damageReport"),
           key: "report/damageReport",
-          className: activeSubMenu("damageReport"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("report","damageReport"),
         },
         {
           label: t("stockReport"),
           key: "report/stockReport",
-          className: activeSubMenu("stockReport"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("report","stockReport"),
         },
         {
           label: t("importedReport"),
           key: "report/importedReport",
-          className: activeSubMenu("importedReport"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("report","importedReport"),
         },
       ],
     },
@@ -234,101 +213,115 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("user"),
           key: "user/manage",
-          className: activeSubMenu("manage"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("manage-user","manage"),
         },
         {
           label: t("role"),
           key: "user/role",
-          className: activeSubMenu("role"),
-          style: {
-            height: "65px",
-            display: "flex",
-            backgroundColor: "#FFFFFF",
-          },
+          className: activeSubMenu("manage-user","role"),
         },
       ],
     },
   ];
 
+  // const {loading} = useAuthContextState()
+  // console.log('layout',auth);
   return (
-    <Layout className={clsx("flex")}>
-      <div className="!overflow-y-auto">
-        <Sider
-          width={320}
-          className="cto_sider site-layout-background !bg-[#FFF] !min-h-screen !text-white hidden md:block border-r-4"
-          trigger={null}
-          collapsible
-          collapsed={isTabletSize && openDrawer}
-          breakpoint="xxl"
-          onBreakpoint={(broken) => {
-            setIsTabletSize(broken);
-          }}
-        >
-          <Image
-            className="h-[60px] !bg-[#FFF] flex justify-center items-center px-[40px]"
-            src={Logo}
-            preview={false}
-          />
-          <div style={{ overflow:'auto', height:'87vh'}}>
-          <Menu
-            mode="inline"
-            onClick={(e) => onChangePath(e.key)}
-            defaultSelectedKeys={[location.pathname]}
-            defaultOpenKeys={["sub1"]}
-            selectedKeys={KeyCur}
-            style={{
-              borderRight: 0,
-              color: "#fff",
-              paddingLeft: "8px",
-              paddingRight: "8px",
-            }}
-            className="!bg-[#FFF] text-white  flex flex-col !gap-[7px]"
-            items={MenuList}
-          />
-          </div>
-        </Sider>
-      </div>
-
-      <Layout
-        className={clsx(
-          "w-full h-full bg-secondary-light dark:bg-[#16181c] duration-500 min-h-screen cto_h transition-all ",
-          styles.cto_header
-        )}
-      >
-        <Header
-          style={{ position: "sticky", zIndex: 1, width: "100%" }}
-          className={clsx(" hidden md:block")}
-        >
-          <HeaderSection
-            setOpenDrawer={setOpenDrawer}
-            openDrawer={openDrawer}
-          />
-        </Header>
-        <div>
-          <Content
-            className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full  transition-all "
-            style={{
-              padding: "0px 24px 24px 24px",
-              margin: 0,
-              minHeight: "100%",
+    <Skeleton active loading={false}>
+      <Layout>
+        <div className="!overflow-y-auto">
+          <Sider
+            width={320}
+            className="cto_sider site-layout-background !bg-[#FFF] !min-h-screen !text-white hidden md:block border-r-4"
+            trigger={null}
+            collapsible
+            collapsed={isTabletSize && openDrawer}
+            breakpoint="xxl"
+            onBreakpoint={(broken) => {
+              setIsTabletSize(broken);
             }}
           >
-            <Outlet />
-          </Content>
+            <Image
+              className="h-[60px] !bg-[#FFF] flex justify-center items-center px-[40px]"
+              src={Logo}
+              preview={false}
+            />
+            <div style={{ overflow: "auto", height: "87vh" }}>
+              <CustomMenu
+                mode="inline"
+                onClick={(e) => onChangePath(e.key)}
+                // defaultSelectedKeys={[location.pathname]}
+                // selectedKeys={KeyCur}
+                style={{
+                  borderRight: 0,
+                  color: "#000",
+                  paddingLeft: "8px",
+                  paddingRight: "8px",
+                }}
+                className="!bg-[#FFF] text-white  flex flex-col !gap-[7px]"
+                items={MenuList}
+              />
+            </div>
+          </Sider>
         </div>
 
-        <div className="flex items-center justify-center md:hidden w-screen h-screen">
-          <span className="text-3xl font-bold">
-            This website does not support mobile size{" "}
-          </span>
-        </div>
+        <Layout
+          className={clsx(
+            "w-full h-full bg-secondary-light dark:bg-[#16181c] duration-500 min-h-screen cto_h transition-all ",
+            styles.cto_header
+          )}
+        >
+          { (!!isFetching || !!isMutating)  && (
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                margin: "auto",
+                zIndex: 2,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div className="w-[500px] text-center">
+                <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />}/>
+              </div>
+            </div>
+          )}
+
+          <Header
+            style={{ position: "sticky", zIndex: 1, width: "100%" }}
+            className={clsx(" hidden md:block")}
+          >
+            <HeaderSection
+              setOpenDrawer={setOpenDrawer}
+              openDrawer={openDrawer}
+            />
+          </Header>
+          <div>
+            <Content
+              className="site-layout-background hidden md:block bg-[#F5F5F5] dark:bg-[#16181c] duration-500 h-full  transition-all "
+              style={{
+                padding: "0px 24px 24px 24px",
+                margin: 0,
+                minHeight: "100%",
+              }}
+            >
+              <Outlet />
+            </Content>
+          </div>
+
+          <div className="flex items-center justify-center md:hidden w-screen h-screen">
+            <span className="text-3xl font-bold">
+              This website does not support mobile size{" "}
+            </span>
+          </div>
+        </Layout>
       </Layout>
-    </Layout>
+    </Skeleton>
   );
 };
 

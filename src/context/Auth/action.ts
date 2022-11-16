@@ -21,6 +21,13 @@ export const signIn =
 
 export const onReLoad = (dispatch: Dispatch<DispatchAuth>) => async () => {};
 
+export const setLoading = (dispatch: Dispatch<DispatchAuth>) => async (payload: AuthPayload[Types.Loading] ) => {  
+  dispatch({
+    type: Types.Loading,
+    payload: { loading:payload.loading },
+  });
+};
+
 export const signOut = (dispatch: Dispatch<DispatchAuth>) => async () => {
   localStorage.removeItem("token");
   localStorage.removeItem("userInfo");

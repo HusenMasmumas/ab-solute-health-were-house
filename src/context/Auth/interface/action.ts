@@ -6,4 +6,5 @@ export type CreateContext = {
   _signOut: () => void;
   _onReLoad: () => void;
   _signIn: (payload: AuthPayload[Types.SingIn]) => void;
+  _setLoading: (payload: AuthPayload[Types.Loading]) => void;
 };

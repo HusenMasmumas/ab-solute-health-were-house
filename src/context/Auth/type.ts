@@ -3,4 +3,5 @@ export enum Types {
   OnReLoad = "ON_RELOAD",
   SingOut = "SIGN_OUT",
   RefreshTokens = "REFRESH_TOKEN",
+  Loading = "Loading"
 }
