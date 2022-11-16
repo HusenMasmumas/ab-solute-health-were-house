@@ -19,7 +19,6 @@ import { ReactComponent as ActiveMenuBar5 } from "assets/Icon/active/Menu5.svg";
 import Logo from "assets/img/logo.png";
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
-import { useAuthContextState } from "context/Auth/store";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useIsFetching, useIsMutating  } from '@tanstack/react-query'
 import CustomMenu from 'component/SideNav/sideNav'
@@ -37,15 +36,15 @@ const DefaultLayout = (props: Props) => {
   const { t } = useTranslation();
   const isFetching = useIsFetching();
   const isMutating = useIsMutating()
-  const { auth } = useAuthContextState();
   useEffect(() => {    
     setPath(location.pathname);
     
-    MenuList.map((item) => {  
+    MenuList.forEach((item) => {  
       if (localPath[1].toLowerCase() === item.page.toLowerCase()) {
         KeyCur[0] = item.key;
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   const localPath = Path.split("/");
@@ -224,8 +223,6 @@ const DefaultLayout = (props: Props) => {
     },
   ];
 
-  // const {loading} = useAuthContextState()
-  // console.log('layout',auth);
   return (
     <Skeleton active loading={false}>
       <Layout>

@@ -12,7 +12,7 @@ import CImage from "component/Image/CImage";
 const LoginPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const { _signIn, _setLoading } = useAuthContextDispatch();
+  const { _signIn } = useAuthContextDispatch();
   const uselogin = useLogin();
   const onFinish = (values: any) => {
     uselogin.mutate(values, {

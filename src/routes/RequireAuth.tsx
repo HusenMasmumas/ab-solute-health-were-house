@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthContextDispatch, useAuthContextState } from "context/Auth/store";
+import { useAuthContextState } from "context/Auth/store";
 import { useLocation, Navigate } from "react-router-dom";
 import { _findObjectOfArrayByKeyName } from "utils/utils";
 import { Permission, RouteCustom } from "routes/route.interface";

@@ -178,6 +178,7 @@ const UserManagement = () => {
     temp.page = currentPage
     temp.limit = limitPage 
     setSearch({...temp})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
