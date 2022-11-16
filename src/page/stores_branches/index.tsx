@@ -6,7 +6,7 @@ import CHeader from "component/headerPage/Header";
 import { useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
 import MoTable from "component/Table/MoTable";
-import ContentContainer from 'component/container/ContentContainer'
+import ContentContainer from "component/container/ContentContainer";
 import { useGetBranchs } from "service/branch";
 import { IBranch } from "service/branch/interface";
 import { Form } from "antd";
@@ -57,9 +57,14 @@ const columns: ColumnsType<IBranch> = [
   },
   {
     title: "ชื่อนามสกุล(ผู้จัดการ)",
-    render: (_, record) =>{
-      return <div className="flex space-x-4"><span>{record.firstName}</span><span>{record.lastName}</span></div>
-    }
+    render: (_, record) => {
+      return (
+        <div className="flex space-x-4">
+          <span>{record.firstName}</span>
+          <span>{record.lastName}</span>
+        </div>
+      );
+    },
   },
   {
     title: "เบอร์โทร",
@@ -73,20 +78,19 @@ const StoresBranches = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const [search, setSearch] = useState<any>(
-    {
-      page: 1,
-      limit: 1,
-      orderBy:'DESC',
-    }
-  );
-  const { data:dataList } = useGetBranchs(search)
-  
+  const [search, setSearch] = useState<any>({
+    page: 1,
+    limit: 1,
+    orderBy: "DESC",
+  });
+  const { data: dataList } = useGetBranchs(search);
+
   useEffect(() => {
-    let temp = {...search}
-    temp.page = currentPage
-    temp.limit = limitPage 
-    setSearch({...temp})
+    let temp = { ...search };
+    temp.page = currentPage;
+    temp.limit = limitPage;
+    setSearch({ ...temp });
+    // eslint-disable-next-line
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -95,70 +99,72 @@ const StoresBranches = () => {
   };
 
   const onFinish = (values: any) => {
-    setSearch(
-      {
-        page: currentPage,
-        limit: limitPage,
-        orderBy:'DESC',
-        branchName: values?.branchName,
-        name: values?.name,
-        phone: values?.phone
-      }
-    )
+    setSearch({
+      page: currentPage,
+      limit: limitPage,
+      orderBy: "DESC",
+      branchName: values?.branchName,
+      name: values?.name,
+      phone: values?.phone,
+    });
   };
 
-  const onReset = ()=>{
+  const onReset = () => {
     form.resetFields();
-    setSearch(
-      {
-        page: currentPage,
-        limit: limitPage,
-        orderBy:'DESC',
-        branchName: '',
-        name: '',
-        phone: ''
-      }
-    )
-  }
-  
+    setSearch({
+      page: currentPage,
+      limit: limitPage,
+      orderBy: "DESC",
+      branchName: "",
+      name: "",
+      phone: "",
+    });
+  };
+
   return (
     <>
       <CHeader
         keyHeader="stores&branches"
         arrPath={["stores&branches"]}
         buttons={[
-          { colorButton: 'green',
-            keytext: 'createShop',
-            fn:  () => {
+          {
+            colorButton: "green",
+            keytext: "createShop",
+            fn: () => {
               navigate("/craete-stores-branches");
             },
-          }
+          },
         ]}
-      />  
+      />
       <ContentContainer>
-        <SearchForm elements={elements} onFinish={onFinish} form={form} onReset={onReset}/>
+        <SearchForm
+          elements={elements}
+          onFinish={onFinish}
+          form={form}
+          onReset={onReset}
+        />
         <MoTable
           headerTable={t("orderlist")}
-          rowKey={'id'}
+          rowKey={"id"}
           columns={columns}
           dataSource={dataList?.result[0].data}
           onChangePage={onChangePage}
           config={{
-            total: dataList?.result[0].total ?? 0 / limitPage, 
+            total: dataList?.result[0].total ?? 0 / limitPage,
             pageSize: limitPage,
             currentPage: currentPage,
           }}
-          onRow={(record:IBranch)=>({
-            onClick:()=>{
+          onRow={(record: IBranch) => ({
+            onClick: () => {
               // console.log('oneClick',record);
             },
             onDoubleClick: () => {
-                // console.log(record);
-                navigate("/craete-stores-branches",{state:{ id : record.id }});
-              }
+              // console.log(record);
+              navigate("/craete-stores-branches", { state: { id: record.id } });
+            },
           })}
-          />
-        </ContentContainer>
+        />
+      </ContentContainer>
     </>
   );
 };
