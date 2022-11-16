@@ -29,7 +29,7 @@ const RenderRoute = (props: Props) => {
         ...obj,
         element: (
           <RequireAuth route={obj} permissionAllow={permissionAllow}>
-            {Component as React.ReactNode}{" "}
+            {Component as React.ReactNode}
           </RequireAuth>
         ),
       };
