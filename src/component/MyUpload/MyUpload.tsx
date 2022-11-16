@@ -9,14 +9,14 @@ interface Props {
   onChange?: (value: any) => void;
 }
 const MyUpload = ({ imageRender, onChange }: Props) => {
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const dummyRequest = ({ onSuccess }: any) => {
     onSuccess("ok");
   };
-  useEffect(()=>{
-    setImageUrl(imageRender)
-  },[imageRender])
+  useEffect(() => {
+    setImageUrl(imageRender);
+  }, [imageRender]);
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -38,34 +38,31 @@ const MyUpload = ({ imageRender, onChange }: Props) => {
     }
   };
   return (
-      <Upload
-        name="avatar"
-        showUploadList={false}
-        // beforeUpload={beforeUpload}
-        onChange={handleChange}
-        customRequest={dummyRequest}
-      >
-        <div className="relative">
-          {imageUrl ? (
-            <div className="static h-[150px] w-[150px] rounded-full ">
-              <img
-                src={imageUrl}
-                alt="avatar"
-                style={{ width: "100%", borderRadius: "100%" }}
-              />
-            </div>
-          ) : (
-            <Avatar 
-              size={140} 
-              icon={<UserOutlined />} 
+    <Upload
+      name="avatar"
+      showUploadList={false}
+      // beforeUpload={beforeUpload}
+      onChange={handleChange}
+      customRequest={dummyRequest}
+    >
+      <div className="relative">
+        {imageUrl ? (
+          <div className="static h-[150px] w-[150px] rounded-full ">
+            <img
+              src={imageUrl}
+              alt="avatar"
+              style={{ width: "100%", borderRadius: "100%" }}
             />
-          )}
-
-          <div className=" bg-green w-[50px] h-[50px] outline outline-offset-1 outline-1 outline-white rounded-full flex justify-center items-center absolute right-[5px] bottom-[5px]">
-            <PlusOutlined style={{ fontSize: 25, color: "white" }} />
           </div>
+        ) : (
+          <Avatar size={140} icon={<UserOutlined />} />
+        )}
+
+        <div className=" bg-green w-[50px] h-[50px] outline outline-offset-1 outline-1 outline-white rounded-full flex justify-center items-center absolute right-[5px] bottom-[5px]">
+          <PlusOutlined style={{ fontSize: 25, color: "white" }} />
         </div>
-      </Upload>
+      </div>
+    </Upload>
   );
-}
+};
 export default MyUpload;

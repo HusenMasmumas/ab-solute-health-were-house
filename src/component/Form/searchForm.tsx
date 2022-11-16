@@ -20,7 +20,7 @@ export type TPageHeaderInput =
 export interface IsearchFormItem {
   name: string; //ใช้เป็นชื่อ FormItemName ควรเป็นอิง
   label: string; //ใช้เป็นข้อความที่แสดง
-  placeholder?: string,
+  placeholder?: string;
   input: {
     //เลือกประเภท
     type: TPageHeaderInput;
@@ -37,7 +37,7 @@ type searchFormProps = {
   onFinish?: (values: any) => void;
   onReset?: () => void;
   DeepBlue?: boolean;
-  NoPaddingY?:boolean;
+  NoPaddingY?: boolean;
 };
 
 const SearchForm = ({
@@ -46,15 +46,15 @@ const SearchForm = ({
   onFinish,
   onReset,
   initialValues,
-  DeepBlue=false,
-  NoPaddingY=false
+  DeepBlue = false,
+  NoPaddingY = false,
 }: searchFormProps) => {
   let [_form] = Form.useForm();
 
   const getInputByType = (type: TPageHeaderInput) => {
     switch (type) {
       case "input":
-        return CInput.withSerchICON;
+        return CInput.WithSearchICON;
       case "select":
         return CSelect;
       case "date-picker":
@@ -79,10 +79,10 @@ const SearchForm = ({
   };
 
   return (
-    <Card 
-      className={ `w-full !mt-[24px] !border-0`} 
-      bodyStyle={ NoPaddingY ? {padding: '0px 24px 0px 24px'} : {}}
-      >
+    <Card
+      className={`w-full !mt-[24px] !border-0`}
+      bodyStyle={NoPaddingY ? { padding: "0px 24px 0px 24px" } : {}}
+    >
       <Form layout="vertical" onFinish={onFinish} form={form ? form : _form}>
         <Row gutter={[12, 6]} align="bottom">
           {elements.map((item) => {
@@ -92,12 +92,18 @@ const SearchForm = ({
                 <Form.Item
                   className="mb-0"
                   name={item.name}
-                  label={ item.label ? <span className="!text-[14px]">{item.label}</span> : null}
+                  label={
+                    item.label ? (
+                      <span className="!text-[14px]">{item.label}</span>
+                    ) : null
+                  }
                 >
                   <Element
                     style={{ fontSize: "14px", borderRadius: "4px" }}
                     size="large"
-                    placeholder={ item?.placeholder ? item?.placeholder : item.label}
+                    placeholder={
+                      item?.placeholder ? item?.placeholder : item.label
+                    }
                     option={item.input.options}
                   />
                 </Form.Item>
@@ -108,12 +114,15 @@ const SearchForm = ({
             <Form.Item className="mb-0">
               <Row gutter={[0, 6]}>
                 <Col className="flex space-x-4">
-                  {
-                    DeepBlue ?  
-                    <DeepBlueButton onClick={_onSubmit}size="large"> ค้นหา </DeepBlueButton>
-                    : 
-                    <LightButton onClick={_onSubmit}size="large"> ค้นหา </LightButton>
-                  }
+                  {DeepBlue ? (
+                    <DeepBlueButton onClick={_onSubmit} size="large">
+                      ค้นหา
+                    </DeepBlueButton>
+                  ) : (
+                    <LightButton onClick={_onSubmit} size="large">
+                      ค้นหา
+                    </LightButton>
+                  )}
                   <WhilteButton
                     onClick={onReset ? onReset : _onReset}
                     size="large"
