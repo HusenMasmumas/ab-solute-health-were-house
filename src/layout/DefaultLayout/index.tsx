@@ -20,8 +20,8 @@ import Logo from "assets/img/logo.png";
 import HeaderSection from "./Header";
 import { useTranslation } from "react-i18next";
 import { LoadingOutlined } from "@ant-design/icons";
-import { useIsFetching, useIsMutating  } from '@tanstack/react-query'
-import CustomMenu from 'component/SideNav/sideNav'
+import { useIsFetching, useIsMutating } from "@tanstack/react-query";
+import CustomMenu from "component/SideNav/sideNav";
 const { Header, Content, Sider } = Layout;
 
 type Props = {};
@@ -32,14 +32,14 @@ const DefaultLayout = (props: Props) => {
   const [Path, setPath] = useState(location.pathname);
   const [openDrawer, setOpenDrawer] = useState(true);
   const [isTabletSize, setIsTabletSize] = useState(false);
-  let KeyCur = ['/stores-branches'];
+  let KeyCur = ["/stores-branches"];
   const { t } = useTranslation();
   const isFetching = useIsFetching();
-  const isMutating = useIsMutating()
-  useEffect(() => {    
+  const isMutating = useIsMutating();
+  useEffect(() => {
     setPath(location.pathname);
-    
-    MenuList.forEach((item) => {  
+
+    MenuList.forEach((item) => {
       if (localPath[1].toLowerCase() === item.page.toLowerCase()) {
         KeyCur[0] = item.key;
       }
@@ -49,36 +49,36 @@ const DefaultLayout = (props: Props) => {
 
   const localPath = Path.split("/");
   const activeMenu = (page: string) => {
-    const haveSub = ['warehouse-management', 'report', 'user']
-    let inActive
-    if(localPath[1].toLowerCase() === page.toLowerCase() && haveSub.includes(page.toLowerCase())){
-      inActive = styles.Nav_select_have_sub
-    }else if(localPath[1].toLowerCase() === page.toLowerCase()){
-      inActive = styles.Nav_select
-    }else{
-      inActive = styles.inNav_select
+    const haveSub = ["warehouse-management", "report", "user"];
+    let inActive;
+    if (
+      localPath[1].toLowerCase() === page.toLowerCase() &&
+      haveSub.includes(page.toLowerCase())
+    ) {
+      inActive = styles.Nav_select_have_sub;
+    } else if (localPath[1].toLowerCase() === page.toLowerCase()) {
+      inActive = styles.Nav_select;
+    } else {
+      inActive = styles.inNav_select;
     }
 
     return clsx(
       "cursor-pointer relative !hover:text-white !bg-white",
-      inActive,
+      inActive
     );
   };
 
-  const activeSubMenu = (path1:string, page: string) => {
+  const activeSubMenu = (path1: string, page: string) => {
     console.log(localPath[2]?.toLowerCase() === page.toLowerCase());
-    let style 
-    if(localPath[2]?.toLowerCase() === page.toLowerCase()){
-      style = styles.Sub_Nav_Active 
-    }else if(localPath[1]?.toLowerCase() === path1.toLowerCase()){
-      style = styles.Sub_Nav_near_Active 
-    }else{
+    let style;
+    if (localPath[2]?.toLowerCase() === page.toLowerCase()) {
+      style = styles.Sub_Nav_Active;
+    } else if (localPath[1]?.toLowerCase() === path1.toLowerCase()) {
+      style = styles.Sub_Nav_near_Active;
+    } else {
       style = styles.Sub_Nav_InActive;
     }
-    return clsx(
-      "!h-[65px] !bg-white",
-      style,
-    )
+    return clsx("!h-[65px] !bg-white", style);
   };
 
   const activeIcon = (page: string, icon: any) => {
@@ -122,12 +122,18 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("manageInventory"),
           key: "warehouse-management/inventory-management",
-          className: activeSubMenu("warehouse-management","inventory-management"),
+          className: activeSubMenu(
+            "warehouse-management",
+            "inventory-management"
+          ),
         },
         {
           label: t("manageGoods"),
           key: "warehouse-management/products-management",
-          className: activeSubMenu("warehouse-management","products-management"),
+          className: activeSubMenu(
+            "warehouse-management",
+            "products-management"
+          ),
         },
       ],
     },
@@ -159,27 +165,27 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("orderReport"),
           key: "report/orderReport",
-          className: activeSubMenu("report","orderReport"),
+          className: activeSubMenu("report", "orderReport"),
         },
         {
           label: t("expirationReport"),
           key: "report/expirationReport",
-          className: activeSubMenu("report","expirationReport"),
+          className: activeSubMenu("report", "expirationReport"),
         },
         {
           label: t("damageReport"),
           key: "report/damageReport",
-          className: activeSubMenu("report","damageReport"),
+          className: activeSubMenu("report", "damageReport"),
         },
         {
           label: t("stockReport"),
           key: "report/stockReport",
-          className: activeSubMenu("report","stockReport"),
+          className: activeSubMenu("report", "stockReport"),
         },
         {
           label: t("importedReport"),
           key: "report/importedReport",
-          className: activeSubMenu("report","importedReport"),
+          className: activeSubMenu("report", "importedReport"),
         },
       ],
     },
@@ -212,12 +218,12 @@ const DefaultLayout = (props: Props) => {
         {
           label: t("user"),
           key: "user/manage",
-          className: activeSubMenu("manage-user","manage"),
+          className: activeSubMenu("manage-user", "manage"),
         },
         {
           label: t("role"),
           key: "user/role",
-          className: activeSubMenu("manage-user","role"),
+          className: activeSubMenu("manage-user", "role"),
         },
       ],
     },
@@ -268,7 +274,7 @@ const DefaultLayout = (props: Props) => {
             styles.cto_header
           )}
         >
-          { (!!isFetching || !!isMutating)  && (
+          {(!!isFetching || !!isMutating) && (
             <div
               style={{
                 position: "absolute",
@@ -284,7 +290,9 @@ const DefaultLayout = (props: Props) => {
               }}
             >
               <div className="w-[500px] text-center">
-                <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />}/>
+                <Spin
+                  indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />}
+                />
               </div>
             </div>
           )}
@@ -313,7 +321,7 @@ const DefaultLayout = (props: Props) => {
 
           <div className="flex items-center justify-center md:hidden w-screen h-screen">
             <span className="text-3xl font-bold">
-              This website does not support mobile size{" "}
+              This website does not support mobile size
             </span>
           </div>
         </Layout>
