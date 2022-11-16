@@ -1,17 +1,8 @@
-import {
-  Button,
-  Col,
-  Form,
-  FormInstance,
-  Modal,
-  Row,
-  Switch,
-} from "antd";
+import { Button, Col, Form, FormInstance, Modal, Row, Switch } from "antd";
 import CInput from "component/input/c-input";
 import CreateModal, { ProductsType } from "./createModal";
 import CDatePicker from "component/input/c-date-picker";
 import moment from "moment";
-import * as _ from "lodash";
 import { useEffect, useState } from "react";
 import DiverderBlue from "component/Divider/DiverderBlue";
 
@@ -36,12 +27,15 @@ const CreateDataForm = (props: {
   };
   useEffect(() => {
     InitForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <div className="bg-white py-[35px] px-[24px]">
-        <div className="text-lightblue text-[20px] font-semibold">ข้อมูลตู้เก็บสินค้า</div>
+        <div className="text-lightblue text-[20px] font-semibold">
+          ข้อมูลตู้เก็บสินค้า
+        </div>
         <DiverderBlue />
         <Form layout="vertical" form={props.form} onFinish={props.formFN}>
           <Row gutter={[24, 0]}>
@@ -57,27 +51,43 @@ const CreateDataForm = (props: {
             </Col>
             <Col span={12}>
               <Form.Item label="Category" name="category">
-                <CInput className="input-form" placeholder="Category" disabled/>
+                <CInput
+                  className="input-form"
+                  placeholder="Category"
+                  disabled
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Sub Category" name="subCategory">
-                <CInput className="input-form" placeholder="Sub Category" disabled/>
+                <CInput
+                  className="input-form"
+                  placeholder="Sub Category"
+                  disabled
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="SKU" name="sku">
-                <CInput className="input-form" placeholder="Category" disabled/>
+                <CInput
+                  className="input-form"
+                  placeholder="Category"
+                  disabled
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Sub SKU" name="subSku">
-                <CInput className="input-form" placeholder="Sub Category" disabled/>
+                <CInput
+                  className="input-form"
+                  placeholder="Sub Category"
+                  disabled
+                />
               </Form.Item>
             </Col>
             <Col span={24}>
               <Form.Item label="Name" name="name">
-                <CInput className="input-form" placeholder="Name" disabled/>
+                <CInput className="input-form" placeholder="Name" disabled />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -91,15 +101,21 @@ const CreateDataForm = (props: {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="การใช้งาน" name="status" valuePropName="checked">
+              <Form.Item
+                label="การใช้งาน"
+                name="status"
+                valuePropName="checked"
+              >
                 <Switch />
               </Form.Item>
             </Col>
-          <Col span={24}>
-            <div className="text-lightblue text-[22px] font-semibold mt-16">ข้อมูลตามคลังสินค้า</div>
-            <DiverderBlue />
-          </Col>
-          <Col span={12}>
+            <Col span={24}>
+              <div className="text-lightblue text-[22px] font-semibold mt-16">
+                ข้อมูลตามคลังสินค้า
+              </div>
+              <DiverderBlue />
+            </Col>
+            <Col span={12}>
               <Form.Item label="Lot" name="lot">
                 <CDatePicker
                   disabledDate={(d) =>

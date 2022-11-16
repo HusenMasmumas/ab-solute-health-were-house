@@ -1,10 +1,9 @@
-import {Form} from "antd";
+import { Form } from "antd";
 import { Tabs } from "antd";
 import ContentContainer from "component/container/ContentContainer";
 import CHeader from "component/headerPage/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as _ from "lodash";
 import Details from "./details";
 import Information from "./information";
 const CreateProduct = () => {
@@ -51,6 +50,7 @@ const CreateProduct = () => {
       setMode("productlist");
       initialEmptyForm();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -85,12 +85,12 @@ const CreateProduct = () => {
                 {
                   label: "ข้อมูลสินค้า",
                   key: "1",
-                  children: (<Details/>),
+                  children: <Details />,
                 },
                 {
                   label: "รายละเอียดสินค้า",
                   key: "2",
-                  children: (<Information/>),
+                  children: <Information />,
                 },
               ]}
               defaultActiveKey="1"

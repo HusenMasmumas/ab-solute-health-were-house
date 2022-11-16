@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ColumnsType } from "antd/lib/table";
 import MoTable from "component/Table/MoTable";
 import SearchForm, { IsearchFormItem } from "component/Form/searchForm";
-import axios from "axios";
 
 type Props = {
   onFinishModal: (row: any) => void; //ส่งค่ากลับไปที่หน้าสร้าง
@@ -44,7 +43,7 @@ const CreateModal = (props: Props) => {
     {
       title: "#",
       dataIndex: "id",
-      width: "5%", 
+      width: "5%",
     },
     {
       title: "Category",
@@ -87,28 +86,33 @@ const CreateModal = (props: Props) => {
     if (type === "pageSize") setLimitPage(page);
     else setCurrentPage(page);
   };
-  
-  const fakerFetchData = async (query:number | undefined) => {
-    if(query === undefined) return
+
+  const fakerFetchData = async (query: number | undefined) => {
+    if (query === undefined) return;
     // const { data } = await axios.get(`http://localhost:5000/cabinet/${query}`);
-    setDataPage(mockData)
+    setDataPage(mockData);
   };
-  
+
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
   };
-  
+
   useEffect(() => {
-    fakerFetchData(currentPage)
+    fakerFetchData(currentPage);
   }, [currentPage, limitPage]);
 
   useEffect(() => {
-    setCurrentPage(1)
+    setCurrentPage(1);
   }, []);
 
   return (
     <>
-      <SearchForm elements={elements} onFinish={onFinish} DeepBlue={true} NoPaddingY={true}/>
+      <SearchForm
+        elements={elements}
+        onFinish={onFinish}
+        DeepBlue={true}
+        NoPaddingY={true}
+      />
       <MoTable
         rowKey="id"
         columns={columns}
@@ -123,11 +127,11 @@ const CreateModal = (props: Props) => {
           pageSize: limitPage,
           currentPage: currentPage,
         }}
-        onRow={(record)=>({
+        onRow={(record) => ({
           onDoubleClick: () => {
-            props.onFinishModal(record)
-            props.setOpenMoDal(false)
-          }
+            props.onFinishModal(record);
+            props.setOpenMoDal(false);
+          },
         })}
       />
     </>
@@ -138,33 +142,33 @@ export default CreateModal;
 
 const mockData: ProductsType[] = [
   {
-    id:1,
-    name: 'ALA 300mg',
+    id: 1,
+    name: "ALA 300mg",
     priceCost: 3000,
     priceNormal: 1500,
-    sku: 'SKU',
-    subSku: 'T001-ALA-300',
-    category: 'Treatment Service',
-    subCategory: 'Detoxfication'
+    sku: "SKU",
+    subSku: "T001-ALA-300",
+    category: "Treatment Service",
+    subCategory: "Detoxfication",
   },
   {
-    id:2,
-    name: 'ALA 300mg',
+    id: 2,
+    name: "ALA 300mg",
     priceCost: 3500,
     priceNormal: 4000,
-    sku: 'T002',
-    subSku: 'T002-ALA-600',
-    category: 'Treatment Service',
-    subCategory: 'Detoxfication'
+    sku: "T002",
+    subSku: "T002-ALA-600",
+    category: "Treatment Service",
+    subCategory: "Detoxfication",
   },
   {
-    id:3,
-    name: 'PRM-Anti IL-4',
+    id: 3,
+    name: "PRM-Anti IL-4",
     priceCost: 2500,
     priceNormal: 1500,
-    sku: 'DS004',
-    subSku: 'DS004-ALA-020',
-    category: 'Drugs & Supplements',
-    subCategory: 'Homeo'
+    sku: "DS004",
+    subSku: "DS004-ALA-020",
+    category: "Drugs & Supplements",
+    subCategory: "Homeo",
   },
-]
+];

@@ -1,76 +1,84 @@
-import { useEffect } from 'react'
+import { useEffect } from "react";
 import { Col, Form, Input, Row, Select } from "antd";
 import CHeader from "component/headerPage/Header";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useCreateContainer, useGetContainerBYID, useUpdateContainer } from 'service/container';
-import { IContainer } from 'service/container/interface';
+import {
+  useCreateContainer,
+  useGetContainerBYID,
+  useUpdateContainer,
+} from "service/container";
+import { IContainer } from "service/container/interface";
 const CreateInventory = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { Option } = Select;
   const [form] = Form.useForm();
-  const createContainer = useCreateContainer()
-  const { data:container } = useGetContainerBYID(location.state?.id)
-  const updateContainer = useUpdateContainer()
-  const onFinish = (value:IContainer)=>{
-    if(location.state?.id){
-      value.id = location.state?.id
-      console.log('update',value);
-      updateContainer.mutate(value,{
+  const createContainer = useCreateContainer();
+  const { data: container } = useGetContainerBYID(location.state?.id);
+  const updateContainer = useUpdateContainer();
+  const onFinish = (value: IContainer) => {
+    if (location.state?.id) {
+      value.id = location.state?.id;
+      console.log("update", value);
+      updateContainer.mutate(value, {
         onSuccess() {
-          alert('success')
+          alert("success");
         },
         onError(error) {
-          alert(error)
+          alert(error);
         },
-      })
-    }else{
-      createContainer.mutate(value,{
+      });
+    } else {
+      createContainer.mutate(value, {
         onSuccess() {
-          alert('success')
+          alert("success");
         },
-        onError(error,) {
-          alert(error)
+        onError(error) {
+          alert(error);
         },
-      })
+      });
     }
-  }
-  useEffect(()=>{
-    if(container){
+  };
+  useEffect(() => {
+    if (container) {
       console.log(container);
       form.setFieldsValue({
-        ...container.result
-      })
-    }else{
+        ...container.result,
+      });
+    } else {
       form.setFieldsValue({
-        name:'',
-        code:'',
-        color:null
-      })
+        name: "",
+        code: "",
+        color: null,
+      });
     }
-  },[container])
+    // eslint-disable-next-line
+  }, [container]);
   return (
     <>
       <CHeader
         keyHeader="warehouseManagement"
-        arrPath={["warehouseManagement", location.state?.id ? "Locker "+location.state?.id :"addLocker"]}
+        arrPath={[
+          "warehouseManagement",
+          location.state?.id ? "Locker " + location.state?.id : "addLocker",
+        ]}
         buttons={[
-          { 
-            colorButton: 'whilte',
-            keytext: 'cancle',
-            fn:  () => {
+          {
+            colorButton: "whilte",
+            keytext: "cancle",
+            fn: () => {
               // navigate("/warehouse-management/inventory-management");
               navigate(-1);
-            }
+            },
           },
-          { 
-            colorButton: 'green',
-            keytext: 'save',
-            fn:  () => {
-              form.submit()
+          {
+            colorButton: "green",
+            keytext: "save",
+            fn: () => {
+              form.submit();
               // navigate("/warehouse-management/inventory-management");
-            }
-          }
+            },
+          },
         ]}
       />
       <div className="bg-white pt-[16px] px-[24px] mt-[24px] pb-[100px]">
@@ -78,41 +86,38 @@ const CreateInventory = () => {
           <span>ข้อมูลตู้เก็บสินค้า</span>
         </div>
         <div className="border-b-[0.1px] my-[16px] border-lightblue"></div>
-        <Form 
-          layout="vertical" 
+        <Form
+          layout="vertical"
           form={form}
           onFinish={onFinish}
           requiredMark={false}
-          >
+        >
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item 
-                label="ชื่อตู้สินค้า" 
-                name='name'
-                rules={[{ required: true, message: 'กรอกข้อมูล' }]}
-                >
-                <Input className="input-form" placeholder="ชื่อตู้สินค้า"/>
+              <Form.Item
+                label="ชื่อตู้สินค้า"
+                name="name"
+                rules={[{ required: true, message: "กรอกข้อมูล" }]}
+              >
+                <Input className="input-form" placeholder="ชื่อตู้สินค้า" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item 
-              label="รหัสตู้สินค้า" 
-              name='code'
-              rules={[{ required: true, message: 'กรอกข้อมูล' }]}
+              <Form.Item
+                label="รหัสตู้สินค้า"
+                name="code"
+                rules={[{ required: true, message: "กรอกข้อมูล" }]}
               >
-                <Input
-                  className="input-form"
-                  placeholder="รหัสตู้สินค้า"
-                />
+                <Input className="input-form" placeholder="รหัสตู้สินค้า" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[24, 0]}>
             <Col span={12}>
-              <Form.Item 
-              label="เลือกสีตู้" 
-              name='color'
-              rules={[{ required: true, message: 'เลือกสีตู้' }]}
+              <Form.Item
+                label="เลือกสีตู้"
+                name="color"
+                rules={[{ required: true, message: "เลือกสีตู้" }]}
               >
                 <Select placeholder="เลือกสีตู้">
                   <Option value="blue">สีน้ำเงิน</Option>
