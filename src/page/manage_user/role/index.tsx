@@ -8,7 +8,7 @@ import MoTable from "component/Table/MoTable";
 import ContentContainer from "component/container/ContentContainer";
 import { useGetRole, useUpdateRoleActive } from "service/permission";
 import { IGetRole } from "service/permission/interface";
-import { useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from "@tanstack/react-query";
 const elements: IsearchFormItem[] = [
   {
     name: "search",
@@ -39,22 +39,21 @@ const RoleManagement = () => {
   const navigate = useNavigate();
   const [limitPage, setLimitPage] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const [form] = Form.useForm();
   const updateRoleActive = useUpdateRoleActive();
-  const [search, setSearch] = useState<any>(
-    {
-      page: currentPage,
-      limit: limitPage,
-      orderBy:'DESC',
-    }
-  );
-  const { data:listRoles } = useGetRole(search)
-  useEffect(() => {    
-    let temp = {...search}
-    temp.page = currentPage
-    temp.limit = limitPage 
-    setSearch({...temp})
+  const [search, setSearch] = useState<any>({
+    page: currentPage,
+    limit: limitPage,
+    orderBy: "DESC",
+  });
+  const { data: listRoles } = useGetRole(search);
+  useEffect(() => {
+    let temp = { ...search };
+    temp.page = currentPage;
+    temp.limit = limitPage;
+    setSearch({ ...temp });
+    // eslint-disable-next-line
   }, [currentPage, limitPage]);
 
   const onChangePage = (page: number, type?: string) => {
@@ -62,48 +61,44 @@ const RoleManagement = () => {
     else setCurrentPage(page);
   };
 
-  const onChange = (checked: boolean, record:IGetRole) => {
+  const onChange = (checked: boolean, record: IGetRole) => {
     updateRoleActive.mutate(
       {
-        id:record.id,
-        name:record.name,
-        isActive: checked
+        id: record.id,
+        name: record.name,
+        isActive: checked,
       },
       {
         onSuccess: async () => {
-          queryClient.invalidateQueries(["get-roles"])
+          queryClient.invalidateQueries(["get-roles"]);
         },
         onError: async () => {
-          alert('onError')
+          alert("onError");
         },
       }
-    )
+    );
   };
 
   const onFinish = (values: any) => {
-    setSearch(
-      {
-        page: currentPage,
-        limit: limitPage,
-        orderBy:'DESC',
-        search: values.search,
-        isActive: values.isActive
-      }
-    )
+    setSearch({
+      page: currentPage,
+      limit: limitPage,
+      orderBy: "DESC",
+      search: values.search,
+      isActive: values.isActive,
+    });
   };
 
-  const onReset = ()=>{
+  const onReset = () => {
     form.resetFields();
-    setSearch(
-      {
-        page: currentPage,
-        limit: limitPage,
-        orderBy:'DESC',
-        search: '',
-        isActive: null,
-      }
-    )
-  }
+    setSearch({
+      page: currentPage,
+      limit: limitPage,
+      orderBy: "DESC",
+      search: "",
+      isActive: null,
+    });
+  };
 
   const columns: ColumnsType<IGetRole> = [
     {
@@ -123,33 +118,43 @@ const RoleManagement = () => {
       render: (_, record) => {
         return (
           <div className="mr-10">
-            <Switch defaultChecked={record.isActive} onChange={(checked:boolean)=>{onChange(checked, record)}} />
+            <Switch
+              defaultChecked={record.isActive}
+              onChange={(checked: boolean) => {
+                onChange(checked, record);
+              }}
+            />
           </div>
         );
       },
     },
   ];
-  
+
   return (
     <>
       <CHeader
         keyHeader="manageUser"
         arrPath={["manageUser", "role"]}
         buttons={[
-          { 
-            colorButton: 'green',
-            keytext: '+addRole',
-            fn:  () => {
-                  navigate("/user/create-role");
-            }
-          }
+          {
+            colorButton: "green",
+            keytext: "+addRole",
+            fn: () => {
+              navigate("/user/create-role");
+            },
+          },
         ]}
       />
       <ContentContainer>
-        <SearchForm elements={elements} form={form} onFinish={onFinish} onReset={onReset}/>
+        <SearchForm
+          elements={elements}
+          form={form}
+          onFinish={onFinish}
+          onReset={onReset}
+        />
         <MoTable
-          rowKey={'id'}
-          headerTable={'รายการบทบาท'}
+          rowKey={"id"}
+          headerTable={"รายการบทบาท"}
           columns={columns}
           dataSource={listRoles?.result?.[0].data || []}
           onChangePage={onChangePage}
@@ -158,14 +163,14 @@ const RoleManagement = () => {
             pageSize: limitPage,
             currentPage: currentPage,
           }}
-          onRow={(record:IGetRole)=>({
-            onClick:()=>{
+          onRow={(record: IGetRole) => ({
+            onClick: () => {
               // console.log('oneClick',record);
             },
             onDoubleClick: () => {
-                queryClient.invalidateQueries(["get-role", record.id])
-                navigate("/user/create-role",{state:{ id : record.id }});
-              }
+              queryClient.invalidateQueries(["get-role", record.id]);
+              navigate("/user/create-role", { state: { id: record.id } });
+            },
           })}
         />
       </ContentContainer>

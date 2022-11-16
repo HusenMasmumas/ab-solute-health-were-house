@@ -10,7 +10,12 @@ import CCheckBox from "component/input/c-checkBox";
 import { useEffect, useState } from "react";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import _ from "lodash";
-import { useCreateRole, useGetRoleBYID, useGetRoleForm, useUpdateRole } from "service/permission";
+import {
+  useCreateRole,
+  useGetRoleBYID,
+  useGetRoleForm,
+  useUpdateRole,
+} from "service/permission";
 import { IPostRole, Permission } from "service/permission/interface";
 import { useQueryClient } from "@tanstack/react-query";
 interface DataType {
@@ -34,30 +39,30 @@ const StyleTable = styled(MoTable)`
 const CreateRole = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  let mode: 'edit' | 'create' | undefined = undefined
+  let mode: "edit" | "create" | undefined = undefined;
   const [GlobalTemp, setGlobalTemp] = useState<Permission[]>([]);
-  const [name, setName] = useState<String>('')
-  let data: IPostRole= {
-        name:'',
-        isActive:true,
-        permission:[]
-  }
+  const [name, setName] = useState<String>("");
+  let data: IPostRole = {
+    name: "",
+    isActive: true,
+    permission: [],
+  };
 
   const queryClient = useQueryClient();
-  const { data:dataCrete } = useGetRoleForm(location.state?.id);
-  const { data:dataEdit } = useGetRoleBYID(location.state?.id);
-  const createRole = useCreateRole()
-  const UpdateRole = useUpdateRole()
+  const { data: dataCrete } = useGetRoleForm(location.state?.id);
+  const { data: dataEdit } = useGetRoleBYID(location.state?.id);
+  const createRole = useCreateRole();
+  const UpdateRole = useUpdateRole();
 
-  if(dataEdit){
-    mode = 'edit'
-    delete (dataEdit as any).result.id 
-    data = dataEdit.result
+  if (dataEdit) {
+    mode = "edit";
+    delete (dataEdit as any).result.id;
+    data = dataEdit.result;
   }
 
-  if(dataCrete && !dataEdit){
-    mode = 'create'
-    data.permission = dataCrete.result[0].permission
+  if (dataCrete && !dataEdit) {
+    mode = "create";
+    data.permission = dataCrete.result[0].permission;
   }
 
   const setting = (
@@ -104,68 +109,84 @@ const CreateRole = () => {
           item[keyname] = state;
         }
         item.subMenu = temp;
-        return item; 
+        return item;
       }
       return item;
     });
 
-    setGlobalTemp(tempArr || [])
+    setGlobalTemp(tempArr || []);
   };
 
-  const conditonCall = ()=>{
-    if( data?.permission && !dataEdit){
-        createRole.mutate(
-          {
-            name: name as string,
-            isActive: true,
-            permission: data?.permission 
+  const conditonCall = () => {
+    if (data?.permission && !dataEdit) {
+      createRole.mutate(
+        {
+          name: name as string,
+          isActive: true,
+          permission: data?.permission,
+        },
+        {
+          onSuccess: async () => {
+            alert("success");
+            navigate("/user/role");
           },
-          {
-            onSuccess: async () => {
-              alert('success')
-              navigate("/user/role");
-            },
-            onError: async () => {
-              alert('onError')
-            },
-          }
-        )
-      }
-
-      if(dataEdit){
-        UpdateRole.mutate(
-          {
-            ...data,
-            id:location.state.id
+          onError: async () => {
+            alert("onError");
           },
+        }
+      );
+    }
+
+    if (dataEdit) {
+      UpdateRole.mutate(
+        {
+          ...data,
+          id: location.state.id,
+        },
+        {
+          onSuccess: async () => {
+            alert("success");
+            navigate("/user/role");
+            // queryClient.invalidateQueries(["get-roles"])
+          },
+          onError: async () => {
+            alert("onError");
+          },
+        }
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (mode === "create") {
+      queryClient.setQueryData(["get-role"], {
+        ...data,
+        result: [
           {
-            onSuccess: async () => {
-              alert('success')
-              navigate("/user/role");
-              // queryClient.invalidateQueries(["get-roles"])
-            },
-            onError: async () => {
-              alert('onError')
-            },
-          }
-        )
-      }
-  }
+            ...(data?.permission || []),
+            permission: _.cloneDeep(GlobalTemp) || [],
+          },
+        ],
+      });
+    }
+    if (mode === "edit") {
+      queryClient.setQueryData(["get-role", location.state.id], {
+        ...data,
+        result: { ...data, permission: _.cloneDeep(GlobalTemp) || [] },
+      });
+    }
+    // eslint-disable-next-line
+  }, [GlobalTemp]);
 
-  useEffect(()=>{
-    if(mode === "create"){
-      queryClient.setQueryData(["get-role"], {...data,result:[{...data?.permission || [] ,permission: _.cloneDeep(GlobalTemp)|| [] }]})
+  useEffect(() => {
+    if (mode === "edit") {
+      queryClient.setQueryData(["get-role", location.state.id], {
+        ...data,
+        result: { ...data, name: name },
+      });
     }
-    if(mode === "edit"){      
-      queryClient.setQueryData(["get-role", location.state.id ], {...data,result:{...data ,permission: _.cloneDeep(GlobalTemp)|| [] }})
-    }
-  },[GlobalTemp])
-
-  useEffect(()=>{
-    if(mode === "edit"){
-      queryClient.setQueryData(["get-role", location.state.id ], {...data, result: { ...data, name : name } })
-    }
-  },[name])
+    // eslint-disable-next-line
+  }, [name]);
 
   const columns: ColumnsType<DataType> = [
     {
@@ -239,7 +260,6 @@ const CreateRole = () => {
     },
   };
 
-
   return (
     <>
       <CHeader
@@ -258,7 +278,7 @@ const CreateRole = () => {
             colorButton: "green",
             keytext: "save",
             fn: () => {
-              conditonCall()
+              conditonCall();
             },
           },
         ]}
@@ -272,7 +292,16 @@ const CreateRole = () => {
             <Row gutter={[24, 0]}>
               <Col span={24}>
                 <Form.Item label="ชื่อบทบาท">
-                  <Input className="input-form" placeholder="ชื่อบทบาท" value={dataCrete && !dataEdit ? name+'' : dataEdit?.result.name} onChange={(e)=>{setName(e.target.value)}}/>
+                  <Input
+                    className="input-form"
+                    placeholder="ชื่อบทบาท"
+                    value={
+                      dataCrete && !dataEdit ? name + "" : dataEdit?.result.name
+                    }
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
                 </Form.Item>
               </Col>
             </Row>
